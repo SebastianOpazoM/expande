@@ -1,6 +1,5 @@
 import Fastify from 'fastify';
 import cookie from '@fastify/cookie';
-import staticFiles from '@fastify/static';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
@@ -151,6 +150,7 @@ export async function createApp(
     });
   });
   if (options.serveStatic !== false && existsSync(resolve('dist/index.html'))) {
+    const { default: staticFiles } = await import('@fastify/static');
     await app.register(staticFiles, { root: resolve('dist') });
     app.setNotFoundHandler((req, reply) =>
       req.url.startsWith('/api/')

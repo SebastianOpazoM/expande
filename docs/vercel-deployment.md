@@ -8,6 +8,8 @@ The adapter executes the existing synchronous domain store inside a serialized T
 
 The Vercel Function configuration explicitly includes the server modules, shared domain modules, migration SQL and two immutable seed JSON files used at runtime. This is required because the first Production deployment of commit `1da3170` transpiled `api/index.ts` but omitted `/var/task/server/app.ts`, causing `ERR_MODULE_NOT_FOUND`. Vercel copies these additional TypeScript files rather than transpiling them, so the runtime modules use only Node 24 strip-compatible TypeScript syntax. The include pattern deliberately excludes `public/`, `dist/`, tests and local environment files; media remain static CDN assets rather than Function contents.
 
+The shared Fastify factory loads `@fastify/static` only when local/Docker static serving is enabled and `dist/index.html` exists. The Vercel entry point disables that branch because Vercel's CDN serves the frontend and media. This also prevents Vercel's generated Function wrapper from evaluating the plugin's ESM dependency during API cold start; Production deployment `dpl_G8y2HKT8VDRwTznaMRVRXLp4KwA1` exposed that interop failure after the missing runtime files were added.
+
 Vercel's current platform documentation is explicit that local SQLite is unsupported for durable writes:
 
 - [Is SQLite supported in Vercel?](https://vercel.com/kb/guide/is-sqlite-supported-in-vercel)

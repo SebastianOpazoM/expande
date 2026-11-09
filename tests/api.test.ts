@@ -1,7 +1,36 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { createApp } from '../server/app.ts';
 import { Store } from '../server/store.ts';
+test('API: el arranque de Vercel no resuelve el plugin estático', () => {
+  const result = spawnSync(
+    process.execPath,
+    ['--experimental-transform-types', 'tests/fixtures/vercel-no-static-load.ts'],
+    {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      env: { ...process.env, NODE_ENV: 'test', DEMO_ACCESS_PASSWORD: '' },
+    },
+  );
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});
+test('API: inicia sin servidor estático y conserva errores JSON', async () => {
+  const s = new Store(':memory:');
+  const app = await createApp(s, { serveStatic: false, password: '' });
+  try {
+    const health = await app.inject('/api/health');
+    assert.equal(health.statusCode, 200);
+    assert.equal(health.json().ok, true);
+    const missing = await app.inject('/api/v1/no-existe');
+    assert.equal(missing.statusCode, 404);
+    assert.match(missing.headers['content-type'] || '', /^application\/json/);
+    assert.equal(missing.json().error, 'Not Found');
+  } finally {
+    await app.close();
+    s.close();
+  }
+});
 test('API: la cookie de visitante sobrevive al reinicio sin secreto de entorno', async () => {
   const s = new Store(':memory:');
   let app = await createApp(s);
