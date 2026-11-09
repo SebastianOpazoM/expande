@@ -2,7 +2,7 @@
 
 ## Current status
 
-The repository now includes a Vercel API entry point and a Turso-backed persistence adapter. **Do not import the Production snapshot until the adapter commit has been deployed and its health check succeeds.** Local development, tests and Docker continue to use `DATABASE_PATH` with Node's `node:sqlite`; Vercel uses `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`.
+The repository now includes a Vercel API entry point and a Turso-backed persistence adapter. **Do not import the Production snapshot until the adapter commit has been deployed and its health check succeeds.** Local development, tests and Docker continue to use `DATABASE_PATH` with Node's `node:sqlite`; Vercel uses `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`, or the `EXPANDE_DB_`-prefixed equivalents created by the connected Marketplace resource.
 
 The adapter executes the existing synchronous domain store inside a serialized Turso transaction. This retains the established validation, ownership, relationship, audit and revision rules without treating Function-local storage as durable. The remote import command refuses a database that already contains scopes.
 
@@ -42,7 +42,7 @@ The smallest Vercel-compatible design is:
 4. The current project connects only Production. Preview deployments intentionally have no database credentials and therefore no working API; if Preview persistence is added later, it must use a separate database and must never write to Production.
 5. The browser continues to call same-origin `/api/...`; no public administrative API or real authentication is introduced.
 
-Turso is available through the [Vercel Marketplace](https://vercel.com/marketplace/tursocloud/database) and provides `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`. It is a close data-model match, but it is **not** a drop-in configuration change for this repository: its JavaScript client is asynchronous while the current `Store` and action layer use the synchronous `DatabaseSync` API.
+Turso is available through the [Vercel Marketplace](https://vercel.com/marketplace/tursocloud/database). Integrations may prefix the normal `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN` names with the resource name. Turso is a close data-model match, but it is **not** a drop-in configuration change for this repository: its JavaScript client is asynchronous while the current `Store` and action layer use the synchronous `DatabaseSync` API.
 
 ## Implemented adapter
 
@@ -71,14 +71,19 @@ Perform these steps only after the remote adapter passes the normal build and te
 5. Connect the Turso integration to the Vercel project, scoped to the correct environments.
 6. Set these Vercel environment variables:
 
-   | Variable               | Environments | Value                                              |
-   | ---------------------- | ------------ | -------------------------------------------------- |
-   | `TURSO_DATABASE_URL`   | Production   | URL supplied by `database-teal-xylophone`          |
-   | `TURSO_AUTH_TOKEN`     | Production   | Secret token for the same database                 |
-   | `DEMO_ACCESS_PASSWORD` | Production   | Strong shared demo-gate password                   |
-   | `COOKIE_SECRET`        | Production   | Independent random value of at least 32 characters |
-   | `COOKIE_SECURE`        | Production   | `true`                                             |
-   | `TRUST_PROXY`          | Production   | `true` after proxy-address behavior is verified    |
+   | Variable                                                | Environments | Value                                              |
+   | ------------------------------------------------------- | ------------ | -------------------------------------------------- |
+   | `TURSO_DATABASE_URL` or `EXPANDE_DB_TURSO_DATABASE_URL` | Production   | URL supplied by `database-teal-xylophone`          |
+   | `TURSO_AUTH_TOKEN` or `EXPANDE_DB_TURSO_AUTH_TOKEN`     | Production   | Secret token for the same database                 |
+   | `DEMO_ACCESS_PASSWORD`                                  | Production   | Strong shared demo-gate password                   |
+   | `COOKIE_SECRET`                                         | Production   | Independent random value of at least 32 characters |
+   | `COOKIE_SECURE`                                         | Production   | `true`                                             |
+   | `TRUST_PROXY`                                           | Production   | `true` after proxy-address behavior is verified    |
+
+   Use one complete pair. The connected `Expande DB` Marketplace resource currently injects the
+   `EXPANDE_DB_` pair, which the server accepts directly; do not copy its protected values into
+   duplicate variables. If both complete pairs exist, the unprefixed pair takes priority. Any
+   incomplete pair fails as remote misconfiguration instead of falling back to local SQLite.
 
    Do not set `DATABASE_PATH` in Vercel. Do not expose Turso credentials with a `VITE_` prefix; that prefix would place them in browser code.
 

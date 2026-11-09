@@ -84,6 +84,20 @@ function plainRows(rows: Iterable<any>): any[] {
   return Array.from(rows, (row) => Object.fromEntries(Object.entries(row)));
 }
 
+function environmentCredentials() {
+  const standard = {
+    url: process.env.TURSO_DATABASE_URL,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+  };
+  const prefixed = {
+    url: process.env.EXPANDE_DB_TURSO_DATABASE_URL,
+    authToken: process.env.EXPANDE_DB_TURSO_AUTH_TOKEN,
+  };
+  if (standard.url && standard.authToken) return standard;
+  if (prefixed.url && prefixed.authToken) return prefixed;
+  return standard.url || standard.authToken ? standard : prefixed;
+}
+
 export class RemoteStore {
   private initialized?: Promise<void>;
   private client: Client;
@@ -91,9 +105,13 @@ export class RemoteStore {
     this.client = client;
   }
 
+  static isConfigured() {
+    const { url, authToken } = environmentCredentials();
+    return Boolean(url || authToken);
+  }
+
   static fromEnvironment() {
-    const url = process.env.TURSO_DATABASE_URL;
-    const authToken = process.env.TURSO_AUTH_TOKEN;
+    const { url, authToken } = environmentCredentials();
     if (!url || !authToken)
       throw new DomainError(503, 'La base de datos remota no está configurada', 'DATABASE');
     return new RemoteStore(createClient({ url, authToken }));

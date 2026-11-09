@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { DatabaseSync } from 'node:sqlite';
@@ -8,6 +8,69 @@ import { createClient } from '@libsql/client';
 import { RemoteStore } from '../server/remote-store.ts';
 import { Store } from '../server/store.ts';
 import { createApp } from '../server/app.ts';
+
+test('Vercel usa las credenciales Turso con prefijo de la integración', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'expande-prefixed-turso-'));
+  const prefixedPath = join(directory, 'prefixed.sqlite');
+  const standardPath = join(directory, 'standard.sqlite');
+  const previous = {
+    url: process.env.TURSO_DATABASE_URL,
+    token: process.env.TURSO_AUTH_TOKEN,
+    prefixedUrl: process.env.EXPANDE_DB_TURSO_DATABASE_URL,
+    prefixedToken: process.env.EXPANDE_DB_TURSO_AUTH_TOKEN,
+  };
+  delete process.env.TURSO_DATABASE_URL;
+  delete process.env.TURSO_AUTH_TOKEN;
+  process.env.EXPANDE_DB_TURSO_DATABASE_URL = `file:${prefixedPath}`;
+  process.env.EXPANDE_DB_TURSO_AUTH_TOKEN = 'integration-test-token';
+  let app;
+  try {
+    assert.equal(RemoteStore.isConfigured(), true);
+    app = await createApp(undefined, {
+      password: '',
+      secret: 'prefixed-turso-test-secret-at-least-32-characters',
+      serveStatic: false,
+    });
+    const health = await app.inject('/api/health');
+    assert.equal(health.statusCode, 200);
+    assert.deepEqual(health.json(), { ok: true, databaseReady: false });
+    await app.close();
+    app = undefined;
+
+    process.env.TURSO_DATABASE_URL = `file:${standardPath}`;
+    assert.equal(RemoteStore.isConfigured(), true);
+    const prefixedFallback = RemoteStore.fromEnvironment();
+    assert.equal(await prefixedFallback.ready(), false);
+    prefixedFallback.close();
+    assert.equal(existsSync(standardPath), false);
+
+    process.env.TURSO_AUTH_TOKEN = 'standard-test-token';
+    const standardPreferred = RemoteStore.fromEnvironment();
+    assert.equal(await standardPreferred.ready(), false);
+    standardPreferred.close();
+    assert.equal(existsSync(standardPath), true);
+
+    delete process.env.TURSO_AUTH_TOKEN;
+    delete process.env.EXPANDE_DB_TURSO_DATABASE_URL;
+    delete process.env.EXPANDE_DB_TURSO_AUTH_TOKEN;
+    await assert.rejects(
+      () => createApp(undefined, { password: '', serveStatic: false }),
+      /base de datos remota no está configurada/,
+    );
+  } finally {
+    await app?.close();
+    for (const [name, value] of [
+      ['TURSO_DATABASE_URL', previous.url],
+      ['TURSO_AUTH_TOKEN', previous.token],
+      ['EXPANDE_DB_TURSO_DATABASE_URL', previous.prefixedUrl],
+      ['EXPANDE_DB_TURSO_AUTH_TOKEN', previous.prefixedToken],
+    ] as const) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 test('remote store imports once and persists isolated sessions and revision conflicts', async () => {
   const directory = mkdtempSync(join(tmpdir(), 'expande-remote-'));

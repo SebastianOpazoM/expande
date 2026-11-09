@@ -7,7 +7,7 @@ import { Store, DomainError, assert } from './store.ts';
 import { RemoteStore } from './remote-store.ts';
 import { action } from './actions.ts';
 export async function createApp(
-  store: Store | RemoteStore = process.env.TURSO_DATABASE_URL
+  store: Store | RemoteStore = RemoteStore.isConfigured()
     ? RemoteStore.fromEnvironment()
     : new Store(),
   options: { password?: string; secret?: string; secure?: boolean; serveStatic?: boolean } = {},
