@@ -14,16 +14,31 @@ for (const width of [360, 390, 430])
     await page.setViewportSize({ width, height: 844 });
     await enter(page);
     await page.goto('/innovacion');
-    for (const tab of ['Casos', 'Noticias', 'Tendencias']) {
+    for (const [tab, value, imagePrefix] of [
+      ['Casos', 'cases', 'case'],
+      ['Noticias', 'news', 'news'],
+      ['Tendencias', 'trends', 'trend'],
+    ]) {
       await page.getByRole('button', { name: tab, exact: true }).click();
+      await expect(page).toHaveURL(new RegExp(`[?&]tab=${value}(?:&|$)`));
       await expect(page.locator('article.card')).toHaveCount(5);
       await expect(page.getByText('5 contenidos', { exact: true })).toBeVisible();
-      for (const img of await page.locator('article.card .learning-thumbnail img').all()) {
-        await img.scrollIntoViewIfNeeded();
-        await expect
-          .poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0))
-          .toBe(true);
-      }
+      const images = page.locator('article.card .learning-thumbnail img');
+      await expect(images.first()).toHaveAttribute('src', new RegExp(`/${imagePrefix}-`));
+      await images.last().scrollIntoViewIfNeeded();
+      await expect
+        .poll(() =>
+          images.evaluateAll(
+            (elements) =>
+              elements.length === 5 &&
+              elements.every(
+                (element) =>
+                  (element as HTMLImageElement).complete &&
+                  (element as HTMLImageElement).naturalWidth > 0,
+              ),
+          ),
+        )
+        .toBe(true);
       await expect(page.locator('.provenance')).toHaveCount(0);
       await expect(page.getByText('Ejemplo ficticio', { exact: true })).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(

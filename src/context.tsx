@@ -23,7 +23,19 @@ export async function request(path: string, body?: any) {
         }
       : {}),
   });
-  const v = await r.json();
+  const contentType = r.headers.get('content-type') || '';
+  if (!contentType.includes('application/json'))
+    throw new Error(
+      r.status === 404
+        ? 'El servidor de la demostración no está disponible.'
+        : 'El servidor respondió en un formato inesperado.',
+    );
+  let v: any;
+  try {
+    v = await r.json();
+  } catch {
+    throw new Error('El servidor respondió con datos inválidos.');
+  }
   if (!r.ok) throw new Error(v.error?.message || 'No se pudo conectar');
   return v;
 }

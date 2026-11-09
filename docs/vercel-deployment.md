@@ -2,9 +2,9 @@
 
 ## Current status
 
-**Do not deploy the repository to Vercel as-is.** The frontend and committed media are compatible with Vercel, but the application database is not. The current server opens `DATABASE_PATH` with Node's `node:sqlite`, writes visitor sessions to that file, and expects those writes to survive restarts. Vercel Functions do not provide a shared persistent local filesystem, so changing `DATABASE_PATH` to a path inside a Function would eventually lose data or give concurrent instances different data.
+The repository now includes a Vercel API entry point and a Turso-backed persistence adapter. **Do not import the Production snapshot until the adapter commit has been deployed and its health check succeeds.** Local development, tests and Docker continue to use `DATABASE_PATH` with Node's `node:sqlite`; Vercel uses `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`.
 
-This guide is the deployment plan and acceptance checklist. It intentionally does not include a premature `vercel.json`: adding routing alone would produce a deployment whose persistence contract is false.
+The adapter executes the existing synchronous domain store inside a serialized Turso transaction. This retains the established validation, ownership, relationship, audit and revision rules without treating Function-local storage as durable. The remote import command refuses a database that already contains scopes.
 
 Vercel's current platform documentation is explicit that local SQLite is unsupported for durable writes:
 
@@ -16,13 +16,13 @@ If the app must go online without a storage migration, use the existing [single-
 
 ## What is already portable
 
-| Item | Repository source | Current size | Vercel plan |
-| --- | --- | ---: | --- |
-| React/Vite frontend | `src/`, `index.html` | Build output varies | Build with `npm run build` and serve `dist/` |
-| Images and brand assets | `public/images`, `public/brands` | About 4.8 MB | Vite copies them to `dist/`; serve as immutable static assets |
-| Recap video | `public/videos/expande-masterclass-resumen-jornada.mp4` | About 71 MB | Vite copies it to `dist/videos`; verify range playback after deploy |
-| Enriched demo snapshot | `demo/expande.sqlite` | About 1.6 MB | Import once into the managed database; never use it as a writable Function-local file |
-| Original source package | `source-package/` | About 380 KB | Preserve it in the repository; it does not need a public route |
+| Item                    | Repository source                                       |        Current size | Vercel plan                                                                           |
+| ----------------------- | ------------------------------------------------------- | ------------------: | ------------------------------------------------------------------------------------- |
+| React/Vite frontend     | `src/`, `index.html`                                    | Build output varies | Build with `npm run build` and serve `dist/`                                          |
+| Images and brand assets | `public/images`, `public/brands`                        |        About 4.8 MB | Vite copies them to `dist/`; serve as immutable static assets                         |
+| Recap video             | `public/videos/expande-masterclass-resumen-jornada.mp4` |         About 71 MB | Vite copies it to `dist/videos`; verify range playback after deploy                   |
+| Enriched demo snapshot  | `demo/expande.sqlite`                                   |        About 1.6 MB | Import once into the managed database; never use it as a writable Function-local file |
+| Original source package | `source-package/`                                       |        About 380 KB | Preserve it in the repository; it does not need a public route                        |
 
 The complete `public/` directory is about 76 MB. That currently fits below Vercel's documented 100 MB Hobby CLI source-upload limit, but with limited headroom. See [Vercel limits](https://vercel.com/docs/limits). If deployment size or video transfer becomes a problem, move only the MP4 to object storage such as Vercel Blob and update its catalog URL through the audited data CLI. Do not silently replace or recompress the source media; preserve its provenance and hash in the media documentation.
 
@@ -35,14 +35,14 @@ The smallest Vercel-compatible design is:
 1. Vercel builds the Vite frontend and serves `dist/` and its media through the CDN.
 2. The Fastify API runs as a Node.js Vercel Function.
 3. A managed SQLite-compatible service, recommended here as Turso Cloud, owns all durable records and visitor sessions.
-4. Production and Preview deployments use separate databases. Preview deployments must never write to the production demo database.
+4. The current project connects only Production. Preview deployments intentionally have no database credentials and therefore no working API; if Preview persistence is added later, it must use a separate database and must never write to Production.
 5. The browser continues to call same-origin `/api/...`; no public administrative API or real authentication is introduced.
 
 Turso is available through the [Vercel Marketplace](https://vercel.com/marketplace/tursocloud/database) and provides `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN`. It is a close data-model match, but it is **not** a drop-in configuration change for this repository: its JavaScript client is asynchronous while the current `Store` and action layer use the synchronous `DatabaseSync` API.
 
-## Implementation work required before deployment
+## Implemented adapter
 
-Treat the following as one code change and verify it locally before connecting production resources:
+The Vercel/Turso change implements the following as one reviewed code change:
 
 - Introduce a storage interface used by `server/store.ts`, `server/actions.ts`, `server/app.ts`, and the data CLI.
 - Keep the local `node:sqlite` adapter for local development, Docker, tests, backups, and recovery.
@@ -62,23 +62,43 @@ Perform these steps only after the remote adapter passes the normal build and te
 
 1. Back up the intended source database. For the committed enriched demo, use `demo/expande.sqlite`. For a newer local runtime database, use the existing `npm run data -- backup` command first.
 2. Run an integrity check and record counts locally. Preserve the backup outside the repository.
-3. Provision separate Turso databases for Production and Preview. Choose a database region close to the Vercel Function region.
+3. Provision the Production Turso database in a region close to the Vercel Function region. Provision a separate Preview database only if Preview API testing is needed later.
 4. Import the SQLite snapshot. Turso documents `turso db import /path/to/database.sqlite` for an existing SQLite file; follow its current import instructions and verify the schema, `migrations`, `scopes`, `records`, and `audit` tables after import.
 5. Connect the Turso integration to the Vercel project, scoped to the correct environments.
 6. Set these Vercel environment variables:
 
-   | Variable | Environments | Value |
-   | --- | --- | --- |
-   | `TURSO_DATABASE_URL` | Production, Preview | Different database URL per environment |
-   | `TURSO_AUTH_TOKEN` | Production, Preview | Secret token for the matching database |
-   | `DEMO_ACCESS_PASSWORD` | Production, Preview | Strong shared demo-gate password |
-   | `COOKIE_SECRET` | Production, Preview | Independent random value of at least 32 characters |
-   | `COOKIE_SECURE` | Production, Preview | `true` |
-   | `TRUST_PROXY` | Production, Preview | `true` after proxy-address behavior is verified |
+   | Variable               | Environments | Value                                              |
+   | ---------------------- | ------------ | -------------------------------------------------- |
+   | `TURSO_DATABASE_URL`   | Production   | URL supplied by `database-teal-xylophone`          |
+   | `TURSO_AUTH_TOKEN`     | Production   | Secret token for the same database                 |
+   | `DEMO_ACCESS_PASSWORD` | Production   | Strong shared demo-gate password                   |
+   | `COOKIE_SECRET`        | Production   | Independent random value of at least 32 characters |
+   | `COOKIE_SECURE`        | Production   | `true`                                             |
+   | `TRUST_PROXY`          | Production   | `true` after proxy-address behavior is verified    |
 
    Do not set `DATABASE_PATH` in Vercel. Do not expose Turso credentials with a `VITE_` prefix; that prefix would place them in browser code.
 
 7. Select Node.js 24.x in Vercel. It is compatible with the repository's current Node requirement and is currently supported by Vercel.
+
+### Remote administration
+
+Pull Production variables into the ignored local `.env` file only on an authorized workstation:
+
+```text
+vercel link
+vercel env pull .env --environment=production
+npm run data:remote -- status
+```
+
+The status command applies the idempotent schema migration and reports `databaseReady: false` until a catalog snapshot exists. Never commit `.env` or paste the auth token into chat, browser code or a `VITE_*` variable.
+
+The first import is deliberately separate and only accepts an empty remote database:
+
+```text
+npm run data:remote -- import --file demo/expande.sqlite --confirm-empty
+```
+
+Run it only after explicit approval and after confirming that the environment points to the intended Production resource. A second import is rejected. After import, use `npm run data:remote -- sessions|history|list|get|preview|apply|action|restore` with the same explicit scopes and revision workflow documented for the local CLI.
 
 The current Turso import reference is [Migrating and importing SQLite](https://turso.tech/blog/migrating-and-importing-sqlite-to-turso-just-got-easier). Recheck the provider's current command before operating on production.
 
@@ -94,11 +114,12 @@ npm run test:e2e
 npx vercel
 ```
 
-Use the Preview URL for acceptance checks. Promote only a deployment that passes the checklist below. A Git-connected Vercel project may replace the final CLI command with its normal Preview/Production promotion flow.
+With the current Production-only database, deploy the reviewed commit to Production and perform the staged health/import checks below. Do not test a Preview deployment against Production credentials. If a separate Preview database is added later, acceptance may run there before promotion. A Git-connected Vercel project may replace the final CLI command with its normal deployment flow.
 
 ## Acceptance checklist
 
 - `/api/health` returns HTTP 200.
+- Production API reads and writes complete within the Function timeout under expected demo load; record observed bootstrap and action latency.
 - A deep link such as `/desafios` renders instead of returning 404.
 - The access gate sets Secure, HttpOnly cookies and survives a new request.
 - A new browser receives a unique session UUID under Cuenta → Cambiar escenario.
@@ -123,4 +144,3 @@ Application rollback and data rollback are separate operations:
 - Use the managed database provider's recovery mechanism or a verified export/import for damaged data.
 - Never point an older application release at a newer, incompatible schema without a documented compatibility check.
 - Keep the last known-good database export outside Vercel and outside the Git repository.
-

@@ -5,24 +5,30 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { Store, DomainError, assert } from './store.ts';
+import { RemoteStore } from './remote-store.ts';
 import { action } from './actions.ts';
 export async function createApp(
-  store = new Store(),
-  options: { password?: string; secret?: string; secure?: boolean } = {},
+  store: Store | RemoteStore = process.env.TURSO_DATABASE_URL
+    ? RemoteStore.fromEnvironment()
+    : new Store(),
+  options: { password?: string; secret?: string; secure?: boolean; serveStatic?: boolean } = {},
 ) {
   const password = options.password ?? process.env.DEMO_ACCESS_PASSWORD;
-  let persisted = (
-    store.db.prepare("SELECT value FROM settings WHERE key='local_cookie_secret'").get() as any
-  )?.value;
-  if (!persisted) {
-    store.db
-      .prepare('INSERT OR IGNORE INTO settings(key,value) VALUES(?,?)')
-      .run('local_cookie_secret', randomBytes(32).toString('hex'));
+  let persisted: string | undefined;
+  if (store instanceof Store) {
     persisted = (
       store.db.prepare("SELECT value FROM settings WHERE key='local_cookie_secret'").get() as any
-    ).value;
+    )?.value;
+    if (!persisted) {
+      store.db
+        .prepare('INSERT OR IGNORE INTO settings(key,value) VALUES(?,?)')
+        .run('local_cookie_secret', randomBytes(32).toString('hex'));
+      persisted = (
+        store.db.prepare("SELECT value FROM settings WHERE key='local_cookie_secret'").get() as any
+      ).value;
+    }
   }
-  const secret = options.secret ?? process.env.COOKIE_SECRET ?? persisted;
+  const secret = options.secret ?? process.env.COOKIE_SECRET ?? persisted ?? '';
   if (process.env.NODE_ENV === 'production')
     assert(
       password && secret.length >= 32 && process.env.COOKIE_SECRET,
@@ -47,6 +53,32 @@ export async function createApp(
     .digest('hex');
   const gate = (req: any) =>
     !password || req.unsignCookie(req.cookies.expande_access || '').value === gateToken;
+  const useStore = <T>(write: boolean, callback: (local: Store) => T | Promise<T>) =>
+    store instanceof RemoteStore ? store.use(write, callback) : Promise.resolve(callback(store));
+  const withSession = async <T>(
+    req: any,
+    reply: any,
+    write: boolean,
+    callback: (local: Store, sessionId: string) => T | Promise<T>,
+  ) => {
+    const signedSession = req.unsignCookie(req.cookies.expande_session || '').value;
+    if (!write && signedSession) {
+      const result = await useStore(false, async (local) =>
+        local.scope(signedSession)?.kind === 'session'
+          ? { found: true as const, value: await callback(local, signedSession) }
+          : { found: false as const },
+      );
+      if (result.found) return result.value;
+    }
+    return useStore(true, async (local) => {
+      let sessionId = signedSession;
+      if (!sessionId || local.scope(sessionId)?.kind !== 'session') {
+        sessionId = local.createSession();
+        reply.setCookie('expande_session', sessionId, cookieOptions);
+      }
+      return callback(local, sessionId);
+    });
+  };
   app.setErrorHandler((err: any, _req, reply) => {
     reply.status(err instanceof DomainError ? err.status : err.statusCode || 500).send({
       error: {
@@ -75,15 +107,12 @@ export async function createApp(
     }
     if (req.url.startsWith('/api/v1/access') || req.url === '/api/health') return;
     assert(gate(req), 'Ingresa la contraseña de acceso', 401);
-    let sid = req.unsignCookie(req.cookies.expande_session || '').value;
-    if (!sid || store.scope(sid)?.kind !== 'session') {
-      sid = store.createSession();
-      reply.setCookie('expande_session', sid, cookieOptions);
-    }
-    (req as any).sessionId = sid;
   });
   const attempts = new Map<string, { count: number; since: number }>();
-  app.get('/api/health', async () => ({ ok: true }));
+  app.get('/api/health', async () => ({
+    ok: true,
+    databaseReady: store instanceof RemoteStore ? await store.ready() : true,
+  }));
   app.get('/api/v1/access', async (req) => ({ allowed: gate(req), required: !!password }));
   app.post('/api/v1/access', async (req, reply) => {
     const ip = req.ip,
@@ -108,16 +137,20 @@ export async function createApp(
     reply.setCookie('expande_access', gateToken, cookieOptions);
     return { ok: true };
   });
-  app.get('/api/v1/bootstrap', async (req) => store.visible((req as any).sessionId));
-  app.get('/api/v1/revision', async (req) => ({
-    revision: store.revision((req as any).sessionId),
-  }));
-  app.post('/api/v1/actions', async (req) => {
+  app.get('/api/v1/bootstrap', async (req, reply) =>
+    withSession(req, reply, false, (local, sessionId) => local.visible(sessionId)),
+  );
+  app.get('/api/v1/revision', async (req, reply) =>
+    withSession(req, reply, false, (local, sessionId) => ({ revision: local.revision(sessionId) })),
+  );
+  app.post('/api/v1/actions', async (req, reply) => {
     assert(req.body && typeof req.body === 'object', 'Acción inválida');
-    action(store, (req as any).sessionId, req.body);
-    return store.visible((req as any).sessionId);
+    return withSession(req, reply, true, (local, sessionId) => {
+      action(local, sessionId, req.body);
+      return local.visible(sessionId);
+    });
   });
-  if (existsSync(resolve('dist/index.html'))) {
+  if (options.serveStatic !== false && existsSync(resolve('dist/index.html'))) {
     await app.register(staticFiles, { root: resolve('dist') });
     app.setNotFoundHandler((req, reply) =>
       req.url.startsWith('/api/')

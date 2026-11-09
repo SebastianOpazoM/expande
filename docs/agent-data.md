@@ -83,3 +83,16 @@ docker compose exec app npm run data -- backup --output /app/backups/before-edit
 ```
 
 Transfer a prepared JSON changes file into the container with `docker compose cp` when needed. Backups contain visitor data and are not repository artifacts.
+
+## Remote Turso administration
+
+`npm run data:remote -- help` works without credentials. Every command that connects requires `.env` to contain authorized server-side `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN` values for the intended environment. The remote CLI supports status, sessions, history, list, get, preview, apply, action and restore while reusing the same schema, ownership, relationship, audit and revision checks as the local store.
+
+The one-time import command refuses any remote database that already contains scopes:
+
+```text
+npm run data:remote -- status
+npm run data:remote -- import --file demo/expande.sqlite --confirm-empty
+```
+
+Import is not an ordinary edit. Confirm the exact Vercel environment/resource and obtain explicit approval before running it. Provider backups/exports remain separate from the local SQLite `backup` and `restore-backup` commands.

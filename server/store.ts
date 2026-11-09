@@ -30,6 +30,14 @@ export type Change = {
   value: Row | null;
   expectedRevision?: number;
 };
+export type DatabaseSnapshot = {
+  migrations: any[];
+  scopes: any[];
+  records: any[];
+  record_links: any[];
+  audit: any[];
+  settings: any[];
+};
 const scalarRefs: Record<string, string> = {
   company_id: 'companies',
   user_id: 'users',
@@ -565,6 +573,76 @@ export class Store {
       };
     });
     return this.batch(scope, changes, actor);
+  }
+  exportSnapshot(): DatabaseSnapshot {
+    return {
+      migrations: this.db.prepare('SELECT * FROM migrations ORDER BY version').all(),
+      scopes: this.db.prepare('SELECT * FROM scopes ORDER BY id').all(),
+      records: this.db.prepare('SELECT * FROM records ORDER BY scope,collection,id').all(),
+      record_links: this.db
+        .prepare(
+          'SELECT * FROM record_links ORDER BY scope,collection,id,field,target_scope,target_collection,target_id',
+        )
+        .all(),
+      audit: this.db.prepare('SELECT * FROM audit ORDER BY id').all(),
+      settings: this.db.prepare('SELECT * FROM settings ORDER BY key').all(),
+    };
+  }
+  importSnapshot(snapshot: DatabaseSnapshot) {
+    this.transaction(() => {
+      this.db.exec(
+        'PRAGMA defer_foreign_keys=ON; DELETE FROM record_links; DELETE FROM records; DELETE FROM audit; DELETE FROM scopes; DELETE FROM settings; DELETE FROM migrations;',
+      );
+      const insert = (sql: string, rows: any[], fields: string[]) => {
+        const statement = this.db.prepare(sql);
+        for (const row of rows) statement.run(...fields.map((field) => row[field] ?? null));
+      };
+      insert('INSERT INTO migrations(version,applied_at) VALUES(?,?)', snapshot.migrations, [
+        'version',
+        'applied_at',
+      ]);
+      insert(
+        'INSERT INTO scopes(id,kind,label,active_user,demo_now,revision,created_at) VALUES(?,?,?,?,?,?,?)',
+        snapshot.scopes,
+        ['id', 'kind', 'label', 'active_user', 'demo_now', 'revision', 'created_at'],
+      );
+      insert(
+        'INSERT INTO records(scope,collection,id,body,company_id,user_id,application_id,revision) VALUES(?,?,?,?,?,?,?,?)',
+        snapshot.records,
+        [
+          'scope',
+          'collection',
+          'id',
+          'body',
+          'company_id',
+          'user_id',
+          'application_id',
+          'revision',
+        ],
+      );
+      insert(
+        'INSERT INTO record_links(scope,collection,id,field,target_scope,target_collection,target_id) VALUES(?,?,?,?,?,?,?)',
+        snapshot.record_links,
+        ['scope', 'collection', 'id', 'field', 'target_scope', 'target_collection', 'target_id'],
+      );
+      insert(
+        'INSERT INTO audit(id,batch_id,actor,at,scope,collection,record_id,before_json,after_json,after_revision) VALUES(?,?,?,?,?,?,?,?,?,?)',
+        snapshot.audit,
+        [
+          'id',
+          'batch_id',
+          'actor',
+          'at',
+          'scope',
+          'collection',
+          'record_id',
+          'before_json',
+          'after_json',
+          'after_revision',
+        ],
+      );
+      insert('INSERT INTO settings(key,value) VALUES(?,?)', snapshot.settings, ['key', 'value']);
+    });
   }
   close() {
     this.db.close();
