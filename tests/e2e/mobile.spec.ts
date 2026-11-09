@@ -520,6 +520,20 @@ test('upcoming challenge uses a prominent upcoming-call badge', async ({ page })
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
+test('unconfirmed challenge uses a prominent unconfirmed-state badge', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios/CH-R03');
+
+  const unconfirmed = page.locator('.challenge-availability-badge.unconfirmed');
+  await expect(unconfirmed).toHaveText('Estado por confirmar');
+  await expect(unconfirmed.locator('svg')).toBeVisible();
+  await expect(unconfirmed).toHaveCSS('background-color', 'rgb(231, 238, 241)');
+  await expect(unconfirmed).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await expect(page.getByRole('link', { name: 'Preparar antecedentes' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('challenge application action explains the external flow and returns home', async ({
   page,
 }) => {

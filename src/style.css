@@ -736,6 +736,11 @@ code {
   background: var(--color-yellow-tint);
   color: var(--color-warning);
 }
+.challenge-availability-badge.unconfirmed {
+  border-color: var(--color-control-border);
+  background: var(--color-navy-tint);
+  color: var(--color-text);
+}
 .challenge-availability-badge svg {
   flex-shrink: 0;
 }

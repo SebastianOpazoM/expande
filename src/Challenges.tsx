@@ -347,7 +347,10 @@ export function ChallengeDetail() {
               Próxima convocatoria
             </span>
           ) : (
-            <span className="muted">Estado por confirmar</span>
+            <span className="challenge-availability-badge unconfirmed">
+              <CircleHelp size={16} aria-hidden="true" />
+              Estado por confirmar
+            </span>
           )}
         </>
       }
