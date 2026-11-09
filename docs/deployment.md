@@ -1,5 +1,7 @@
 # Private server deployment
 
+This page covers the current, production-ready storage model: one Docker host with a persistent SQLite volume. If Vercel is mandatory, read the [Vercel deployment plan](vercel-deployment.md) first. The frontend media can be hosted there, but the writable SQLite store must be migrated to a managed database before deployment.
+
 The image serves the built React frontend and Fastify API from one Node 24 process. SQLite uses WAL and a persistent volume. Run one app instance on one host; do not place SQLite on a network filesystem or scale replicas.
 
 ## Prepare and start
