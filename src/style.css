@@ -959,6 +959,55 @@ code {
 .challenge-tracking-card.externo {
   border-left: 4px solid var(--brand-navy);
 }
+.affinity-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+.affinity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+.affinity-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+.affinity-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 28px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+.affinity-badge svg {
+  flex-shrink: 0;
+}
+.affinity-badge.match {
+  background: var(--color-success);
+  color: var(--color-on-brand);
+}
+.affinity-badge.no-match {
+  background: var(--brand-yellow);
+  color: var(--brand-navy);
+}
+.affinity-badge.unknown {
+  border: 1px solid var(--color-control-border);
+  background: var(--color-navy-tint);
+  color: var(--color-text);
+}
 .pill.learning-format-capsula {
   background: var(--color-magenta-tint);
   color: var(--color-accent);

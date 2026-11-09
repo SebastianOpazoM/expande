@@ -471,6 +471,27 @@ test('Expande challenge badges use the purple brand treatment', async ({ page })
   await expect(detailBadge).toHaveCSS('background-color', 'rgb(171, 18, 84)');
   await expect(detailBadge).toHaveCSS('color', 'rgb(255, 255, 255)');
 });
+test('challenge affinity uses distinct visual badges for matches and mismatches', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios/CH-D01');
+
+  const affinity = page.getByRole('list', { name: 'Resultado de afinidad', exact: true });
+  await expect(affinity.getByRole('listitem')).toHaveCount(4);
+  const match = affinity.locator('.affinity-badge.match').first();
+  await expect(match).toContainText('Coincide');
+  await expect(match).toHaveCSS('background-color', 'rgb(33, 101, 71)');
+  await expect(match).toHaveCSS('color', 'rgb(255, 255, 255)');
+
+  await page.getByRole('combobox', { name: 'Evaluar con', exact: true }).selectOption('SOL-02');
+  const mismatch = affinity.locator('.affinity-badge.no-match').first();
+  await expect(mismatch).toContainText('Sin coincidencia');
+  await expect(mismatch).toHaveCSS('background-color', 'rgb(253, 197, 0)');
+  await expect(mismatch).toHaveCSS('color', 'rgb(5, 51, 73)');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 test('challenge tracking is automatic only for Expande and manual for market opportunities', async ({
   page,
 }) => {

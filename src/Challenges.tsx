@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowRight, SlidersHorizontal } from 'lucide-react';
+import { ArrowRight, CheckCircle2, CircleHelp, CircleX, SlidersHorizontal } from 'lucide-react';
 import { useDemo } from './context';
 import { affinity, challenges, date, label, type Row } from '../shared/model';
 import {
@@ -420,21 +420,33 @@ export function ChallengeDetail() {
                 value={sid}
                 onChange={setSid}
               />
-              {[
-                ['Proceso', a.process],
-                ['Temas', a.topics],
-                ['Cobertura', a.coverage],
-                ['TRL', a.trl],
-              ].map(([name, value]) => (
-                <p key={String(name)} className={value === 0 ? 'warning' : 'muted'}>
-                  {name}:{' '}
-                  {value == null
-                    ? 'Falta información'
-                    : value === 1
-                      ? 'Coincide'
-                      : 'Sin coincidencia' + (name === 'TRL' ? ' · Incompatible' : '')}
-                </p>
-              ))}
+              <div className="affinity-list" role="list" aria-label="Resultado de afinidad">
+                {[
+                  ['Proceso', a.process],
+                  ['Temas', a.topics],
+                  ['Cobertura', a.coverage],
+                  ['TRL', a.trl],
+                ].map(([name, value]) => {
+                  const status = value == null ? 'unknown' : value === 1 ? 'match' : 'no-match';
+                  const result =
+                    status === 'unknown'
+                      ? 'Falta información'
+                      : status === 'match'
+                        ? 'Coincide'
+                        : 'Sin coincidencia' + (name === 'TRL' ? ' · Incompatible' : '');
+                  const Icon =
+                    status === 'match' ? CheckCircle2 : status === 'no-match' ? CircleX : CircleHelp;
+                  return (
+                    <div className="affinity-row" role="listitem" key={String(name)}>
+                      <span className="affinity-label">{name}</span>
+                      <span className={`affinity-badge ${status}`}>
+                        <Icon size={14} aria-hidden="true" />
+                        {result}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </>
           ) : (
             <Notice>
