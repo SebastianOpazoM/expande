@@ -86,7 +86,10 @@ function plainRows(rows: Iterable<any>): any[] {
 
 export class RemoteStore {
   private initialized?: Promise<void>;
-  constructor(private client: Client) {}
+  private client: Client;
+  constructor(client: Client) {
+    this.client = client;
+  }
 
   static fromEnvironment() {
     const url = process.env.TURSO_DATABASE_URL;

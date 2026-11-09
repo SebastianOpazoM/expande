@@ -8,12 +8,12 @@ import { privateCollections, targets, type Data, type Row } from '../shared/mode
 import { effectiveFundingState } from '../shared/funding.ts';
 
 export class DomainError extends Error {
-  constructor(
-    public status: number,
-    message: string,
-    public code = 'VALIDATION',
-  ) {
+  status: number;
+  code: string;
+  constructor(status: number, message: string, code = 'VALIDATION') {
     super(message);
+    this.status = status;
+    this.code = code;
   }
 }
 export function assert(ok: unknown, message: string, status = 400): asserts ok {
@@ -61,9 +61,11 @@ const arrayRefs: Record<string, string> = {
 };
 export class Store {
   db: DatabaseSync;
+  path: string;
   private inTransaction = false;
   validators: Record<string, any> = {};
-  constructor(public path = process.env.DATABASE_PATH || './data/expande.sqlite') {
+  constructor(path = process.env.DATABASE_PATH || './data/expande.sqlite') {
+    this.path = path;
     if (path !== ':memory:') mkdirSync(dirname(resolve(path)), { recursive: true });
     this.db = new DatabaseSync(path, { timeout: 5000 });
     this.db.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;');

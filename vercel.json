@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "{server/**/*,shared/**/*,source-package/Expande_paquete_para_Figma/{03_datos_mockup,04_esquema_datos}.json}"
+    }
+  },
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api" },
     { "source": "/(.*)", "destination": "/index.html" }
