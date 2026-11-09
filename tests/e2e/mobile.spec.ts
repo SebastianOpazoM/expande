@@ -492,6 +492,39 @@ test('challenge affinity uses distinct visual badges for matches and mismatches'
   await expect(mismatch).toHaveCSS('color', 'rgb(5, 51, 73)');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+test('challenge application action explains the external flow and returns home', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios/CH-D01');
+
+  await expect(page.getByText('Ir al portal de demostración', { exact: false })).toHaveCount(0);
+  const apply = page.getByRole('button', { name: 'Postular a este desafío', exact: true });
+  await apply.click();
+
+  const dialog = page.getByRole('dialog', { name: 'Postular a este desafío', exact: true });
+  await expect(dialog).toBeVisible();
+  await expect(
+    dialog.getByText(
+      'El flujo de postulación continuará en otro portal, donde podrás completar el proceso correspondiente.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(
+    dialog.getByText('Esta demostración no envía antecedentes ni registra una postulación.', {
+      exact: true,
+    }),
+  ).toBeVisible();
+
+  await dialog.locator('.button-row').getByRole('button', { name: 'Cerrar', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await apply.click();
+  await dialog.getByRole('link', { name: 'Volver al inicio', exact: true }).click();
+  await expect(page).toHaveURL('/inicio');
+  await expect(page.getByText('Hola, Andrea', { exact: true })).toBeVisible();
+});
+
 test('challenge tracking is automatic only for Expande and manual for market opportunities', async ({
   page,
 }) => {

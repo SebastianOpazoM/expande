@@ -286,7 +286,8 @@ export function ChallengeDetail() {
     { d, company, act } = useDemo();
   const r = d.challenges.find((r: Row) => r.id === id);
   const [sid, setSid] = useState(d.solutions[0]?.id || ''),
-    [why, setWhy] = useState(false);
+    [why, setWhy] = useState(false),
+    [apply, setApply] = useState(false);
   if (!r)
     return (
       <Layout detail>
@@ -513,14 +514,9 @@ export function ChallengeDetail() {
           Preguntas públicas <ArrowRight size={18} />
         </Link>
         <Source r={r} />
-        {r.state === 'abierto' &&
-          (r.demo ? (
-            <Link className="button" to={'/portal/' + id}>
-              Ir al portal de demostración ↗
-            </Link>
-          ) : (
-            <External url={r.application_url}>Ir al portal de postulación</External>
-          ))}
+        {r.state === 'abierto' && (
+          <button onClick={() => setApply(true)}>Postular a este desafío</button>
+        )}
         {r.state === 'por_confirmar' && (
           <External url={r.application_url}>Consultar fuente</External>
         )}
@@ -532,6 +528,21 @@ export function ChallengeDetail() {
             en el desafío. No es una validación técnica ni una garantía de elegibilidad.
           </p>
           <p>Puedes revisar todos los desafíos aunque no coincidan con tu perfil.</p>
+        </Modal>
+      )}
+      {apply && (
+        <Modal title="Postular a este desafío" onClose={() => setApply(false)}>
+          <p>
+            El flujo de postulación continuará en otro portal, donde podrás completar el proceso
+            correspondiente.
+          </p>
+          <Notice>Esta demostración no envía antecedentes ni registra una postulación.</Notice>
+          <div className="button-row">
+            <button onClick={() => setApply(false)}>Cerrar</button>
+            <Link className="button primary" to="/inicio">
+              Volver al inicio
+            </Link>
+          </div>
         </Modal>
       )}
     </Layout>
