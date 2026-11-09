@@ -455,6 +455,23 @@ for (const width of [360, 390, 430])
     await page.goto('/inicio');
     await page.screenshot({ path: `.local/screenshots/home-${width}.png` });
   });
+
+test('Explore uses shared card colors and readable supporting text', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/explorar');
+
+  const cards = page.locator('.explore-grid > a');
+  await expect(cards).toHaveCount(5);
+  for (const card of await cards.all()) {
+    await expect(card).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+    await expect(card).toHaveCSS('border-color', 'rgb(217, 227, 229)');
+    await expect(card.locator('.explore-icon')).toHaveCSS('color', 'rgb(171, 18, 84)');
+    await expect(card.locator('strong')).toHaveCSS('font-size', '14px');
+    await expect(card.locator('small')).toHaveCSS('font-size', '12px');
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 test('Expande challenge badges use the purple brand treatment', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);

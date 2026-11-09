@@ -451,10 +451,12 @@ function Explore() {
               key={to}
               className={to === '/innovacion' ? 'explore-innovation' : undefined}
             >
-              <Icon size={26} />
+              <span className="explore-icon">
+                <Icon size={20} aria-hidden="true" />
+              </span>
               <strong>{title}</strong>
               <small>{sub}</small>
-              <ArrowRight size={18} />
+              <ArrowRight className="explore-arrow" size={18} aria-hidden="true" />
             </Link>
           ))}
         </div>
