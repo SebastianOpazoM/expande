@@ -488,6 +488,49 @@ test('preference rule actions use distinct semantic colors', async ({ page }) =>
   await expect(activate).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(page.getByText(/Pausada/).first()).toBeVisible();
 });
+test('long forms keep vertical scrolling on the page or modal only', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+
+  for (const path of ['/intereses', '/empresa', '/soluciones/SOL-01']) {
+    await page.goto(path);
+    const viewport = page.locator('.viewport');
+    const nestedScrollers = await viewport.evaluate((root) =>
+      [...root.querySelectorAll('*')]
+        .filter((element) => {
+          const style = getComputedStyle(element);
+          return (
+            ['auto', 'scroll'].includes(style.overflowY) &&
+            element.scrollHeight > element.clientHeight + 1
+          );
+        })
+        .map((element) => element.className || element.tagName),
+    );
+    expect(nestedScrollers, path).toEqual([]);
+    await viewport.evaluate((element) => element.scrollTo(0, element.scrollHeight));
+    expect(await viewport.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+  }
+
+  await page.goto('/preferencias');
+  await page.locator('.rule-edit-action').first().click();
+  const modal = page.getByRole('dialog');
+  const nestedModalScrollers = await modal.evaluate((root) =>
+    [...root.querySelectorAll('.modal-content *')]
+      .filter((element) => {
+        const style = getComputedStyle(element);
+        return (
+          ['auto', 'scroll'].includes(style.overflowY) &&
+          element.scrollHeight > element.clientHeight + 1
+        );
+      })
+      .map((element) => element.className || element.tagName),
+  );
+  expect(nestedModalScrollers).toEqual([]);
+  const modalContent = modal.locator('.modal-content');
+  expect(await modalContent.evaluate((element) => element.scrollHeight)).toBeGreaterThan(
+    await modalContent.evaluate((element) => element.clientHeight),
+  );
+});
 test('catalogue defaults to all states, preserves explicit filters and clears to all', async ({
   page,
 }) => {

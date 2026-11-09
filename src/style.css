@@ -1513,13 +1513,7 @@ code {
   margin: 10px 0;
 }
 .check-list {
-  max-height: 240px;
-  overflow: auto;
   padding: 4px 0;
-}
-.modal .check-list {
-  max-height: none;
-  overflow: visible;
 }
 .button-row {
   display: flex;
