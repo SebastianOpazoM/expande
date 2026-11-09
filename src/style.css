@@ -135,6 +135,37 @@ button.text,
   background: var(--color-error-tint);
   border-color: var(--color-error);
 }
+.rule-edit-action {
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: var(--color-surface);
+}
+.rule-edit-action:hover {
+  background: var(--color-navy-tint);
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+.rule-pause-action {
+  background: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+  color: var(--brand-navy);
+}
+.rule-pause-action:hover {
+  background: var(--color-yellow-tint);
+  border-color: var(--brand-yellow);
+  color: var(--brand-navy);
+}
+.rule-activate-action {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-surface);
+}
+.rule-activate-action:hover {
+  background: var(--color-mint-tint);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
 button small {
   font-size: 10px;
   margin-left: auto;

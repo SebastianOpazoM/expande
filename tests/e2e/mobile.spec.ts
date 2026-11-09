@@ -469,6 +469,25 @@ test('account completion fills progressively and awards a completed profile', as
   expect(fillBox!.width / trackBox!.width).toBeCloseTo(0.89, 2);
   await expect(page.getByText('11% restante para completar tu perfil', { exact: true })).toBeVisible();
 });
+test('preference rule actions use distinct semantic colors', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/preferencias');
+
+  const edit = page.locator('.rule-edit-action').first();
+  const pause = page.locator('.rule-pause-action').first();
+  await expect(edit).toHaveCSS('background-color', 'rgb(5, 51, 73)');
+  await expect(edit).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(pause).toHaveCSS('background-color', 'rgb(253, 197, 0)');
+  await expect(pause).toHaveCSS('color', 'rgb(5, 51, 73)');
+
+  await pause.click();
+  await page.mouse.move(0, 0);
+  const activate = page.getByRole('button', { name: 'Activar', exact: true });
+  await expect(activate).toHaveCSS('background-color', 'rgb(33, 101, 71)');
+  await expect(activate).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(page.getByText(/Pausada/).first()).toBeVisible();
+});
 test('catalogue defaults to all states, preserves explicit filters and clears to all', async ({
   page,
 }) => {

@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Preference-rule action colors (2026-11-09): `/preferencias` distinguishes rule actions by intent: “Editar” uses navy with white text, “Pausar” uses yellow with navy text, and the resulting “Activar” state uses green with white text. The production build passed. A targeted Chromium interaction check verified all three states and the transition from active to paused. A live 390 × 844 browser inspection confirmed the requested Editar/Pausar contrast with no horizontal overflow or page errors.
+
 Cuenta profile-completion indicator (2026-11-09): `/cuenta` replaces the completion sentence with an accessible, proportional progress bar. Incomplete profiles show the current percentage and remaining percentage; a 100% profile shows a yellow medal badge labeled “100% · Completo”. The production build passed. Four targeted Chromium checks passed across 360, 390 and 430px, including a browser-driven profile edit from 100% to 89% that verified the fill ratio, remaining copy and medal removal. An isolated live 390 × 844 browser check visually confirmed both states with no horizontal overflow or page errors.
 
 Cuenta account-type badge (2026-11-09): `/cuenta` displays the current user's localized role beside their profile details in the same rounded treatment as the challenge catalogue's “Fuentes del mercado” control, with the Expande purple background and white text. The production build passed. Three targeted Chromium checks passed at 360, 390 and 430px, asserting “Administrador” and the requested colors. A live 390 × 844 browser check confirmed a 34px-high rounded badge with no horizontal overflow, page errors or console errors.

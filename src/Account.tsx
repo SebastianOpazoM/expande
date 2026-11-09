@@ -535,8 +535,11 @@ export function Preferences() {
               {r.enabled ? 'Activa' : 'Pausada'}
             </p>
             <div className="button-row">
-              <button onClick={() => setEditing(r)}>Editar</button>
+              <button className="rule-edit-action" onClick={() => setEditing(r)}>
+                Editar
+              </button>
               <button
+                className={r.enabled ? 'rule-pause-action' : 'rule-activate-action'}
                 onClick={() =>
                   void act({
                     type: 'save_record',
