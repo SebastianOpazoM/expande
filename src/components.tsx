@@ -332,7 +332,11 @@ export function RowLink({
 export function Tags({ r }: { r: Row }) {
   return (
     <div className="tags">
-      {r.origin && <span>{label(r.origin)}</span>}
+      {r.origin && (
+        <span className={r.origin === 'expande' ? 'tag-expande' : undefined}>
+          {label(r.origin)}
+        </span>
+      )}
       {r.state && <span className={r.state === 'abierto' ? 'green' : ''}>{label(r.state)}</span>}
     </div>
   );

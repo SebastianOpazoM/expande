@@ -893,6 +893,10 @@ code {
   padding: 6px 8px;
   color: var(--brand-navy);
 }
+.tags .tag-expande {
+  background: var(--brand-magenta);
+  color: var(--color-surface);
+}
 .pill.learning-format-capsula {
   background: var(--color-magenta-tint);
   color: var(--brand-magenta);

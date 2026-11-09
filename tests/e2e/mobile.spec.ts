@@ -455,6 +455,22 @@ for (const width of [360, 390, 430])
     await page.goto('/inicio');
     await page.screenshot({ path: `.local/screenshots/home-${width}.png` });
   });
+test('Expande challenge badges use the purple brand treatment', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios');
+  const badges = page.locator('.tags .tag-expande');
+  expect(await badges.count()).toBeGreaterThan(0);
+  await expect(badges.first()).toHaveText('Expande');
+  await expect(badges.first()).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+  await expect(badges.first()).toHaveCSS('color', 'rgb(255, 255, 255)');
+
+  await page.goto('/desafios/CH-D01');
+  const detailBadge = page.locator('.tags .tag-expande');
+  await expect(detailBadge).toHaveText('Expande');
+  await expect(detailBadge).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+  await expect(detailBadge).toHaveCSS('color', 'rgb(255, 255, 255)');
+});
 test('account completion fills progressively and awards a completed profile', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);
@@ -505,6 +521,14 @@ test('long forms keep vertical scrolling on the page or modal only', async ({ pa
 
   for (const path of ['/intereses', '/empresa', '/soluciones/SOL-01']) {
     await page.goto(path);
+    if (path === '/intereses') {
+      await expect(
+        page.getByRole('button', { name: 'Simular permiso de avisos push', exact: true }),
+      ).toHaveCount(0);
+      await expect(
+        page.getByRole('dialog', { name: 'Permiso push simulado', exact: true }),
+      ).toHaveCount(0);
+    }
     const viewport = page.locator('.viewport');
     const nestedScrollers = await viewport.evaluate((root) =>
       [...root.querySelectorAll('*')]

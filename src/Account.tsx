@@ -388,8 +388,7 @@ export function Interests({ onboarding = false }: { onboarding?: boolean }) {
   const [processes, setProcesses] = useState<string[]>(existing?.process_ids || []),
     [topics, setTopics] = useState<string[]>(existing?.topic_ids || []),
     [types, setTypes] = useState<string[]>(existing?.content_types || ['challenge']),
-    [channels, setChannels] = useState<string[]>(existing?.channels || ['email']),
-    [push, setPush] = useState(false);
+    [channels, setChannels] = useState<string[]>(existing?.channels || ['email']);
   return (
     <Layout detail title="Intereses y personalización">
       <Page>
@@ -470,37 +469,11 @@ export function Interests({ onboarding = false }: { onboarding?: boolean }) {
             defaultValue={existing?.frequency || 'diaria'}
             options={['inmediata', 'diaria', 'semanal']}
           />
-          <button type="button" onClick={() => setPush(true)}>
-            Simular permiso de avisos push
-          </button>
         </Form>
         {onboarding && (
           <Link className="button text" to="/inicio">
             Omitir y explorar sugerencias generales
           </Link>
-        )}
-        {push && (
-          <Modal title="Permiso push simulado" onClose={() => setPush(false)}>
-            <p>No solicitamos permisos reales al navegador ni enviamos notificaciones.</p>
-            <button
-              onClick={() => {
-                setChannels([...new Set([...channels, 'push'])]);
-                setPush(false);
-                toast('Push permitido en la simulación');
-              }}
-            >
-              Permitir en demo
-            </button>
-            <button
-              onClick={() => {
-                setChannels([...new Set([...channels.filter((c) => c !== 'push'), 'email'])]);
-                setPush(false);
-                toast('Push omitido. Se conserva correo como alternativa simulada.');
-              }}
-            >
-              Omitir
-            </button>
-          </Modal>
         )}
       </Page>
     </Layout>
