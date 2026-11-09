@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Bell, Bookmark, Building2, Lightbulb, LogOut, Settings2, Users } from 'lucide-react';
+import { Bell, Bookmark, Building2, Lightbulb, LogOut, Medal, Settings2, Users } from 'lucide-react';
 import { useDemo } from './context';
 import { CountrySelect } from './CountrySelect';
 import { MultiAutocomplete } from './MultiAutocomplete';
@@ -53,7 +53,7 @@ export function Account() {
           <div>
             <h1>{user.name}</h1>
             <p>{user.job_title}</p>
-            <small className="eyebrow">{label(user.role)}</small>
+            <span className="account-role">{label(user.role)}</span>
           </div>
         </div>
         <div className="decision">
@@ -62,7 +62,32 @@ export function Account() {
           <p>
             {label(company.segment)} · {company.city}, {label(company.country)}
           </p>
-          <strong>Perfil de organización {complete}% completado</strong>
+          <div className="profile-completion">
+            <div className="profile-completion-heading">
+              <strong>Perfil de organización</strong>
+              {complete === 100 ? (
+                <span className="profile-completion-medal">
+                  <Medal size={15} aria-hidden="true" />
+                  100% · Completo
+                </span>
+              ) : (
+                <strong className="profile-completion-value">{complete}%</strong>
+              )}
+            </div>
+            <div
+              className="profile-completion-track"
+              role="progressbar"
+              aria-label="Progreso del perfil de organización"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={complete}
+            >
+              <span className="profile-completion-fill" style={{ width: `${complete}%` }} />
+            </div>
+            {complete < 100 && (
+              <small>{100 - complete}% restante para completar tu perfil</small>
+            )}
+          </div>
         </div>
         <h2>Tu empresa</h2>
         <RowLink

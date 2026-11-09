@@ -808,20 +808,30 @@ code {
 .challenge-catalog-meta {
   margin-top: 20px;
 }
-.market-sources-link {
+.market-sources-link,
+.account-role {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   min-height: 34px;
   padding: 7px 10px;
-  border: 1px solid var(--color-control-border);
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: var(--color-navy-tint);
-  color: var(--brand-navy);
   font-size: 10px;
   font-weight: 600;
   line-height: 1.2;
 }
+.market-sources-link {
+  border-color: var(--color-control-border);
+  background: var(--color-navy-tint);
+  color: var(--brand-navy);
+}
+.account-role {
+  border-color: var(--brand-magenta);
+  background: var(--brand-magenta);
+  color: var(--color-surface);
+}
+
 .market-sources-link:hover {
   border-color: var(--brand-magenta);
   color: var(--brand-magenta);
@@ -1223,6 +1233,58 @@ code {
 .decision h2 {
   margin: 5px 0;
 }
+.profile-completion {
+  margin-top: 18px;
+}
+.profile-completion-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.profile-completion-heading > strong {
+  font-size: 12px;
+}
+.profile-completion-medal,
+.profile-completion-value {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.profile-completion-medal {
+  gap: 5px;
+  background: var(--brand-yellow);
+  color: var(--brand-navy);
+}
+.profile-completion-value {
+  border: 1px solid var(--color-inverse-border);
+  background: #ffffff1a;
+  color: var(--color-surface);
+}
+.profile-completion-track {
+  height: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-inverse-border);
+}
+.profile-completion-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--brand-yellow);
+}
+.profile-completion small {
+  display: block;
+  margin-top: 8px;
+}
+
 .decision-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1397,9 +1459,6 @@ code {
 .profile-head p {
   font-size: 11px;
   margin: 7px 0;
-}
-.profile-head .eyebrow {
-  font-size: 8px;
 }
 .avatar {
   width: 58px;

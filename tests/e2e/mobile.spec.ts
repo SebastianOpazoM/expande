@@ -425,6 +425,18 @@ for (const width of [360, 390, 430])
           await viewport.evaluate((element) => element.clientHeight),
         );
       }
+      if (path === '/cuenta') {
+        const role = page.locator('.account-role');
+        await expect(role).toHaveText('Administrador');
+        await expect(role).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+        await expect(role).toHaveCSS('color', 'rgb(255, 255, 255)');
+        const completion = page.getByRole('progressbar', {
+          name: 'Progreso del perfil de organización',
+          exact: true,
+        });
+        await expect(completion).toHaveAttribute('aria-valuenow', '100');
+        await expect(page.locator('.profile-completion-medal')).toHaveText('100% · Completo');
+      }
     }
     mkdirSync('.local/screenshots', { recursive: true });
     await page.goto('/bienvenida');
@@ -432,6 +444,31 @@ for (const width of [360, 390, 430])
     await page.goto('/inicio');
     await page.screenshot({ path: `.local/screenshots/home-${width}.png` });
   });
+test('account completion fills progressively and awards a completed profile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/cuenta');
+  const completion = page.getByRole('progressbar', {
+    name: 'Progreso del perfil de organización',
+    exact: true,
+  });
+  await expect(completion).toHaveAttribute('aria-valuenow', '100');
+  await expect(page.locator('.profile-completion-medal')).toHaveText('100% · Completo');
+
+  await page.goto('/empresa');
+  await page.getByRole('textbox', { name: 'Descripción', exact: true }).fill('');
+  await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
+  await expect(page.getByText('Perfil guardado', { exact: true })).toBeVisible();
+  await page.goto('/cuenta');
+
+  await expect(completion).toHaveAttribute('aria-valuenow', '89');
+  await expect(page.locator('.profile-completion-value')).toHaveText('89%');
+  await expect(page.locator('.profile-completion-medal')).toHaveCount(0);
+  const trackBox = await completion.boundingBox();
+  const fillBox = await completion.locator('.profile-completion-fill').boundingBox();
+  expect(fillBox!.width / trackBox!.width).toBeCloseTo(0.89, 2);
+  await expect(page.getByText('11% restante para completar tu perfil', { exact: true })).toBeVisible();
+});
 test('catalogue defaults to all states, preserves explicit filters and clears to all', async ({
   page,
 }) => {
