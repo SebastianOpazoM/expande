@@ -429,9 +429,14 @@ export function ChallengeCard({ r, compact = false }: { r: Row; compact?: boolea
       )}
       <div className="card-bottom">
         <small>
-          {r.closes_at
-            ? `Cierre: ${date(r.closes_at, true)} (Chile)`
-            : r.source_dates_text || 'Fecha por confirmar'}
+          {r.closes_at ? (
+            <>
+              <strong className="challenge-closing-label">Cierre:</strong>{' '}
+              {date(r.closes_at, true)} (Chile)
+            </>
+          ) : (
+            r.source_dates_text || 'Fecha por confirmar'
+          )}
         </small>
         <Link to={'/desafios/' + r.id}>
           Ver desafío <ArrowRight size={14} />

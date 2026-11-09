@@ -74,23 +74,25 @@ export function Catalog() {
             </button>
           ))}
         </div>
-        <div className="between">
+        <div className="between challenge-catalog-toolbar">
           <button onClick={() => setFilters(true)}>
             <SlidersHorizontal size={16} /> Filtros
             {Object.keys(f).filter((k) => !['query', 'order', 'origin'].includes(k)).length > 0
               ? ' · activos'
               : ''}
           </button>
-          <Select
-            label="Ordenar"
-            value={f.order || 'cierre_asc'}
-            options={[
-              { id: 'cierre_asc', name: 'Próximos a cerrar' },
-              { id: 'recientes', name: 'Más recientes' },
-              { id: 'afinidad', name: 'Afinidad con mi solución' },
-            ]}
-            onChange={(v) => update({ order: v })}
-          />
+          <div className="challenge-catalog-sort">
+            <Select
+              label="Ordenar"
+              value={f.order || 'cierre_asc'}
+              options={[
+                { id: 'cierre_asc', name: 'Próximos a cerrar' },
+                { id: 'recientes', name: 'Más recientes' },
+                { id: 'afinidad', name: 'Afinidad con mi solución' },
+              ]}
+              onChange={(v) => update({ order: v })}
+            />
+          </div>
         </div>
         {f.order === 'afinidad' && (
           <Select
@@ -131,7 +133,7 @@ export function Catalog() {
               ))}
           </div>
         )}
-        <div className="between small">
+        <div className="between small challenge-catalog-meta">
           <strong>
             {list.length} desafíos ·{' '}
             {f.state
@@ -140,7 +142,9 @@ export function Catalog() {
                 : f.state.split('|').map(label).join(', ')
               : 'Todos los estados'}
           </strong>
-          <Link to="/fuentes">Fuentes del mercado</Link>
+          <Link className="market-sources-link" to="/fuentes">
+            Fuentes del mercado
+          </Link>
         </div>
         <ListState empty={false}>
           {list.length ? (
@@ -359,7 +363,7 @@ export function ChallengeDetail() {
               <strong>{r.contact_area || 'No informado'}</strong>
             </div>
           </div>
-          <small>Cierre</small>
+          <small className="challenge-closing-label">Cierre</small>
           <strong>
             {r.closes_at
               ? date(r.closes_at, true) + ' · ' + (r.country === 'CL' ? 'Chile' : r.country)
