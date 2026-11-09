@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Provider, useDemo } from './context';
 import { BrandLogo } from './BrandLogo';
+import { PhoneStage } from './PhoneFrame';
 import { affinity, challenges, date, label, profileCompleteness, type Row } from '../shared/model';
 import {
   ChallengeCard,
@@ -107,10 +108,7 @@ export function App() {
 }
 function Welcome() {
   return (
-    <div className="desktop-stage">
-      <div className="desktop-caption">
-        <span>Prototipo móvil</span>
-      </div>
+    <PhoneStage>
       <main className="phone welcome">
         <div className="welcome-hero">
           <div className="welcome-brand-row">
@@ -160,7 +158,7 @@ function Welcome() {
           </Link>
         </section>
       </main>
-    </div>
+    </PhoneStage>
   );
 }
 function Access() {

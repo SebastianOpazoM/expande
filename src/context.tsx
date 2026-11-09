@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import { PhoneStage } from './PhoneFrame';
 import type { Data, Row } from '../shared/model';
 type Context = {
   d: Data;
@@ -79,55 +80,61 @@ export function Provider({ children }: { children: ReactNode }) {
   }, [message]);
   if (access)
     return (
-      <main className="phone gate">
-        <div className="brand">
-          Expande<span>.</span>
-        </div>
-        <p className="eyebrow">DEMO PRIVADA</p>
-        <h1>Accede a la demostración</h1>
-        <p>Ingresa la contraseña compartida de este servidor.</p>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            try {
-              await request('access', { password: new FormData(e.currentTarget).get('password') });
-              setAccess(false);
-              await refresh();
-            } catch (e: any) {
-              setError(e.message);
-            }
-          }}
-        >
-          <label>
-            Contraseña de acceso
-            <input name="password" type="password" autoComplete="current-password" required />
-          </label>
-          {error && (
-            <p role="alert" className="error">
-              {error}
-            </p>
-          )}
-          <button className="primary">Continuar</button>
-        </form>
-      </main>
+      <PhoneStage caption="Prototipo móvil · Acceso privado">
+        <main className="phone gate">
+          <div className="brand">
+            Expande<span>.</span>
+          </div>
+          <p className="eyebrow">DEMO PRIVADA</p>
+          <h1>Accede a la demostración</h1>
+          <p>Ingresa la contraseña compartida de este servidor.</p>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              try {
+                await request('access', {
+                  password: new FormData(e.currentTarget).get('password'),
+                });
+                setAccess(false);
+                await refresh();
+              } catch (e: unknown) {
+                setError(e instanceof Error ? e.message : 'No se pudo conectar');
+              }
+            }}
+          >
+            <label>
+              Contraseña de acceso
+              <input name="password" type="password" autoComplete="current-password" required />
+            </label>
+            {error && (
+              <p role="alert" className="error">
+                {error}
+              </p>
+            )}
+            <button className="primary">Continuar</button>
+          </form>
+        </main>
+      </PhoneStage>
     );
   if (!d)
     return (
-      <main className="phone gate">
-        <div className="brand">
-          Expande<span>.</span>
-        </div>
-        {error ? (
-          <>
-            <p role="alert">{error}</p>
-            <button onClick={() => void refresh().catch((e) => setError(e.message))}>
-              Reintentar
-            </button>
-          </>
-        ) : (
-          <p role="status">Cargando tu demostración…</p>
-        )}
-      </main>
+      <PhoneStage>
+        <main className="phone gate">
+          <div className="brand">
+            Expande<span>.</span>
+          </div>
+          {error ? (
+            <>
+              <p role="alert">{error}</p>
+              <button onClick={() => void refresh().catch((e) => setError(e.message))}>
+                Reintentar
+              </button>
+            </>
+          ) : (
+            <p role="status">Cargando tu demostración…</p>
+          )}
+        </main>
+      </PhoneStage>
     );
   const user = d.users.find((u: Row) => u.id === d.context.userId)!;
   const company = d.companies.find((c: Row) => c.id === user.company_id)!;

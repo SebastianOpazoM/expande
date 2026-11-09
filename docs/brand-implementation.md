@@ -14,7 +14,7 @@ To reproduce the extraction with Python, pypdf and pypdfium2 installed:
 python scripts/extract-brand-assets.py 'C:/Users/sebas/Desktop/Manual marca Expande.pdf'
 ```
 
-The source colour lockup is used in the app header; the white lockup is used on the welcome gradient. The outer desktop framing has no logo. A shared `BrandLogo` component supplies intrinsic sizing and accessible descriptions, with decorative duplicates ignored by screen readers. Header logos display at 120px and the welcome logo at 200px, with automatic height preserving the SVG proportions. The supplied PDF does not prescribe app-specific spacing or minimum digital sizes; those dimensions and surrounding space are app adaptations.
+The source colour lockup is used in the app header; the white lockup is used on the welcome gradient. The outer desktop framing has no logo. A shared `BrandLogo` component supplies intrinsic sizing and accessible descriptions, with decorative duplicates ignored by screen readers. Header logos display at 120px and the welcome logo at 200px, with automatic height preserving the SVG proportions. A shared `PhoneStage` presents the 393px app surface inside a dark 417px hardware shell on desktop, with a bezel, speaker, home indicator and side controls hidden from assistive technology. At browser widths up to 500px the hardware decoration disappears and the app returns to a full-viewport mobile surface. The supplied PDF does not prescribe app-specific spacing, minimum digital sizes or simulated-device hardware; those dimensions and surrounding treatments are app adaptations.
 
 ## Colour system
 

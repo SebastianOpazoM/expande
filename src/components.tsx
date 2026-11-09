@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { request, useDemo } from './context';
 import { BrandLogo } from './BrandLogo';
+import { PhoneStage } from './PhoneFrame';
 import { date, label, type Row } from '../shared/model';
 export const links: Record<string, string> = {
   challenge: '/desafios/',
@@ -64,10 +65,7 @@ export function Layout({
   }, [location.key]);
   const count = d.notifications.filter((n: Row) => !n.read).length;
   return (
-    <div className="desktop-stage">
-      <div className="desktop-caption">
-        <span>Prototipo móvil · Datos de demostración</span>
-      </div>
+    <PhoneStage caption="Prototipo móvil · Datos de demostración">
       <div className={'phone ' + (detail ? 'detail' : '')}>
         <header
           className={
@@ -134,7 +132,7 @@ export function Layout({
           </nav>
         )}
       </div>
-    </div>
+    </PhoneStage>
   );
 }
 export function Page({ children }: { children: ReactNode }) {
