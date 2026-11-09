@@ -716,6 +716,24 @@ code {
   min-height: 46px;
   padding: 10px;
 }
+.action-bar > .challenge-availability-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-weight: 700;
+  text-align: center;
+}
+.challenge-availability-badge.closed {
+  border-color: var(--color-error);
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
+.challenge-availability-badge svg {
+  flex-shrink: 0;
+}
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);

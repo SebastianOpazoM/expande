@@ -492,6 +492,20 @@ test('challenge affinity uses distinct visual badges for matches and mismatches'
   await expect(mismatch).toHaveCSS('color', 'rgb(5, 51, 73)');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+test('closed challenge uses a prominent closed-call badge', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios/CH-R04');
+
+  const closed = page.locator('.challenge-availability-badge.closed');
+  await expect(closed).toHaveText('Convocatoria cerrada');
+  await expect(closed.locator('svg')).toBeVisible();
+  await expect(closed).toHaveCSS('background-color', 'rgb(255, 240, 241)');
+  await expect(closed).toHaveCSS('color', 'rgb(157, 43, 50)');
+  await expect(page.getByRole('link', { name: 'Preparar antecedentes' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('challenge application action explains the external flow and returns home', async ({
   page,
 }) => {

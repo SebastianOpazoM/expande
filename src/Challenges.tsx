@@ -329,13 +329,14 @@ export function ChallengeDetail() {
             <Link className="button primary" to={`/desafios/${id}/preparar`}>
               Preparar antecedentes
             </Link>
+          ) : r.state === 'cerrado' ? (
+            <span className="challenge-availability-badge closed">
+              <CircleX size={16} aria-hidden="true" />
+              Convocatoria cerrada
+            </span>
           ) : (
             <span className="muted">
-              {r.state === 'cerrado'
-                ? 'Convocatoria cerrada'
-                : r.state === 'proximo'
-                  ? 'Próxima convocatoria'
-                  : 'Estado por confirmar'}
+              {r.state === 'proximo' ? 'Próxima convocatoria' : 'Estado por confirmar'}
             </span>
           )}
         </>
