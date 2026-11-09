@@ -606,7 +606,7 @@ export function Prepare() {
                 : result.applications
                     .filter((a: Row) => a.challenge_id === id && a.status_origin === 'local')
                     .at(-1);
-              toast('Borrador guardado. No se envi? al mandante.');
+              toast('Borrador guardado. No se envió al mandante.');
               nav('/postulaciones/' + created.id);
             }}
           >
@@ -617,7 +617,7 @@ export function Prepare() {
               required
             />
             <Select
-              label="Soluci?n"
+              label="Solución"
               value={sid}
               options={d.solutions.map((s: Row) => ({ id: s.id, name: s.title }))}
               onChange={setSid}

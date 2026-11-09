@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Challenge preparation text encoding (2026-11-09): the solution selector and saved-draft confirmation now render the intended Spanish accents instead of replacement question marks. The production build passed, and a live 390 × 844 Chromium inspection confirmed the “Solución” label with no page or console errors.
+
 Closed challenge status badge (2026-11-09): closed challenge details replace the plain “Convocatoria cerrada” footer text with a rounded semantic badge using the error tint, border and X icon. The label remains explicit, so the status does not depend on color alone; preparation remains unavailable. The production build and targeted Chromium scenario passed. A live 390 × 844 dark-mode inspection confirmed the footer treatment, contrast, no horizontal overflow and no page errors.
 
 Challenge application handoff (2026-11-09): open challenge details replace “Ir al portal de demostración” with “Postular a este desafío”. The action opens an accessible modal explaining that the flow continues in another portal and that the demo does not send information or register an application. Visitors can close the modal or use “Volver al inicio”. The production build and targeted Chromium scenario passed. A live 390 × 844 dark-mode inspection confirmed the complete modal, both actions, home navigation, no horizontal overflow and no page errors.
