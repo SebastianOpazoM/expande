@@ -506,6 +506,20 @@ test('closed challenge uses a prominent closed-call badge', async ({ page }) => 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
+test('upcoming challenge uses a prominent upcoming-call badge', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios/CH-D05');
+
+  const upcoming = page.locator('.challenge-availability-badge.upcoming');
+  await expect(upcoming).toHaveText('Próxima convocatoria');
+  await expect(upcoming.locator('svg')).toBeVisible();
+  await expect(upcoming).toHaveCSS('background-color', 'rgb(255, 244, 204)');
+  await expect(upcoming).toHaveCSS('color', 'rgb(115, 81, 0)');
+  await expect(page.getByRole('link', { name: 'Preparar antecedentes' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('challenge application action explains the external flow and returns home', async ({
   page,
 }) => {

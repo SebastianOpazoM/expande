@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, CircleHelp, CircleX, SlidersHorizontal } from 'lucide-react';
+import {
+  ArrowRight,
+  CalendarClock,
+  CheckCircle2,
+  CircleHelp,
+  CircleX,
+  SlidersHorizontal,
+} from 'lucide-react';
 import { useDemo } from './context';
 import { affinity, challenges, date, label, type Row } from '../shared/model';
 import {
@@ -334,10 +341,13 @@ export function ChallengeDetail() {
               <CircleX size={16} aria-hidden="true" />
               Convocatoria cerrada
             </span>
-          ) : (
-            <span className="muted">
-              {r.state === 'proximo' ? 'Próxima convocatoria' : 'Estado por confirmar'}
+          ) : r.state === 'proximo' ? (
+            <span className="challenge-availability-badge upcoming">
+              <CalendarClock size={16} aria-hidden="true" />
+              Próxima convocatoria
             </span>
+          ) : (
+            <span className="muted">Estado por confirmar</span>
           )}
         </>
       }
