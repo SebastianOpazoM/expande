@@ -7,6 +7,7 @@ import { MultiAutocomplete } from './MultiAutocomplete';
 import { chileanRegions, citiesForRegion, canonicalCityForRegion } from './chileLocations';
 import { date, label, targets, profileCompleteness, type Row } from '../shared/model';
 import {
+  Carousel,
   Confirm,
   Empty,
   Field,
@@ -879,6 +880,7 @@ export function Saved() {
 }
 export function Plan() {
   const { d, user, act, scenario, toast } = useDemo();
+  const [currentTier, setCurrentTier] = useState(0);
   const plan = d.subscriptions[0];
   const ended =
     scenario === 'trial_ended' ||
@@ -893,40 +895,117 @@ export function Plan() {
         ),
       )
     : 30;
+  const tiers = [
+    {
+      id: 'gratis',
+      name: 'Gratis',
+      description: 'Para comenzar a explorar',
+      price: '$0',
+      features: [
+        'Catálogos completos de desafíos, financiamiento, eventos, alianzas, innovación y formación',
+        'Búsqueda, filtros y contenidos guardados',
+        '1 usuario y 1 solución',
+        'Seguimiento manual de hasta 3 postulaciones',
+        '1 regla semanal de avisos',
+      ],
+      cta: 'Continuar gratis',
+    },
+    {
+      id: 'pro',
+      name: 'Pro',
+      description: 'Para convertir oportunidades en un pipeline organizado',
+      price: '25 UF al año',
+      billing: 'Pago anual único · sin modalidad mensual',
+      features: [
+        'Todo lo incluido en Gratis',
+        'Hasta 5 usuarios y 5 soluciones',
+        'Afinidad por proceso, temas, cobertura y TRL',
+        'Preparación, borradores y seguimiento de postulaciones sin límite',
+        'Antecedentes documentales de ejemplo',
+        'Reglas de avisos y recordatorios personalizadas',
+        'Gestión de equipo y roles',
+        'Progreso de formación',
+      ],
+      cta: 'Me interesa Pro',
+    },
+    {
+      id: 'vip',
+      name: 'VIP',
+      description: 'Para empresas con varias soluciones y equipos',
+      price: 'Cotización personalizada',
+      features: [
+        'Todo lo incluido en Pro',
+        'Hasta 15 usuarios y soluciones sin límite',
+        'Reglas de avisos sin límite',
+        'Delegación temporal de avisos',
+      ],
+      cta: 'Me interesa VIP',
+    },
+  ];
+  const registerInterest = (tier: string, name: string) =>
+    void act({
+      type: 'activity',
+      kind: 'plan_interest',
+      target_type: 'company',
+      target_id: user.company_id,
+      value: tier,
+    })
+      .then(() => toast(`Interés en ${name} registrado localmente. No se realiza ningún cobro.`))
+      .catch(() => {});
   return (
     <Layout detail title="Plan de empresa">
       <Page>
         <p className="eyebrow">Tu plan</p>
-        <h1>{ended ? 'Tu prueba ha finalizado' : 'Más oportunidades, mejor seguimiento'}</h1>
+        <h1>Elige cómo quieres crecer en Expande</h1>
+        <p>Explora oportunidades gratis y activa herramientas de seguimiento cuando las necesites.</p>
         <div className="decision">
+          <p className="eyebrow">PRUEBA DE DEMOSTRACIÓN</p>
           <h2>{ended ? 'Prueba finalizada' : `${left} días restantes`}</h2>
           <p>{plan?.seats_in_demo || 3} plazas de ejemplo · 30 días de prueba demo</p>
-          <h2>Precio por definir</h2>
         </div>
-        <ul>
-          <li>Oportunidades reunidas</li>
-          <li>Información para decidir</li>
-          <li>Seguimiento con avisos y equipo</li>
-        </ul>
-        {user.role !== 'administrador' ? (
-          <Notice>Contacta al administrador de tu empresa para consultar el plan.</Notice>
-        ) : (
-          <button
-            className="primary"
-            onClick={() =>
-              void act({
-                type: 'activity',
-                kind: 'plan_interest',
-                target_type: 'company',
-                target_id: user.company_id,
-              })
-                .then(() => toast('Interés registrado localmente. No se realiza ningún cobro.'))
-                .catch(() => {})
-            }
-          >
-            Me interesa continuar
-          </button>
+        {user.role !== 'administrador' && (
+          <Notice>Contacta al administrador de tu empresa para consultar o cambiar el plan.</Notice>
         )}
+        <div className="between plan-carousel-heading">
+          <h2>Compara los planes</h2>
+          <span className="pill" aria-live="polite">
+            {currentTier + 1} de {tiers.length} · {tiers[currentTier].name}
+          </span>
+        </div>
+        <Carousel
+          className="plan-carousel"
+          label="Planes disponibles"
+          onIndexChange={setCurrentTier}
+        >
+          {tiers.map((tier, index) => (
+            <section
+              className={(tier.id === 'pro' ? 'decision ' : 'card ') + 'plan-option'}
+              key={tier.id}
+              aria-label={`${tier.name}, plan ${index + 1} de ${tiers.length}`}
+            >
+              {tier.id === 'pro' && <p className="eyebrow">RECOMENDADO</p>}
+              <h2>{tier.name}</h2>
+              <p>{tier.description}</p>
+              <strong className="plan-price">{tier.price}</strong>
+              {'billing' in tier && <small>{tier.billing}</small>}
+              <ul>
+                {tier.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              {tier.id === 'gratis' ? (
+                <Link className="button" to="/desafios">
+                  {tier.cta}
+                </Link>
+              ) : user.role === 'administrador' ? (
+                <button className="primary" onClick={() => registerInterest(tier.id, tier.name)}>
+                  {tier.cta}
+                </button>
+              ) : null}
+            </section>
+          ))}
+        </Carousel>
+        <Notice>Esta demostración no procesa pagos ni cambia el acceso de la empresa.</Notice>
       </Page>
     </Layout>
   );

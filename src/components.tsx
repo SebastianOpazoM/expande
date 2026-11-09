@@ -140,6 +140,129 @@ export function Layout({
 export function Page({ children }: { children: ReactNode }) {
   return <section className="page">{children}</section>;
 }
+export function Carousel({
+  children,
+  label,
+  className = '',
+  onIndexChange,
+}: {
+  children: ReactNode;
+  label: string;
+  className?: string;
+  onIndexChange?: (index: number) => void;
+}) {
+  const track = useRef<HTMLDivElement>(null);
+  const reportedIndex = useRef(0);
+  const drag = useRef({
+    active: false,
+    pointerId: -1,
+    startX: 0,
+    scrollLeft: 0,
+    moved: false,
+  });
+  const nearestIndex = () => {
+    const element = track.current;
+    if (!element) return 0;
+    let nearest = 0;
+    let distance = Number.POSITIVE_INFINITY;
+    for (let index = 0; index < element.children.length; index += 1) {
+      const item = element.children[index] as HTMLElement;
+      const itemDistance = Math.abs(item.offsetLeft - element.offsetLeft - element.scrollLeft);
+      if (itemDistance < distance) {
+        nearest = index;
+        distance = itemDistance;
+      }
+    }
+    return nearest;
+  };
+  const reportIndex = () => {
+    const index = nearestIndex();
+    if (index === reportedIndex.current) return;
+    reportedIndex.current = index;
+    onIndexChange?.(index);
+  };
+  const scrollToIndex = (index: number) => {
+    const element = track.current;
+    if (!element) return;
+    const next = Math.max(0, Math.min(element.children.length - 1, index));
+    const item = element.children[next] as HTMLElement | undefined;
+    if (!item) return;
+    element.scrollTo({
+      left: item.offsetLeft - element.offsetLeft,
+      behavior: 'smooth',
+    });
+    if (next !== reportedIndex.current) {
+      reportedIndex.current = next;
+      onIndexChange?.(next);
+    }
+  };
+  return (
+    <div
+      className={`carousel ${className}`.trim()}
+      ref={track}
+      role="region"
+      aria-label={label}
+      aria-roledescription="carrusel"
+      tabIndex={0}
+      onScroll={reportIndex}
+      onKeyDown={(event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          scrollToIndex(reportedIndex.current - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          scrollToIndex(reportedIndex.current + 1);
+        }
+      }}
+      onPointerDown={(event) => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        drag.current = {
+          active: true,
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          scrollLeft: event.currentTarget.scrollLeft,
+          moved: false,
+        };
+      }}
+      onPointerMove={(event) => {
+        const state = drag.current;
+        if (!state.active || state.pointerId !== event.pointerId) return;
+        const distance = event.clientX - state.startX;
+        if (!state.moved && Math.abs(distance) > 4) {
+          state.moved = true;
+          event.currentTarget.setPointerCapture(event.pointerId);
+          event.currentTarget.classList.add('is-dragging');
+        }
+        if (!state.moved) return;
+        event.preventDefault();
+        event.currentTarget.scrollLeft = state.scrollLeft - distance;
+      }}
+      onPointerUp={(event) => {
+        const state = drag.current;
+        if (!state.active || state.pointerId !== event.pointerId) return;
+        state.active = false;
+        if (event.currentTarget.hasPointerCapture(event.pointerId))
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        event.currentTarget.classList.remove('is-dragging');
+        if (state.moved) scrollToIndex(nearestIndex());
+      }}
+      onPointerCancel={(event) => {
+        drag.current.active = false;
+        drag.current.moved = false;
+        event.currentTarget.classList.remove('is-dragging');
+      }}
+      onClickCapture={(event) => {
+        if (!drag.current.moved) return;
+        event.preventDefault();
+        event.stopPropagation();
+        drag.current.moved = false;
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 export function Notice({ children }: { children: ReactNode }) {
   return <div className="notice">{children}</div>;
 }
