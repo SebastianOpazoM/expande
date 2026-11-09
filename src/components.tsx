@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -356,7 +357,8 @@ export function Modal({
       prev?.focus();
     };
   }, []);
-  return (
+  const host = document.querySelector('.phone');
+  return createPortal(
     <div className="modal-backdrop" onClick={onClose}>
       <div
         className="modal"
@@ -367,15 +369,16 @@ export function Modal({
         ref={box}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="between">
+        <div className="between modal-header">
           <h2>{title}</h2>
           <button className="icon" aria-label="Cerrar" onClick={onClose}>
             <X />
           </button>
         </div>
-        {children}
+        <div className="modal-content">{children}</div>
       </div>
-    </div>
+    </div>,
+    host || document.body,
   );
 }
 export function Confirm({

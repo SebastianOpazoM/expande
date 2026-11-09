@@ -1207,6 +1207,10 @@ code {
   overflow: auto;
   padding: 4px 0;
 }
+.modal .check-list {
+  max-height: none;
+  overflow: visible;
+}
 .button-row {
   display: flex;
   gap: 7px;
@@ -1226,7 +1230,7 @@ form > fieldset > button {
   width: 100%;
 }
 .modal-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   background: var(--color-overlay);
   z-index: 60;
@@ -1239,19 +1243,32 @@ form > fieldset > button {
 .modal {
   background: var(--color-bg);
   border-radius: 22px;
-  padding: 20px;
-  max-height: 90dvh;
-  overflow-y: auto;
+  max-height: 100%;
+  overflow: hidden;
   width: 410px;
   max-width: 100%;
   box-shadow: 0 20px 80px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+}
+.modal-header {
+  flex: 0 0 auto;
+  padding: 20px 20px 0;
+}
+.modal-content {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-control-border) transparent;
+  padding: 0 20px 20px;
 }
 .modal h2 {
   font-size: 20px;
   margin: 0 0 10px;
 }
-.modal > button,
-.modal > .button {
+.modal-content > button,
+.modal-content > .button {
   width: 100%;
   margin: 8px 0;
 }
@@ -1467,7 +1484,6 @@ summary {
     padding: 8px;
   }
   .modal {
-    max-height: 92dvh;
     border-radius: 22px 22px 14px 14px;
   }
   .toast {
