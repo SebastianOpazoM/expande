@@ -419,6 +419,17 @@ for (const width of [360, 390, 430])
       await expect(nav).toBeVisible();
       const box = await nav.boundingBox();
       expect(box!.y + box!.height).toBeLessThanOrEqual(845);
+      if (path === '/inicio') {
+        const companyName = page.locator('.home-company-name');
+        await expect(companyName).toHaveText('SensorAndes Demo');
+        await expect(companyName).toHaveCSS('color', 'rgb(171, 18, 84)');
+        const sizes = await companyName.evaluate((element) => ({
+          company: parseFloat(getComputedStyle(element).fontSize),
+          heading: parseFloat(getComputedStyle(element.parentElement!).fontSize),
+        }));
+        expect(sizes.company).toBeGreaterThan(sizes.heading);
+        expect(sizes.company).toBeLessThanOrEqual(sizes.heading * 1.1);
+      }
       if (path === '/explorar') {
         const viewport = page.locator('.viewport');
         expect(await viewport.evaluate((element) => element.scrollHeight)).toBeLessThanOrEqual(

@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Inicio company-name emphasis (2026-11-09): the personalized heading on `/inicio` places the company name on its own line in Expande purple, at 600 weight and 1.08× the surrounding 22px heading size. The treatment remains restrained while separating the dynamic organization name from the introductory sentence. The production build passed, and three targeted Chromium checks passed at 360, 390 and 430px. A live 390 × 844 inspection measured the name at 23.76px, confirmed no horizontal overflow, and found no page errors.
+
 Nested-scroll removal (2026-11-09): long checkbox groups no longer impose their own 240px vertical scroll areas. `/intereses`, `/empresa` and solution editing now expand their lists into the main page, leaving `.viewport` as the only vertical scroller; long rule-editor dialogs retain only the outer modal-content scroller. Searchable country/region dropdowns keep their bounded option-list scrolling because they are transient controls rather than page content. The production build and a targeted Chromium regression check passed. A live 390 × 844 inspection of `/intereses` found zero nested vertical scrollers, confirmed main-page scrolling through the expanded lists, and found no horizontal overflow or page errors.
 
 Preference-rule action colors (2026-11-09): `/preferencias` distinguishes rule actions by intent: “Editar” uses navy with white text, “Pausar” uses yellow with navy text, and the resulting “Activar” state uses green with white text. The production build passed. A targeted Chromium interaction check verified all three states and the transition from active to paused. A live 390 × 844 browser inspection confirmed the requested Editar/Pausar contrast with no horizontal overflow or page errors.

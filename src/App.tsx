@@ -284,7 +284,10 @@ function Home() {
     <Layout>
       <div className="home-intro">
         <p className="eyebrow greeting">Hola, {user.name.split(' ')[0]}</p>
-        <h1>Estas oportunidades podrían hacer sentido para {company.name}</h1>
+        <h1>
+          Estas oportunidades podrían hacer sentido para{' '}
+          <span className="home-company-name">{company.name}</span>
+        </h1>
         <div className="completion">
           <span style={{ width: profileCompleteness(company) + '%' }} />
         </div>
