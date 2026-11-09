@@ -494,7 +494,43 @@ test('account completion fills progressively and awards a completed profile', as
   const trackBox = await completion.boundingBox();
   const fillBox = await completion.locator('.profile-completion-fill').boundingBox();
   expect(fillBox!.width / trackBox!.width).toBeCloseTo(0.89, 2);
-  await expect(page.getByText('11% restante para completar tu perfil', { exact: true })).toBeVisible();
+  await expect(
+    page.getByText('11% restante para completar tu perfil', { exact: true }),
+  ).toBeVisible();
+});
+test('account dark mode applies across routes and persists after reload', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/cuenta');
+
+  const toggle = page.getByRole('switch', { name: 'Modo oscuro', exact: true });
+  await expect(toggle).toHaveAttribute('aria-checked', 'false');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-checked', 'true');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.locator('.phone')).toHaveCSS('background-color', 'rgb(13, 27, 34)');
+  await expect(page.locator('.topbar')).toHaveCSS('background-color', 'rgb(23, 42, 51)');
+  await expect(page.locator('.profile-head h1')).toHaveCSS('color', 'rgb(244, 247, 248)');
+
+  await page.goto('/empresa');
+  await expect(page.getByRole('textbox', { name: 'Nombre de empresa', exact: true })).toHaveCSS(
+    'background-color',
+    'rgb(23, 42, 51)',
+  );
+  await page.goto('/desafios');
+  await expect(page.locator('article.card').first()).toHaveCSS(
+    'background-color',
+    'rgb(23, 42, 51)',
+  );
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.locator('.topbar')).toHaveCSS('background-color', 'rgb(23, 42, 51)');
+  await page.goto('/cuenta');
+  await expect(toggle).toHaveAttribute('aria-checked', 'true');
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
 test('preference rule actions use distinct semantic colors', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

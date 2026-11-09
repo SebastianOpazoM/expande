@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Cuenta dark mode (2026-11-09): `/cuenta` now places an accessible “Modo oscuro” switch at the right of the profile header. The explicit selection persists as presentation-only browser state and applies a shared dark palette to page, surface, control, navigation, status and inverse-brand tokens across every route; light mode remains the default. The production build, targeted global-persistence regression and a 22-route-family dark contrast/overflow sweep passed. Live Chromium inspections at 390 × 844 covered `/cuenta`, `/desafios` and `/empresa`; a 360 × 844 account inspection also confirmed the compact header layout, with no horizontal overflow or page errors.
+
 Interests push-permission simulation removal (2026-11-09): `/intereses` no longer renders “Simular permiso de avisos push” or its permission modal; the obsolete local modal state and handlers were removed. Existing simulated channel preferences and normal save behavior remain unchanged. The interaction inventory now describes channels/frequency without a push-permission simulation. The production build and targeted Chromium regression passed. A live 390 × 844 inspection confirmed the form ends with frequency and “Guardar cambios”, with no simulation control, horizontal overflow or page errors.
 
 Challenge EXPANDE badge color (2026-11-09): challenge-origin badges labeled “Expande” now use the Expande purple background with white text, while state and market-origin badges retain their existing semantic treatments. The production build and a targeted Chromium catalogue/detail check passed. Live 390 × 844 inspections confirmed the requested colors across nine catalogue badges and the CH-D01 detail badge, with no horizontal overflow or page errors.

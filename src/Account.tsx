@@ -1,11 +1,23 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Bell, Bookmark, Building2, Lightbulb, LogOut, Medal, Settings2, Users } from 'lucide-react';
+import {
+  Bell,
+  Bookmark,
+  Building2,
+  Lightbulb,
+  LogOut,
+  Medal,
+  Moon,
+  Settings2,
+  Sun,
+  Users,
+} from 'lucide-react';
 import { useDemo } from './context';
 import { CountrySelect } from './CountrySelect';
 import { MultiAutocomplete } from './MultiAutocomplete';
 import { chileanRegions, citiesForRegion, canonicalCityForRegion } from './chileLocations';
 import { date, label, targets, profileCompleteness, type Row } from '../shared/model';
+import { applyColorTheme, readColorTheme } from './theme';
 import {
   Carousel,
   Confirm,
@@ -39,22 +51,46 @@ const contentTypes = [
 export function Account() {
   const { d, user, company } = useDemo();
   const complete = profileCompleteness(company);
+  const [theme, setTheme] = useState(readColorTheme);
+  const dark = theme === 'dark';
   return (
     <Layout title="Cuenta">
       <Page>
         <div className="profile-head">
-          <span className="avatar">
-            {user.name
-              .split(' ')
-              .map((s: string) => s[0])
-              .slice(0, 2)
-              .join('')}
-          </span>
-          <div>
-            <h1>{user.name}</h1>
-            <p>{user.job_title}</p>
-            <span className="account-role">{label(user.role)}</span>
+          <div className="profile-identity">
+            <span className="avatar">
+              {user.name
+                .split(' ')
+                .map((s: string) => s[0])
+                .slice(0, 2)
+                .join('')}
+            </span>
+            <div className="profile-copy">
+              <h1>{user.name}</h1>
+              <p>{user.job_title}</p>
+              <span className="account-role">{label(user.role)}</span>
+            </div>
           </div>
+          <button
+            type="button"
+            className="theme-toggle"
+            role="switch"
+            aria-checked={dark}
+            aria-label="Modo oscuro"
+            onClick={() => {
+              const next = dark ? 'light' : 'dark';
+              applyColorTheme(next);
+              setTheme(next);
+            }}
+          >
+            <span className="theme-toggle-label">
+              {dark ? <Sun size={15} aria-hidden="true" /> : <Moon size={15} aria-hidden="true" />}
+              Oscuro
+            </span>
+            <span className="theme-toggle-track" aria-hidden="true">
+              <span />
+            </span>
+          </button>
         </div>
         <div className="decision">
           <p className="eyebrow">EMPRESA</p>
@@ -84,9 +120,7 @@ export function Account() {
             >
               <span className="profile-completion-fill" style={{ width: `${complete}%` }} />
             </div>
-            {complete < 100 && (
-              <small>{100 - complete}% restante para completar tu perfil</small>
-            )}
+            {complete < 100 && <small>{100 - complete}% restante para completar tu perfil</small>}
           </div>
         </div>
         <h2>Tu empresa</h2>
@@ -958,7 +992,9 @@ export function Plan() {
       <Page>
         <p className="eyebrow">Tu plan</p>
         <h1>Elige cómo quieres crecer en Expande</h1>
-        <p>Explora oportunidades gratis y activa herramientas de seguimiento cuando las necesites.</p>
+        <p>
+          Explora oportunidades gratis y activa herramientas de seguimiento cuando las necesites.
+        </p>
         <div className="decision">
           <p className="eyebrow">PRUEBA DE DEMOSTRACIÓN</p>
           <h2>{ended ? 'Prueba finalizada' : `${left} días restantes`}</h2>

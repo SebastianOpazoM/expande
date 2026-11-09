@@ -87,6 +87,29 @@ async function checkContrast(page: Page) {
   expect(failures).toEqual([]);
 }
 
+const brandPaths = [
+  '/inicio',
+  '/explorar',
+  '/cuenta',
+  '/empresa',
+  '/perfil',
+  '/equipo',
+  '/desafios',
+  '/desafios/CH-R01',
+  '/innovacion',
+  '/innovacion/cases/CASE-02',
+  '/formacion',
+  '/formacion/LEARN-D01',
+  '/calendario',
+  '/calendario/EV-R01',
+  '/financiamiento',
+  '/financiamiento/FUND-R20',
+  '/alianzas',
+  '/alianzas/ALL-D01',
+  '/postulaciones',
+  '/preferencias',
+];
+
 for (const width of [360, 390, 430])
   test(`brand ${width}: logo, Rubik, contrast and all screen families`, async ({ page }) => {
     mkdirSync('.local/screenshots', { recursive: true });
@@ -128,29 +151,7 @@ for (const width of [360, 390, 430])
     await checkContrast(page);
     await page.screenshot({ path: `.local/screenshots/brand-acceso-${width}.png` });
     await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click();
-    const paths = [
-      '/inicio',
-      '/explorar',
-      '/cuenta',
-      '/empresa',
-      '/perfil',
-      '/equipo',
-      '/desafios',
-      '/desafios/CH-R01',
-      '/innovacion',
-      '/innovacion/cases/CASE-02',
-      '/formacion',
-      '/formacion/LEARN-D01',
-      '/calendario',
-      '/calendario/EV-R01',
-      '/financiamiento',
-      '/financiamiento/FUND-R20',
-      '/alianzas',
-      '/alianzas/ALL-D01',
-      '/postulaciones',
-      '/preferencias',
-    ];
-    for (const path of paths) {
+    for (const path of brandPaths) {
       await page.goto(path);
       await expect(page.locator('.viewport')).toBeVisible();
       await page.evaluate(() => document.fonts.ready);
@@ -190,6 +191,32 @@ for (const width of [360, 390, 430])
     );
     await page.screenshot({ path: `.local/screenshots/brand-modal-${width}.png` });
   });
+
+test('dark mode keeps route families accessible and free of overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/cuenta');
+  await page.getByRole('switch', { name: 'Modo oscuro', exact: true }).click();
+
+  for (const path of ['/bienvenida', '/acceso', ...brandPaths]) {
+    await page.goto(path);
+    await expect(page.locator('.phone')).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    const overflow = await page.evaluate(() =>
+      [...document.querySelectorAll('.viewport,.page,.topbar,.card,.modal')]
+        .filter((el) => el.scrollWidth > el.clientWidth + 1)
+        .map((el) => el.className),
+    );
+    expect(overflow, path).toEqual([]);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await checkContrast(page);
+  }
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+});
 
 test('brand desktop framing, approved vector variants and favicon load', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 1000 });

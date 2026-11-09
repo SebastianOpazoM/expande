@@ -23,8 +23,9 @@
 }
 :root {
   font-family: 'Rubik Variable', Arial, sans-serif;
-  color: var(--brand-navy);
+  color: var(--color-text);
   background: var(--color-stage);
+  color-scheme: light;
   font-synthesis: none;
   font-weight: 400;
   font-size: 16px;
@@ -33,6 +34,11 @@
   --brand-navy: #053349;
   --brand-mint: #a4d2b4;
   --brand-yellow: #fdc500;
+  --color-text: var(--brand-navy);
+  --color-on-brand: #ffffff;
+  --color-on-dark-muted: #e8f3ec;
+  --color-accent: var(--brand-magenta);
+  --color-success-accent: var(--color-success);
   --color-primary-hover: #890e43;
   --color-bg: #f5f8f7;
   --color-surface: #ffffff;
@@ -52,9 +58,33 @@
   --color-shadow: #05334920;
   --color-shadow-soft: #05334910;
   --color-inverse-border: #ffffff66;
+  --color-provider-surface: #ffffff;
+  --color-provider-hover: #f5f8f7;
   --device-black: #090d10;
   --device-edge: #35434a;
   --device-highlight: #718087;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-text: #f4f7f8;
+  --color-accent: #ff7db4;
+  --color-success-accent: #83d7ad;
+  --color-bg: #0d1b22;
+  --color-surface: #172a33;
+  --color-stage: #071117;
+  --color-muted: #b8c7cc;
+  --color-border: #34505c;
+  --color-control-border: #718b95;
+  --color-mint-tint: #173b34;
+  --color-magenta-tint: #3d1b2b;
+  --color-navy-tint: #213943;
+  --color-yellow-tint: #3f3512;
+  --color-error: #ff9fa6;
+  --color-error-tint: #421f23;
+  --color-warning: #f8d264;
+  --color-overlay: #02080dcc;
+  --color-shadow: #00000070;
+  --color-shadow-soft: #0000003d;
 }
 * {
   box-sizing: border-box;
@@ -85,7 +115,7 @@ button,
   border: 1px solid var(--brand-magenta);
   border-radius: 13px;
   background: var(--brand-magenta);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   padding: 12px 16px;
   font-weight: 500;
   display: inline-flex;
@@ -109,7 +139,7 @@ button:disabled {
 button.primary,
 .button.primary {
   background: var(--brand-magenta);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   border-color: var(--brand-magenta);
   box-shadow: 0 7px 16px var(--color-shadow-soft);
 }
@@ -121,7 +151,7 @@ button.text,
 .button.text {
   background: transparent;
   border: 0;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   box-shadow: none;
   padding: 10px 3px;
 }
@@ -138,12 +168,12 @@ button.text,
 .rule-edit-action {
   background: var(--brand-navy);
   border-color: var(--brand-navy);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .rule-edit-action:hover {
   background: var(--color-navy-tint);
   border-color: var(--brand-navy);
-  color: var(--brand-navy);
+  color: var(--color-text);
 }
 .rule-pause-action {
   background: var(--brand-yellow);
@@ -158,12 +188,12 @@ button.text,
 .rule-activate-action {
   background: var(--color-success);
   border-color: var(--color-success);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .rule-activate-action:hover {
   background: var(--color-mint-tint);
   border-color: var(--color-success);
-  color: var(--color-success);
+  color: var(--color-success-accent);
 }
 
 button small {
@@ -178,7 +208,7 @@ button small {
   min-height: 48px;
   padding: 2px 14px 2px 6px;
   border-radius: 12px;
-  background: var(--color-surface);
+  background: var(--color-provider-surface);
   color: #1f1f1f;
   font-size: 13px;
   font-weight: 600;
@@ -203,21 +233,21 @@ button small {
 .card .provider-apple {
   background: #000;
   border-color: #000;
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .provider-apple .provider-logo img {
   width: 44px;
   height: 44px;
 }
 .card .provider-button:hover {
-  background: var(--color-bg);
+  background: var(--color-provider-hover);
 }
 .card .provider-apple:hover {
   background: #000;
   box-shadow: inset 0 0 0 2px #ffffff40;
 }
 :focus-visible {
-  outline: 3px solid var(--brand-navy);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 input,
@@ -226,7 +256,7 @@ textarea {
   width: 100%;
   border: 1px solid var(--color-control-border);
   background: var(--color-surface);
-  color: var(--brand-navy);
+  color: var(--color-text);
   border-radius: 12px;
   min-height: 46px;
   padding: 12px;
@@ -414,7 +444,7 @@ code {
   letter-spacing: 1.3px;
   font-size: 9px;
   font-weight: 600;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   margin: 14px 0;
 }
 .desktop-stage {
@@ -566,7 +596,7 @@ code {
   text-align: center;
 }
 .registration-prompt a {
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -582,6 +612,9 @@ code {
   height: auto;
   max-width: 100%;
 }
+:root[data-theme='dark'] .topbar .brand-logo {
+  filter: brightness(0) invert(1);
+}
 .welcome-logo {
   width: 200px;
 }
@@ -593,7 +626,7 @@ code {
   padding: 8px;
   background: transparent;
   border: 0;
-  color: var(--brand-navy);
+  color: var(--color-text);
   box-shadow: none;
   align-items: center;
   justify-content: center;
@@ -609,12 +642,12 @@ code {
 }
 .notification b {
   font-size: 9px;
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   background: var(--brand-magenta);
   position: absolute;
   top: 2px;
   right: 3px;
-  border: 2px solid white;
+  border: 2px solid var(--color-surface);
   border-radius: 50%;
   min-width: 17px;
   height: 17px;
@@ -666,7 +699,7 @@ code {
   min-width: 0;
 }
 .bottom-nav a.active {
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .action-bar {
   display: flex;
@@ -783,7 +816,7 @@ code {
   margin: 15px 0 7px;
 }
 .card-title:hover {
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .company-line {
   display: flex;
@@ -855,17 +888,17 @@ code {
 .market-sources-link {
   border-color: var(--color-control-border);
   background: var(--color-navy-tint);
-  color: var(--brand-navy);
+  color: var(--color-text);
 }
 .account-role {
   border-color: var(--brand-magenta);
   background: var(--brand-magenta);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 
 .market-sources-link:hover {
   border-color: var(--brand-magenta);
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .section-heading h2 {
   margin: 20px 0 13px;
@@ -874,7 +907,7 @@ code {
 .section-heading > button {
   font-size: 10px;
   font-weight: 500;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .tags {
   display: flex;
@@ -891,15 +924,15 @@ code {
   background: var(--color-navy-tint);
   border-radius: 20px;
   padding: 6px 8px;
-  color: var(--brand-navy);
+  color: var(--color-text);
 }
 .tags .tag-expande {
   background: var(--brand-magenta);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .pill.learning-format-capsula {
   background: var(--color-magenta-tint);
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .learning-cover-link {
   display: block;
@@ -941,15 +974,15 @@ code {
 }
 .pill.learning-format-masterclass {
   background: var(--color-yellow-tint);
-  color: var(--brand-navy);
+  color: var(--color-warning);
 }
 .pill.learning-format-resumen_audiovisual {
   background: var(--color-navy-tint);
-  color: var(--brand-navy);
+  color: var(--color-text);
 }
 .tags .green {
   background: var(--color-mint-tint);
-  color: var(--color-success);
+  color: var(--color-success-accent);
 }
 .save {
   border: 1px solid var(--color-control-border);
@@ -961,7 +994,7 @@ code {
 .save.saved {
   background: var(--color-magenta-tint);
   border-color: var(--brand-magenta);
-  color: var(--brand-magenta);
+  color: var(--color-accent);
 }
 .chips {
   display: flex;
@@ -1028,7 +1061,7 @@ code {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   font-size: 9px;
   font-weight: 600;
   white-space: nowrap;
@@ -1103,7 +1136,7 @@ code {
 }
 .tabs button.active {
   background: var(--color-surface);
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   box-shadow: inset 0 -3px 0 var(--brand-magenta);
 }
 .saved-tabs {
@@ -1131,7 +1164,7 @@ code {
 .home-company-name {
   display: block;
   margin-top: 4px;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   font-size: 1.08em;
   font-weight: 600;
 }
@@ -1151,7 +1184,7 @@ code {
 }
 .demo-banner a {
   font-weight: 600;
-  color: var(--brand-navy);
+  color: var(--color-text);
 }
 .greeting {
   text-transform: none;
@@ -1182,7 +1215,7 @@ code {
   display: grid;
   place-items: center;
   background: var(--brand-navy);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   border-radius: 50%;
   width: 22px;
   height: 22px;
@@ -1246,18 +1279,18 @@ code {
   height: 35px;
   background: var(--color-navy-tint);
   border-radius: 10px;
-  color: var(--brand-navy);
+  color: var(--color-text);
   flex-shrink: 0;
 }
 .decision {
   background: var(--brand-navy);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   padding: 17px;
   border-radius: 17px;
   margin: 18px 0;
 }
 .decision p {
-  color: var(--color-mint-tint);
+  color: var(--color-on-dark-muted);
   font-size: 12px;
 }
 .decision .eyebrow {
@@ -1270,7 +1303,7 @@ code {
 }
 .decision small {
   font-size: 9px;
-  color: var(--color-mint-tint);
+  color: var(--color-on-dark-muted);
 }
 .decision h2 {
   margin: 5px 0;
@@ -1307,7 +1340,7 @@ code {
 .profile-completion-value {
   border: 1px solid var(--color-inverse-border);
   background: #ffffff1a;
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .profile-completion-track {
   height: 10px;
@@ -1410,7 +1443,7 @@ code {
 }
 .demo-pill {
   font-size: 9px;
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   padding: 8px 10px;
   border: 1px solid var(--color-inverse-border);
   border-radius: 20px;
@@ -1486,13 +1519,23 @@ code {
   font-weight: 600;
 }
 .benefits svg {
-  color: var(--color-success);
+  color: var(--color-success-accent);
 }
 .profile-head {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 10px;
   margin: 4px 0 24px;
+}
+.profile-identity {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 12px;
+}
+.profile-copy {
+  min-width: 0;
 }
 .profile-head h1 {
   font-size: 21px;
@@ -1502,12 +1545,58 @@ code {
   font-size: 11px;
   margin: 7px 0;
 }
+.theme-toggle {
+  flex: 0 0 70px;
+  min-height: 68px;
+  padding: 8px;
+  border-color: var(--color-control-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: none;
+  flex-direction: column;
+  gap: 6px;
+}
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  background: var(--color-navy-tint);
+}
+.theme-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.theme-toggle-track {
+  width: 34px;
+  height: 18px;
+  padding: 2px;
+  border: 1px solid var(--color-control-border);
+  border-radius: 999px;
+  background: var(--color-navy-tint);
+}
+.theme-toggle-track > span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-muted);
+}
+.theme-toggle[aria-checked='true'] .theme-toggle-track {
+  border-color: var(--brand-magenta);
+  background: var(--brand-magenta);
+}
+.theme-toggle[aria-checked='true'] .theme-toggle-track > span {
+  margin-left: 16px;
+  background: var(--color-on-brand);
+}
 .avatar {
   width: 58px;
   height: 58px;
   border-radius: 50%;
   background: var(--brand-navy);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   font-weight: 600;
   display: grid;
   place-items: center;
@@ -1594,7 +1683,7 @@ form > fieldset > button {
   left: 50%;
   transform: translateX(-50%);
   background: var(--brand-navy);
-  color: var(--color-surface);
+  color: var(--color-on-brand);
   border-radius: 13px;
   padding: 14px 18px;
   font-size: 12px;
@@ -1658,7 +1747,7 @@ form > fieldset > button {
   border-color: var(--color-inverse-border);
 }
 .decision .data-field h3 {
-  color: var(--color-surface);
+  color: var(--color-on-brand);
 }
 .lesson {
   padding: 22px;
@@ -1703,7 +1792,7 @@ progress {
 .calendar-day a {
   display: block;
   font-size: 7px;
-  color: var(--brand-magenta);
+  color: var(--color-accent);
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 23px;
