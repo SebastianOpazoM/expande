@@ -1,0 +1,107 @@
+[
+  {
+    "id": "case-01",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Worker using digital training on a tablet beside mining equipment; abstract training screen and safety helmet",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-f1772308-c17c-4f1e-a8c9-3b4bee5248c8.png",
+    "asset_path": "public/images/innovacion/case-01.jpg"
+  },
+  {
+    "id": "case-02",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Electric highway truck carrying copper bundles beside a charging station, Andean hills",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-36f79981-a572-4dd8-9cb2-fd0588ac4702.png",
+    "asset_path": "public/images/innovacion/case-02.jpg"
+  },
+  {
+    "id": "case-03",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Mine operations control room with abstract production dashboard overlooking an open pit",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-99262523-ad63-4bf0-b563-c47927c0dde9.png",
+    "asset_path": "public/images/innovacion/case-03.jpg"
+  },
+  {
+    "id": "case-04",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Industrial process pump with small vibration sensors and a condition monitoring dashboard",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-f9d3b7ef-e35c-4c04-9974-495ab9c0d5e9.png",
+    "asset_path": "public/images/innovacion/case-04.jpg"
+  },
+  {
+    "id": "case-05",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Long ore conveyor belt with inspection camera and wear sensors",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-235b428c-7e8e-43e7-874c-c8d064e64134.png",
+    "asset_path": "public/images/innovacion/case-05.jpg"
+  },
+  {
+    "id": "news-01",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Mining technology exhibition with three small demonstration booths and visitors",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-62f129c9-b91f-4088-8f9f-835dbeea0739.png",
+    "asset_path": "public/images/innovacion/news-01.jpg"
+  },
+  {
+    "id": "news-02",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Compact pilot test equipment transitioning into a large operating mineral processing plant",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-a42c43a9-c3d1-4f0c-b6e2-8a29a87c60ce.png",
+    "asset_path": "public/images/innovacion/news-02.jpg"
+  },
+  {
+    "id": "news-03",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Supplier and mine operations teams reviewing a small technology prototype on a meeting table",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-96793c5b-f962-43d4-a5dd-025031867a80.png",
+    "asset_path": "public/images/innovacion/news-03.jpg"
+  },
+  {
+    "id": "news-04",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Maintenance team servicing a large mine haul truck with organized tools",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-e0651c52-ba08-4201-ab68-5fa4b5d47266.png",
+    "asset_path": "public/images/innovacion/news-04.jpg"
+  },
+  {
+    "id": "news-05",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Three startup technology trials in a mine: sensor mast, compact robot and water skid",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-b0e58eb1-e0b5-48f8-aef4-68007e37a785.png",
+    "asset_path": "public/images/innovacion/news-05.jpg"
+  },
+  {
+    "id": "trend-01",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Recirculating water through tanks, pipes and pumping infrastructure at a mineral plant",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-6f80551c-7243-4c15-87ca-786db75c8401.png",
+    "asset_path": "public/images/innovacion/trend-01.jpg"
+  },
+  {
+    "id": "trend-02",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Industrial materials and efficient energy equipment connected to abstract emissions indicators",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-368de9e6-24b3-4e38-a28d-fbdcacad6083.png",
+    "asset_path": "public/images/innovacion/trend-02.jpg"
+  },
+  {
+    "id": "trend-03",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Operator safely controlling mining machinery remotely from a separated control station",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-54cfc307-1e70-468a-950e-05c6bd479eb5.png",
+    "asset_path": "public/images/innovacion/trend-03.jpg"
+  },
+  {
+    "id": "trend-04",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Industrial sensors, gateway and processing machines connected with clear data flows",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-f6d77f1a-2ae1-4853-9098-bc8e10c60185.png",
+    "asset_path": "public/images/innovacion/trend-04.jpg"
+  },
+  {
+    "id": "trend-05",
+    "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a Spanish mining innovation library. Landscape 16:9 composition. Consistent simple isometric industrial forms, polished matte geometric illustration, teal and turquoise background, dark teal machinery, warm orange and sand accents, soft shadows, clear focal subject with generous breathing room. No text, letters, numbers, logos, watermarks or recognizable real people. Subject: Industrial network equipment with protected boundaries and a central shield motif",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-5ef47958-12f0-46fd-9b79-64cdb8c2c30b.png",
+    "asset_path": "public/images/innovacion/trend-05.jpg"
+  }
+]

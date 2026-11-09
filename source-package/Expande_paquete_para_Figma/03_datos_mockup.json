@@ -1,0 +1,5707 @@
+{
+  "meta": {
+    "version": "1.0",
+    "language": "es-CL",
+    "demo_now": "2026-11-06T12:00:00-03:00",
+    "timezone": "America/Santiago",
+    "default_company_id": "EMP-D01",
+    "default_user_id": "USR-01",
+    "notice": "Prototipo de demostración. Los registros DEMO son ficticios. Los documentos reales son antecedentes entregados, no convocatorias verificadas como vigentes."
+  },
+  "sources": [
+    {
+      "id": "proposal",
+      "title": "Mock App funcional Expande v5.2 (2).pptx",
+      "url": "https://docs.google.com/presentation/d/1e_d06VMoJy0SSMPLyhme5GDMMAuIuDVY/edit",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "plan",
+      "title": "EXPANDE_Discovery_S1_Alcance_y_Valor_rev09_09.docx",
+      "url": "https://docs.google.com/document/d/1a8oJNAAhuQDzUV2Ec7gPOBhDPQmyvkik/edit",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "discovery",
+      "title": "Resumen_reunion_discovery_Expande_10-09-2026.pdf",
+      "url": "https://drive.google.com/file/d/1NDqZt0P6Xk-_iSIhQnYlj95P8UVq5viw/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "brief",
+      "title": "brief_original_figma.md",
+      "url": "https://drive.google.com/file/d/13LxUTUGGy3b-iSLXnFCsBHnqhvXfK6kC/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "folderReview",
+      "title": "Informe_revision_carpetas_Expande.docx",
+      "url": "https://docs.google.com/document/d/1seXLLeGQIsQ6kt2i2Ok-AE4n_azH0DT1/edit",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "focusGuide",
+      "title": "Focus Group Proveedores Minería – Expande 7 de Oct 2026.docx",
+      "url": "https://drive.google.com/file/d/1ongMTKWChvv65PTMIYymVKO5w4z9Q8_d/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "interview",
+      "title": "Anexo Batería de preguntas v2 oct 7 2026.docx",
+      "url": "https://drive.google.com/file/d/1oohJftLNfNQvPY2CUWhU597xfCFjnglb/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "focus",
+      "title": "focus group 20 octubre",
+      "url": "https://drive.google.com/file/d/19qfbwAllfNRbP9_RmDhpjRkjDviVwPIEbcHNtn5gJn4/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "closingGuide",
+      "title": "Guia Sesion Cierre Mockup Expande.docx",
+      "url": "https://drive.google.com/file/d/1UepWjleJQwSQoTxZ7J-5FIvy-7G-Qgxp/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "closingDeck",
+      "title": "Mockup consolidado encuesta y focus 26 de Oct 2026.pptx.pdf",
+      "url": "https://drive.google.com/file/d/1HatqsRl_hT76dmeygWIJKYs4GvJg8sJy/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "folderGuide",
+      "title": "Carpetas para Mockup App Expande.docx",
+      "url": "https://drive.google.com/file/d/1FT3W1JfsCgA9pJSNl62yPvUIMxDJbe_0/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "closing",
+      "title": "resumen_sesion_expande_26_10",
+      "url": "https://docs.google.com/document/d/1rA4vOgd9vj0F_1CORcFI7ASx9jjR3B37JCxpOIITKQY/edit",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1Gc17d-oj_O7uYCzfJULxnnXaetwtmKJr",
+      "title": "AMSA-02-2026 Medicion ruido ESP.pdf",
+      "url": "https://drive.google.com/file/d/1Gc17d-oj_O7uYCzfJULxnnXaetwtmKJr/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1-0q0_C-LoN3Y-495CBgsQ4YunyW7EHL-",
+      "title": "AMSA-04-2026 Mecanismos de limpieza SIAD.pdf",
+      "url": "https://drive.google.com/file/d/1-0q0_C-LoN3Y-495CBgsQ4YunyW7EHL-/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_16ywBwpRJu2g3gNIgB00W7twFzSGgaxYU",
+      "title": "AMSA-03-2026 Monitoreo de rastras ESP.pdf",
+      "url": "https://drive.google.com/file/d/16ywBwpRJu2g3gNIgB00W7twFzSGgaxYU/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1CGShCn82nqKW_d8XFr-QuwTC7HQPBoef",
+      "title": "COD-01-2025 Ficha Tecnica ESP.pdf",
+      "url": "https://drive.google.com/file/d/1CGShCn82nqKW_d8XFr-QuwTC7HQPBoef/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1BPnPVl-Wp5EaeLgqKBc3TYHcy2TW7svq",
+      "title": "ABC Dust.pdf",
+      "url": "https://drive.google.com/file/d/1BPnPVl-Wp5EaeLgqKBc3TYHcy2TW7svq/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1YUGWGr_bZpRv5p21BIxO-RyT0-GpCJSE",
+      "title": "COD-02-2025 Ficha Tecnica ESP.pdf",
+      "url": "https://drive.google.com/file/d/1YUGWGr_bZpRv5p21BIxO-RyT0-GpCJSE/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+      "title": "Oportunidades de mercado.xlsx",
+      "url": "https://docs.google.com/spreadsheets/d/1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1CdHtr-ExagrUe6B-Q0uyv9i68JjiAzRz",
+      "title": "Ej decarbmine.pptx",
+      "url": "https://docs.google.com/presentation/d/1CdHtr-ExagrUe6B-Q0uyv9i68JjiAzRz/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55",
+      "title": "Ejemplos Proveedores.xlsx",
+      "url": "https://docs.google.com/spreadsheets/d/1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+      "title": "fondos_proximos_60_dias.xlsx",
+      "url": "https://docs.google.com/spreadsheets/d/1L07vdvzeDMQq58NxPZssO36331psGKsr/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+      "title": "Eventos minreos 2027.pptx",
+      "url": "https://docs.google.com/presentation/d/1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+      "title": "Carpeta5_Noticias_Innovacion_Minera.xlsx",
+      "url": "https://docs.google.com/spreadsheets/d/1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+      "title": "clasificacion.xlsx",
+      "url": "https://docs.google.com/spreadsheets/d/1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1nmobNIAzk--NLmdz-twYz2SSM2-EWT7i",
+      "title": "Flujo_Desafio_Expande.docx",
+      "url": "https://docs.google.com/document/d/1nmobNIAzk--NLmdz-twYz2SSM2-EWT7i/edit?usp=drivesdk&ouid=115609592023940909990&rtpof=true&sd=true",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1KyRdMnvzk8nxhWv8Zp1kThmMI_1giLI8",
+      "title": "Ej proveedor 1.pdf",
+      "url": "https://drive.google.com/file/d/1KyRdMnvzk8nxhWv8Zp1kThmMI_1giLI8/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "asset_1_oYuZyIbFZtTU4NEchPWjot42KemdVTp",
+      "title": "Ej proveedor 2.pdf",
+      "url": "https://drive.google.com/file/d/1_oYuZyIbFZtTU4NEchPWjot42KemdVTp/view?usp=drivesdk",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    },
+    {
+      "id": "video",
+      "title": "Expande Masterclass Resumen Jornada",
+      "url": "https://drive.google.com/file/d/1Oi2FygWTxtsGizNrkUFq5s65vrpDhixO/view",
+      "type": "archivo_entregado",
+      "accessed_on": "2026-11-06"
+    }
+  ],
+  "process_stages": [
+    {
+      "id": "ET-01",
+      "name": "Exploración/Geología",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-02",
+      "name": "Planificación/Ingeniería",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-03",
+      "name": "Construcción",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-04",
+      "name": "Extracción",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-05",
+      "name": "Chancado",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-06",
+      "name": "Proceso de concentración",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-07",
+      "name": "Proceso de lixiviación",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-08",
+      "name": "Relaves",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-09",
+      "name": "FURE",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-10",
+      "name": "Puerto y/o planta desalinizadora",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ET-11",
+      "name": "Transversales",
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": "Etapa del proceso",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "processes": [
+    {
+      "id": "geologia",
+      "name": "Exploración y geología",
+      "stage_id": "ET-01",
+      "aliases": [
+        "geociencias"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "planificacion",
+      "name": "Planificación minera",
+      "stage_id": "ET-02",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "construccion",
+      "name": "Construcción",
+      "stage_id": "ET-03",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "perforacion",
+      "name": "Perforación",
+      "stage_id": "ET-04",
+      "aliases": [
+        "drilling"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "tronadura",
+      "name": "Tronadura",
+      "stage_id": "ET-04",
+      "aliases": [
+        "voladura"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "carguio",
+      "name": "Carguío",
+      "stage_id": "ET-04",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "transporte",
+      "name": "Transporte mina",
+      "stage_id": "ET-04",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "chancado",
+      "name": "Chancado",
+      "stage_id": "ET-05",
+      "aliases": [
+        "trituración"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "correas",
+      "name": "Correas transportadoras",
+      "stage_id": "ET-05",
+      "aliases": [
+        "correa",
+        "cintas transportadoras"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "molienda",
+      "name": "Molienda",
+      "stage_id": "ET-06",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "flotacion",
+      "name": "Flotación",
+      "stage_id": "ET-06",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "concentraducto",
+      "name": "Transporte de concentrado",
+      "stage_id": "ET-06",
+      "aliases": [
+        "concentraducto"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "lixiviacion",
+      "name": "Lixiviación",
+      "stage_id": "ET-07",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "espesamiento",
+      "name": "Espesamiento de relaves",
+      "stage_id": "ET-08",
+      "aliases": [
+        "rastras",
+        "espesadores"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "electrorrefinacion",
+      "name": "Electrorrefinación",
+      "stage_id": "ET-09",
+      "aliases": [
+        "refinería",
+        "celdas electrolíticas"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "desalinizacion",
+      "name": "Desalinización e impulsión de agua",
+      "stage_id": "ET-10",
+      "aliases": [
+        "SIAD",
+        "agua desalinizada"
+      ],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "transversal",
+      "name": "Servicios transversales",
+      "stage_id": "ET-11",
+      "aliases": [],
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL",
+        "locator": null,
+        "derived_fields": [
+          "name",
+          "stage_id",
+          "aliases"
+        ],
+        "verified_current": false
+      }
+    }
+  ],
+  "topics": [
+    {
+      "id": "agua",
+      "name": "Agua",
+      "parent_id": null
+    },
+    {
+      "id": "sustentabilidad",
+      "name": "Sustentabilidad",
+      "parent_id": null
+    },
+    {
+      "id": "polvo",
+      "name": "Polvo y material particulado",
+      "parent_id": "sustentabilidad"
+    },
+    {
+      "id": "descarbonizacion",
+      "name": "Descarbonización",
+      "parent_id": "sustentabilidad"
+    },
+    {
+      "id": "circularidad",
+      "name": "Economía circular",
+      "parent_id": "sustentabilidad"
+    },
+    {
+      "id": "seguridad",
+      "name": "Seguridad",
+      "parent_id": null
+    },
+    {
+      "id": "produccion",
+      "name": "Producción",
+      "parent_id": null
+    },
+    {
+      "id": "costos",
+      "name": "Costos",
+      "parent_id": null
+    },
+    {
+      "id": "automatizacion",
+      "name": "Automatización",
+      "parent_id": null
+    },
+    {
+      "id": "capital_humano",
+      "name": "Capital humano",
+      "parent_id": null
+    }
+  ],
+  "enums": {
+    "challenge_state": [
+      "abierto",
+      "proximo",
+      "cerrado",
+      "por_confirmar"
+    ],
+    "application_state": [
+      "preparacion",
+      "enviada",
+      "en_revision",
+      "en_evaluacion",
+      "documentacion_pendiente",
+      "resultado"
+    ],
+    "pipeline_stage": [
+      "scouting",
+      "pertinencia",
+      "prospeccion",
+      "seleccion_compania",
+      "demo_day",
+      "piloto",
+      "escalamiento",
+      "cierre"
+    ],
+    "result": [
+      "avanza",
+      "no_avanza",
+      "pendiente"
+    ],
+    "segment": [
+      "startup",
+      "pyme",
+      "gran_empresa",
+      "otro"
+    ],
+    "size": [
+      "micro",
+      "pequena",
+      "mediana",
+      "grande",
+      "no_informado"
+    ],
+    "editorial_state": [
+      "borrador",
+      "publicado",
+      "archivado"
+    ],
+    "origin": [
+      "expande",
+      "externo"
+    ],
+    "date_precision": [
+      "datetime",
+      "day",
+      "month",
+      "unknown"
+    ],
+    "provenance_kind": [
+      "documentado",
+      "normalizado",
+      "sintetico"
+    ],
+    "source_state_original": [
+      "En proceso",
+      "Cerrado",
+      "Otro",
+      "Adjudicada"
+    ],
+    "category_original": [
+      "Fast Scouting",
+      "Desafío estándar",
+      "Desafío global",
+      "Vigilancia Tecnológica",
+      "Otro"
+    ],
+    "minerals_original": [
+      "Sulfuros",
+      "Óxidos",
+      "Mixto",
+      "Hierro",
+      "Litio",
+      "Otros"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "CH-R01",
+      "title": "Monitoreo y diagnóstico de ruido en anillos disipadores",
+      "origin": "expande",
+      "mandante": "Los Pelambres",
+      "site": "Concentraducto y sector portuario",
+      "country": "CL",
+      "region": null,
+      "process_ids": [
+        "concentraducto"
+      ],
+      "topic_ids": [
+        "produccion",
+        "seguridad"
+      ],
+      "summary": "Detectar anomalías mediante medición acústica externa y continua.",
+      "problem": "Desgaste no uniforme puede dañar el spool adyacente y provocar fallas.",
+      "objective": "Detectar anomalías mediante medición acústica externa y continua.",
+      "operational_context": "Ducto de aproximadamente 120 km; flujo transiente, corrosión, humedad y salinidad.",
+      "requirements": [
+        {
+          "text": "No modificar flanges, anillos o spools ni interferir en la operación",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Robustez ante corrosión, humedad, salinidad y vibración",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Monitoreo continuo en tiempo real",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Madurez mínima TRL 7",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Escalable a otros anillos, spools o flanges",
+          "classification": "obligatorio_segun_ficha"
+        }
+      ],
+      "exclusions": [
+        "Consultorías, asesorías y estudios de ingeniería",
+        "Personas naturales"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 7,
+      "trl_max": null,
+      "funding": {
+        "payer": null,
+        "amount": null,
+        "currency": null,
+        "description": "No informado"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "por_confirmar",
+      "source_state": null,
+      "opened_at": null,
+      "closes_at": null,
+      "date_precision": "unknown",
+      "source_dates_text": "15 ene - 05 feb; ficha AMSA-02-2026",
+      "published_at": null,
+      "application_url": "https://fch.brightidea.com/MonitoreodeRuidoAnillosDisipadores",
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1Gc17d-oj_O7uYCzfJULxnnXaetwtmKJr",
+        "locator": "Objetivos, requisitos y etapas",
+        "derived_fields": [
+          "process_ids",
+          "topic_ids",
+          "summary",
+          "state",
+          "country (faena en Chile)"
+        ],
+        "verified_current": false
+      },
+      "demo": false,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "cierre",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-R02",
+      "title": "Monitoreo indirecto de rastras en espesadores de relaves",
+      "origin": "expande",
+      "mandante": "Los Pelambres",
+      "site": "Planta concentradora",
+      "country": "CL",
+      "region": null,
+      "process_ids": [
+        "espesamiento"
+      ],
+      "topic_ids": [
+        "produccion",
+        "seguridad"
+      ],
+      "summary": "Medir indirectamente la integridad estructural de las rastras para anticipar fallas.",
+      "problem": "Inspeccionar las rastras exige vaciar el espesador; existe riesgo de detenciones no planificadas.",
+      "objective": "Medir indirectamente la integridad estructural de las rastras para anticipar fallas.",
+      "operational_context": "Sólidos 50-60%; espesadores de unos 120 m; rastras de 30-40 m; vaciado cada 1-2 años.",
+      "requirements": [
+        {
+          "text": "Sin modificar ni intervenir directamente la rastra",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Apta para humedad, relaves y corrosión",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Mediciones periódicas o continuas en línea",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Se aceptan TRL 1 a 9",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Mantenimiento mínimo",
+          "classification": "obligatorio_segun_ficha"
+        }
+      ],
+      "exclusions": [
+        "Consultorías, asesorías y estudios de ingeniería",
+        "Personas naturales"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 1,
+      "trl_max": 9,
+      "funding": {
+        "payer": null,
+        "amount": null,
+        "currency": null,
+        "description": "No informado"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "por_confirmar",
+      "source_state": null,
+      "opened_at": null,
+      "closes_at": null,
+      "date_precision": "unknown",
+      "source_dates_text": "15 ene - 12 feb; ficha AMSA-03-2026",
+      "published_at": null,
+      "application_url": "https://fch.brightidea.com/MonitoreoEstructuralRastrasEspesadores",
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_16ywBwpRJu2g3gNIgB00W7twFzSGgaxYU",
+        "locator": "Objetivos, requisitos y etapas",
+        "derived_fields": [
+          "process_ids",
+          "topic_ids",
+          "summary",
+          "state",
+          "country (faena en Chile)"
+        ],
+        "verified_current": false
+      },
+      "demo": false,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "cierre",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-R03",
+      "title": "Limpieza mecánica del ducto SIAD",
+      "origin": "expande",
+      "mandante": "Los Pelambres",
+      "site": "Punta Chungo a El Mauro",
+      "country": "CL",
+      "region": null,
+      "process_ids": [
+        "desalinizacion"
+      ],
+      "topic_ids": [
+        "agua",
+        "produccion"
+      ],
+      "summary": "Limpiar mecánicamente zonas irregulares y complementar el tratamiento bioquímico.",
+      "problem": "Biopelículas protegen bacterias que causan corrosión; los pigs convencionales no remueven todos los depósitos.",
+      "objective": "Limpiar mecánicamente zonas irregulares y complementar el tratamiento bioquímico.",
+      "operational_context": "Ducto continuo no segmentable de 61 km y 24 pulgadas, con reducciones y uniones.",
+      "requirements": [
+        {
+          "text": "Cubrir los 61 km y variaciones de diámetro",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Alcanzar intersticios y geometrías irregulares",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "TRL mínimo 7",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Compatibilidad con trampas de lanzamiento y recepción",
+          "classification": "obligatorio_segun_ficha"
+        }
+      ],
+      "exclusions": [
+        "Pigs convencionales de copas, discos o cepillos",
+        "Consultorías, asesorías y estudios de ingeniería",
+        "Personas naturales"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 7,
+      "trl_max": null,
+      "funding": {
+        "payer": null,
+        "amount": null,
+        "currency": null,
+        "description": "No informado"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "por_confirmar",
+      "source_state": null,
+      "opened_at": null,
+      "closes_at": null,
+      "date_precision": "unknown",
+      "source_dates_text": "15 ene - 12 feb; ficha AMSA-04-2026",
+      "published_at": null,
+      "application_url": "https://fch.brightidea.com/LimpiezaMecanicadelDuctoSIAD",
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1-0q0_C-LoN3Y-495CBgsQ4YunyW7EHL-",
+        "locator": "Objetivos, requisitos y etapas",
+        "derived_fields": [
+          "process_ids",
+          "topic_ids",
+          "summary",
+          "state",
+          "country (faena en Chile)"
+        ],
+        "verified_current": false
+      },
+      "demo": false,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": 3
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "cierre",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-R04",
+      "title": "Automatización del cambio de triconos",
+      "origin": "expande",
+      "mandante": "Codelco",
+      "site": "División Radomiro Tomic",
+      "country": "CL",
+      "region": null,
+      "process_ids": [
+        "perforacion"
+      ],
+      "topic_ids": [
+        "seguridad",
+        "automatizacion"
+      ],
+      "summary": "Automatizar el cambio de triconos reduciendo exposición y tiempo operacional.",
+      "problem": "El cambio manual expone a personas a cargas, caída de objetos y cortes.",
+      "objective": "Automatizar el cambio de triconos reduciendo exposición y tiempo operacional.",
+      "operational_context": "Pit Viper 351 Epiroc, pozo 12 ¼ pulgadas; cambio actual de 30 min; frecuencia aproximada semanal.",
+      "requirements": [
+        {
+          "text": "Reducir o eliminar exposición de personas",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Cambio en menos de 30 minutos",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Aplicable o adaptable a PV-351 y pozo 12 ¼ pulgadas",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Facilitar mantenimiento",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Instalación en perforadora o sistema autónomo",
+          "classification": "obligatorio_segun_ficha"
+        }
+      ],
+      "exclusions": [
+        "Soluciones sin cambio automatizado de triconos",
+        "Consultorías, asesorías y estudios de ingeniería",
+        "Personas naturales"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": null,
+      "trl_max": null,
+      "funding": {
+        "payer": null,
+        "amount": null,
+        "currency": null,
+        "description": "No informado"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "cerrado",
+      "source_state": null,
+      "opened_at": "2025-02-05",
+      "closes_at": "2025-02-26",
+      "date_precision": "day",
+      "source_dates_text": "5 al 26 de febrero de 2025",
+      "published_at": null,
+      "application_url": "https://fch.brightidea.com/Automatizaciondelcambiodetriconosperforacion",
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1CGShCn82nqKW_d8XFr-QuwTC7HQPBoef",
+        "locator": "Objetivos, requisitos y etapas",
+        "derived_fields": [
+          "process_ids",
+          "topic_ids",
+          "summary",
+          "state",
+          "state (ventana documental vencida, no resultado)",
+          "country (faena en Chile)"
+        ],
+        "verified_current": false
+      },
+      "demo": false,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": 2
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "cierre",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-R05",
+      "title": "Detección de cortocircuitos en electrorrefinación",
+      "origin": "expande",
+      "mandante": "Codelco",
+      "site": "División Ventanas",
+      "country": "CL",
+      "region": null,
+      "process_ids": [
+        "electrorrefinacion"
+      ],
+      "topic_ids": [
+        "produccion",
+        "automatizacion"
+      ],
+      "summary": "Detectar y ubicar exactamente cortocircuitos en celdas electrolíticas.",
+      "problem": "Cortocircuitos reducen calidad catódica y eficiencia de corriente.",
+      "objective": "Detectar y ubicar exactamente cortocircuitos en celdas electrolíticas.",
+      "operational_context": "Alta temperatura y vibraciones; detección actual manual mediante Gauss meter o termografía.",
+      "requirements": [
+        {
+          "text": "Reportar ubicación del cortocircuito",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Integrarse a plataformas existentes",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Resistir temperatura y vibraciones",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "No afectar operación ni exigir grandes intervenciones",
+          "classification": "obligatorio_segun_ficha"
+        },
+        {
+          "text": "Mantenimiento con mínimas detenciones",
+          "classification": "obligatorio_segun_ficha"
+        }
+      ],
+      "exclusions": [
+        "No entregar posición exacta",
+        "Aumentar dotación o riesgos SSO",
+        "Consultorías, asesorías y estudios de ingeniería",
+        "Personas naturales"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": null,
+      "trl_max": null,
+      "funding": {
+        "payer": null,
+        "amount": null,
+        "currency": null,
+        "description": "No informado"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "cerrado",
+      "source_state": null,
+      "opened_at": "2025-02-10",
+      "closes_at": "2025-03-10",
+      "date_precision": "day",
+      "source_dates_text": "10 febrero al 10 marzo de 2025",
+      "published_at": null,
+      "application_url": "https://fch.brightidea.com/DetecciondecortocircuitosenER",
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1YUGWGr_bZpRv5p21BIxO-RyT0-GpCJSE",
+        "locator": "Objetivos, requisitos y etapas",
+        "derived_fields": [
+          "process_ids",
+          "topic_ids",
+          "summary",
+          "state",
+          "state (ventana documental vencida, no resultado)",
+          "country (faena en Chile)"
+        ],
+        "verified_current": false
+      },
+      "demo": false,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": 1
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": 2
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "cierre",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D01",
+      "title": "Sensores para anticipar desgaste en rastras",
+      "origin": "expande",
+      "mandante": "Minera Horizonte Demo",
+      "site": "Faena de demostración",
+      "country": "CL",
+      "region": "Coquimbo",
+      "process_ids": [
+        "espesamiento"
+      ],
+      "topic_ids": [
+        "produccion",
+        "seguridad"
+      ],
+      "summary": "Detectar cambios estructurales y entregar alertas comparables con una línea base durante 90 días.",
+      "problem": "Las inspecciones periódicas no permiten anticipar deformaciones entre mantenciones del espesador.",
+      "objective": "Detectar cambios estructurales y entregar alertas comparables con una línea base durante 90 días.",
+      "operational_context": "Espesador de relaves de 100 m; humedad y corrosión; instalación en puente accesible durante una detención de 8 horas. Datos de operación anonimizados disponibles para el piloto.",
+      "requirements": [
+        {
+          "text": "Medición indirecta sin intervenir la rastra",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Sensores aptos para humedad y corrosión",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Entrega de tendencia y alertas exportables",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "TRL 7 a 9 con evidencia operacional",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Plan de instalación y retiro seguro",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 7,
+      "trl_max": 9,
+      "funding": {
+        "payer": "mandante",
+        "amount": 45000000,
+        "currency": "CLP",
+        "description": "Aporte máximo del mandante para piloto demo"
+      },
+      "pilot_duration_days": 90,
+      "contact_area": "Innovación operacional (demo)",
+      "state": "abierto",
+      "source_state": null,
+      "opened_at": "2026-10-25T09:00:00-03:00",
+      "closes_at": "2026-11-12T18:00:00-03:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-10-25T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": true,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D02",
+      "title": "Control de polvo en transferencia de correas",
+      "origin": "expande",
+      "mandante": "Minera Sierra Demo",
+      "site": "Faena de demostración",
+      "country": "CL",
+      "region": "Antofagasta",
+      "process_ids": [
+        "correas"
+      ],
+      "topic_ids": [
+        "polvo",
+        "agua"
+      ],
+      "summary": "Reducir episodios de polvo y medir el consumo de agua frente a una línea base, sin detener la transferencia.",
+      "problem": "Las transferencias entre correas generan episodios de polvo que el riego manual no controla de forma consistente.",
+      "objective": "Reducir episodios de polvo y medir el consumo de agua frente a una línea base, sin detener la transferencia.",
+      "operational_context": "Dos puntos de transferencia de mineral seco; viento variable y agua industrial limitada. Montaje en una ventana de mantenimiento de fin de semana.",
+      "requirements": [
+        {
+          "text": "Medir material particulado antes y durante el piloto",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Cuantificar consumo de agua",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Integrarse al enclavamiento de la correa",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "TRL 6 a 9",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "No usar reactivos sin ficha técnica y evaluación de seguridad",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 6,
+      "trl_max": 9,
+      "funding": {
+        "payer": "compartido",
+        "amount": 30000000,
+        "currency": "CLP",
+        "description": "Cofinanciamiento sujeto a acuerdo demo"
+      },
+      "pilot_duration_days": 90,
+      "contact_area": "Innovación operacional (demo)",
+      "state": "abierto",
+      "source_state": null,
+      "opened_at": "2026-10-25T09:00:00-03:00",
+      "closes_at": "2026-11-07T16:00:00-03:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-10-25T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": true,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D03",
+      "title": "Robótica para cambio seguro de herramientas",
+      "origin": "expande",
+      "mandante": "Minera Horizonte Demo",
+      "site": "Faena de demostración",
+      "country": "CL",
+      "region": "Antofagasta",
+      "process_ids": [
+        "perforacion"
+      ],
+      "topic_ids": [
+        "seguridad",
+        "automatizacion"
+      ],
+      "summary": "Demostrar una secuencia automatizada de cambio con supervisión remota y parada segura.",
+      "problem": "El cambio de herramientas en perforación expone a operadores a manipulación de cargas y reduce disponibilidad.",
+      "objective": "Demostrar una secuencia automatizada de cambio con supervisión remota y parada segura.",
+      "operational_context": "Perforadora de rajo abierto de demostración; polvo, vibración y operación por turnos. Interfaz de integración se entrega al preparar el piloto.",
+      "requirements": [
+        {
+          "text": "Manipulación mecanizada sin exposición directa",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Parada de emergencia y modo manual de respaldo",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Plan de mantenimiento en terreno",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "TRL 7 a 9",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Piloto financiado por el proveedor",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 7,
+      "trl_max": 9,
+      "funding": {
+        "payer": "proveedor",
+        "amount": 0,
+        "currency": "CLP",
+        "description": "Piloto a cargo del proveedor; sin aporte del mandante"
+      },
+      "pilot_duration_days": 90,
+      "contact_area": "Innovación operacional (demo)",
+      "state": "abierto",
+      "source_state": null,
+      "opened_at": "2026-10-25T09:00:00-03:00",
+      "closes_at": "2026-11-25T18:00:00-03:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-10-25T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": true,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D04",
+      "title": "Monitoreo de consumo hídrico en planta",
+      "origin": "externo",
+      "mandante": "Andes Innovación Demo",
+      "site": "Faena de demostración",
+      "country": "PE",
+      "region": "Arequipa",
+      "process_ids": [
+        "desalinizacion"
+      ],
+      "topic_ids": [
+        "agua",
+        "costos"
+      ],
+      "summary": "Proponer monitoreo modular de caudal y detección de desviaciones para una planta de proceso.",
+      "problem": "El consumo hídrico se consolida por turno y no permite identificar desbalances oportunamente.",
+      "objective": "Proponer monitoreo modular de caudal y detección de desviaciones para una planta de proceso.",
+      "operational_context": "Fuente pública demo de Perú; no publica arquitectura de automatización, acceso ni logística. Solicitar condiciones en el portal de origen.",
+      "requirements": [
+        {
+          "text": "Persona jurídica",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "TRL 5 a 8",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Descripción de medición y análisis de caudal",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Otros requisitos no publicados",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 5,
+      "trl_max": 8,
+      "funding": {
+        "payer": "no_informado",
+        "amount": null,
+        "currency": null,
+        "description": "No informado por la fuente demo"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "abierto",
+      "source_state": null,
+      "opened_at": "2026-10-25T09:00:00-03:00",
+      "closes_at": "2026-11-18T17:00:00-05:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-10-25T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D05",
+      "title": "Optimización energética de molienda",
+      "origin": "externo",
+      "mandante": "Mining Lab Demo",
+      "site": "Faena de demostración",
+      "country": "AU",
+      "region": "Western Australia",
+      "process_ids": [
+        "molienda"
+      ],
+      "topic_ids": [
+        "descarbonizacion",
+        "costos"
+      ],
+      "summary": "Evaluar control operacional que reduzca consumo específico manteniendo recuperación y capacidad.",
+      "problem": "La molienda presenta variaciones de consumo específico de energía entre campañas.",
+      "objective": "Evaluar control operacional que reduzca consumo específico manteniendo recuperación y capacidad.",
+      "operational_context": "Fuente externa demo de Australia; piloto de optimización de molienda. Parámetros operacionales detallados se entregarán a seleccionados.",
+      "requirements": [
+        {
+          "text": "TRL 6 a 9",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Medir línea base y cambio de consumo específico",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Mantener restricciones de seguridad y calidad",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Reportar metodología y variables de control",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 6,
+      "trl_max": 9,
+      "funding": {
+        "payer": "mandante",
+        "amount": 60000,
+        "currency": "USD",
+        "description": "Aporte máximo del mandante para piloto demo"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "proximo",
+      "source_state": null,
+      "opened_at": "2026-12-01T09:00:00+08:00",
+      "closes_at": "2026-12-15T17:00:00+08:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-12-01T09:00:00+08:00",
+      "application_url": null,
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D06",
+      "title": "Detección térmica en electrorrefinación",
+      "origin": "expande",
+      "mandante": "Minera Litoral Demo",
+      "site": "Faena de demostración",
+      "country": "CL",
+      "region": "Valparaíso",
+      "process_ids": [
+        "electrorrefinacion"
+      ],
+      "topic_ids": [
+        "produccion"
+      ],
+      "summary": "Ubicar condiciones térmicas anómalas en celdas y priorizar inspecciones de mantenimiento.",
+      "problem": "Los recorridos manuales de inspección térmica tienen cobertura intermitente y exponen personal a áreas calientes.",
+      "objective": "Ubicar condiciones térmicas anómalas en celdas y priorizar inspecciones de mantenimiento.",
+      "operational_context": "Refinería ficticia; temperatura elevada, humedad y pasillos de acceso limitado. El escenario representa una convocatoria cerrada.",
+      "requirements": [
+        {
+          "text": "Ubicación exacta de la celda",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Exportar alarmas al sistema de información",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Montaje sin alterar el proceso",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "TRL 7 a 9",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": 7,
+      "trl_max": 9,
+      "funding": {
+        "payer": "compartido",
+        "amount": 20000000,
+        "currency": "CLP",
+        "description": "Cofinanciamiento sujeto a acuerdo demo"
+      },
+      "pilot_duration_days": 90,
+      "contact_area": "Innovación operacional (demo)",
+      "state": "cerrado",
+      "source_state": null,
+      "opened_at": "2026-09-15T09:00:00-03:00",
+      "closes_at": "2026-10-15T18:00:00-03:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-09-15T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": true,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    },
+    {
+      "id": "CH-D07",
+      "title": "Trazabilidad del material en flotación",
+      "origin": "externo",
+      "mandante": "Red Minera Demo",
+      "site": "Faena de demostración",
+      "country": "CL",
+      "region": "Metropolitana",
+      "process_ids": [
+        "flotacion"
+      ],
+      "topic_ids": [
+        "produccion",
+        "automatizacion"
+      ],
+      "summary": "Trazar cambios de material y su relación con las variables de flotación.",
+      "problem": "La planta tiene registros de alimentación y resultados metalúrgicos que no se relacionan de manera consistente por campaña.",
+      "objective": "Trazar cambios de material y su relación con las variables de flotación.",
+      "operational_context": "Fuente externa demo con información pública resumida; condiciones de piloto y financiamiento no informadas.",
+      "requirements": [
+        {
+          "text": "Describir método de trazabilidad",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Identificar variables y fuentes de datos",
+          "classification": "requisito_demo"
+        },
+        {
+          "text": "Presentar evidencia disponible; TRL requerido no publicado",
+          "classification": "requisito_demo"
+        }
+      ],
+      "exclusions": [
+        "Consultoría sin solución tecnológica"
+      ],
+      "eligible_entities": [
+        "Persona jurídica; identificar entidad responsable del consorcio"
+      ],
+      "trl_min": null,
+      "trl_max": null,
+      "funding": {
+        "payer": "no_informado",
+        "amount": null,
+        "currency": null,
+        "description": "No informado por la fuente demo"
+      },
+      "pilot_duration_days": null,
+      "contact_area": null,
+      "state": "cerrado",
+      "source_state": null,
+      "opened_at": "2026-09-15T09:00:00-03:00",
+      "closes_at": "2026-10-20T18:00:00-03:00",
+      "date_precision": "datetime",
+      "source_dates_text": "Fechas simuladas",
+      "published_at": "2026-09-15T09:00:00-03:00",
+      "application_url": null,
+      "qa_available": false,
+      "editorial_state": "publicado",
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "demo": true,
+      "category": null,
+      "mineral": null,
+      "planned_stages": [
+        {
+          "stage": "scouting",
+          "duration_weeks": null
+        },
+        {
+          "stage": "pertinencia",
+          "duration_weeks": null
+        },
+        {
+          "stage": "prospeccion",
+          "duration_weeks": null
+        },
+        {
+          "stage": "seleccion_compania",
+          "duration_weeks": null
+        },
+        {
+          "stage": "demo_day",
+          "duration_weeks": null
+        },
+        {
+          "stage": "piloto",
+          "duration_weeks": null
+        },
+        {
+          "stage": "escalamiento",
+          "duration_weeks": null
+        }
+      ]
+    }
+  ],
+  "market_sources": [
+    {
+      "id": "MSRC-01",
+      "name": "BHP (Open Aster Escondida y plataforma Think & Act Differently)",
+      "role": "Dueño del desafío",
+      "url": "https://asteraceleradora.com/",
+      "publication_pattern": "Convocatoria con ventana corta: Open Aster abrió el 9 abr y cerró el 22 may 2026, primera edición, sin periodicidad definida. ",
+      "reported_volume_text": "21 Open Aster",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 1",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-02",
+      "name": "Codelco (OpenCodelco)",
+      "role": "Dueño del desafío",
+      "url": "https://opencodelco.cl/desafios",
+      "publication_pattern": "Tres módulos: Conecta (permanente), Desafíos (por convocatoria) y tesis. Convocatorias con socios (OpenBeauchef, nov 2024) y, vía Minnovex, un desafío operacional en jun 2026 solo para socios de esa red",
+      "reported_volume_text": "aprox unos 108 desde 2022",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 2",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-03",
+      "name": "AMSA",
+      "role": "Dueño del desafío",
+      "url": "https://innovaminerals.cl/",
+      "publication_pattern": "Mismos desafíos publicados por Expande",
+      "reported_volume_text": null,
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 3",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-04",
+      "name": "Corfo",
+      "role": "Financista",
+      "url": null,
+      "publication_pattern": "Concursos con bases y resolución. En 2024 hubo 4 convocatorias de Desafíos I+D.",
+      "reported_volume_text": null,
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 4",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-05",
+      "name": "Link Miners (Perú)",
+      "role": "Intermediario",
+      "url": "https://www.linkminers.com/",
+      "publication_pattern": "Plataforma de información de soluciones; su programa Conexión Minera presenta un proveedor elegido por desafío. Sin periodicidad publicada",
+      "reported_volume_text": "Actualmente 4",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 5",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-06",
+      "name": "Alta Ley, Red Internacional de Proveedores",
+      "role": "Agregador",
+      "url": "https://corporacionaltaley.cl/red-proveedores",
+      "publication_pattern": "Publica desafíos de aliados (Expande, Linkminers, Hub de Innovación Minera del Perú, Mininghub de Brasil); busca sumar Canadá y Australia. Continuo",
+      "reported_volume_text": "65 en 2025 (año inferido por la fecha de la nota), 8 vigentes en ese momento",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 6",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-07",
+      "name": "ITL (Instituto de Tecnologías Limpias)",
+      "role": "Financista e intermediario",
+      "url": "https://itlchile.com/desafios",
+      "publication_pattern": "Dos llamados: 1° nov 2025 (17 desafíos); 2° 2026 en dos etapas (8 desafíos)",
+      "reported_volume_text": "17 + 8; hay posible solapamiento entre llamados",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 7",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-08",
+      "name": "ENAMI y Tantay Atacama (USM, Instituto 3IE)",
+      "role": "Dueño e intermediario",
+      "url": "https://tantay.3ie.cl",
+      "publication_pattern": "Convocatoria por edición, con webinar, FAQs técnicas por desafío, preselección y Demo Day (8 oct 2026)",
+      "reported_volume_text": "3 de ENAMI, dentro de 8 del programa (ENAMI, AGUNSA, SOTRAMIN y Nueva Atacama), sep 2026",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 8",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "MSRC-09",
+      "name": "MineLink",
+      "role": "Red social abierta",
+      "url": "https://minelink.cl",
+      "publication_pattern": "Convocatoria abierta sin cliente identificado en primera instancia.",
+      "reported_volume_text": "apro 40 desafios 2026",
+      "registration_required": null,
+      "private_status_access": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1_V0Qz1LYUCGZDQXa0P9xKqnJCqndT0jq",
+        "locator": "fila 9",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "companies": [
+    {
+      "id": "EMP-R01",
+      "name": "Ideon Technologies",
+      "description": "Ideon Technologies uses the energy from supernova explosions in space to image deep beneath the Earth's surface. The world pioneer in cosmic-ray muon tomography, Ideon has developed the REVEAL™ Subsurface Intelligence Platform™ , comprising an advanced suite of proprietary data-generation hardware, software, AI-powered services, and multi-physics fusion that provide x-ray-like visibility deep underground and unlock the exponential power of integrated spatial data.By transforming muon data into reliable 3D density maps, Ideon helps geologists identify, map, characterize, and monitor mineral deposits with confidence. This reduces risk and cost of traditional methods, while saving time, optimizing return, and minimizing environmental impact across the mining value chain. In turn, this is helping accelerate the world's transition to low-impact mining and transform how companies recover the critical minerals required to power the global shift to clean energy – improving peoples' lives and enhancing economic prosperity.",
+      "size": "mediana",
+      "segment": null,
+      "country": "CA",
+      "city": "Vancouver",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": "https://ideon.ai/",
+      "supplier_type": "Desarrollador/Developer",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55",
+        "locator": "fila 1",
+        "derived_fields": [
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "British Columbia"
+    },
+    {
+      "id": "EMP-R02",
+      "name": "Tomos SpA",
+      "description": "Tomos presenta una solución basada en Inteligencia Artificial para el monitoreo sísmico en tiempo real, el modelamiento del subsuelo y el análisis del ruido de fondo para un estudio de alta calidad de la actividad sísmica y un monitoreo en 3D exhaustivo.Nuestras soluciones se basan en un nuevo tipo de estaciones sísmicas inteligentes que hemos diseñado, las ESIs, potenciadas con tecnología de IA, y un innovador enfoque de análisis en tiempo real para una vigilancia amplia e integrada.",
+      "size": "micro",
+      "segment": null,
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": "www.tomos.cl",
+      "supplier_type": "Desarrollador/Developer",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55",
+        "locator": "fila 2",
+        "derived_fields": [
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-R03",
+      "name": "EPC ANDES CHILE SPA",
+      "description": "EPC Andes Chile es una empresa creada en 2021 filial de EPC Groupe de Francia. Ofrecemos servicios de ingeniería, consultoría e innovación con foco en los procesos de perforación y voladura. En los últimos 2 años hemos ampliado nuestra propuesta de valor, incorporando servicios de geomecánica, geofísica y geología, con apoyo de tecnologías de reciente desarrollo, lo que incluye desarrollo de software e instrumentación avanzada para la industria minera nacional y sudamericana.",
+      "size": "pequena",
+      "segment": null,
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": "https://www.epc-groupe.com/en/our-locations/epc-andes-chile",
+      "supplier_type": "Desarrollador/Developer",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55",
+        "locator": "fila 3",
+        "derived_fields": [
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-R04",
+      "name": "MORKEN CHILE SA",
+      "description": "Desde hace más de 30 años, Morken Group proporciona soluciones para la integridad de ductos a la industria del petróleo, gas, petroquímica y minera.Nuestra casa matriz se encuentra ubicada en Buenos Aires, Argentina y tenemos oficinas con personal técnico local en Chile, Bolivia, Brasil, Perú, Ecuador, Colombia y Uruguay.Proveemos equipamiento, productos y servicios para el control, mantenimiento y reparación de ductos, inspección y rehabilitación de sistemas de tuberías, mejoramiento del caudal en ductos de crudo, refinados y agua, monitoreo de pozos mediante fibra óptica, sistemas de detección de intrusos y actividades de terceros en tiempo real, transmisión y relevamiento de datos de manera remota, detección de fugas y seguimiento de derrames en mares y ríos.La calidad de nuestros servicios garantiza una rápida y eficiente atención a todos nuestros clientes. Nuestra larga experiencia en el mercado nacional e internacional, sumada a la mejora constante en nuestra organización, ha llevado a Morken Group a ser considerado como uno de los mayores especialistas en proveer soluciones de integridad.Integridad – Innovación – Tecnología.",
+      "size": "grande",
+      "segment": null,
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": "https://morkengroup.com/",
+      "supplier_type": "Representante/Sales representative",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1YXlOBq-L4PvbuY1m3MQNzlWiSMNtVq55",
+        "locator": "fila 4",
+        "derived_fields": [
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-R05",
+      "name": "2Censor Pty Ltd",
+      "description": "Sensores IoT para desgaste abrasivo y mantenimiento predictivo de ductos, chutes, ciclones y chancadores.",
+      "size": "mediana",
+      "segment": null,
+      "country": "AU",
+      "city": "Mackay",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": null,
+      "supplier_type": "desarrollador",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1KyRdMnvzk8nxhWv8Zp1kThmMI_1giLI8",
+        "locator": "Caracterización del proveedor",
+        "derived_fields": [
+          "description",
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "Queensland"
+    },
+    {
+      "id": "EMP-R06",
+      "name": "Blastmine Consultores SpA",
+      "description": "Productos y asesoría para perforación y tronadura; integración de soluciones y monitoreo de vibraciones.",
+      "size": "micro",
+      "segment": null,
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [],
+      "service_regions": [],
+      "process_ids": [],
+      "topic_ids": [],
+      "certifications": [],
+      "website": null,
+      "supplier_type": "integrador",
+      "profile_status": "parcial",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1_oYuZyIbFZtTU4NEchPWjot42KemdVTp",
+        "locator": "Caracterización del proveedor",
+        "derived_fields": [
+          "description",
+          "size",
+          "country",
+          "city"
+        ],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-D01",
+      "name": "SensorAndes Demo",
+      "description": "Empresa ficticia para explorar oportunidades y colaboración minera.",
+      "size": "pequena",
+      "segment": "pyme",
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [
+        "CL"
+      ],
+      "service_regions": [
+        "Coquimbo",
+        "Antofagasta"
+      ],
+      "process_ids": [
+        "espesamiento",
+        "concentraducto"
+      ],
+      "topic_ids": [
+        "produccion",
+        "seguridad"
+      ],
+      "certifications": [
+        {
+          "name": "Sistema de gestión de calidad demo",
+          "status": "declarada",
+          "evidence_document_id": null,
+          "issuer": "Entidad certificadora Demo",
+          "issued_on": "2026-01-15",
+          "expires_on": "2027-01-15"
+        }
+      ],
+      "website": null,
+      "supplier_type": "desarrollador",
+      "profile_status": "completo_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-D02",
+      "name": "BioAgua Demo",
+      "description": "Empresa ficticia para explorar oportunidades y colaboración minera.",
+      "size": "micro",
+      "segment": "startup",
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [
+        "CL",
+        "PE"
+      ],
+      "service_regions": [
+        "Antofagasta",
+        "Arequipa"
+      ],
+      "process_ids": [
+        "desalinizacion",
+        "flotacion"
+      ],
+      "topic_ids": [
+        "agua",
+        "sustentabilidad"
+      ],
+      "certifications": [
+        {
+          "name": "Sistema de gestión de calidad demo",
+          "status": "declarada",
+          "evidence_document_id": null,
+          "issuer": "Entidad certificadora Demo",
+          "issued_on": "2026-01-15",
+          "expires_on": "2027-01-15"
+        }
+      ],
+      "website": null,
+      "supplier_type": "desarrollador",
+      "profile_status": "completo_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    },
+    {
+      "id": "EMP-D03",
+      "name": "Operaciones Integradas Demo",
+      "description": "Empresa ficticia para explorar oportunidades y colaboración minera.",
+      "size": "grande",
+      "segment": "gran_empresa",
+      "country": "CL",
+      "city": "Santiago",
+      "service_countries": [
+        "CL",
+        "AU"
+      ],
+      "service_regions": [
+        "Antofagasta",
+        "Western Australia"
+      ],
+      "process_ids": [
+        "perforacion",
+        "correas",
+        "molienda"
+      ],
+      "topic_ids": [
+        "automatizacion",
+        "polvo",
+        "costos"
+      ],
+      "certifications": [
+        {
+          "name": "Sistema de gestión de calidad demo",
+          "status": "declarada",
+          "evidence_document_id": null,
+          "issuer": "Entidad certificadora Demo",
+          "issued_on": "2026-01-15",
+          "expires_on": "2027-01-15"
+        }
+      ],
+      "website": null,
+      "supplier_type": "desarrollador",
+      "profile_status": "completo_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "region": "Metropolitana"
+    }
+  ],
+  "solutions": [
+    {
+      "id": "SOL-01",
+      "company_id": "EMP-D01",
+      "title": "Sensor estructural remoto",
+      "description": "Solución ficticia con evidencia de prueba y propuesta de piloto.",
+      "trl": 7,
+      "trl_evidence": "Autodeclarado; no acreditado por Expande",
+      "process_ids": [
+        "espesamiento",
+        "concentraducto"
+      ],
+      "topic_ids": [
+        "produccion"
+      ],
+      "evidence_document_ids": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "SOL-02",
+      "company_id": "EMP-D01",
+      "title": "Medición acústica de laboratorio",
+      "description": "Solución ficticia con evidencia de prueba y propuesta de piloto.",
+      "trl": 3,
+      "trl_evidence": "Autodeclarado; no acreditado por Expande",
+      "process_ids": [
+        "concentraducto"
+      ],
+      "topic_ids": [
+        "produccion"
+      ],
+      "evidence_document_ids": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "SOL-03",
+      "company_id": "EMP-D02",
+      "title": "Monitoreo hídrico modular",
+      "description": "Solución ficticia con evidencia de prueba y propuesta de piloto.",
+      "trl": 6,
+      "trl_evidence": "Autodeclarado; no acreditado por Expande",
+      "process_ids": [
+        "desalinizacion"
+      ],
+      "topic_ids": [
+        "agua"
+      ],
+      "evidence_document_ids": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "SOL-04",
+      "company_id": "EMP-D03",
+      "title": "Robot de mantenimiento",
+      "description": "Solución ficticia con evidencia de prueba y propuesta de piloto.",
+      "trl": 8,
+      "trl_evidence": "Autodeclarado; no acreditado por Expande",
+      "process_ids": [
+        "perforacion",
+        "correas"
+      ],
+      "topic_ids": [
+        "automatizacion"
+      ],
+      "evidence_document_ids": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "USR-01",
+      "company_id": "EMP-D01",
+      "name": "Andrea Demo",
+      "email": "usuario1@example.com",
+      "job_title": "Desarrollo de negocios",
+      "role": "administrador",
+      "status": "activo",
+      "demo": true
+    },
+    {
+      "id": "USR-02",
+      "company_id": "EMP-D01",
+      "name": "Diego Demo",
+      "email": "usuario2@example.com",
+      "job_title": "Responsable técnico",
+      "role": "colaborador",
+      "status": "activo",
+      "demo": true
+    },
+    {
+      "id": "USR-03",
+      "company_id": "EMP-D02",
+      "name": "Lucía Demo",
+      "email": "usuario3@example.com",
+      "job_title": "Responsable técnico",
+      "role": "administrador",
+      "status": "activo",
+      "demo": true
+    },
+    {
+      "id": "USR-04",
+      "company_id": "EMP-D03",
+      "name": "Pablo Demo",
+      "email": "usuario4@example.com",
+      "job_title": "Responsable técnico",
+      "role": "administrador",
+      "status": "activo",
+      "demo": true
+    }
+  ],
+  "applications": [
+    {
+      "id": "APP-01",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D01",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "en_evaluacion",
+      "pipeline_stage": "prospeccion",
+      "result": "pendiente",
+      "status_origin": "expande_simulado",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": "2026-11-02T10:00:00-03:00",
+      "document_ids": [],
+      "feedback": null,
+      "next_action": "Consultar estado",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    },
+    {
+      "id": "APP-02",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D02",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "documentacion_pendiente",
+      "pipeline_stage": "pertinencia",
+      "result": "pendiente",
+      "status_origin": "expande_simulado",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": "2026-11-02T10:00:00-03:00",
+      "document_ids": [
+        "DOC-01"
+      ],
+      "feedback": null,
+      "next_action": "Adjuntar ficha técnica",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    },
+    {
+      "id": "APP-03",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D04",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "result": "pendiente",
+      "status_origin": "manual",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": "2026-11-02T10:00:00-03:00",
+      "document_ids": [],
+      "feedback": null,
+      "next_action": "Revisar en portal",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    },
+    {
+      "id": "APP-04",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D06",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "resultado",
+      "pipeline_stage": "cierre",
+      "result": "no_avanza",
+      "status_origin": "expande_simulado",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": "2026-09-25T10:00:00-03:00",
+      "document_ids": [],
+      "feedback": null,
+      "next_action": "Consultar estado",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    },
+    {
+      "id": "APP-05",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D07",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "resultado",
+      "pipeline_stage": "cierre",
+      "result": "avanza",
+      "status_origin": "manual",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": "2026-09-25T10:00:00-03:00",
+      "document_ids": [],
+      "feedback": null,
+      "next_action": "Revisar en portal",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    },
+    {
+      "id": "APP-06",
+      "company_id": "EMP-D01",
+      "challenge_id": "CH-D03",
+      "solution_id": "SOL-01",
+      "team_user_ids": [
+        "USR-01",
+        "USR-02"
+      ],
+      "state": "preparacion",
+      "pipeline_stage": "scouting",
+      "result": "pendiente",
+      "status_origin": "local",
+      "updated_at": "2026-11-05T15:00:00-03:00",
+      "submitted_at": null,
+      "document_ids": [],
+      "feedback": null,
+      "next_action": "Consultar estado",
+      "demo": true,
+      "note": null,
+      "prepared_snapshot": {
+        "company_name": "SensorAndes Demo",
+        "solution_title": "Sensor estructural remoto",
+        "trl": 7,
+        "team_names": [
+          "Andrea Demo",
+          "Diego Demo"
+        ],
+        "proposal_summary": "Proponemos evaluar mediciones remotas durante un piloto acotado. Ejemplo ficticio."
+      }
+    }
+  ],
+  "application_events": [
+    {
+      "id": "AE-01a",
+      "application_id": "APP-01",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-11-02T10:00:00-03:00",
+      "description": "Envío registrado en el escenario de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-01b",
+      "application_id": "APP-01",
+      "state": "en_evaluacion",
+      "pipeline_stage": "prospeccion",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Estado de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-02a",
+      "application_id": "APP-02",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-11-02T10:00:00-03:00",
+      "description": "Envío registrado en el escenario de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-02b",
+      "application_id": "APP-02",
+      "state": "documentacion_pendiente",
+      "pipeline_stage": "pertinencia",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Estado de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-03a",
+      "application_id": "APP-03",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-11-02T10:00:00-03:00",
+      "description": "Envío registrado en el escenario de demostración",
+      "origin": "manual",
+      "demo": true
+    },
+    {
+      "id": "AE-03b",
+      "application_id": "APP-03",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Actualización manual del proveedor",
+      "origin": "manual",
+      "demo": true
+    },
+    {
+      "id": "AE-04a",
+      "application_id": "APP-04",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-09-25T10:00:00-03:00",
+      "description": "Envío registrado en el escenario de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-04b",
+      "application_id": "APP-04",
+      "state": "resultado",
+      "pipeline_stage": "cierre",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Estado de demostración",
+      "origin": "expande_simulado",
+      "demo": true
+    },
+    {
+      "id": "AE-05a",
+      "application_id": "APP-05",
+      "state": "enviada",
+      "pipeline_stage": "scouting",
+      "at": "2026-09-25T10:00:00-03:00",
+      "description": "Envío registrado en el escenario de demostración",
+      "origin": "manual",
+      "demo": true
+    },
+    {
+      "id": "AE-05b",
+      "application_id": "APP-05",
+      "state": "resultado",
+      "pipeline_stage": "cierre",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Actualización manual del proveedor",
+      "origin": "manual",
+      "demo": true
+    },
+    {
+      "id": "AE-06b",
+      "application_id": "APP-06",
+      "state": "preparacion",
+      "pipeline_stage": "scouting",
+      "at": "2026-11-05T15:00:00-03:00",
+      "description": "Estado de demostración",
+      "origin": "local",
+      "demo": true
+    }
+  ],
+  "documents": [
+    {
+      "id": "DOC-01",
+      "company_id": "EMP-D01",
+      "application_id": "APP-02",
+      "name": "Ficha técnica del sensor demo.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 124000,
+      "url": null,
+      "status": "pendiente",
+      "visibility": "empresa",
+      "demo": true,
+      "uploaded_at": null
+    }
+  ],
+  "public_questions": [
+    {
+      "id": "QA-01",
+      "challenge_id": "CH-D01",
+      "question": "¿Se permite instrumentación sobre la rastra?",
+      "answer": "No; el escenario solicita medición indirecta.",
+      "status": "respondida",
+      "published_on": "2026-11-03",
+      "answered_by": "Equipo demo",
+      "demo": true
+    },
+    {
+      "id": "QA-02",
+      "challenge_id": "CH-D01",
+      "question": "¿Quién cubre el piloto?",
+      "answer": "El escenario contempla un aporte máximo del mandante de CLP 45 millones.",
+      "status": "respondida",
+      "published_on": "2026-11-03",
+      "answered_by": "Equipo demo",
+      "demo": true
+    },
+    {
+      "id": "QA-03",
+      "challenge_id": "CH-D02",
+      "question": "¿Se puede proponer una solución conjunta?",
+      "answer": "Sí; se debe identificar la entidad responsable.",
+      "status": "respondida",
+      "published_on": "2026-11-03",
+      "answered_by": "Equipo demo",
+      "demo": true
+    },
+    {
+      "id": "QA-04",
+      "challenge_id": "CH-D03",
+      "question": "¿Se contempla una visita técnica?",
+      "answer": null,
+      "status": "pendiente",
+      "published_on": "2026-11-03",
+      "answered_by": null,
+      "demo": true
+    }
+  ],
+  "funding_calls": [
+    {
+      "id": "FUND-R01",
+      "title": "Consolida y Expande",
+      "edition": "2.ª convocatoria",
+      "entity": null,
+      "record_type": "convocatoria",
+      "group_key": "consolida",
+      "opening_date": "2026-10-13",
+      "closing_date": null,
+      "milestone_date": null,
+      "source_opening_text": "2026-10-13 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "Hasta $150 M",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 1",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R02",
+      "title": "Crea y Valida Antofagasta",
+      "edition": "Cierre de perfiles",
+      "entity": null,
+      "record_type": "cierre",
+      "group_key": "cyv-antofagasta",
+      "opening_date": null,
+      "closing_date": null,
+      "milestone_date": "2026-10-29",
+      "source_opening_text": null,
+      "amount": null,
+      "currency": null,
+      "amount_text": "Hasta $220 M; $1.620 M FIC-R para hasta 9 proyectos",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 2",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R03",
+      "title": "Absorción y Capital Humano",
+      "edition": "Posible nueva ventana",
+      "entity": null,
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-01",
+      "closing_date": "2026-11-30",
+      "milestone_date": null,
+      "source_opening_text": "2026-11-01 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "Absorción hasta $350 M; Cap. Humano hasta $40 M",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 3",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "agrupacion_sin_desagregar"
+    },
+    {
+      "id": "FUND-R04",
+      "title": "Start-Up Chile",
+      "edition": "Convocatoria de noviembre",
+      "entity": null,
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-04",
+      "closing_date": "2026-11-28",
+      "milestone_date": null,
+      "source_opening_text": "2026-11-04 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "Hasta $70 M (otra fuente indica USD 20.000)",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 4",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R05",
+      "title": "Consolida y Expande",
+      "edition": "Resultados 1.ª convocatoria",
+      "entity": null,
+      "record_type": "resultados",
+      "group_key": "consolida",
+      "opening_date": null,
+      "closing_date": null,
+      "milestone_date": "2026-11-05",
+      "source_opening_text": "2026-11-05 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 5",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R06",
+      "title": "Crea y Valida Nacional",
+      "edition": "2.ª convocatoria",
+      "entity": null,
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-10",
+      "closing_date": null,
+      "milestone_date": null,
+      "source_opening_text": "2026-11-10 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "$220 M colaborativo, $180 M individual",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 6",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R07",
+      "title": "Expande (emprendimiento)",
+      "edition": "Convocatoria",
+      "entity": null,
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-17",
+      "closing_date": "2026-12-17",
+      "milestone_date": null,
+      "source_opening_text": "2026-11-17 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "Referencia $45 M",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 7",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R08",
+      "title": "Crea y Valida",
+      "edition": "Resultados convocatoria nacional",
+      "entity": null,
+      "record_type": "resultados",
+      "group_key": null,
+      "opening_date": null,
+      "closing_date": null,
+      "milestone_date": "2026-11-27",
+      "source_opening_text": "2026-11-27 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 8",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R09",
+      "title": "APTA Builder",
+      "edition": "Anuncio de ganadores",
+      "entity": null,
+      "record_type": "ganadores",
+      "group_key": null,
+      "opening_date": null,
+      "closing_date": null,
+      "milestone_date": "2026-12-31",
+      "source_opening_text": "2026-12-01 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 9",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-R10",
+      "title": "Crea y Valida Antofagasta",
+      "edition": "Cierre postulación completa",
+      "entity": null,
+      "record_type": "cierre",
+      "group_key": "cyv-antofagasta",
+      "opening_date": null,
+      "closing_date": null,
+      "milestone_date": "2026-12-22",
+      "source_opening_text": "2026-12-22 00:00:00",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado",
+      "eligible_segments": [],
+      "country": null,
+      "regions": [],
+      "eligibility": null,
+      "official_url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1L07vdvzeDMQq58NxPZssO36331psGKsr",
+        "locator": "fila 10",
+        "derived_fields": [
+          "record_type",
+          "group_key"
+        ],
+        "verified_current": false
+      },
+      "normalization_status": "parcial"
+    },
+    {
+      "id": "FUND-D01",
+      "title": "Piloto de agua Demo",
+      "edition": "Convocatoria demo 2026",
+      "entity": "Agencia de Innovación Demo",
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-01",
+      "closing_date": "2026-11-30",
+      "milestone_date": null,
+      "source_opening_text": null,
+      "amount": 50000000,
+      "currency": "CLP",
+      "amount_text": "Hasta CLP 50,000,000",
+      "eligible_segments": [
+        "startup",
+        "pyme"
+      ],
+      "country": "CL",
+      "regions": [
+        "Antofagasta"
+      ],
+      "eligibility": "Persona jurídica con proyecto de validación técnica y cofinanciamiento de 20% (demo).",
+      "official_url": null,
+      "state": "abierto",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "normalization_status": "completo_demo"
+    },
+    {
+      "id": "FUND-D02",
+      "title": "Escalamiento industrial Demo",
+      "edition": "Convocatoria demo 2026",
+      "entity": "Agencia de Innovación Demo",
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-01",
+      "closing_date": "2026-12-10",
+      "milestone_date": null,
+      "source_opening_text": null,
+      "amount": 120000,
+      "currency": "USD",
+      "amount_text": "Hasta USD 120,000",
+      "eligible_segments": [
+        "pyme",
+        "gran_empresa"
+      ],
+      "country": "CL",
+      "regions": [
+        "Coquimbo"
+      ],
+      "eligibility": "Persona jurídica con proyecto de validación técnica y cofinanciamiento de 20% (demo).",
+      "official_url": null,
+      "state": "abierto",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "normalization_status": "completo_demo"
+    },
+    {
+      "id": "FUND-D03",
+      "title": "Validación temprana Demo",
+      "edition": "Convocatoria demo 2026",
+      "entity": "Agencia de Innovación Demo",
+      "record_type": "convocatoria",
+      "group_key": null,
+      "opening_date": "2026-11-01",
+      "closing_date": "2026-11-20",
+      "milestone_date": null,
+      "source_opening_text": null,
+      "amount": 15000000,
+      "currency": "CLP",
+      "amount_text": "Hasta CLP 15,000,000",
+      "eligible_segments": [
+        "startup"
+      ],
+      "country": "CL",
+      "regions": [
+        "Metropolitana"
+      ],
+      "eligibility": "Persona jurídica con proyecto de validación técnica y cofinanciamiento de 20% (demo).",
+      "official_url": null,
+      "state": "abierto",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "normalization_status": "completo_demo"
+    }
+  ],
+  "events": [
+    {
+      "id": "EV-R01",
+      "title": "Congreso Futuro Calama",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-01",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Calama",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Inacap / Codelco",
+      "category": "Datos e Inteligencia Artificial",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R02",
+      "title": "Agua, Relaves y Desalación",
+      "start_date": "2027-03-18",
+      "end_date": "2027-03-19",
+      "month": "2027-03",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Gestión de Relaves y Residuos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R03",
+      "title": "Duro de Moler 6",
+      "start_date": "2027-04-01",
+      "end_date": "2027-04-02",
+      "month": "2027-04",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Chile",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Mentoris",
+      "category": "Conminución y Molienda",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R04",
+      "title": "CESCO Week + CRU Copper",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-04",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CESCO / CRU",
+      "category": "Mercados y Commodities",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R05",
+      "title": "EXPOMIN 2027",
+      "start_date": "2027-04-20",
+      "end_date": "2027-04-24",
+      "month": "2027-04",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Espacio Riesco (sede)",
+      "category": "Ferias y Congresos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R06",
+      "title": "Sustainable Mining",
+      "start_date": "2027-05-05",
+      "end_date": "2027-05-07",
+      "month": "2027-05",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Gecamin",
+      "category": "Medio Ambiente y Sustentabilidad",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R07",
+      "title": "Correas Transportadoras",
+      "start_date": "2027-05-27",
+      "end_date": "2027-05-28",
+      "month": "2027-05",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Carguío y Transporte",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R08",
+      "title": "Fluent Pipe",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-05",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Adtrium",
+      "category": "Hidráulica y Neumática",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R09",
+      "title": "Geomin-Mineplanning",
+      "start_date": "2027-06-09",
+      "end_date": "2027-06-11",
+      "month": "2027-06",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Gecamin",
+      "category": "Planificación Minera",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R10",
+      "title": "The Wall 5",
+      "start_date": "2027-06-24",
+      "end_date": "2027-06-25",
+      "month": "2027-06",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Mentoris",
+      "category": "Gestión de Relaves y Residuos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R11",
+      "title": "Molienda Inteligente",
+      "start_date": "2027-06-24",
+      "end_date": "2027-06-25",
+      "month": "2027-06",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Control y Optimización de Procesos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R12",
+      "title": "Minería Digital",
+      "start_date": "2027-07-13",
+      "end_date": "2027-07-15",
+      "month": "2027-07",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Gecamin",
+      "category": "Automatización y Robótica Minera",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R13",
+      "title": "Muestreo 2027",
+      "start_date": "2027-07-22",
+      "end_date": "2027-07-23",
+      "month": "2027-07",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Chile",
+      "country": "CL",
+      "mode": null,
+      "organizer": "InterMet",
+      "category": "Perforación Diamantina y Muestreo",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R14",
+      "title": "Fluidos y Bombeo",
+      "start_date": "2027-07-29",
+      "end_date": "2027-07-30",
+      "month": "2027-07",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Hidráulica y Neumática",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R15",
+      "title": "Transbelt",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-07",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Adtrium",
+      "category": "Carguío y Transporte",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R16",
+      "title": "Reliability",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-07",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Minegroup",
+      "category": "Mantenimiento y Confiabilidad",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R17",
+      "title": "Rust Wars 8",
+      "start_date": "2027-08-12",
+      "end_date": "2027-08-13",
+      "month": "2027-08",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Mentoris",
+      "category": "Mantenimiento y Confiabilidad",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R18",
+      "title": "Inteligencia Operacional",
+      "start_date": "2027-08-26",
+      "end_date": "2027-08-27",
+      "month": "2027-08",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Datos e Inteligencia Artificial",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R19",
+      "title": "Flotación y Optimización",
+      "start_date": "2027-09-30",
+      "end_date": "2027-10-01",
+      "month": "2027-09",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Flotación y Concentración",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R20",
+      "title": "Molitec",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-09",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Adtrium",
+      "category": "Conminución y Molienda",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R21",
+      "title": "MAOP",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-09",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Antofagasta",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Minegroup",
+      "category": "Hidráulica y Neumática",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R22",
+      "title": "CIMIT 2027",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-09",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Iquique",
+      "country": "CL",
+      "mode": null,
+      "organizer": null,
+      "category": "Empleo y Desarrollo de Carrera",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R23",
+      "title": "Rápidas y Poderosas 9",
+      "start_date": "2027-10-07",
+      "end_date": "2027-10-08",
+      "month": "2027-10",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Mentoris",
+      "category": "Carguío y Transporte",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R24",
+      "title": "Puesta en Marcha y Ramp-Up",
+      "start_date": "2027-10-28",
+      "end_date": "2027-10-29",
+      "month": "2027-10",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "EPCM y Gestión de Proyectos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R25",
+      "title": "SIMIN 2027",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-10",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "USACH",
+      "category": "Universidades y Academia",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R26",
+      "title": "FOREDE Atacama",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-10",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Copiapó",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORPROA",
+      "category": "Relaciones Comunitarias y Licencia Social",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R27",
+      "title": "ExpoMinería Sur",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-10",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Rancagua",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Seremi / Codelco",
+      "category": "Seguridad",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R28",
+      "title": "Comminution",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-10",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Minegroup",
+      "category": "Conminución y Molienda",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R29",
+      "title": "Confiabilidad y Activos",
+      "start_date": "2027-11-25",
+      "end_date": "2027-11-26",
+      "month": "2027-11",
+      "date_precision": "day",
+      "date_status": "fecha_segun_agenda",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CORE Mining",
+      "category": "Mantenimiento Predictivo",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R30",
+      "title": "Convención Anual IIMCh",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-11",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Por confirmar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "IIMCh",
+      "category": "Movilidad y Networking Profesional",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R31",
+      "title": "Flotac",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-11",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Adtrium",
+      "category": "Flotación y Concentración",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R32",
+      "title": "Flotation & Tailings",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-11",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Minegroup",
+      "category": "Gestión de Relaves y Residuos",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R33",
+      "title": "Optimus Pipe 10",
+      "start_date": null,
+      "end_date": null,
+      "month": "2027-12",
+      "date_precision": "month",
+      "date_status": "tentativa",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Viña del Mar",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Mentoris",
+      "category": "Hidráulica y Neumática",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R34",
+      "title": "ENERMIN",
+      "start_date": null,
+      "end_date": null,
+      "month": null,
+      "date_precision": "unknown",
+      "date_status": "por_confirmar",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Antofagasta",
+      "country": "CL",
+      "mode": null,
+      "organizer": "Minería Chilena",
+      "category": "Electricidad y Energía",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-R35",
+      "title": "FECOP 2027",
+      "start_date": null,
+      "end_date": null,
+      "month": null,
+      "date_precision": "unknown",
+      "date_status": "por_confirmar",
+      "start_time": null,
+      "end_time": null,
+      "timezone": "America/Santiago",
+      "city": "Calama",
+      "country": "CL",
+      "mode": null,
+      "organizer": "CChC",
+      "category": "Supply Chain y Compras Corporativas",
+      "audience": null,
+      "cost": null,
+      "currency": null,
+      "registration_url": null,
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1J8NcRhRByMOqn4pD-lfgmpGV1q4vfb7T",
+        "locator": "Diapositiva 1, agenda MineLink",
+        "derived_fields": [
+          "city",
+          "date_precision"
+        ],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-D01",
+      "title": "Rueda de proveedores Demo",
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-18",
+      "month": "2026-11",
+      "date_precision": "datetime",
+      "date_status": "confirmada_demo",
+      "start_time": "10:00",
+      "end_time": "12:00",
+      "timezone": "America/Santiago",
+      "city": "Antofagasta",
+      "country": "CL",
+      "mode": "presencial",
+      "organizer": "Red de Innovación Demo",
+      "category": "Innovación abierta",
+      "audience": "Startups y proveedores mineros",
+      "cost": 25000,
+      "currency": "CLP",
+      "registration_url": null,
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-D02",
+      "title": "Taller de pilotos Demo",
+      "start_date": "2026-11-25",
+      "end_date": "2026-11-25",
+      "month": "2026-11",
+      "date_precision": "datetime",
+      "date_status": "confirmada_demo",
+      "start_time": "10:00",
+      "end_time": "12:00",
+      "timezone": "America/Santiago",
+      "city": null,
+      "country": "CL",
+      "mode": "online",
+      "organizer": "Red de Innovación Demo",
+      "category": "Innovación abierta",
+      "audience": "Startups y proveedores mineros",
+      "cost": 0,
+      "currency": "CLP",
+      "registration_url": null,
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "EV-D03",
+      "title": "Encuentro de agua Demo",
+      "start_date": "2026-12-03",
+      "end_date": "2026-12-03",
+      "month": "2026-12",
+      "date_precision": "datetime",
+      "date_status": "confirmada_demo",
+      "start_time": "10:00",
+      "end_time": "12:00",
+      "timezone": "America/Santiago",
+      "city": "Santiago",
+      "country": "CL",
+      "mode": "hibrido",
+      "organizer": "Red de Innovación Demo",
+      "category": "Innovación abierta",
+      "audience": "Startups y proveedores mineros",
+      "cost": 10000,
+      "currency": "CLP",
+      "registration_url": null,
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE-01",
+      "title": "1. Capacitación digital de contratistas (Chile)",
+      "problem": "Acreditar a trabajadores contratistas tomaba 45 días",
+      "solution": "Plataforma de capacitación en línea con video learning con IA, realidad virtual y autenticación biométrica (FaceID)",
+      "developer": "Mine Class",
+      "site": "Codelco",
+      "results": "Acreditación de 45 a 10 días; ahorro estimado de US$27M al año; más de 247.000 contratistas y 425.000 horas de formación; más de 72.000 t de CO2 evitadas",
+      "results_status": "reportado_por_fuente; no verificación independiente",
+      "source_date_text": "29-sep-2025",
+      "url": "https://www.reporteminero.cl/noticia/noticias/2025/09/mine-class-presento-los-resultados-de-su-programa-de-digitalizacion-y-capacitacion-en-linea",
+      "country": "CL",
+      "demo": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Casos fila 1",
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "published_on": "2025-09-29"
+    },
+    {
+      "id": "CASE-02",
+      "title": "2. Camión eléctrico para transporte de cobre (Chile)",
+      "problem": "Reducir emisiones y costo energético de la logística minera en rutas largas, hoy con camiones diésel",
+      "solution": "Piloto de un camión 100% eléctrico en condiciones reales, bajo un memorándum de entendimiento",
+      "developer": "SANY",
+      "site": "Codelco, División Radomiro Tomic hasta Puerto Angamos",
+      "results": "27 t de cobre, 680 km ida y vuelta, pendiente acumulada sobre 2.500 m; resultados preliminares, sin cifras de costo ni emisiones",
+      "results_status": "reportado_por_fuente; no verificación independiente",
+      "source_date_text": "7-abr-2026",
+      "url": "https://energiminas.com/2026/04/07/codelco-y-sany-realizan-exitoso-piloto-de-camion-100-electrico/",
+      "country": "CL",
+      "demo": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Casos fila 2",
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "published_on": "2026-04-07"
+    },
+    {
+      "id": "CASE-03",
+      "title": "3. Asistente de IA para producción y seguridad (Perú)",
+      "problem": "Sostener la producción y la seguridad de una mina que pasa de la fase de tronadura al cierre",
+      "solution": "INDIMIN Coach: predicciones de IA en tiempo real, alertas de seguridad y seguimiento del desempeño",
+      "developer": "INDIMIN",
+      "site": "Gold Fields, mina Cerro Corona, Perú",
+      "results": "153.000 t adicionales en 90 días, 3,4% sobre el plan; el piloto escaló a nivel industrial",
+      "results_status": "reportado_por_fuente; no verificación independiente",
+      "source_date_text": "8-may-2026",
+      "url": "https://www.pulse.bot/mining/news/gold-fields-reviews-indimin-coach-experience-at-cerro-corona-mine-in-peru-ab66aa83-149f-4c35-ab7d-1712d4844c49/",
+      "country": "PE",
+      "demo": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Casos fila 3",
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "published_on": "2026-05-08"
+    }
+  ],
+  "news": [
+    {
+      "id": "NEWS-01",
+      "title": "CNP y Corfo impulsan la 4ª versión del Encuentro de Ecosistemas de Innovación Minera",
+      "summary": "Más de 250 asistentes; pitch de startups como NEOS AI (riesgos laborales con IA) y Plaza Ingeniería (calidad del aire)",
+      "published_date_text": "13-oct-2026",
+      "url": "https://www.mediabanco.com/mas-colaboracion-para-la-mineria-cnp-y-corfo-impulsan-cuarta-version-del-encuentro-de-ecosistemas-de-innovacion-minera/",
+      "link_status": "entregado_no_verificado",
+      "topic_ids": [
+        "produccion"
+      ],
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Noticias fila 1",
+        "derived_fields": [
+          "topic_ids"
+        ],
+        "verified_current": false
+      },
+      "published_on": "2026-10-13"
+    },
+    {
+      "id": "NEWS-02",
+      "title": "Del pilotaje a la faena: los desafíos de escalar tecnología en la minería nacional",
+      "summary": "En un diagnóstico de 180 proveedores tecnológicos, 55% tarda al menos un año en su primer pilotaje en faena",
+      "published_date_text": "8-oct-2026",
+      "url": "https://www.reporteminero.cl/noticia/entrevistas/2026/10/jocelyn-olivari-corfo-innovacion-tecnologica-mineria-brechas-pilotaje-escalamiento",
+      "link_status": "entregado_no_verificado",
+      "topic_ids": [
+        "produccion"
+      ],
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Noticias fila 2",
+        "derived_fields": [
+          "topic_ids"
+        ],
+        "verified_current": false
+      },
+      "published_on": "2026-10-08"
+    },
+    {
+      "id": "NEWS-03",
+      "title": "Misión Minnovex en Perú conecta proveedores tech chilenos con operadores mineros",
+      "summary": "Siete empresas chilenas (MIGTRA, AIKO Logic, LAMS, ZYGHT, ChucaoTech, Novamine, JRI) se reunieron con Antamina, Volcan, Buenaventura, Nexa y otros; Perú recibe 39,2% de las exportaciones de proveedores mineros chilenos",
+      "published_date_text": "2-oct-2026",
+      "url": "https://reporteminero.cl/noticia/noticias/2026/10/mision-minnovex-peru-proveedores-tech-chilenos-mineria",
+      "link_status": "entregado_no_verificado",
+      "topic_ids": [
+        "produccion"
+      ],
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Noticias fila 3",
+        "derived_fields": [
+          "topic_ids"
+        ],
+        "verified_current": false
+      },
+      "published_on": "2026-10-02"
+    },
+    {
+      "id": "NEWS-04",
+      "title": "WesTrac: nuevo servicio reduce 32% el tiempo de detención de equipos en minas",
+      "summary": "Servicio de un distribuidor Cat en minas australianas, con 32% menos de detención (según el extracto)",
+      "published_date_text": "23-sep-2026",
+      "url": "https://globalminingreview.com/mining/?page=4",
+      "link_status": "listado_no_permalink",
+      "topic_ids": [
+        "produccion"
+      ],
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Noticias fila 4",
+        "derived_fields": [
+          "topic_ids"
+        ],
+        "verified_current": false
+      },
+      "published_on": "2026-09-23"
+    },
+    {
+      "id": "NEWS-05",
+      "title": "Escondida | BHP selecciona 25 startups para pilotos por US$3 millones",
+      "summary": "Más de 600 postulaciones; 25 pilotos hasta 2028",
+      "published_date_text": "1-sep-2026",
+      "url": "https://www.reporteminero.cl/noticia/noticias/2026/09/bhp-escondida-selecciona-25-startups-pilotos-us-3-millones",
+      "link_status": "entregado_no_verificado",
+      "topic_ids": [
+        "produccion"
+      ],
+      "demo": false,
+      "provenance": {
+        "kind": "normalizado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Noticias fila 5",
+        "derived_fields": [
+          "topic_ids"
+        ],
+        "verified_current": false
+      },
+      "published_on": "2026-09-01"
+    }
+  ],
+  "editorial_sources": [
+    {
+      "id": "ESRC-01",
+      "name": "Reporte Minero",
+      "country": "Chile",
+      "type": "Portal de noticias mineras y energéticas; también programa de TV",
+      "url": "https://www.reporteminero.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 1",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-02",
+      "name": "Minería Chilena (MCH)",
+      "country": "Chile",
+      "type": "Revista y portal de minería (B2B Media Group)",
+      "url": "https://www.mch.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 2",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-03",
+      "name": "Portal Minero",
+      "country": "Chile",
+      "type": "Noticias, notas de prensa y plataforma de información de negocios",
+      "url": "https://www.portalminero.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 3",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-04",
+      "name": "Guía Minera de Chile",
+      "country": "Chile",
+      "type": "Noticias, entrevistas y notas de prensa",
+      "url": "https://www.guiaminera.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 4",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-05",
+      "name": "Portal Innova",
+      "country": "Chile",
+      "type": "Noticias de innovación",
+      "url": "https://portalinnova.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 5",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-06",
+      "name": "Redimin",
+      "country": "Chile",
+      "type": "Noticias mineras",
+      "url": "https://www.redimin.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 6",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-07",
+      "name": "Diario Financiero (DF)",
+      "country": "Chile",
+      "type": "Diario económico; secciones de minería, innovación y columnas",
+      "url": "https://www.df.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 7",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-08",
+      "name": "Minería y Futuro",
+      "country": "Chile",
+      "type": "Portal de noticias mineras",
+      "url": "https://www.mineriayfuturo.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 8",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-09",
+      "name": "Ecosistema Startup",
+      "country": "Latinoamérica",
+      "type": "Portal de startups; reescribe notas mineras",
+      "url": "https://ecosistemastartup.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 9",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-10",
+      "name": "ProActivo",
+      "country": "Perú",
+      "type": "Medio económico y minero",
+      "url": "https://proactivo.com.pe",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 10",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-11",
+      "name": "Gestión",
+      "country": "Perú",
+      "type": "Diario económico",
+      "url": "https://gestion.pe",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 11",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-12",
+      "name": "Rumbo Minero",
+      "country": "Perú",
+      "type": "Portal minero",
+      "url": "https://www.rumbominero.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 12",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-13",
+      "name": "Mining Magazine",
+      "country": "Internacional",
+      "type": "Revista técnica minera",
+      "url": "https://www.miningmagazine.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 13",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-14",
+      "name": "Global Mining Review",
+      "country": "Internacional",
+      "type": "Revista minera",
+      "url": "https://globalminingreview.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 14",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-15",
+      "name": "International Mining",
+      "country": "Internacional",
+      "type": "Revista minera",
+      "url": "https://im-mining.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 15",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-16",
+      "name": "Mining.com",
+      "country": "Internacional",
+      "type": "Portal de noticias mineras",
+      "url": "https://www.mining.com",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 16",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-17",
+      "name": "Corporación Alta Ley",
+      "country": "Chile",
+      "type": "Institucional: red de proveedores y desafíos",
+      "url": "https://www.corporacionaltaley.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 17",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "ESRC-18",
+      "name": "Expande (Fundación Chile)",
+      "country": "Chile",
+      "type": "Institucional: desafíos, casos y convocatorias",
+      "url": "https://expandemineria.cl",
+      "habitual_for_expande": null,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1P7B82FWnMhD6l1qCEQvdFRfP-s939I2R",
+        "locator": "Portales fila 18",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "alliances": [
+    {
+      "id": "ALL-R01",
+      "title": "DeCARBMINE Challenge",
+      "record_type": "iniciativa_colaborativa",
+      "summary": "Descarbonización de Alcance 3, insumos críticos y economía circular.",
+      "benefit": null,
+      "eligibility": null,
+      "access_steps": [],
+      "valid_until": null,
+      "url": null,
+      "state": "por_confirmar",
+      "demo": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "asset_1CdHtr-ExagrUe6B-Q0uyv9i68JjiAzRz",
+        "locator": "Diapositiva 1",
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "benefit_type": null
+    },
+    {
+      "id": "ALL-D01",
+      "title": "Red de pilotaje Demo",
+      "record_type": "convenio_demo",
+      "summary": "Acuerdo ficticio para demostrar beneficios y pasos de acceso.",
+      "benefit": "Acceso a una sesión de orientación para preparar un piloto",
+      "eligibility": [
+        "startup",
+        "pyme"
+      ],
+      "access_steps": [
+        "Revisar elegibilidad",
+        "Completar solicitud demo",
+        "Recibir confirmación local"
+      ],
+      "valid_until": "2026-12-31",
+      "url": null,
+      "state": "vigente_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "benefit_type": "pilotaje"
+    },
+    {
+      "id": "ALL-D02",
+      "title": "Convenio de formación Demo",
+      "record_type": "convenio_demo",
+      "summary": "Acuerdo ficticio para demostrar beneficios y pasos de acceso.",
+      "benefit": "Dos cupos para taller técnico de validación",
+      "eligibility": [
+        "pyme",
+        "gran_empresa"
+      ],
+      "access_steps": [
+        "Revisar elegibilidad",
+        "Completar solicitud demo",
+        "Recibir confirmación local"
+      ],
+      "valid_until": "2026-12-31",
+      "url": null,
+      "state": "vigente_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "benefit_type": "formacion"
+    },
+    {
+      "id": "ALL-D03",
+      "title": "Red internacional Demo",
+      "record_type": "convenio_demo",
+      "summary": "Acuerdo ficticio para demostrar beneficios y pasos de acceso.",
+      "benefit": "Ronda de vinculación con proveedores de Chile y Perú",
+      "eligibility": [
+        "startup",
+        "pyme",
+        "gran_empresa"
+      ],
+      "access_steps": [
+        "Revisar elegibilidad",
+        "Completar solicitud demo",
+        "Recibir confirmación local"
+      ],
+      "valid_until": "2026-12-31",
+      "url": null,
+      "state": "vigente_demo",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      },
+      "benefit_type": "internacionalizacion"
+    }
+  ],
+  "trends": [
+    {
+      "id": "TREND-01",
+      "title": "Agua y continuidad operacional",
+      "topic_ids": [
+        "agua"
+      ],
+      "summary": "Ejemplo editorial de demostración: conectar necesidades operacionales con oportunidades de soluciones especializadas.",
+      "implication": "Revisar capacidades y evidencia de piloto antes de preparar una propuesta.",
+      "related_challenge_ids": [
+        "CH-D04"
+      ],
+      "evidence_urls": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "TREND-02",
+      "title": "Descarbonización de insumos",
+      "topic_ids": [
+        "descarbonizacion"
+      ],
+      "summary": "Ejemplo editorial de demostración: conectar necesidades operacionales con oportunidades de soluciones especializadas.",
+      "implication": "Revisar capacidades y evidencia de piloto antes de preparar una propuesta.",
+      "related_challenge_ids": [
+        "CH-D05"
+      ],
+      "evidence_urls": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "TREND-03",
+      "title": "Seguridad y automatización",
+      "topic_ids": [
+        "seguridad"
+      ],
+      "summary": "Ejemplo editorial de demostración: conectar necesidades operacionales con oportunidades de soluciones especializadas.",
+      "implication": "Revisar capacidades y evidencia de piloto antes de preparar una propuesta.",
+      "related_challenge_ids": [
+        "CH-D03"
+      ],
+      "evidence_urls": [],
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIGNAL-01",
+      "title": "Sensores no invasivos para activos de difícil acceso",
+      "observation": "Observación ficticia para validar el formato de inteligencia editorial.",
+      "implication": "Posible oportunidad a explorar; no constituye una convocatoria.",
+      "confidence": "baja",
+      "horizon": "12-24 meses",
+      "observed_on": "2026-11-01",
+      "evidence_urls": [],
+      "company_named": false,
+      "publication_authorization": "no_aplica_demo",
+      "concept_only": true,
+      "demo": true
+    },
+    {
+      "id": "SIGNAL-02",
+      "title": "Demanda emergente de pilotos compartidos",
+      "observation": "Observación ficticia para validar el formato de inteligencia editorial.",
+      "implication": "Posible oportunidad a explorar; no constituye una convocatoria.",
+      "confidence": "baja",
+      "horizon": "12-24 meses",
+      "observed_on": "2026-11-01",
+      "evidence_urls": [],
+      "company_named": false,
+      "publication_authorization": "no_aplica_demo",
+      "concept_only": true,
+      "demo": true
+    }
+  ],
+  "learning": [
+    {
+      "id": "LEARN-R01",
+      "title": "Masterclass Proveedores - Resumen de jornada",
+      "format": "resumen_audiovisual",
+      "duration_seconds": 48,
+      "duration_status": "aproximada_segun_informe",
+      "description": "Video de resumen; no representa una clase completa ni una certificación.",
+      "author": "Expande",
+      "level": null,
+      "chapters": [],
+      "media_url": "https://drive.google.com/file/d/1Oi2FygWTxtsGizNrkUFq5s65vrpDhixO/view",
+      "access": "incluido",
+      "demo": false,
+      "provenance": {
+        "kind": "documentado",
+        "source_id": "video",
+        "locator": "Metadatos y descripción del informe de revisión",
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "LEARN-D01",
+      "title": "Preparar una propuesta técnica de piloto",
+      "format": "capsula",
+      "duration_seconds": 480,
+      "duration_status": "demo",
+      "description": "Contenido educativo ficticio para demostrar inicio, avance y guardado.",
+      "author": "Equipo académico Demo",
+      "level": "inicial",
+      "chapters": [
+        "Problema y alcance",
+        "Evidencia y resultados",
+        "Próximos pasos"
+      ],
+      "media_url": null,
+      "access": "incluido",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    },
+    {
+      "id": "LEARN-D02",
+      "title": "Diseñar evidencia para escalar en minería",
+      "format": "masterclass",
+      "duration_seconds": 1800,
+      "duration_status": "demo",
+      "description": "Contenido educativo ficticio para demostrar inicio, avance y guardado.",
+      "author": "Equipo académico Demo",
+      "level": "inicial",
+      "chapters": [
+        "Problema y alcance",
+        "Evidencia y resultados",
+        "Próximos pasos"
+      ],
+      "media_url": null,
+      "access": "incluido",
+      "demo": true,
+      "provenance": {
+        "kind": "sintetico",
+        "source_id": null,
+        "locator": null,
+        "derived_fields": [],
+        "verified_current": false
+      }
+    }
+  ],
+  "partner_concepts": [
+    {
+      "id": "PARTNER-01",
+      "company_id": "EMP-D01",
+      "title": "Complementar sensor estructural con instalación industrial",
+      "challenge_id": "CH-D01",
+      "needed_capabilities": [
+        "Montaje seguro",
+        "Integración con automatización"
+      ],
+      "suggested_company_ids": [
+        "EMP-D03"
+      ],
+      "visibility": "solo_demo",
+      "concept_only": true,
+      "demo": true
+    }
+  ],
+  "notifications": [
+    {
+      "id": "NTF-01",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "challenge",
+      "target_id": "CH-D02",
+      "title": "Cierre próximo del desafío de polvo",
+      "created_at": "2026-11-06T09:00:00-03:00",
+      "read": false,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-02",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "application",
+      "target_id": "APP-02",
+      "title": "Documentación pendiente",
+      "created_at": "2026-11-06T09:00:00-03:00",
+      "read": false,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-03",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "application",
+      "target_id": "APP-01",
+      "title": "Tu propuesta pasó a prospección",
+      "created_at": "2026-11-06T09:00:00-03:00",
+      "read": false,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-04",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "event",
+      "target_id": "EV-D01",
+      "title": "Se acerca la rueda de proveedores",
+      "created_at": "2026-11-05T09:00:00-03:00",
+      "read": false,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-05",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "funding",
+      "target_id": "FUND-D01",
+      "title": "Fondo de piloto de agua disponible",
+      "created_at": "2026-11-05T09:00:00-03:00",
+      "read": true,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-06",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "challenge",
+      "target_id": "CH-D01",
+      "title": "Nueva respuesta pública",
+      "created_at": "2026-11-05T09:00:00-03:00",
+      "read": true,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-07",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "news",
+      "target_id": "NEWS-02",
+      "title": "Nuevo contenido sobre pilotaje",
+      "created_at": "2026-11-05T09:00:00-03:00",
+      "read": true,
+      "channel": "in_app",
+      "demo": true
+    },
+    {
+      "id": "NTF-08",
+      "user_id": "USR-01",
+      "company_id": "EMP-D01",
+      "target_type": "learning",
+      "target_id": "LEARN-D01",
+      "title": "Cápsula para preparar tu propuesta",
+      "created_at": "2026-11-05T09:00:00-03:00",
+      "read": true,
+      "channel": "in_app",
+      "demo": true
+    }
+  ],
+  "alert_rules": [
+    {
+      "id": "RULE-01",
+      "user_id": "USR-01",
+      "process_ids": [
+        "espesamiento",
+        "concentraducto"
+      ],
+      "topic_ids": [
+        "produccion",
+        "seguridad"
+      ],
+      "content_types": [
+        "challenge"
+      ],
+      "event_types": [
+        "nuevo",
+        "actualizado",
+        "por_cerrar",
+        "resultado"
+      ],
+      "channels": [
+        "push",
+        "email"
+      ],
+      "frequency": "inmediata",
+      "enabled": true
+    },
+    {
+      "id": "RULE-02",
+      "user_id": "USR-01",
+      "process_ids": [],
+      "topic_ids": [
+        "agua"
+      ],
+      "content_types": [
+        "funding",
+        "event"
+      ],
+      "event_types": [
+        "nuevo"
+      ],
+      "channels": [
+        "email"
+      ],
+      "frequency": "semanal",
+      "enabled": true
+    }
+  ],
+  "delegations": [
+    {
+      "id": "DEL-01",
+      "user_id": "USR-01",
+      "recipient_email": "suplente@example.com",
+      "starts_on": "2026-11-10",
+      "ends_on": "2026-11-20",
+      "content_types": [
+        "challenge"
+      ],
+      "scope": "avisos_publicos",
+      "status": "programada",
+      "demo": true
+    }
+  ],
+  "saved_items": [
+    {
+      "id": "SAVE-01",
+      "user_id": "USR-01",
+      "target_type": "challenge",
+      "target_id": "CH-D01",
+      "saved_at": "2026-11-05T10:00:00-03:00"
+    },
+    {
+      "id": "SAVE-02",
+      "user_id": "USR-01",
+      "target_type": "case",
+      "target_id": "CASE-01",
+      "saved_at": "2026-11-05T10:00:00-03:00"
+    },
+    {
+      "id": "SAVE-03",
+      "user_id": "USR-01",
+      "target_type": "funding",
+      "target_id": "FUND-D01",
+      "saved_at": "2026-11-05T10:00:00-03:00"
+    },
+    {
+      "id": "SAVE-04",
+      "user_id": "USR-01",
+      "target_type": "event",
+      "target_id": "EV-D01",
+      "saved_at": "2026-11-05T10:00:00-03:00"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "SUB-01",
+      "company_id": "EMP-D01",
+      "status": "trial",
+      "trial_starts_on": "2026-11-01",
+      "trial_ends_on": "2026-11-30",
+      "seats_in_demo": 3,
+      "price": null,
+      "currency": null,
+      "auto_charge": false,
+      "demo": true
+    }
+  ],
+  "learning_progress": [
+    {
+      "id": "PROG-01",
+      "user_id": "USR-01",
+      "learning_id": "LEARN-D01",
+      "progress_percent": 35
+    }
+  ],
+  "source_field_inventory": {
+    "provider_registration": [
+      "razon_social",
+      "identificador_tributario",
+      "sitio_web",
+      "contacto_1",
+      "contacto_2",
+      "pais",
+      "region",
+      "ciudad",
+      "sucursal",
+      "tecnologias",
+      "tipo_proveedor",
+      "tamano",
+      "dotacion",
+      "especialidades"
+    ],
+    "application_form": [
+      "descripcion_solucion",
+      "innovacion",
+      "tendencias_tecnologicas",
+      "TRL_declarado",
+      "evidencias",
+      "equipo",
+      "documentos"
+    ],
+    "application_form_source": "asset_1BPnPVl-Wp5EaeLgqKBc3TYHcy2TW7svq",
+    "privacy": "Contactos, identificadores y contenido privado de la postulación ABCDust se omiten del dataset público. Solo se reutiliza la estructura. No se interpreta TRL autodeclarado como acreditación."
+  },
+  "follows": [
+    {
+      "id": "FOLLOW-01",
+      "user_id": "USR-01",
+      "challenge_id": "CH-D02",
+      "event_types": [
+        "actualizado",
+        "por_cerrar"
+      ],
+      "enabled": true
+    }
+  ]
+}

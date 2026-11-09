@@ -1,0 +1,526 @@
+EXPANDE
+Modelos de datos y contenido del mockup móvil
+Versión 1.0 | 6 de noviembre de 2026
+
+1. Cómo utilizar este paquete
+
+03_datos_mockup.json es la semilla común de toda la app. 04_esquema_datos.json describe los tipos y campos; 05_pruebas_aceptacion.json contiene consultas y recorridos con resultados esperados. La especificación de vistas está en 01_especificacion_figma.txt. No es necesario consultar el prototipo anterior ni investigar nuevos contenidos para construir la demo.
+
+Hay dos capas explícitas dentro de la misma base: registros documentados o normalizados desde los archivos entregados, y registros ficticios de demostración. El atributo demo y la procedencia distinguen esas capas. Los ejemplos ficticios proporcionan campos completos y variedad suficiente para demostrar funcionalidades donde no hay evidencia real. Nunca completar un campo real ausente usando el dato ficticio de otro registro.
+
+Los registros reales se presentan como antecedentes documentales, sin garantizar vigencia actual ni verificación de sitios externos. Sus fuentes están en sources y en provenance. No hay scraping ni actualización automática. El reloj de demo es 2026-11-06T12:00:00-03:00.
+
+2. Convenciones generales
+
+ID: identificador estable, único dentro de cada colección. Se mantiene al editar una copia local. Las relaciones usan IDs, no títulos ni índices de pantalla. Los IDs con R identifican contenidos reales de referencia; D identifica ejemplos ficticios en las familias que mezclan ambos. Para otras colecciones usar siempre demo/provenance como autoridad, no deducir únicamente del ID.
+
+null significa dato desconocido o no informado; no usar cadena vacía, cero ni false como sustitutos. [] significa que no hay registros disponibles en la semilla, no prueba que nunca existieron en el mundo real. Los campos source_dates_text, source_opening_text, amount_text y published_date_text preservan el texto entregado cuando la normalización numérica no es segura.
+
+Fechas exactas: YYYY-MM-DD; fecha/hora: ISO 8601 con offset; mes: YYYY-MM. date_precision explica el grado de precisión. America/Santiago es la zona de visualización local. No usar fechas de carga en Drive como fechas de publicación. Para datos externos mostrar la zona de origen cuando esté informada. Las fechas sin hora no permiten cuenta atrás exacta.
+
+Moneda: CLP o USD cuando se informa explícitamente. Monto es número o null. No inferir CLP de un signo $ ambiguo en los fondos entregados. Conservar rangos, montos máximos y presupuestos de programa como texto si no están desagregados. Las cifras de volumen de las fuentes del mercado tienen periodos distintos; no sumarlas como número anual de desafíos.
+
+Procedencia: kind=documentado para transcripción o extracción; normalizado para resumen/clasificación; sintetico para ejemplo inventado. source_id apunta a sources; locator indica hoja, sección o diapositiva; derived_fields identifica los campos interpretados. verified_current=false significa que no se certifica vigencia al momento de la demostración. En UI, mostrar fuente y condición documental; no mostrar esta estructura técnica al proveedor.
+
+3. Relaciones principales
+
+Empresa → muchos usuarios, soluciones y postulaciones. Usuario → preferencias, guardados, avisos, delegaciones y avance formativo. Empresa → una suscripción de demostración. Solución → un TRL autodeclarado y varios procesos; no poner un único TRL en la empresa.
+
+Desafío → procesos y temas; muchas preguntas públicas y postulaciones. Postulación → empresa, solución, equipo, documentos e historial de estados. application_events es el historial efectivo. El flujo previsto del desafío es un atributo separado; no se materializan eventos futuros como ya ocurridos.
+
+Los contenidos de financiamiento, eventos, alianzas, noticias, casos, tendencias y formación son entidades distintas. Guardados y avisos usan target_type + target_id para dirigirse a cualquiera de ellas. Esos enlaces deben abrir la ficha exacta. Un directorio de fuentes no es un catálogo de oportunidades.
+
+4. Taxonomía y equivalencias
+
+La clasificación de Expande aporta once etapas: Exploración/Geología, Planificación/Ingeniería, Construcción, Extracción, Chancado, Proceso de concentración, Proceso de lixiviación, Relaves, FURE, Puerto y/o planta desalinizadora y Transversales. Se preservan las etiquetas originales en process_stages.
+
+processes agrega 17 procesos operativos para filtros y onboarding. Son una normalización de diseño, no un glosario oficial aprobado. Cada proceso se relaciona con una etapa y tiene alias. Ejemplos: Perforación → Extracción; Flotación → Proceso de concentración; Espesamiento → Relaves; Electrorrefinación → FURE; SIAD → Desalinización e impulsión de agua. Correas transportadoras se clasifica bajo Chancado para esta demo, aunque un producto posterior puede requerir relación con múltiples etapas. No transformar este mapeo en una restricción de elegibilidad.
+
+Temas son transversales y multivalor: Producción, Seguridad, Costos, Automatización, Capital humano, Agua y Sustentabilidad. Polvo, Descarbonización y Economía circular dependen de Sustentabilidad. Un desafío puede tener varios procesos y temas. La selección de un tema padre incluye sus hijos para búsqueda y filtros.
+
+Se preservan también categorías originales (Fast Scouting, Desafío estándar, Desafío global, Vigilancia Tecnológica, Otro), minerales y estados En proceso/Cerrado/Otro/Adjudicada. No se asignan a desafíos individuales cuando las fichas no los identifican. «En proceso» no significa necesariamente «Abierto para postular». «Adjudicada» no se utiliza para afirmar una adjudicación que no consta.
+
+5. Desafío y oportunidad de mercado
+
+Campos esenciales: id, title, origin, mandante, site, country, region, process_ids, topic_ids, summary, problem, objective, operational_context, requirements, exclusions, eligible_entities, trl_min, trl_max, funding, pilot_duration_days, contact_area, state, opened_at, closes_at, date_precision, source_dates_text, published_at, application_url, qa_available, planned_stages, provenance y demo.
+
+Origen expande habilita contenido de mayor granularidad, no supone una API conectada. Origen externo usa solo información pública; ningún dato del modelo autoriza acceso al estado privado de una postulación. application_url es la URL específica del desafío cuando existe. No reemplazarla por la portada de una fuente fingiendo que es la convocatoria.
+
+funding contiene payer, amount, currency y description. Valores de payer: mandante, proveedor, compartido, no_informado o null. pilot_duration_days es duración del piloto, no de scouting ni evaluación. El TRL máximo queda null cuando el documento solo fija un mínimo. country es país de aplicación; en desafíos reales se normalizó Chile a partir de la faena indicada y se documenta como derivación.
+
+Catálogo real de cinco fichas:
+CH-R01 Ruido en anillos disipadores, Los Pelambres. Ducto de unos 120 km, monitoreo no invasivo, mínimo TRL 7. Ventana en texto 15 enero a 5 febrero; no crear año y hora exactos únicamente a partir del nombre de archivo.
+CH-R02 Rastras de espesadores, Los Pelambres. TRL 1 a 9, rastras sumergidas, sólidos 50-60%, mantenimiento limitado. El rango amplio es intencional y debe respetarse.
+CH-R03 Limpieza SIAD, Los Pelambres. Ducto de 61 km y 24 pulgadas; mínimo TRL 7; se excluyen pigs convencionales de copas/discos/cepillos.
+CH-R04 Cambio de triconos, Codelco Radomiro Tomic. PV-351, pozo 12 ¼ pulgadas, objetivo inferior a 30 minutos. Ventana 5-26 febrero 2025; TRL no informado.
+CH-R05 Cortocircuitos, Codelco Ventanas. Posición exacta, integración y resistencia operacional. Ventana 10 febrero-10 marzo 2025; TRL no informado.
+
+CH-R04 y CH-R05 tienen ventana documental vencida y state=cerrado, lo que no acredita resultado, ganador ni imposibilidad de una eventual reapertura posterior. Las otras tres fichas quedan por_confirmar. Ninguna se muestra abierta por defecto.
+
+Siete desafíos demo complementan el catálogo: cuatro de origen Expande y tres externos, con abiertos/próximo/cerrados, Chile/Perú/Australia, varios procesos, condiciones de financiamiento y TRL. Tienen mandantes ficticios. Los casos completos se consultan directamente en el JSON: CH-D01 sirve para afinidad, CH-D02 para cierre próximo/documentación, CH-D04 para oportunidad externa incompleta y CH-D05 para fecha de otra zona horaria y convocatoria futura.
+
+6. Empresa, solución, usuarios y datos privados
+
+companies separa size de segment, country/city de service_countries/service_regions y supplier_type de capacidades. Los seis proveedores reales provienen de cuatro filas de la planilla y dos PDF de caracterización. No se inventan sus certificaciones, cobertura, equipo, TRL o historial. No se reutilizan teléfonos, correos personales, RUT u otros identificadores en la demo.
+
+Los tres perfiles demo son organizaciones ficticias con datos completos para recomendaciones. Sus miembros usan example.com. solutions guarda title, description, trl, trl_evidence, process_ids y topic_ids. Evidencia declarada no equivale a acreditación de Expande. Las capacidades de una solución no garantizan el cumplimiento de todos los requisitos de un desafío.
+
+ABC Dust.pdf es una postulación, no una sexta ficha de desafío. Sirve para reconocer estructura de formulario: descripción de solución, innovación, tecnologías, TRL declarado y evidencia. No se copian sus contactos ni su postulación al historial de la empresa demo. Las declaraciones comerciales del proveedor no se convierten en resultados verificados. source_field_inventory conserva esa decisión de uso.
+
+users define rol administrador/colaborador, cargo, correo y estado. Un equipo postulante contiene IDs de miembros de su empresa; no confundir contacto alternativo con integrante autorizado. subscriptions es por empresa. El perfil maestro y la copia preparada para un desafío deben permanecer separados.
+
+7. Postulaciones y seguimiento
+
+applications contiene company_id, challenge_id, solution_id, team_user_ids, state, pipeline_stage, result, status_origin, updated_at, submitted_at, document_ids, feedback y next_action. Seis ejemplos cubren preparación, enviada, evaluación, documentación pendiente y resultados. No son postulaciones reales.
+
+status_origin=expande_simulado: estado preparado para demostrar la experiencia Expande, solo lectura para el proveedor. manual: estado registrado por el propio proveedor sobre una oportunidad externa; editable, siempre rotulado. local: borrador que no acredita envío. No crear un estado externo sincronizado.
+
+La taxonomía de negocio viene del flujo entregado: Scouting → Pertinencia → Prospección → Selección compañía → Demo Day → Piloto → Escalamiento; Cierre puede ocurrir antes. Las fichas reales describen procesos previstos con duraciones; esas duraciones no son evidencias de hechos ocurridos. Los motivos genéricos de no avance del flujo se excluyen del feedback individual.
+
+documents es un reservorio por empresa con metadatos y visibilidad; el archivo demo se simula, sin subir contenido real. application_events registra cambios con fecha y origen. El estado actual de cada postulación coincide con su último evento. Preparación tiene submitted_at=null. Las notificaciones sobre un resultado no deben exponerlo a correos alternativos sin acceso.
+
+8. Recomendaciones explicables
+
+Usar reglas deterministas, no un porcentaje fijo. Para una empresa, una solución elegida y un desafío calcular:
+P=1 si hay intersección entre procesos de la solución y del desafío; en otro caso 0.
+T=1 si hay intersección entre temas de empresa/solución y del desafío, expandiendo temas padres/hijos; en otro caso 0.
+G=1 si country del desafío está en service_countries de empresa; en otro caso 0, o desconocido si no hay cobertura informada.
+M=1 si TRL de solución satisface los límites informados del desafío; 0 si no los satisface; desconocido si no hay TRL o ningún límite.
+Orden interno=4P+2T+G+M, usando 0 para desconocidos únicamente para ordenar. «Para ti» cuando P=1 y M no es incompatibilidad conocida. Desempatar por cierre y luego ID. El valor numérico no se muestra al usuario.
+
+Mostrar razones y ausencias por separado. Ejemplo SensorAndes SOL-01 con CH-D01: proceso Espesamiento, tema Producción/Seguridad, cobertura Chile y TRL 7 dentro de 7-9. Con SOL-02 (TRL 3, concentraducto), CH-D01 pierde afinidad de proceso y no cumple el mínimo. CH-R02 admite TRL 3 por su rango 1-9, aunque eso no crea coincidencia de proceso ni asegura elegibilidad.
+
+El filtro «Compatible con mi TRL» evalúa la solución seleccionada. Una empresa sin solución puede explorar todo y recibe «Añade una solución para evaluar TRL». No calcular compatibilidad desde certificaciones o historial ausentes ni filtrar silenciosamente desafíos de baja afinidad.
+
+9. Financiamiento y calendario
+
+funding_calls conserva diez filas reales. record_type distingue convocatoria, cierre, resultados y ganadores; group_key permite relacionar hitos conocidos sin afirmar que son diez fondos distintos. La fila «Absorción y Capital Humano» sigue como agrupación por confirmar: no se inventan dos convocatorias documentadas. source_opening_text retiene fechas que la planilla puso bajo apertura pero corresponden a otros hitos.
+
+Entidades, elegibilidad y URLs oficiales quedan null cuando no están entregadas. Montos ambiguos de Start-Up Chile y presupuestos agrupados se conservan en amount_text y no participan en orden numérico. Tres fondos ficticios completan la experiencia de filtros por segmento, región, plazo y moneda. La base no se ofrece como guía vigente de financiamiento.
+
+events contiene los 35 registros transcritos de la imagen de MineLink: 17 con días/rangos, 16 con mes tentativo y dos sin fecha. Hay tres eventos demo adicionales con hora, modalidad, costo y público. Un rango que cruza mes, como Flotación y Optimización 30 septiembre-1 octubre, debe representarse en ambos meses sin duplicar el registro.
+
+Las fechas de la agenda se etiquetan como «Según agenda entregada», no como verificadas con cada organizador. La imagen incluye al pie un corte al 21 de octubre de 2026; no usar ese pie como fecha de publicación individual de eventos. En febrero la agenda no registra eventos, lo que no demuestra ausencia real de actividad. Espacio Riesco se conserva como referencia de sede, no como organizador confirmado de Expomin. Modalidad, horario y costo reales permanecen desconocidos.
+
+10. Alianzas, contenido y conceptos
+
+alliances: una iniciativa real DeCARBMINE y tres convenios demo. Beneficio, elegibilidad, pasos y vigencia son campos de una ficha utilizable; quedan ausentes para DeCARBMINE porque la pieza no demuestra un convenio con acceso definido.
+
+cases: tres casos documentados con problema, solución, desarrollador, faena, resultados y fuente. Los resultados de Mine Class y de INDIMIN se conservan como reportados por la planilla/fuente; el piloto SANY mantiene su carácter preliminar. No calcular un ROI nuevo ni convertir números comerciales en evidencia independiente.
+
+news: cinco noticias con fecha entregada, resumen y URL. El enlace WesTrac corresponde a un listado; se marca esa limitación. No ofrecerlo como enlace permanente validado. El enlace INDIMIN se conserva como fuente entregada, sin afirmar disponibilidad. editorial_sources reúne 18 portales; no se afirma que todos sean fuentes habituales de Expande.
+
+trends: tres piezas editoriales ficticias que relacionan temas con desafíos. signals: dos conceptos ficticios con observación, implicación, horizonte y confianza. Sin nombres reales de mineras ni acceso privilegiado inventado. partner_concepts contiene un ejemplo de complementariedad entre empresas demo, separado de una red comercial activa.
+
+learning: un video real de resumen de jornada y dos piezas ficticias. No se inspeccionó el audio completo del MP4; la duración aproximada proviene del informe entregado. Se incluye el vínculo al video, no una descarga ni una clase inventada. Los contenidos ficticios usan reproducción simulada y learning_progress almacena el avance local.
+
+11. Avisos y acciones persistentes
+
+notifications incluye ocho ejemplos con destino válido y estado leído. alert_rules define temas/procesos, tipos de contenido, eventos, canales, frecuencia y enabled. Un desafío seguido genera una preferencia específica mediante follows; un guardado no lo hace. Tanto follows como saved_items son por usuario.
+
+delegations tiene destinatario, periodo, categorías y scope. El ejemplo dirige solo avisos públicos a suplente@example.com. Cancelarla debe conservar el registro como cancelado y detener su efecto local. No concede permisos a la organización.
+
+Al crear un borrador, generar ID y evento local; al enviar una pregunta ficticia, estado pendiente; al cargar documento ficticio, actualizar documentos sin cambiar estado de evaluación; al marcar aviso leído, actualizar contador. Ninguna acción produce correo, cobro o envío a un portal real. Preservar estado por empresa y usuario; reinicio vuelve a la semilla.
+
+12. Reglas de calidad para el agente
+
+Comprobar unicidad de IDs, existencia de referencias, pertenencia del equipo a la empresa, coherencia de fechas y que solo fixtures ficticios tengan estados privados. La última entrada de application_events debe concordar con applications.state. Guardados y notificaciones deben resolver a la ficha correcta. Ningún campo de contacto real se expone en la demo.
+
+Los textos largos deben ajustarse sin recorte de requisitos. No mostrar undefined/null como texto literal. Renderizar desconocidos con microcopy específico. Evitar tarjetas duplicadas al alternar filtros. Construir contadores a partir de las colecciones filtradas, no escribir números a mano en las vistas.
+
+El esquema JSON valida forma y tipos; las referencias, temporalidad y permisos requieren las pruebas funcionales. El archivo 05_pruebas_aceptacion.json es parte de la entrega y sirve de checklist para el agente. La verificación del paquete de datos no equivale a haber probado una app que todavía debe construirse.
+
+13. Inventario de fuentes
+
+La colección sources identifica los archivos utilizados y sus enlaces. La carpeta 1.A contiene cinco fichas de desafíos y una postulación de referencia. La carpeta 1.B contiene nueve fuentes de mercado. La carpeta 2 contiene una pieza DeCARBMINE y cuatro perfiles de proveedores; la 3 aporta registros de fondos e hitos; la 4, la agenda MineLink; la 5, casos, noticias y portales; la 6, un resumen audiovisual; y la 7, clasificación, flujo y dos fichas adicionales de proveedores.
+
+Los enlaces específicos de postulación se extrajeron de los cinco PDF de desafíos. La agenda se transcribió de la imagen incluida en PowerPoint. Cada registro remite a su documento, hoja o sección mediante provenance. Los ejemplos sintéticos tienen su origen identificado y no requieren investigación adicional del agente.
+
+14. Diccionario de campos
+
+El anexo siguiente enumera los campos presentes en cada colección y sus tipos. Todos los campos deben conservarse al importar la semilla, incluidos los null. Las descripciones funcionales de las secciones anteriores establecen su semántica. El JSON Schema contiene la versión procesable del mismo contrato.
+
+
+sources (29 registros)
+id : string
+title : string
+url : string
+type : string
+accessed_on : string
+
+process_stages (11 registros)
+id : string
+name : string
+provenance : object
+
+processes (17 registros)
+id : string
+name : string
+stage_id : string
+aliases : array<string>
+provenance : object
+
+topics (10 registros)
+id : string
+name : string
+parent_id : null / string
+
+challenges (12 registros)
+id : string
+title : string
+origin : string
+mandante : string
+site : string
+country : string
+region : null / string
+process_ids : array<string>
+topic_ids : array<string>
+summary : string
+problem : string
+objective : string
+operational_context : string
+requirements : array<object>
+exclusions : array<string>
+eligible_entities : array<string>
+trl_min : integer / null
+trl_max : null / integer
+funding : object
+pilot_duration_days : null / integer
+contact_area : null / string
+state : string
+source_state : string/null
+opened_at : null / string
+closes_at : null / string
+date_precision : string
+source_dates_text : string
+published_at : null / string
+application_url : string / null
+qa_available : boolean
+editorial_state : string
+provenance : object
+demo : boolean
+category : string/null
+mineral : string/null
+planned_stages : array<object>
+
+market_sources (9 registros)
+id : string
+name : string
+role : string
+url : string / null
+publication_pattern : string
+reported_volume_text : string / null
+registration_required : boolean/null
+private_status_access : boolean
+provenance : object
+
+companies (9 registros)
+id : string
+name : string
+description : string
+size : string
+segment : null / string
+country : string
+city : string
+service_countries : array<string>
+service_regions : array<string>
+process_ids : array<string>
+topic_ids : array<string>
+certifications : array<object>
+website : string / null
+supplier_type : string
+profile_status : string
+demo : boolean
+provenance : object
+region : string
+
+solutions (4 registros)
+id : string
+company_id : string
+title : string
+description : string
+trl : integer
+trl_evidence : string
+process_ids : array<string>
+topic_ids : array<string>
+evidence_document_ids : array<string>
+demo : boolean
+provenance : object
+
+users (4 registros)
+id : string
+company_id : string
+name : string
+email : string
+job_title : string
+role : string
+status : string
+demo : boolean
+
+applications (6 registros)
+id : string
+company_id : string
+challenge_id : string
+solution_id : string
+team_user_ids : array<string>
+state : string
+pipeline_stage : string
+result : string
+status_origin : string
+updated_at : string
+submitted_at : string / null
+document_ids : array<string>
+feedback : string/null
+next_action : string
+demo : boolean
+note : string/null
+prepared_snapshot : object
+
+application_events (11 registros)
+id : string
+application_id : string
+state : string
+pipeline_stage : string
+at : string
+description : string
+origin : string
+demo : boolean
+
+documents (1 registros)
+id : string
+company_id : string
+application_id : string
+name : string
+mime_type : string
+size_bytes : integer
+url : string/null
+status : string
+visibility : string
+demo : boolean
+uploaded_at : string/null
+
+public_questions (4 registros)
+id : string
+challenge_id : string
+question : string
+answer : string / null
+status : string
+published_on : string
+answered_by : string / null
+demo : boolean
+
+funding_calls (13 registros)
+id : string
+title : string
+edition : string
+entity : null / string
+record_type : string
+group_key : string / null
+opening_date : string / null
+closing_date : null / string
+milestone_date : null / string
+source_opening_text : string / null
+amount : null / integer
+currency : null / string
+amount_text : string
+eligible_segments : array<string>
+country : null / string
+regions : array<string>
+eligibility : null / string
+official_url : string/null
+state : string
+demo : boolean
+provenance : object
+normalization_status : string
+
+events (38 registros)
+id : string
+title : string
+start_date : null / string
+end_date : null / string
+month : string / null
+date_precision : string
+date_status : string
+start_time : null / string
+end_time : null / string
+timezone : string
+city : string / null
+country : string
+mode : null / string
+organizer : string / null
+category : string
+audience : null / string
+cost : null / integer
+currency : null / string
+registration_url : string/null
+demo : boolean
+provenance : object
+
+cases (3 registros)
+id : string
+title : string
+problem : string
+solution : string
+developer : string
+site : string
+results : string
+results_status : string
+source_date_text : string
+url : string
+country : string
+demo : boolean
+provenance : object
+published_on : string
+
+news (5 registros)
+id : string
+title : string
+summary : string
+published_date_text : string
+url : string
+link_status : string
+topic_ids : array<string>
+demo : boolean
+provenance : object
+published_on : string
+
+editorial_sources (18 registros)
+id : string
+name : string
+country : string
+type : string
+url : string
+habitual_for_expande : boolean/null
+provenance : object
+
+alliances (4 registros)
+id : string
+title : string
+record_type : string
+summary : string
+benefit : null / string
+eligibility : null / array<string>
+access_steps : array<string>
+valid_until : null / string
+url : string/null
+state : string
+demo : boolean
+provenance : object
+benefit_type : null / string
+
+trends (3 registros)
+id : string
+title : string
+topic_ids : array<string>
+summary : string
+implication : string
+related_challenge_ids : array<string>
+evidence_urls : array<string>
+demo : boolean
+provenance : object
+
+signals (2 registros)
+id : string
+title : string
+observation : string
+implication : string
+confidence : string
+horizon : string
+observed_on : string
+evidence_urls : array<string>
+company_named : boolean
+publication_authorization : string
+concept_only : boolean
+demo : boolean
+
+learning (3 registros)
+id : string
+title : string
+format : string
+duration_seconds : integer
+duration_status : string
+description : string
+author : string
+level : null / string
+chapters : array<string>
+media_url : string / null
+access : string
+demo : boolean
+provenance : object
+
+partner_concepts (1 registros)
+id : string
+company_id : string
+title : string
+challenge_id : string
+needed_capabilities : array<string>
+suggested_company_ids : array<string>
+visibility : string
+concept_only : boolean
+demo : boolean
+
+notifications (8 registros)
+id : string
+user_id : string
+company_id : string
+target_type : string
+target_id : string
+title : string
+created_at : string
+read : boolean
+channel : string
+demo : boolean
+
+alert_rules (2 registros)
+id : string
+user_id : string
+process_ids : array<string>
+topic_ids : array<string>
+content_types : array<string>
+event_types : array<string>
+channels : array<string>
+frequency : string
+enabled : boolean
+
+delegations (1 registros)
+id : string
+user_id : string
+recipient_email : string
+starts_on : string
+ends_on : string
+content_types : array<string>
+scope : string
+status : string
+demo : boolean
+
+saved_items (4 registros)
+id : string
+user_id : string
+target_type : string
+target_id : string
+saved_at : string
+
+subscriptions (1 registros)
+id : string
+company_id : string
+status : string
+trial_starts_on : string
+trial_ends_on : string
+seats_in_demo : integer
+price : number/null
+currency : string/null
+auto_charge : boolean
+demo : boolean
+
+learning_progress (1 registros)
+id : string
+user_id : string
+learning_id : string
+progress_percent : integer
+
+follows (1 registros)
+id : string
+user_id : string
+challenge_id : string
+event_types : array<string>
+enabled : boolean

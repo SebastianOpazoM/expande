@@ -1,0 +1,346 @@
+[
+  {
+    "id": "T01",
+    "name": "Catálogo inicial",
+    "input": {
+      "state": [
+        "abierto"
+      ],
+      "order": "cierre_asc"
+    },
+    "expected": [
+      "CH-D02",
+      "CH-D01",
+      "CH-D04",
+      "CH-D03"
+    ],
+    "acceptance": "Cuatro resultados; no incluir históricos ni próximos."
+  },
+  {
+    "id": "T02",
+    "name": "Origen externo",
+    "input": {
+      "state": [
+        "abierto"
+      ],
+      "origin": [
+        "externo"
+      ]
+    },
+    "expected": [
+      "CH-D04"
+    ],
+    "acceptance": "Un resultado público externo."
+  },
+  {
+    "id": "T03",
+    "name": "Proceso de espesamiento",
+    "input": {
+      "state": [
+        "abierto"
+      ],
+      "process": [
+        "espesamiento"
+      ]
+    },
+    "expected": [
+      "CH-D01"
+    ],
+    "acceptance": "Una tarjeta."
+  },
+  {
+    "id": "T04",
+    "name": "Buscar SIAD en todos los estados",
+    "input": {
+      "state": "todos",
+      "query": "siad"
+    },
+    "expected": [
+      "CH-R03",
+      "CH-D04"
+    ],
+    "acceptance": "Expandir alias del proceso desalinización; resultados como conjunto."
+  },
+  {
+    "id": "T05",
+    "name": "Estado cerrado",
+    "input": {
+      "state": [
+        "cerrado"
+      ]
+    },
+    "expected": [
+      "CH-R04",
+      "CH-R05",
+      "CH-D06",
+      "CH-D07"
+    ],
+    "acceptance": "Cuatro registros, sin CTA postular."
+  },
+  {
+    "id": "T06",
+    "name": "TRL 3 en todos los estados",
+    "input": {
+      "state": "todos",
+      "trl": 3,
+      "include_unknown": false
+    },
+    "expected": [
+      "CH-R02"
+    ],
+    "acceptance": "No imponer TRL 7 al desafío de rastras."
+  },
+  {
+    "id": "T07",
+    "name": "TRL 3 incluyendo desconocidos",
+    "input": {
+      "state": "todos",
+      "trl": 3,
+      "include_unknown": true
+    },
+    "expected": [
+      "CH-R02",
+      "CH-R04",
+      "CH-R05",
+      "CH-D07"
+    ],
+    "acceptance": "Distinguir compatibles de no evaluables."
+  },
+  {
+    "id": "T08",
+    "name": "Sin coincidencias",
+    "input": {
+      "state": [
+        "abierto"
+      ],
+      "process": [
+        "electrorrefinacion"
+      ]
+    },
+    "expected": [],
+    "acceptance": "Vacío con opción limpiar, sin perder filtros."
+  },
+  {
+    "id": "T09",
+    "name": "Afinidad",
+    "input": {
+      "company": "EMP-D01",
+      "solution": "SOL-01",
+      "challenge": "CH-D01"
+    },
+    "expected": {
+      "rank": 8,
+      "for_you": true
+    },
+    "acceptance": "Explicar proceso, tema, cobertura y TRL; no mostrar el rank."
+  },
+  {
+    "id": "T10",
+    "name": "Cambio de solución",
+    "input": {
+      "company": "EMP-D01",
+      "solution": "SOL-02",
+      "challenge": "CH-D01"
+    },
+    "expected": {
+      "rank": 3,
+      "for_you": false
+    },
+    "acceptance": "Mostrar incompatibilidad TRL; no ocultar desafío."
+  },
+  {
+    "id": "T11",
+    "name": "Guardar y desguardar",
+    "input": {
+      "target": "CH-D03",
+      "user": "USR-01"
+    },
+    "expected": "Sin duplicados y actualizado en tarjeta, detalle y guardados",
+    "acceptance": "Persistir tras recarga."
+  },
+  {
+    "id": "T12",
+    "name": "Preparar antecedentes",
+    "input": {
+      "challenge": "CH-D03"
+    },
+    "expected": "Borrador local; submitted_at null",
+    "acceptance": "La salida al portal no cambia a enviada."
+  },
+  {
+    "id": "T13",
+    "name": "Adjuntar documento",
+    "input": {
+      "application": "APP-02"
+    },
+    "expected": "Documento adjunto local; postulación sigue documentacion_pendiente",
+    "acceptance": "No simular aprobación del evaluador."
+  },
+  {
+    "id": "T14",
+    "name": "Actualizar seguimiento externo",
+    "input": {
+      "application": "APP-03"
+    },
+    "expected": "Nuevo evento manual y fecha de actualización",
+    "acceptance": "Identificar al proveedor como fuente; sin sincronización externa."
+  },
+  {
+    "id": "T15",
+    "name": "Abrir aviso",
+    "input": {
+      "notification": "NTF-02"
+    },
+    "expected": "APP-02 y leído=true",
+    "acceptance": "Contador de no leídos pasa de 4 a 3."
+  },
+  {
+    "id": "T16",
+    "name": "Delegación a correo alternativo",
+    "input": {
+      "delegation": "DEL-01"
+    },
+    "expected": "Solo avisos públicos, sin acceso al equipo ni documentos",
+    "acceptance": "Rango inválido se rechaza."
+  },
+  {
+    "id": "T17",
+    "name": "Monedas de financiamiento",
+    "input": {
+      "order": "monto",
+      "currency": "CLP",
+      "demo": true
+    },
+    "expected": [
+      "FUND-D01",
+      "FUND-D03"
+    ],
+    "acceptance": "Orden descendente 50 M, 15 M; USD no se compara."
+  },
+  {
+    "id": "T18",
+    "name": "Resultados de fondos",
+    "input": {
+      "record_type": "resultados"
+    },
+    "expected": [
+      "FUND-R05",
+      "FUND-R08"
+    ],
+    "acceptance": "No se muestran como convocatorias abiertas."
+  },
+  {
+    "id": "T19",
+    "name": "Calendario tentativo",
+    "input": {
+      "event": "EV-R01"
+    },
+    "expected": "Enero 2027, fecha tentativa; sin día inventado",
+    "acceptance": "No activar recordatorio de hora exacta."
+  },
+  {
+    "id": "T20",
+    "name": "Evento que cruza meses",
+    "input": {
+      "event": "EV-R19"
+    },
+    "expected": "30 septiembre a 1 octubre 2027",
+    "acceptance": "Visible en ambos meses sin duplicar ID."
+  },
+  {
+    "id": "T21",
+    "name": "Caso documentado",
+    "input": {
+      "case": "CASE-02"
+    },
+    "expected": "Resultados preliminares; sin inventar ahorro económico",
+    "acceptance": "Mostrar fuente entregada."
+  },
+  {
+    "id": "T22",
+    "name": "Datos faltantes reales",
+    "input": {
+      "challenge": "CH-R04"
+    },
+    "expected": "TRL, financiamiento y duración no informados",
+    "acceptance": "No sustituir con valores de CH-D03."
+  },
+  {
+    "id": "T23",
+    "name": "Permisos del colaborador",
+    "input": {
+      "user": "USR-02"
+    },
+    "expected": "No editar plan ni miembros",
+    "acceptance": "Sí consultar postulaciones de EMP-D01 y sus propios guardados."
+  },
+  {
+    "id": "T24",
+    "name": "Cambio de organización",
+    "input": {
+      "user": "USR-03"
+    },
+    "expected": "No mostrar APP-01 ni documentos de EMP-D01",
+    "acceptance": "Mantener separados datos privados."
+  },
+  {
+    "id": "T25",
+    "name": "Conceptos",
+    "input": {
+      "views": [
+        "C01",
+        "C02"
+      ]
+    },
+    "expected": "Etiqueta Concepto para validar; interés solo local",
+    "acceptance": "Sin invitaciones, contratos ni señales atribuidas a mineras reales."
+  },
+  {
+    "id": "T26",
+    "name": "Reinicio",
+    "input": {},
+    "expected": "Restaurar semilla y perfil inicial",
+    "acceptance": "Borrar cambios locales de demo tras confirmación."
+  },
+  {
+    "id": "T27",
+    "name": "Mes sin registros en agenda",
+    "input": {
+      "month": "2027-02"
+    },
+    "expected": "Sin eventos registrados para los filtros elegidos",
+    "acceptance": "No afirmar que no existan eventos en el mercado."
+  },
+  {
+    "id": "T28",
+    "name": "Buscar sin tildes",
+    "input": {
+      "state": "todos",
+      "query": "electrorrefinacion"
+    },
+    "expected": [
+      "CH-R05",
+      "CH-D06"
+    ],
+    "acceptance": "Coincidencia insensible a acentos."
+  },
+  {
+    "id": "T29",
+    "name": "Proceso fuente versus postulación",
+    "input": {
+      "application": "APP-01"
+    },
+    "expected": "Mostrar eventos enviados/evaluación y próximas etapas como previstas",
+    "acceptance": "No construir hechos a partir de duraciones del flujo."
+  },
+  {
+    "id": "T30",
+    "name": "Prueba finalizada",
+    "input": {
+      "subscription": "SUB-01",
+      "scenario": "trial_ended"
+    },
+    "expected": "Precio por definir; interés local; historial accesible",
+    "acceptance": "No pedir tarjeta ni ejecutar cobro."
+  }
+]

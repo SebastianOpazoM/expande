@@ -1,0 +1,264 @@
+{
+  "description": "Propuesta editorial para la biblioteca de formación de EXPANDE. Las duraciones y capítulos de las once lecciones son ilustrativos; las referencias no implican autoría, patrocinio ni acreditación institucional.",
+  "sources": [
+    {
+      "id": "SRC-LEARN-CNP",
+      "title": "Centro Nacional de Pilotaje — Servicios de pilotaje y validación",
+      "url": "https://pilotaje.cl/servicios/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-CNP-CIRCULO",
+      "title": "Centro Nacional de Pilotaje — Círculo del Pilotaje",
+      "url": "https://pilotaje.cl/circulo-del-pilotaje/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-NASA",
+      "title": "NASA — Technology Readiness Levels",
+      "url": "https://www.nasa.gov/directorates/somd/space-communications-navigation-program/technology-readiness-levels/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-WIPO",
+      "title": "OMPI — Consideraciones fundamentales de propiedad intelectual para pequeñas empresas",
+      "url": "https://www.wipo.int/es/web/wipo-magazine/articles/articles/key-ip-considerations-for-smaller-enterprises-42093",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-OPC",
+      "title": "OPC Foundation — OPC UA for Mining, General",
+      "url": "https://reference.opcfoundation.org/specs/OPC-40560",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-NIST",
+      "title": "NIST SP 800-82 Rev. 3 — Guide to Operational Technology Security",
+      "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-HUELLA",
+      "title": "Ministerio del Medio Ambiente — Preguntas frecuentes de HuellaChile",
+      "url": "https://huellachile.mma.gob.cl/preguntas-frecuentes/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-COCHILCO",
+      "title": "Cochilco — Estudios de sustentabilidad, agua y energía",
+      "url": "https://www.cochilco.cl/web/sustentabilidad/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-OPEN-CODELCO",
+      "title": "Open Codelco — Innovación abierta en minería",
+      "url": "https://www.opencodelco.cl/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-LEARN-CODELCO-PROVEEDORES",
+      "title": "Codelco — Información para proveedores",
+      "url": "https://www.codelco.com/proveedores-generales",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "LEARN-R01",
+      "preserveExisting": true,
+      "media_url": "/videos/expande-masterclass-resumen-jornada.mp4",
+      "duration_seconds": 48,
+      "duration_status": "medida_archivo_local",
+      "thumbnail_url": "/images/formacion/learn-r01.jpg",
+      "thumbnail_alt": "Ilustración de un auditorio con una presentación sobre tecnología minera"
+    },
+    {
+      "id": "LEARN-D01",
+      "title": "Preparar una propuesta técnica de piloto",
+      "format": "capsula",
+      "minutes": 8,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-CNP",
+      "description": "Convierte un problema operacional en una propuesta de prueba clara: alcance, condiciones de operación, entregables y responsabilidades. Al finalizar podrás estructurar una ficha de piloto para conversar con el área usuaria.",
+      "chapters": [
+        "Problema y alcance: describe el proceso afectado, la situación actual y el resultado que se busca, distinguiendo necesidades del cliente de hipótesis de tu solución.",
+        "Diseño de la prueba: indica qué se probará, dónde, durante cuánto tiempo y qué recursos, datos e interfaces necesita el piloto.",
+        "Entregables y responsabilidades: prepara una ficha con hitos, responsables, evidencia esperada y criterios que deberán acordarse antes de comenzar."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d01.jpg",
+      "thumbnail_alt": "Equipo de prueba industrial junto a una lista de verificación de propuesta"
+    },
+    {
+      "id": "LEARN-D02",
+      "title": "Diseñar evidencia para escalar en minería",
+      "format": "masterclass",
+      "minutes": 30,
+      "level": "intermedio",
+      "source_id": "SRC-LEARN-CNP",
+      "reference_source_ids": ["SRC-LEARN-CNP-CIRCULO"],
+      "description": "Organiza resultados de un piloto para sustentar una decisión de adopción. Trabaja con una línea base, condiciones comparables y un informe que haga visibles tanto los beneficios como las limitaciones de la evidencia.",
+      "chapters": [
+        "Línea base y trazabilidad: registra el desempeño anterior, las condiciones operacionales y la procedencia de los datos para evitar comparaciones que mezclen escenarios distintos.",
+        "Resultados repetibles: documenta el protocolo, los indicadores, la variabilidad y las incidencias, separando observaciones comprobadas de estimaciones de escalamiento.",
+        "Decisión de adopción: reúne resultados, restricciones de integración y necesidades de mantenimiento en un expediente que permita acordar los próximos pasos con operaciones."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d02.jpg",
+      "thumbnail_alt": "Instalación piloto junto a gráficos de comparación e informes de evidencia"
+    },
+    {
+      "id": "LEARN-D03",
+      "title": "TRL: qué evidencia respalda tu tecnología",
+      "format": "capsula",
+      "minutes": 8,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-NASA",
+      "description": "Comprende la escala de madurez tecnológica y relaciona cada afirmación con evidencia disponible. El ejemplo minero adapta el concepto de TRL sin reemplazar los criterios específicos que pueda exigir una convocatoria.",
+      "chapters": [
+        "Madurez tecnológica: recorre la progresión desde principios y pruebas de concepto hasta sistemas demostrados y utilizados en operación, sin confundir TRL con ventas o certificaciones.",
+        "Entorno y evidencia: distingue pruebas de laboratorio, demostraciones en entornos relevantes y resultados operacionales; anota qué condiciones representan y cuáles siguen sin probarse.",
+        "Lista de respaldo: vincula el nivel declarado con protocolos, resultados y limitaciones. Identifica la siguiente prueba necesaria antes de prometer un nivel superior."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d03.jpg",
+      "thumbnail_alt": "Prototipo de sensor minero que avanza por distintas etapas de desarrollo"
+    },
+    {
+      "id": "LEARN-D04",
+      "title": "Del beneficio técnico al caso de negocio",
+      "format": "capsula",
+      "minutes": 10,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-CNP-CIRCULO",
+      "description": "Explica el valor de una solución en términos que conecten con las prioridades del cliente. Construye un caso ilustrativo con costos, beneficios y supuestos explícitos, sin presentar proyecciones como ahorros garantizados.",
+      "chapters": [
+        "Del indicador al valor: relaciona una mejora técnica con disponibilidad, consumo, calidad o exposición operacional, e identifica quién utiliza ese resultado para decidir.",
+        "Costos y supuestos: incluye inversión, integración, operación y mantenimiento; separa datos observados de hipótesis y evita contar dos veces el mismo beneficio.",
+        "Sensibilidad del caso: compara escenarios conservador, central y favorable variando los supuestos más inciertos, y presenta qué datos faltan para confirmar el resultado."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d04.jpg",
+      "thumbnail_alt": "Bomba minera junto a bloques de costos y un gráfico de creación de valor"
+    },
+    {
+      "id": "LEARN-D05",
+      "title": "Protege tu innovación antes de presentarla",
+      "format": "capsula",
+      "minutes": 10,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-WIPO",
+      "description": "Prepara una primera conversación comercial sin exponer innecesariamente conocimientos sensibles. Revisa conceptos de propiedad intelectual y confidencialidad como orientación introductoria, no como asesoría jurídica.",
+      "chapters": [
+        "Mapa de activos: identifica invenciones, software, diseños, marcas, datos y conocimientos de implementación; documenta quién los desarrolló y qué acuerdos existen.",
+        "Patentes y secretos comerciales: compara qué información se divulga, qué puede mantenerse confidencial y qué preguntas conviene revisar con asesoría especializada.",
+        "Presentación inicial: separa una versión pública de la propuesta de sus anexos sensibles y define qué información compartir, con quién y bajo qué acuerdos."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d05.jpg",
+      "thumbnail_alt": "Plano de una invención industrial protegido por un escudo y un candado"
+    },
+    {
+      "id": "LEARN-D06",
+      "title": "Datos industriales: integrar sensores y plataformas",
+      "format": "capsula",
+      "minutes": 10,
+      "level": "intermedio",
+      "source_id": "SRC-LEARN-OPC",
+      "description": "Define qué necesita una solución para intercambiar datos con equipos y plataformas de una faena. Usa la interoperabilidad y los modelos de información de OPC UA como referencia para preparar preguntas de integración.",
+      "chapters": [
+        "Mapa del dato: identifica sensores, controladores, plataformas y usuarios; especifica variables, unidades, frecuencia, marcas de tiempo y calidad requerida.",
+        "Interoperabilidad: distingue conectividad de significado compartido. Explora por qué los modelos de información ayudan a interpretar datos de equipos de distintos proveedores.",
+        "Lista de integración: acuerda interfaces, permisos, disponibilidad y responsables con el cliente antes del piloto, y define cómo probar el intercambio sin intervenir sistemas productivos."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d06.jpg",
+      "thumbnail_alt": "Sensores y una pasarela industrial conectados por flujos de datos"
+    },
+    {
+      "id": "LEARN-D07",
+      "title": "Ciberseguridad básica para soluciones conectadas",
+      "format": "capsula",
+      "minutes": 12,
+      "level": "intermedio",
+      "source_id": "SRC-LEARN-NIST",
+      "description": "Prepara la conversación de ciberseguridad de una solución conectada antes de llevarla a terreno. Reconoce activos, límites de acceso y dependencias de continuidad operacional sin realizar cambios sobre una red real.",
+      "chapters": [
+        "Activos y dependencias: identifica equipos, software, conexiones remotas y datos, considerando el impacto que una indisponibilidad puede tener sobre seguridad y operación.",
+        "Acceso y límites de red: revisa conceptos de mínimo privilegio, segmentación y gestión de accesos; las decisiones concretas deben acordarse con los responsables OT de la faena.",
+        "Preguntas antes del piloto: prepara un listado sobre soporte remoto, actualizaciones, respaldo, registro de eventos y respuesta a incidentes para su revisión por el cliente."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d07.jpg",
+      "thumbnail_alt": "Red industrial segmentada con controladores protegidos por escudos"
+    },
+    {
+      "id": "LEARN-D08",
+      "title": "Huella de carbono: primeros pasos para proveedores",
+      "format": "capsula",
+      "minutes": 12,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-HUELLA",
+      "description": "Organiza la información necesaria para iniciar un inventario de emisiones de una empresa proveedora. Aprende a definir el período, los límites y la evidencia, tomando como referencia el programa HuellaChile.",
+      "chapters": [
+        "Período y límites: define qué instalaciones y actividades incluye el ejercicio, diferenciando un inventario organizacional de una estimación asociada a un producto o proyecto.",
+        "Datos de actividad: identifica consumos de combustible, electricidad y otras fuentes pertinentes; registra unidades, responsables y documentos de respaldo.",
+        "Evidencia y revisión: prepara una carpeta trazable de datos y supuestos. Distingue un cálculo preliminar de una verificación y de los reconocimientos formales del programa."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d08.jpg",
+      "thumbnail_alt": "Fábrica con medidores energéticos e indicadores de emisiones"
+    },
+    {
+      "id": "LEARN-D09",
+      "title": "Agua en minería: medir antes de prometer ahorros",
+      "format": "capsula",
+      "minutes": 10,
+      "level": "inicial",
+      "source_id": "SRC-LEARN-COCHILCO",
+      "description": "Formula una propuesta de eficiencia hídrica con una línea base y límites de medición claros. Usa los estudios de Cochilco para contextualizar fuentes y usos del agua, evitando generalizar resultados entre faenas.",
+      "chapters": [
+        "Fuentes y circuitos: distingue agua continental, agua de mar y recirculación; ubica el proceso donde una solución podría modificar el balance hídrico.",
+        "Línea base comparable: define puntos de medición, período, producción y condiciones operacionales. Diferencia una reducción de extracción de un cambio en la recirculación.",
+        "Comunicar el ahorro: presenta resultados normalizados, incertidumbres y supuestos de escalamiento; identifica qué evidencia permitiría validar la mejora con el cliente."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d09.jpg",
+      "thumbnail_alt": "Circuito de procesamiento mineral con estanques y recirculación de agua"
+    },
+    {
+      "id": "LEARN-D10",
+      "title": "Diseñar un piloto con KPI y criterios de éxito",
+      "format": "masterclass",
+      "minutes": 35,
+      "level": "intermedio",
+      "source_id": "SRC-LEARN-CNP",
+      "description": "Desarrolla un protocolo ilustrativo para una prueba tecnológica en minería. Conecta indicadores medibles, recursos, riesgos y criterios de decisión que deberán validarse con los responsables de la operación.",
+      "chapters": [
+        "Protocolo y condiciones: define la hipótesis, el sitio, las restricciones, la secuencia de pruebas y las responsabilidades; especifica qué condiciones invalidarían una comparación.",
+        "KPI y seguridad: acuerda indicadores, línea base, calidad de los datos y umbrales de aceptación. Identifica las revisiones de seguridad y autorizaciones que corresponden a la faena.",
+        "Informe y decisión: establece cómo registrar incidencias, cuándo detener una prueba y cómo decidir entre repetir, ajustar, escalar o cerrar según la evidencia obtenida."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d10.jpg",
+      "thumbnail_alt": "Sitio de prueba controlado con barreras de seguridad y tablero de indicadores"
+    },
+    {
+      "id": "LEARN-D11",
+      "title": "De la innovación a la conversación comercial",
+      "format": "masterclass",
+      "minutes": 30,
+      "level": "intermedio",
+      "source_id": "SRC-LEARN-OPEN-CODELCO",
+      "reference_source_ids": ["SRC-LEARN-CODELCO-PROVEEDORES"],
+      "description": "Prepara el paso desde una oportunidad de innovación hacia una conversación comercial informada. Distingue los canales de innovación, la validación técnica y los procesos de abastecimiento, sin asumir que un piloto garantiza una compra.",
+      "chapters": [
+        "Rutas de entrada: identifica desafíos abiertos, canales de recepción de innovaciones y contactos de abastecimiento; revisa los requisitos de cada proceso en su fuente oficial.",
+        "Carpeta del proveedor: organiza capacidades, referencias, propuesta de valor y antecedentes de implementación, separando información técnica de condiciones comerciales.",
+        "Próximo paso acordado: presenta el estado de validación, las dependencias y el alcance de una eventual oferta. Diferencia interés, evaluación, registro de proveedor y adjudicación."
+      ],
+      "thumbnail_url": "/images/formacion/learn-d11.jpg",
+      "thumbnail_alt": "Equipos de proveedores y operaciones revisando una propuesta y una maqueta industrial"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+EXPANDE
+Especificación del nuevo mockup funcional móvil
+Versión 1.0 | 6 de noviembre de 2026 | Etapa de validación
+
+1. Misión del agente
+
+Construye desde cero una app móvil navegable para proveedores de la minería. Expande, programa de Fundación Chile, conecta necesidades de compañías mineras con soluciones de proveedores y startups. La app debe ayudar a identificar oportunidades pertinentes, decidir si vale la pena postular, organizar el seguimiento y recibir avisos útiles. Hublabs desarrolla el mockup para validar valor percibido y disposición a pagar antes de decidir un MVP.
+
+Este documento es autosuficiente. No necesitas el mockup anterior ni los documentos de discovery. Usa también 02_modelos_y_datos.txt, 03_datos_mockup.json, 04_esquema_datos.json y 05_pruebas_aceptacion.json. Los archivos PDF contienen las mismas instrucciones en formato de lectura.
+
+El resultado es una demostración funcional móvil, no una aplicación productiva. Implementa navegación, búsqueda, filtros, ordenación, formularios, guardados, preferencias y cambios locales de estado. Usa los registros del JSON como única base compartida: las tarjetas, detalles, resultados, avisos y contadores deben derivarse de esos mismos datos. No generes textos diferentes para el mismo registro en cada pantalla.
+
+2. Alcance cerrado de construcción
+
+Solo app móvil para proveedores. No construir backoffice, dashboard editorial, portal de mineras ni versión web de escritorio. Un administrador de empresa es un usuario proveedor que gestiona su organización; no es un administrador de Expande.
+
+Prioridad P0: registro simple; empresa y soluciones; intereses por proceso minero; catálogo de desafíos de Expande y externos; detalle con requisitos; recomendaciones explicables; seguimiento propio; alertas por tema, estado, canal y frecuencia; equipo y delegación temporal de avisos.
+
+Prioridad P1: alianzas y convenios; concursos y financiamiento; calendario; casos de innovación; noticias y tendencias; guardados; formación secundaria; propuesta de suscripción por empresa. P0 y P1 forman parte de la entrega. Prioridad define orden de implementación, no permiso para omitir secciones.
+
+Conceptos separados: búsqueda de socios para consorcios y señales débiles. Deben ser vistas navegables para discutir interés, claramente identificadas como concepto, sin simular un servicio activo ni enviar solicitudes. No se desarrolla una vitrina abierta de proyectos en esta entrega.
+
+Fuera de alcance: postulación formal dentro de la app, evaluación y adjudicación, pagos reales, contratos, integración ERP, sincronización con portales de terceros, scraping, motor IA productivo, acreditación TRL, chat con mineras y retroalimentación individual inventada. La postulación formal corresponde al portal de origen. El mockup puede preparar antecedentes y simular el paso hacia ese portal.
+
+3. Personas y contexto de demostración
+
+La cuenta representa una empresa y puede tener varios usuarios. La primera persona crea la organización y queda como administradora. Cada integrante tiene nombre, correo, cargo y rol. La ubicación de la empresa y la zona donde puede prestar servicios son datos diferentes. El tipo de empresa (startup, pyme, gran empresa) y su tamaño son campos separados. No convertir automáticamente toda microempresa en startup.
+
+Perfil inicial: Andrea Demo, administradora de SensorAndes Demo, una pyme con soluciones de sensorización, cobertura en Coquimbo y Antofagasta y experiencia en espesamiento y transporte de concentrado. Diego Demo es colaborador de la misma empresa. Hay otros dos perfiles para contrastar personalización: BioAgua Demo, startup, y Operaciones Integradas Demo, gran empresa.
+
+Incluye un selector de escenario de demostración, accesible desde la bienvenida y Cuenta. No forma parte del producto comercial. Permite elegir perfil, reiniciar datos locales y alternar estados de carga/error/vacío. Nunca mezclar los datos privados de empresas distintas al cambiar de escenario. Los seis registros reales de proveedores sirven de referencia de estructura; no permiten iniciar sesión como personas reales.
+
+Reloj de la demo: 6 de noviembre de 2026, 12:00, America/Santiago. Cálculos de próximos cierres y recordatorios usan esa fecha fija, no el reloj del dispositivo. Mostrar el aviso discreto «Modo demostración». Cada registro inventado muestra además «Ejemplo ficticio». Los documentos históricos conservan su condición y sus fechas originales.
+
+4. Navegación y estructura móvil
+
+Barra inferior fija con cinco destinos: Inicio, Desafíos, Postulaciones, Explorar y Cuenta. Conservar selección y posición al volver de un detalle. Campana de avisos en la cabecera de los destinos principales. Guardados se abre desde Cuenta y desde un acceso en Inicio.
+
+Mapa de rutas:
+/bienvenida → /acceso → /registro → /onboarding/empresa → /onboarding/intereses → /inicio
+/desafios → /desafios/:id → /desafios/:id/preparar o /desafios/:id/preguntas
+/postulaciones → /postulaciones/:id → /postulaciones/:id/documentos
+/explorar → /alianzas | /financiamiento | /calendario | /innovacion | /formacion
+/innovacion → pestañas Casos, Noticias, Tendencias
+/cuenta → /empresa | /soluciones | /equipo | /preferencias | /guardados | /plan
+/avisos → detalle del objeto relacionado
+/conceptos/socios y /conceptos/senales → acceso desde Explorar, bloque «Ideas para explorar»
+
+Las rutas son identificadores de implementación; no se muestran en la interfaz. Los conceptos no ocupan lugares de la barra principal. Aprende/Formación no ocupa una pestaña inferior.
+
+5. Diseño y componentes
+
+Diseñar primero a 390 × 844 px y comprobar a 360 × 800 y 430 × 932. Respetar áreas seguras, teclado y barra inferior; evitar botones cubiertos. Ancho fluido en móvil, sin diseñar un dashboard de escritorio. La vista en navegador de Figma Make debe parecer una app móvil.
+
+Estilo de media a alta fidelidad, sobrio y legible. Usar fondo claro, texto oscuro y un color de acento consistente. Si no hay activos de marca aprobados, usar marca textual «Expande» y paleta provisional azul profundo #133B50, acento naranja #C64A12 y fondo #F6F8FA. No afirmar que esta paleta constituye la identidad oficial ni reproducir logos aproximados. Tipografía sans serif disponible, cuerpo de 16 px, metadatos no menores de 12 px. Controles táctiles de al menos 44 × 44 px; contraste comprobable, estados con texto además de color y foco visible.
+
+Componentes reutilizables: cabecera, barra inferior, tarjeta de desafío, etiqueta de origen, estado y dato desconocido, botón de guardar, selector de solución, chips de proceso y tema, buscador, hoja de filtros, menú de orden, acordeón, línea de tiempo, tarjeta de contenido por tipo, lista de avisos, formulario, confirmación, estado vacío y mensaje de error. Las etiquetas de origen y demo deben ser legibles sin dominar la tarjeta.
+
+Plantilla de detalle: encabezado breve, resumen para decidir, información estructurada, contenido ampliado, fuentes/documentos y acción contextual. No reutilizar una ficha de artículo genérica para fondos, eventos o desafíos: cada tipo requiere campos propios.
+
+6. Vistas de acceso y configuración
+
+V01 Bienvenida. Mensaje: «Encuentra desafíos mineros relevantes para tu empresa». Beneficios: oportunidades reunidas, información para decidir y seguimiento con avisos. Acciones «Crear cuenta», «Ingresar» y «Explorar demo». No prometer ganar negocios ni acceso directo a decisores.
+
+V02 Acceso y registro. Nombre, correo, cargo, nombre de empresa y aceptación de condiciones de demostración. Botones Google, Microsoft y Apple abren una confirmación de acceso simulado y cargan el perfil demo; no pedir credenciales reales. Validar campos y formato del correo en línea. La acción de registro avanza a V03. «Ya tengo cuenta» permite acceder al perfil demo. Recuperación de acceso muestra confirmación simulada sin enviar correo.
+
+V03 Empresa. Solicitar tipo de empresa, tamaño, país/región/ciudad de origen y países/regiones de cobertura. Mostrar claramente «Dónde está tu empresa» y «Dónde puedes prestar servicios». Captura progresiva; no exigir RUT, certificaciones, contactos adicionales o historial en este paso. Opción «Completar después» guarda un perfil parcial. No inventar cobertura a partir de la ubicación de una oficina.
+
+V04 Intereses y avisos. Selector jerárquico de etapas y procesos; temas transversales independientes. Permitir buscar «correa», «rastras», «polvo» o «SIAD». Polvo debe ser un subtema visible de Sustentabilidad. Elegir tipos de contenido, canal push/correo y frecuencia inmediata/diaria/semanal. Permiso de push mediante diálogo simulado con opciones permitir y omitir. Guardar produce un resumen de preferencias editable. Si omite, Inicio muestra sugerencias generales y un acceso para personalizar.
+
+7. Vistas del núcleo de valor
+
+V05 Inicio. Orden: saludo y empresa; desafío recomendado; resumen de postulaciones con acción pendiente; nuevos desafíos; alianzas y financiamiento relevantes; próximos eventos; casos/noticias/tendencias; formación al final. Mostrar un máximo de dos tarjetas por bloque y «Ver todos». En startup dar mayor presencia a financiamiento; en gran empresa destacar casos, sin retirar ningún módulo. Si no hay desafíos pertinentes, mostrar todos los abiertos y ofrecer ajustar intereses. No llenar el inicio de métricas de mercado ni estadísticas de ventas.
+
+V06 Catálogo de desafíos. Buscador, pestañas «Todos», «Expande» y «Mercado», contador de resultados, filtros y orden. Estado «Abiertos» preseleccionado. Orden inicial «Próximos a cerrar». «Para ti» es una marca de afinidad, nunca una barrera de acceso. Los registros cerrados o por confirmar se encuentran cambiando el filtro de estado. Añadir acceso «Fuentes del mercado» con el directorio de nueve plataformas; una fuente no debe presentarse como un desafío individual.
+
+Tarjeta de desafío: título, mandante, origen, proceso, estado, cierre con fecha/hora/zona cuando exista, TRL, financiamiento y duración del piloto. Si falta un dato, mostrar «No informado»; si falta hora, «Hora no informada». En fechas sin año confirmado no fabricar un timestamp. Incluir guardar y «Ver desafío». No usar las semanas de evaluación del proceso como duración del piloto.
+
+V07 Filtros y orden. Filtros por estado, origen, proceso, tema, país de la oportunidad, mandante, TRL compatible con una solución y responsable de financiar el piloto. Resumen de chips activos, «Limpiar», «Aplicar (n)» y opción incluir datos no informados. Una selección dentro de un filtro se combina con OR; dimensiones diferentes se combinan con AND. Mostrar cantidad real y un estado sin resultados con opción de limpiar filtros. Preservar búsqueda y filtros al regresar de un detalle.
+
+V08 Detalle de desafío. En la primera pantalla: título, origen, estado, cierre y cuatro datos de decisión: financiamiento, TRL, duración e interlocutor/área. Después: requisitos obligatorios y exclusiones, problema, objetivo, contexto operativo, quién puede postular, etapas previstas, preguntas públicas, documentos y fuente. Diferenciar «Etapas previstas del desafío» del historial de una postulación. Explicar quién financia y qué monto se conoce; no asumir gratuidad cuando falten datos.
+
+Acciones: «Preparar antecedentes», «Ir al portal de postulación», «Seguir desafío» y «Guardar». Preparar antecedentes no envía una postulación. Un desafío cerrado no ofrece postular y muestra «Convocatoria cerrada»; uno por confirmar ofrece «Consultar fuente». En desafíos reales el portal es el enlace extraído de la ficha y se abre externamente con aviso de salida. En desafíos ficticios la salida abre una pantalla local «Portal de demostración» y permite volver; no usar un portal real para simular un envío. Una salida al portal nunca crea automáticamente una postulación enviada.
+
+V09 Afinidad y preparación. Elegir una solución de la empresa. Mostrar procesos coincidentes, temas afines, cobertura y coincidencia de TRL como razones separadas. Si un criterio falta, indicar «Falta información»; si hay incompatibilidad, mostrarla sin bloquear la lectura ni el acceso al portal. Prellenar empresa, solución y equipo; permitir editar una copia para ese desafío y guardar borrador. El cambio no altera el perfil maestro hasta elegir expresamente «Actualizar perfil de empresa». No afirmar que Nextpande recibirá esa información automáticamente.
+
+V10 Preguntas públicas. Pregunta, respuesta, fecha y estado. Preguntas sin respuesta se distinguen. En los desafíos reales de la entrega: «No hay preguntas públicas disponibles en este conjunto de datos». Esto no afirma que nunca hayan existido. En desafíos demo se permite escribir una pregunta y verla como «Pendiente de respuesta» local, con aviso «No se envió al mandante». No inventar respuestas al publicar una nueva pregunta.
+
+V11 Mis postulaciones. Lista exclusiva de la empresa activa. Pestañas «En curso», «Borradores» e «Historial»; búsqueda por desafío/mandante y filtro por estado/origen. Mostrar desafío, etapa, última actualización y responsable. Señalar «Estado demo Expande» o «Actualizado por tu empresa». Tener una acción «Registrar postulación externa» que solicita desafío, fecha, estado y nota; dejar explícita la carga manual. «Seguir» un desafío no equivale a postular.
+
+V12 Detalle de postulación. Cabecera con desafío, estado operativo y origen del dato; línea de tiempo de eventos efectivos; equipo y solución asociados; documentos; próximos pasos; enlace al portal. Etapas de negocio disponibles: Scouting, Pertinencia, Prospección, Selección compañía, Demo Day, Piloto, Escalamiento y Cierre. Solo los eventos existentes aparecen como realizados; las etapas siguientes se muestran como previstas. Puede cerrarse sin recorrer todas las etapas.
+
+Estados de interfaz: Preparación, Enviada, En revisión, En evaluación, Documentación pendiente y Resultado. El estado de interfaz y la etapa de negocio son campos distintos: documentación pendiente puede ocurrir durante Pertinencia o Prospección. Resultado tiene valores Avanza/No avanza/Pendiente. «Avanza» no significa contrato adjudicado, venta ni piloto exitoso. No presentar montos de piloto como ingresos obtenidos.
+
+El historial no incluye motivos de rechazo si no existe feedback público o autorizado. Mostrar «No hay retroalimentación disponible». El documento de flujo contiene motivos generales; no asignarlos automáticamente a un proveedor. No hay feedback real individual en la demo.
+
+V13 Documentos y actualización manual. Archivo de ejemplo, nombre, tipo, tamaño y fecha. Simular adjuntar/quitar un documento sin transmitir archivos. Aceptar PDF/DOCX/XLSX hasta 10 MB como regla de demostración; mostrar error de tipo/tamaño y permitir corregir. Adjuntar un archivo cambia su estado a «Adjunto local» y no mueve automáticamente la postulación a evaluación. Solo las postulaciones de origen manual permiten al proveedor cambiar el estado; registrar evento y fecha, sin atribuirlo a la plataforma externa. Los estados demo Expande son de lectura.
+
+8. Explorar y sus fichas especializadas
+
+V14 Explorar. Seis accesos en este orden: Alianzas y convenios, Concursos y financiamiento, Calendario de eventos, Noticias y casos de innovación, Tendencias, Formación. Tendencias abre su pestaña en Innovación. Al final, «Ideas para explorar» conduce a los dos conceptos separados. Ningún contenido secundario debe desplazar el catálogo de desafíos de la navegación principal.
+
+V15 Alianzas y convenios. Listado y detalle con entidad, descripción, beneficio concreto, destinatarios, vigencia y pasos para acceder. Filtrar por tipo de beneficio y segmento; guardar. La ficha real DeCARBMINE se muestra como «Iniciativa colaborativa», con beneficio y acceso por confirmar. No inferir convenios vigentes a partir de logos. Los tres convenios demo tienen un flujo local «Solicitar acceso» → resumen → confirmación simulada; no contacta instituciones.
+
+V16 Concursos y financiamiento. Lista y detalle con instrumento, convocatoria, entidad, elegibilidad, región, apertura, cierre, monto y moneda, cofinanciamiento y bases. Separar pestañas «Convocatorias» e «Hitos y resultados». No convertir una fecha de anuncio de ganadores en cierre de postulación. Filtros por segmento, región, estado, moneda y tipo. Orden por cierre, más recientes y monto máximo dentro de una moneda. Los registros reales incompletos muestran «Información por confirmar» y no ofrecen una postulación validada. Los fondos demo permiten filtros y fichas completas. «Expande (emprendimiento)» no se identifica como programa de Fundación Chile.
+
+V17 Calendario y evento. Vista inicial agenda mensual; cambiar a calendario y navegar meses. Filtros de categoría, país/ciudad y modalidad. Fechas exactas se ubican en días; eventos con solo mes van al bloque «Durante este mes, fecha tentativa»; sin mes, «Fecha por confirmar». Evento: nombre, fecha/rango, hora, zona, sede, modalidad, organizador, público, costo, fuente y CTA. Distinguir costo cero de desconocido. «Recordarme» solo funciona con fecha precisa; sin hora ofrece un recordatorio de día completo. «Añadir a calendario» abre una previsualización local, sin alegar sincronización con Google o Microsoft. Inscripción demo confirma localmente; un evento real sin URL no tiene botón de inscripción operativo.
+
+V18 Innovación. Pestañas Casos, Noticias y Tendencias; búsqueda y filtros por categoría/país cuando haya datos. Caso: problema, solución, desarrollador, mandante/faena, resultados reportados, fecha y fuente. Noticia: titular, resumen, fecha y enlace. Tendencia: tesis editorial, evidencia, implicación para el proveedor y desafíos relacionados. No presentar una noticia como evidencia de que una solución está certificada. Los resultados cuantificados se atribuyen a la fuente, y los preliminares conservan esa condición.
+
+V19 Formación. Catálogo secundario con formatos resumen de jornada, cápsula y masterclass; nivel y duración. Detalle con descripción, autor, capítulos cuando existan, material y progreso. El video real es un resumen de jornada de aproximadamente 48 segundos; no convertirlo en un curso completo. Si el video de Drive no reproduce embebido, ofrecer «Abrir video de referencia». Las dos lecciones demo usan una interfaz de reproducción simulada con progreso y contenido explicativo, nunca un video inexistente ni certificaciones.
+
+9. Avisos, empresa y suscripción
+
+V20 Centro de avisos. Lista leídos/no leídos agrupada por fecha; abrir dirige al desafío, postulación, fondo, evento o contenido correcto. Marcar leído solo reduce el contador de ese usuario. «Marcar todos como leídos» funciona. Opciones de filtrar avisos y configurar preferencias. No enviar push, correos o invitaciones reales.
+
+V21 Preferencias. Reglas independientes por contenido, proceso/tema, evento de estado, canal y frecuencia. Permitir agregar, editar, pausar y eliminar una regla con confirmación. Los temas y procesos seleccionados son visibles. Cambiar una frecuencia no elimina los temas. Preferencias por usuario; no cambiarlas a todos los integrantes de la empresa. Estado push denegado ofrece instrucciones o simulación de habilitación y conserva el correo como alternativa.
+
+V22 Cuenta y perfil de empresa. Nombre, cargo, empresa, tipo/tamaño, ubicación/cobertura, capacidades, certificaciones declaradas y accesos a soluciones/equipo/guardados/plan. Indicador de completitud basado en campos efectivamente cargados, no puntaje de calidad. El perfil puede guardarse parcial. Certificaciones necesitan nombre, entidad emisora y evidencia; si no existen, «Sin certificaciones informadas». No presentar sellos de validación Expande.
+
+V23 Soluciones y equipo. Una empresa tiene varias soluciones con TRL por solución, descripción, procesos y evidencia. Equipo reutilizable vinculado a miembros. Administrador puede invitar un correo demo, cambiar rol y retirar miembro con confirmación; no puede quitar al último administrador. Colaborador puede consultar equipo y editar su perfil personal, pero no administrar miembros o plan. Una invitación queda «Pendiente» y no envía correo. Para la demo usar direcciones example.com.
+
+V24 Delegación de avisos. Destinatario, fecha inicial/final y categorías. Validar correo y rango. Si es integrante autorizado, puede recibir avisos con acceso según su rol; si es correo alternativo, solo avisos públicos sin documentos, resultado individual ni enlace privado. Delegación no concede acceso a la cuenta. Mostrar periodo activo/programado/finalizado y botón cancelar. Ejemplo: vacaciones del 10 al 20 de noviembre, avisos de desafíos al correo alternativo.
+
+V25 Guardados. Una lista por usuario, con filtros por tipo. Al quitar un guardado se actualizan inmediatamente tarjeta, detalle y lista. Seguir desafíos y guardarlos son acciones distintas: seguir habilita avisos asociados; guardar solo archiva un acceso. Estado vacío con botón explorar desafíos.
+
+V26 Plan de empresa. Mostrar acceso de prueba, días restantes y usuarios de la organización. Para construir la demo usar 30 días de prueba y tres plazas de ejemplo; no presentarlos como condiciones comerciales aprobadas. Precio «Por definir». No inventar UF, descuentos, prueba con cobro automático ni límite contractual de asientos. CTA «Me interesa continuar» registra interés local. Administrador ve opciones de plan; colaborador ve «Contacta al administrador de tu empresa». Variante de estado «Prueba finalizada» muestra la propuesta de valor y permite consultar guardados e historial. No poner desafíos públicos tras un paywall como único motivo para pagar.
+
+10. Conceptos de validación
+
+C01 Socios y consorcios. Ficha de necesidad de capacidades complementarias y posibles empresas demo. Explicar capacidades que se complementan, solución y desafío relacionado. «Me interesa esta idea» registra una reacción local; no invita a otros usuarios ni crea un consorcio real. Etiqueta persistente «Concepto para validar». No puntajes de probabilidad de ganar.
+
+C02 Señales débiles. Dos tarjetas ficticias con observación, fecha, evidencia disponible, nivel de confianza, horizonte e implicación. Sin nombres de mineras reales ni afirmaciones de información reservada. No son noticias ni convocatorias. La demo indica «Ejemplo editorial ficticio». En un producto posterior, una señal que nombre compañías exige autorización de publicación y fuentes trazables; no construir ese backoffice.
+
+11. Reglas exactas de interacción y datos
+
+Búsqueda de desafíos: insensible a mayúsculas y tildes; buscar título, resumen, problema, mandante, faena, procesos y sinónimos. Dividir la consulta en palabras, exigir todas en el texto indexado. Los alias SIAD, rastras, correa y voladura deben expandirse al proceso correspondiente. Búsqueda dentro del estado/origen seleccionado; el contador refleja esa restricción.
+
+Orden por cierre: fecha/hora ascendente, desconocidos al final. Empates por título y luego ID. Más recientes: published_at descendente; desconocidos al final. No usar fecha de carga en Drive como fecha de publicación. Afinidad: usar el procedimiento del documento de modelos, sin porcentajes ni etiquetas «IA validada». Cambiar solución recalcula las razones y el orden. Ninguna recomendación oculta resultados del catálogo.
+
+Filtros con nulos: si el usuario filtra TRL o financiamiento, excluir desconocidos salvo que active «Incluir no informado». Sin filtro, incluirlos. Si solo se informa TRL mínimo, evaluar contra ese mínimo; no mostrar un máximo no documentado. La cobertura de la empresa no equivale al país de la faena ni a elegibilidad de un fondo.
+
+Temporalidad: comparar timestamps en UTC y mostrar zona de la oportunidad más equivalencia local cuando difiera. Una fecha sin hora no debe generar cuenta atrás en horas. Un mes tentativo no se convierte en día 1. Las convocatorias reales sin estado confirmado no se muestran abiertas por defecto. Cierre de convocatoria no implica resultado final ni adjudicación.
+
+Financiamiento: no comparar CLP y USD en un único ranking numérico. Pedir moneda o agrupar por moneda; desconocidos al final. «Monto 0, piloto a cargo del proveedor» no significa dato faltante. Distinguir aporte individual de presupuesto total de un programa.
+
+Persistencia local: guardados, intereses, borradores, preguntas demo, progreso, invitaciones, documentos simulados y avisos leídos persisten durante la sesión y al recargar usando almacenamiento local. Botón «Reiniciar demo» restaura el JSON original después de confirmar. No se requiere servidor, autenticación real o envío de archivos.
+
+Cada botón tiene acción, explicación o estado deshabilitado con motivo. No usar «Próximamente» para eludir una interacción P0/P1. Sí usarlo en conceptos, con una vista de interés completa. Todas las listas tienen carga, vacío, error recuperable y contenido parcial; un error conserva filtros y formulario. Reintentar debe devolver el conjunto local disponible.
+
+12. Entrega y recorrido de aceptación
+
+Entregar una app móvil navegable en Figma Make o prototipo equivalente con lógica real sobre el JSON. Si el entorno solo permite enlaces entre frames, representar explícitamente los casos de prueba y declarar esa limitación; no afirmar que filtros arbitrarios funcionan. Nombrar pantallas V01 a V26 y conceptos C01/C02. Documentar componentes y variantes en una página de apoyo, sin crear backoffice.
+
+Recorrido principal: ingresar como Andrea → revisar intereses → encontrar CH-D01 → leer requisitos y afinidad de SOL-01 → guardar y seguir → revisar Q&A → preparar antecedentes prellenados → guardar borrador → visitar portal demo y volver → consultar APP-02 → adjuntar documento local → revisar avisos → programar delegación. Comprobar que preparar y seguir no se convierten en envíos formales.
+
+Recorrido secundario: filtrar desafíos externos → revisar un dato desconocido → registrar seguimiento manual → abrir fondo regional → distinguir resultados de convocatorias → abrir evento con fecha tentativa y otro preciso → guardar un caso → ver formación secundaria → revisar plan de empresa → visitar conceptos.
+
+Antes de entregar: ejecutar 05_pruebas_aceptacion.json, comprobar los tres anchos móviles y ambos roles, navegar todos los CTAs, revisar que no haya resultados o contactos inventados atribuidos a compañías reales y probar reinicio. La aceptación depende de flujos completos y coherencia, no del número de pantallas bonitas.
+
+13. Fuentes rectoras y trazabilidad
+
+Las instrucciones anteriores constituyen la especificación de construcción. Esta referencia sirve para revisión del equipo; no se requiere leer fuentes para ejecutar el mockup.
+
+Prioridades, restricciones de seguimiento y personalización: resumen de sesión del 26 de octubre, https://docs.google.com/document/d/1rA4vOgd9vj0F_1CORcFI7ASx9jjR3B37JCxpOIITKQY/edit
+Detalle de pantallas, cuenta empresa y necesidades de proveedores: presentación del 26 de octubre, https://drive.google.com/file/d/1HatqsRl_hT76dmeygWIJKYs4GvJg8sJy/view
+Hallazgos cualitativos: focus group, https://docs.google.com/document/d/19qfbwAllfNRbP9_RmDhpjRkjDviVwPIEbcHNtn5gJn4/edit
+Modelo de etapas: Flujo de Gestión de Desafíos, https://docs.google.com/document/d/1nmobNIAzk--NLmdz-twYz2SSM2-EWT7i/edit
+Clasificación entregada: https://docs.google.com/spreadsheets/d/1hjc75pjbF3x4hzDoUJKxTGkLetxo9rRL/edit
+Archivos de contenido: https://drive.google.com/drive/folders/1bTtTbD-DTrJNOMeSkeNSyCM6RxjhtQLf
+
+Decisiones de construcción confirmadas por el responsable del proyecto el 6 de noviembre: solo móvil, sin backoffice, ejemplos ficticios identificados, recomendaciones funcionales y socios/señales como conceptos. La navegación, paleta provisional, regla de afinidad, prueba de 30 días y plazas demo son decisiones de diseño de este paquete, no compromisos de un futuro MVP.

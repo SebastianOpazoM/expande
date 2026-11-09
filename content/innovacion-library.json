@@ -1,0 +1,395 @@
+{
+  "description": "Enriquecimiento editorial de Innovación: antecedentes documentales conservados y escenarios originales de pilotaje. Las referencias técnicas no acreditan los escenarios ni implican respaldo institucional.",
+  "sources": [
+    {
+      "id": "SRC-INNOV-CNP",
+      "title": "Centro Nacional de Pilotaje — Servicios",
+      "url": "https://pilotaje.cl/servicios/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-INNOV-COCHILCO",
+      "title": "Cochilco — Estudios de sustentabilidad, agua y energía",
+      "url": "https://www.cochilco.cl/web/sustentabilidad/",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-INNOV-OPC",
+      "title": "OPC Foundation — OPC UA for Mining, General",
+      "url": "https://reference.opcfoundation.org/specs/OPC-40560/full",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    },
+    {
+      "id": "SRC-INNOV-NIST",
+      "title": "NIST SP 800-82 Rev. 3 — Guide to Operational Technology Security",
+      "url": "https://www.nist.gov/publications/guide-operational-technology-ot-security",
+      "type": "referencia_editorial",
+      "accessed_on": "2026-11-08"
+    }
+  ],
+  "articles": [
+    {
+      "collection": "cases",
+      "id": "CASE-01",
+      "preserveExisting": true,
+      "title": "Capacitación digital de contratistas",
+      "thumbnail_alt": "Trabajador con casco consulta una capacitación digital junto a equipos mineros.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "Contexto operacional",
+          "body": "El ingreso de contratistas exige coordinar formación, validación de identidad y requisitos de acceso. El caso describe una acreditación que tomaba 45 días y una plataforma que combina aprendizaje en video, realidad virtual e identificación biométrica. La oportunidad está en reducir esperas y hacer trazable el cumplimiento de cada trabajador."
+        },
+        {
+          "heading": "Cómo interpretar los resultados",
+          "body": "El antecedente reporta una reducción de 45 a 10 días y cifras agregadas de formación, ahorro y emisiones evitadas. Son resultados informados por la fuente, sin verificación independiente. Antes de extrapolarlos conviene conocer el período analizado, los costos incluidos y la forma de calcular los desplazamientos evitados."
+        },
+        {
+          "heading": "Aprendizajes para proveedores",
+          "body": "Una propuesta debe separar la mejora administrativa del aprendizaje efectivo. Conviene medir tiempos por etapa, finalización de módulos, evaluaciones y excepciones de identidad. La integración con los sistemas de acreditación y el tratamiento de datos personales deben acordarse antes de ampliar el alcance."
+        }
+      ]
+    },
+    {
+      "collection": "cases",
+      "id": "CASE-02",
+      "preserveExisting": true,
+      "title": "Camión eléctrico para transporte de cobre",
+      "thumbnail_alt": "Camión eléctrico con carga de cobre junto a una estación de carga en una ruta andina.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "Una prueba en condiciones de ruta",
+          "body": "El caso aborda la sustitución de transporte diésel en una ruta exigente para la logística del cobre. El antecedente describe un piloto con 27 toneladas de carga, 680 kilómetros de recorrido de ida y vuelta y una pendiente acumulada superior a 2.500 metros. La prueba se desarrolla bajo un memorándum de entendimiento."
+        },
+        {
+          "heading": "Qué falta para evaluar la adopción",
+          "body": "Los resultados son preliminares y no incluyen cifras de costo ni de emisiones. Completar una ruta no basta para estimar el costo total de operación: es necesario registrar consumo con carga, tiempos de carga, disponibilidad del vehículo y necesidades de infraestructura. Las comparaciones requieren condiciones equivalentes para el vehículo de referencia."
+        },
+        {
+          "heading": "Aprendizajes para proveedores",
+          "body": "Una propuesta de electromovilidad debe conectar autonomía, ventanas de carga y programación logística. El protocolo de prueba puede distinguir trayectos, condiciones ambientales y nivel de carga, además de contemplar contingencias. La decisión de escalamiento debe basarse en evidencia operacional y supuestos explícitos sobre energía, mantenimiento e infraestructura."
+        }
+      ]
+    },
+    {
+      "collection": "cases",
+      "id": "CASE-03",
+      "preserveExisting": true,
+      "title": "Asistente de IA para producción y seguridad",
+      "thumbnail_alt": "Sala de control con un tablero de producción y seguridad frente a una mina a cielo abierto.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "Decisiones durante la operación",
+          "body": "El antecedente presenta INDIMIN Coach en una operación peruana que transita desde la fase de tronadura hacia el cierre. La solución combina predicciones, alertas de seguridad y seguimiento del desempeño para apoyar decisiones durante la jornada. El valor depende de que la información llegue a quienes pueden actuar sobre ella."
+        },
+        {
+          "heading": "Resultados y alcance del antecedente",
+          "body": "La fuente reporta 153.000 toneladas adicionales en 90 días, un 3,4% sobre el plan y un posterior escalamiento industrial. Estas cifras se conservan como resultados reportados, sin verificación independiente. Para atribuir mejoras a una solución de IA se requiere revisar la línea base, los cambios simultáneos y las condiciones de operación."
+        },
+        {
+          "heading": "Aprendizajes para proveedores",
+          "body": "Un asistente operacional necesita responsables para atender alertas, criterios de prioridad y trazabilidad de las recomendaciones. El piloto debe revisar la calidad de los datos y la utilidad de las alertas junto al equipo de faena. Las predicciones deben apoyar procedimientos operacionales y decisiones humanas definidas previamente."
+        }
+      ]
+    },
+    {
+      "collection": "cases",
+      "id": "CASE-04",
+      "preserveExisting": false,
+      "title": "Monitoreo predictivo de bombas de proceso",
+      "country": "CL",
+      "problem": "Las variaciones de vibración y temperatura en bombas de una planta concentradora dificultan anticipar deterioros y programar intervenciones sin afectar la continuidad operacional.",
+      "solution": "Proponer un piloto de sensores de condición y análisis de tendencias, conectado al flujo de mantenimiento para revisar alertas antes de generar órdenes de trabajo.",
+      "developer": "Equipo proveedor de monitoreo de condición",
+      "site": "Planta concentradora: escenario de diseño de piloto",
+      "results": "Evaluar disponibilidad de datos, anticipación de alertas, falsos positivos y correspondencia con inspecciones. Establecer metas con la faena después de medir la línea base.",
+      "results_status": "Piloto propuesto; sin resultados medidos ni implementación atribuida a una empresa.",
+      "source_date_text": "Sin fecha de ejecución",
+      "published_on": "",
+      "url": "",
+      "thumbnail_alt": "Bomba de proceso equipada con sensores de vibración y un tablero de monitoreo de condición.",
+      "reference_source_ids": ["SRC-INNOV-CNP", "SRC-INNOV-OPC"],
+      "body_sections": [
+        {
+          "heading": "Diseño del piloto",
+          "body": "Seleccionar bombas comparables, identificar su criticidad y registrar condiciones de carga antes de instalar sensores. El protocolo debe definir frecuencia de adquisición, calidad de señal y permisos de intervención. Una etapa inicial permite caracterizar el comportamiento normal y acordar qué anomalías requieren revisión técnica."
+        },
+        {
+          "heading": "Validación en terreno",
+          "body": "Contrastar las alertas con inspecciones y antecedentes de mantenimiento, sin provocar fallas para demostrar el sistema. Registrar eventos que no fueron detectados y avisos que no justificaron intervención. El criterio de avance debe considerar la confiabilidad del dato y el tiempo que el equipo necesita para investigar cada alerta."
+        },
+        {
+          "heading": "Decisión de escalamiento",
+          "body": "El informe debe mostrar cobertura de activos, limitaciones de instalación y requisitos para integrar las alertas al mantenimiento. El ahorro se estima mediante supuestos documentados sobre intervenciones y detenciones, sin presentar pérdidas evitadas como resultados medidos. CNP ofrece una referencia metodológica para estructurar protocolos y KPI de validación."
+        }
+      ]
+    },
+    {
+      "collection": "cases",
+      "id": "CASE-05",
+      "preserveExisting": false,
+      "title": "Detección temprana de desgaste en correas transportadoras",
+      "country": "CL",
+      "problem": "El desgaste de la cubierta y los daños localizados en correas pueden pasar inadvertidos entre inspecciones, dificultando planificar reparaciones y repuestos.",
+      "solution": "Diseñar un piloto de inspección con cámaras y sensores que registre anomalías por tramo y entregue evidencia visual al equipo de mantenimiento.",
+      "developer": "Equipo proveedor de inspección industrial",
+      "site": "Sistema de transporte de mineral: escenario de diseño de piloto",
+      "results": "Evaluar cobertura de inspección, calidad de imagen, detecciones confirmadas y utilidad para programar intervenciones. No se presuponen reducciones de fallas o detenciones.",
+      "results_status": "Piloto propuesto; sin resultados medidos ni implementación atribuida a una empresa.",
+      "source_date_text": "Sin fecha de ejecución",
+      "published_on": "",
+      "url": "",
+      "thumbnail_alt": "Correa transportadora de mineral con cámaras y sensores para inspeccionar desgaste.",
+      "reference_source_ids": ["SRC-INNOV-CNP"],
+      "body_sections": [
+        {
+          "heading": "Condiciones de la prueba",
+          "body": "Definir el tramo de inspección y las condiciones de polvo, iluminación, velocidad y carga que deben cubrirse. La instalación requiere acceso seguro y coordinación con mantenimiento. El sistema debe conservar la posición y el momento de cada observación para que el equipo pueda contrastarla durante una inspección programada."
+        },
+        {
+          "heading": "Criterios de evaluación",
+          "body": "Comparar detecciones con inspecciones de referencia y clasificar el tipo de daño que el sistema puede reconocer. Revisar imágenes no utilizables, eventos omitidos y falsas alarmas. Los criterios de aceptación deben acordarse por condición operacional, sin asumir que una única tasa de detección representa toda la correa."
+        },
+        {
+          "heading": "De la alerta a la intervención",
+          "body": "Una alerta es útil cuando permite localizar el hallazgo, evaluar su severidad y decidir una acción. La propuesta debe incluir responsables, tiempos de revisión y compatibilidad con los procedimientos de bloqueo y mantenimiento. El cierre del piloto documenta tanto los hallazgos confirmados como las limitaciones de cobertura."
+        }
+      ]
+    },
+    {
+      "collection": "news",
+      "id": "NEWS-01",
+      "preserveExisting": true,
+      "thumbnail_alt": "Encuentro de innovación minera con visitantes y estaciones de demostración tecnológica.",
+      "reference_source_ids": ["SRC-INNOV-CNP"],
+      "body_sections": [
+        {
+          "heading": "Un espacio de encuentro",
+          "body": "El antecedente registra la cuarta versión del Encuentro de Ecosistemas de Innovación Minera, impulsada por CNP y Corfo, con más de 250 asistentes. El resumen menciona presentaciones de NEOS AI, enfocada en riesgos laborales con IA, y Plaza Ingeniería, vinculada a calidad del aire. La participación permite conocer problemas operacionales y capacidades disponibles."
+        },
+        {
+          "heading": "Qué puede preparar un proveedor",
+          "body": "Para aprovechar una instancia de encuentro conviene llevar una explicación breve del problema que resuelve la tecnología, su madurez y la evidencia disponible. Una demostración debe facilitar preguntas sobre instalación, integración y condiciones de prueba. Presentar resultados con su contexto ayuda a distinguir una capacidad comprobada de una hipótesis por validar."
+        },
+        {
+          "heading": "Después de la conversación",
+          "body": "El siguiente paso útil es acordar una revisión técnica con un objetivo concreto: entender el caso de uso, revisar datos o explorar un protocolo de piloto. La asistencia a un encuentro no equivale a validación industrial ni adjudicación. La propuesta debe precisar responsables, entregables y condiciones para avanzar."
+        }
+      ]
+    },
+    {
+      "collection": "news",
+      "id": "NEWS-02",
+      "preserveExisting": true,
+      "thumbnail_alt": "Equipo de pilotaje junto a una planta industrial que representa el paso a una operación minera.",
+      "reference_source_ids": ["SRC-INNOV-CNP"],
+      "body_sections": [
+        {
+          "heading": "La brecha entre prueba y adopción",
+          "body": "El extracto documental recoge un diagnóstico de 180 proveedores tecnológicos: un 55% tarda al menos un año en llegar a su primer pilotaje en faena. La cifra describe el grupo analizado por la fuente; no establece el plazo que enfrentará cada proveedor. El paso a terreno exige coordinar necesidades operacionales, recursos y condiciones de validación."
+        },
+        {
+          "heading": "Una propuesta que permita decidir",
+          "body": "El proveedor puede facilitar esa coordinación con un protocolo que explique la línea base, los KPI y la evidencia que entregará. Debe identificar quién instala, opera, mantiene y retira la solución, además de los requisitos de seguridad y acceso. El alcance tiene que ser suficiente para resolver una pregunta técnica acotada."
+        },
+        {
+          "heading": "Cerrar el piloto con una decisión",
+          "body": "Un informe útil relaciona los resultados con los criterios acordados y registra limitaciones. También debe explicar qué cambia al aumentar cobertura, turnos o cantidad de equipos. La validación técnica informa una decisión posterior; el escalamiento requiere revisar soporte, integración y condiciones comerciales con los responsables correspondientes."
+        }
+      ]
+    },
+    {
+      "collection": "news",
+      "id": "NEWS-03",
+      "preserveExisting": true,
+      "thumbnail_alt": "Equipos de proveedores y operaciones mineras revisan un prototipo durante una reunión técnica.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "Conexiones entre Chile y Perú",
+          "body": "El antecedente describe una misión de Minnovex en Perú con siete empresas chilenas: MIGTRA, AIKO Logic, LAMS, ZYGHT, ChucaoTech, Novamine y JRI. El resumen registra reuniones con Antamina, Volcan, Buenaventura, Nexa y otros actores. Los encuentros abren conversaciones; el material no permite atribuir contratos o pilotos concretados."
+        },
+        {
+          "heading": "Preparar una oferta para otro mercado",
+          "body": "Una conversación comercial requiere explicar cómo se instala y sostiene la solución fuera del mercado de origen. Conviene revisar soporte local, disponibilidad de repuestos, requisitos de acceso y capacidad de atención. La experiencia en Chile debe presentarse con condiciones operacionales comparables y límites de aplicación claros."
+        },
+        {
+          "heading": "Seguimiento técnico y comercial",
+          "body": "Tras la reunión, un documento breve puede relacionar la necesidad del operador con la evidencia del proveedor y las preguntas pendientes. El resumen de la misión sitúa a Perú como un destino relevante para las exportaciones de proveedores mineros chilenos. Esa referencia no reemplaza la evaluación particular de cada cliente o solución."
+        }
+      ]
+    },
+    {
+      "collection": "news",
+      "id": "NEWS-04",
+      "preserveExisting": true,
+      "thumbnail_alt": "Equipo de mantenimiento trabaja junto a un camión minero con herramientas organizadas.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "El resultado informado",
+          "body": "El extracto atribuye a un servicio de WesTrac, distribuidor Cat en operaciones australianas, una reducción del 32% en tiempo de detención. Se trata de una cifra reportada en el material documental. El extracto no aporta todos los antecedentes necesarios para verificar el cálculo o trasladar el resultado a otra flota."
+        },
+        {
+          "heading": "Preguntas para comparar servicios",
+          "body": "Para evaluar una mejora de mantenimiento conviene conocer qué detenciones se incluyen, cómo se define el período de comparación y si cambió la composición de la flota. También importa distinguir tiempo de espera, ejecución de la intervención y retorno al servicio. Sin ese detalle, un porcentaje aislado ofrece una comparación incompleta."
+        },
+        {
+          "heading": "Implicaciones para proveedores",
+          "body": "Una oferta debe mostrar qué parte del proceso modifica y con qué recursos. El acuerdo de prueba puede fijar indicadores de disponibilidad, duración de intervenciones y cumplimiento del plan. Documentar los trabajos y sus condiciones permite discutir el desempeño con el cliente sin convertir un resultado ajeno en una promesa propia."
+        }
+      ]
+    },
+    {
+      "collection": "news",
+      "id": "NEWS-05",
+      "preserveExisting": true,
+      "thumbnail_alt": "Distintas tecnologías de startups se prueban en una mina: sensores, robot y equipo de agua.",
+      "reference_source_ids": [],
+      "body_sections": [
+        {
+          "heading": "El antecedente del programa",
+          "body": "El material registra la selección de 25 startups por Escondida | BHP, a partir de más de 600 postulaciones, y una referencia de US$3 millones para pilotos hasta 2028. Estas cifras describen el anuncio recogido por la fuente. No establecen un monto por startup ni una convocatoria actualmente abierta."
+        },
+        {
+          "heading": "Qué exige una etapa de pilotaje",
+          "body": "Una tecnología seleccionada necesita transformar su propuesta en una prueba ejecutable. Eso implica acordar el problema, el área de prueba, los datos necesarios y las restricciones de seguridad. Los entregables deben permitir revisar desempeño técnico y requisitos de operación, sin confundir selección con adopción definitiva."
+        },
+        {
+          "heading": "Preparación para futuras oportunidades",
+          "body": "Los proveedores pueden organizar evidencia de madurez, antecedentes de pruebas y requisitos de instalación antes de una conversación con la faena. También conviene identificar recursos propios y dependencias del cliente. La disponibilidad de futuras postulaciones debe consultarse en los canales oficiales del programa correspondiente."
+        }
+      ]
+    },
+    {
+      "collection": "trends",
+      "id": "TREND-01",
+      "preserveExisting": true,
+      "summary": "La continuidad del suministro hídrico depende de medir consumos, recirculación y desempeño de bombeo como partes de un mismo sistema operacional.",
+      "implication": "Proponer mejoras con un balance de agua y una línea base acordados; reportar el ahorro junto con sus efectos en energía, mantenimiento y disponibilidad.",
+      "thumbnail_alt": "Circuito de recirculación de agua con estanques, tuberías y bombas en una planta minera.",
+      "reference_source_ids": ["SRC-INNOV-COCHILCO", "SRC-INNOV-CNP"],
+      "body_sections": [
+        {
+          "heading": "El sistema completo",
+          "body": "Los estudios de Cochilco distinguen fuentes de abastecimiento y necesidades de agua en la minería del cobre. Para un proveedor, la oportunidad está en entender dónde se consume, recupera o pierde agua dentro del proceso. Una intervención en bombeo, tratamiento o recirculación debe considerar cómo afecta al resto del circuito."
+        },
+        {
+          "heading": "Oportunidades para soluciones especializadas",
+          "body": "La instrumentación de caudal, la detección de fugas y el monitoreo de bombas pueden aportar visibilidad operacional. El alcance debe identificar el punto de medición, la precisión necesaria y las condiciones de operación. La compatibilidad con la calidad del agua y las rutinas de mantenimiento influye en la utilidad de la solución."
+        },
+        {
+          "heading": "Evidencia que pediría un cliente",
+          "body": "Un piloto debe comparar períodos equivalentes y registrar cambios de producción o calidad de alimentación. Reportar volumen, consumo específico y energía de bombeo ayuda a interpretar los resultados. Las estimaciones de ahorro deben declarar límites de medición y supuestos, evitando sumar mejoras que se superponen dentro del mismo balance."
+        }
+      ]
+    },
+    {
+      "collection": "trends",
+      "id": "TREND-02",
+      "preserveExisting": true,
+      "summary": "La evaluación de insumos con menor huella requiere trazabilidad de materiales, límites de cálculo claros y evidencia de que mantienen el desempeño operacional.",
+      "implication": "Vincular cada beneficio ambiental con una unidad funcional, datos verificables y condiciones de uso comparables antes de presentar una reducción de emisiones.",
+      "thumbnail_alt": "Materiales industriales y equipos eficientes conectados a indicadores de energía y emisiones.",
+      "reference_source_ids": ["SRC-INNOV-COCHILCO", "SRC-INNOV-CNP"],
+      "body_sections": [
+        {
+          "heading": "Del material al desempeño",
+          "body": "Sustituir un insumo puede cambiar su transporte, vida útil, frecuencia de reposición y consumo durante el uso. La comparación debe considerar el servicio que entrega en condiciones equivalentes. Un material de menor impacto por kilogramo no implica por sí solo una mejora si requiere más cantidad o compromete la operación."
+        },
+        {
+          "heading": "Cómo estructurar la propuesta",
+          "body": "Definir una unidad funcional, identificar las etapas incluidas y distinguir datos medidos de factores estimados. El proveedor debe documentar procedencia, consumos y supuestos relevantes. La información energética sectorial de Cochilco aporta contexto; la evaluación del producto necesita datos específicos del proceso y de su cadena de suministro."
+        },
+        {
+          "heading": "Validación técnica y ambiental",
+          "body": "El piloto debe verificar calidad, seguridad, duración y requisitos de manejo junto con la información ambiental. Si la medición no cubre todo el ciclo de vida, el alcance debe quedar explícito. Presentar escenarios y límites de incertidumbre permite una conversación comercial más precisa que ofrecer un porcentaje sin contexto."
+        }
+      ]
+    },
+    {
+      "collection": "trends",
+      "id": "TREND-03",
+      "preserveExisting": true,
+      "summary": "La automatización aporta valor cuando reduce exposición a peligros y mantiene respuestas operacionales claras ante fallas de comunicación, energía o sensores.",
+      "implication": "Diseñar el caso de uso con operaciones y seguridad, acordando límites de funcionamiento, responsabilidades y pruebas de contingencia antes de ampliar cobertura.",
+      "thumbnail_alt": "Operador controla maquinaria minera a distancia desde una estación separada de la zona de trabajo.",
+      "reference_source_ids": ["SRC-INNOV-CNP", "SRC-INNOV-NIST"],
+      "body_sections": [
+        {
+          "heading": "Automatizar una tarea definida",
+          "body": "Conviene comenzar por la tarea y la exposición que se pretende reducir: inspección, manipulación o desplazamiento en una zona de riesgo. La propuesta debe explicar qué decisiones toma el sistema y cuándo interviene una persona. Describir el entorno permite reconocer condiciones que quedan fuera del alcance de operación."
+        },
+        {
+          "heading": "Operación normal y contingencias",
+          "body": "La prueba debe considerar pérdida de conectividad, datos inconsistentes y cambios en el entorno. Los procedimientos de detención, recuperación y acceso requieren revisión con la faena. La guía de seguridad OT de NIST sirve como referencia para examinar conexiones y controles considerando restricciones de seguridad y disponibilidad industrial."
+        },
+        {
+          "heading": "Evidencia para avanzar",
+          "body": "Registrar intervenciones humanas, tareas completadas, eventos no previstos y tiempos de recuperación. La comparación de productividad debe acompañarse de una revisión de seguridad operacional. Una demostración exitosa en un entorno controlado necesita pruebas adicionales antes de extenderse a otras zonas, equipos o turnos."
+        }
+      ]
+    },
+    {
+      "collection": "trends",
+      "id": "TREND-04",
+      "preserveExisting": false,
+      "title": "Interoperabilidad de datos en faena",
+      "topic_ids": ["automatizacion", "produccion"],
+      "summary": "Conectar equipos requiere acordar el significado, la calidad y el contexto de los datos, además del protocolo de comunicación.",
+      "implication": "Incluir un mapa de datos e interfaces en la propuesta, con responsables, unidades, frecuencia y comportamiento ante interrupciones.",
+      "related_challenge_ids": [],
+      "evidence_urls": ["https://reference.opcfoundation.org/specs/OPC-40560/full"],
+      "thumbnail_alt": "Sensores industriales, una pasarela y máquinas de proceso conectadas mediante flujos de datos.",
+      "reference_source_ids": ["SRC-INNOV-OPC"],
+      "body_sections": [
+        {
+          "heading": "Conectar no basta",
+          "body": "Dos sistemas pueden intercambiar mensajes y aun así interpretar de forma distinta una variable. El proveedor debe documentar nombres, unidades, marcas de tiempo y estados de calidad. Los modelos de información de OPC UA para minería ofrecen una referencia para describir equipos y datos mediante estructuras compartidas."
+        },
+        {
+          "heading": "Una integración acotada",
+          "body": "El piloto puede comenzar con un conjunto pequeño de variables y un consumidor definido, como un tablero de mantenimiento. Debe acordar permisos, frecuencia de actualización y tratamiento de valores ausentes. La solución necesita comportarse de manera predecible cuando un equipo pierde conexión o entrega datos fuera de rango."
+        },
+        {
+          "heading": "Qué demostrar",
+          "body": "Verificar que el dato llega con el significado esperado y que se puede rastrear hasta su origen. Registrar retrasos, interrupciones y cambios de configuración. La aceptación debe cubrir la utilidad para el usuario y el esfuerzo de mantener la interfaz, además de la transmisión técnica de mensajes."
+        }
+      ]
+    },
+    {
+      "collection": "trends",
+      "id": "TREND-05",
+      "preserveExisting": false,
+      "title": "Ciberseguridad para soluciones industriales conectadas",
+      "topic_ids": ["automatizacion", "seguridad"],
+      "summary": "Cada sensor, conexión remota o plataforma introduce necesidades de acceso, actualización y recuperación que deben acordarse antes de instalar una solución en faena.",
+      "implication": "Preparar un expediente técnico de conexiones, usuarios y soporte para revisarlo con el equipo OT del cliente antes del piloto.",
+      "related_challenge_ids": [],
+      "evidence_urls": [
+        "https://www.nist.gov/publications/guide-operational-technology-ot-security"
+      ],
+      "thumbnail_alt": "Red de equipos industriales con límites de conexión protegidos y un escudo central.",
+      "reference_source_ids": ["SRC-INNOV-NIST"],
+      "body_sections": [
+        {
+          "heading": "Seguridad y continuidad",
+          "body": "La guía NIST SP 800-82 aborda seguridad de tecnología operacional considerando desempeño, confiabilidad y seguridad física. Para una solución minera, el punto de partida es identificar activos, conexiones y dependencias. El cliente necesita entender qué ocurre si un servicio externo deja de estar disponible o si se revoca un acceso."
+        },
+        {
+          "heading": "Preguntas antes de conectar",
+          "body": "Definir quién administra las cuentas, cómo se autoriza el soporte remoto y qué información sale de la faena. Documentar puertos, servicios y necesidades de actualización facilita la revisión con OT. Las credenciales y permisos deben responder a las tareas necesarias y a los procedimientos del cliente."
+        },
+        {
+          "heading": "Preparar operación y recuperación",
+          "body": "La propuesta debe explicar respaldos, registros de actividad y mecanismos de recuperación compatibles con la operación. Los cambios de software requieren coordinación y ventanas acordadas. El cierre del piloto debe incluir la devolución o eliminación de datos y el retiro de accesos que ya no sean necesarios."
+        }
+      ]
+    }
+  ]
+}

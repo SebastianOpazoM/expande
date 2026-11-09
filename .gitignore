@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+data/
+backups/
+test-results/
+playwright-report/
+*.sqlite*
+*.db*
+.local/
+!demo/expande.sqlite

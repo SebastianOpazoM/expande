@@ -1,0 +1,24 @@
+PAQUETE EXPANDE PARA EL AGENTE DE FIGMA
+Versión 1.0 - 6 de noviembre de 2026
+
+Entrega 1: 01_especificacion_figma.pdf (lectura) y .txt (mismo contenido para el agente).
+Entrega 2: 02_modelos_y_datos.pdf y .txt, más la base 03_datos_mockup.json.
+Contrato: 04_esquema_datos.json.
+Validación futura de la app: 05_pruebas_aceptacion.json (30 pruebas).
+Verificación ejecutada sobre el paquete de datos: 06_validacion_datos.json.
+
+INSTRUCCIÓN INICIAL PARA EL AGENTE
+Construye desde cero el mockup móvil de Expande siguiendo 01_especificacion_figma.txt y 02_modelos_y_datos.txt. Usa 03_datos_mockup.json como fuente común, respetando 04_esquema_datos.json. Implementa P0 y P1, sin backoffice. Socios y señales débiles son conceptos separados. No necesitas el mockup anterior. Conserva etiquetas de datos ficticios y antecedentes reales. Verifica el resultado con 05_pruebas_aceptacion.json. La app debe ejecutar filtros, búsqueda, orden y cambios locales sobre la semilla; no basta con tarjetas estáticas.
+
+ORDEN DE TRABAJO
+1. Importar datos, crear componentes y navegación móvil.
+2. Completar desafíos, afinidad y preparación de antecedentes.
+3. Completar postulaciones, documentos, empresa, equipo y alertas.
+4. Completar Explorar y sus fichas especializadas.
+5. Agregar plan demo y conceptos; comprobar flujos y anchos móviles.
+
+BASE DE DEMOSTRACIÓN
+Reloj fijo 2026-11-06T12:00:00-03:00. Cuenta inicial SensorAndes Demo / Andrea Demo.
+12 desafíos (5 documentales y 7 ficticios), 9 perfiles de empresa, 6 postulaciones ficticias, 13 registros de financiamiento, 38 eventos (35 de agenda y 3 ficticios), 4 alianzas/iniciativas, 3 casos, 5 noticias, 3 tendencias ficticias, 3 contenidos formativos, 2 señales conceptuales y datos relacionados.
+
+Los archivos reales se usan como antecedentes, no como ofertas verificadas vigentes. Los ejemplos ficticios no se atribuyen a mandantes reales. No se incluyen teléfonos, correos personales ni identificadores tributarios de las fichas originales. El prototipo anterior no es una dependencia. El paquete no crea ni modifica un archivo Figma.

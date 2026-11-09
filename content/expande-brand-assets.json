@@ -1,0 +1,151 @@
+{
+  "source_filename": "Manual marca Expande.pdf",
+  "source_sha256": "0761214134f87947757d290d0d1fdbcb5aef2d91440048b6b1ed723fcf6660d6",
+  "method": "Original PDF vector paths, matrices, fill rules and converted fill colors exported through PDFium; no redraw or generated logo.",
+  "palette_method": "Embedded Separation tint-transform RGB alternatives, rounded to 8-bit channels.",
+  "colors": {
+    "PANTONE 2189 C": "#053349",
+    "PANTONE 351 C": "#A4D2B4",
+    "PANTONE 7548 C": "#FDC500",
+    "PANTONE 220 C": "#AB1254"
+  },
+  "exports": [
+    {
+      "asset": "public/brands/expande/logo-color.svg",
+      "page": 2,
+      "object_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "viewBox": [
+        0,
+        0,
+        308.8975067138672,
+        89.13259887695312
+      ],
+      "sha256": "0e90f05f683ea86f021639b5f4185cd4ac6681a61ec31a262713928a09355d1e"
+    },
+    {
+      "asset": "public/brands/expande/logo-white.svg",
+      "page": 2,
+      "object_indices": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "viewBox": [
+        0,
+        0,
+        308.8974914550781,
+        89.13259887695312
+      ],
+      "sha256": "989aed4b7449df875ea56e2c44b60274f24b460eb079cc3b59486a87e3899fac"
+    },
+    {
+      "asset": "public/brands/expande/logo-black.svg",
+      "page": 2,
+      "object_indices": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "viewBox": [
+        0,
+        0,
+        308.8975067138672,
+        89.13270568847656
+      ],
+      "sha256": "75c41cc1446c65ffb5a3c7f253f604f6c1e77ea7d17e3d78faa44e7ab2be1ddc"
+    },
+    {
+      "asset": "public/brands/expande/mark-x.svg",
+      "page": 2,
+      "object_indices": [
+        13
+      ],
+      "viewBox": [
+        0,
+        0,
+        70.11801147460938,
+        70.11801147460938
+      ],
+      "sha256": "297882f329ef3477976a0e724efa7364772e9bcb7aef1a4a4d57820f3b8d173b"
+    },
+    {
+      "asset": "public/brands/expande/plus-magenta.svg",
+      "page": 3,
+      "object_indices": [
+        4
+      ],
+      "viewBox": [
+        0,
+        0,
+        61.597991943359375,
+        61.139984130859375
+      ],
+      "sha256": "7a01998d74cf1c6c782e85d428e0668884dc848609436bdc7b48caf383afdda1"
+    },
+    {
+      "asset": "public/brands/expande/plus-yellow.svg",
+      "page": 3,
+      "object_indices": [
+        5
+      ],
+      "viewBox": [
+        0,
+        0,
+        61.59799575805664,
+        61.139984130859375
+      ],
+      "sha256": "5e6526c2e7cf9f16e01b04ecc8e719b661936157ea863c93f3aff16a13a95e9e"
+    },
+    {
+      "asset": "public/brands/expande/plus-mint.svg",
+      "page": 3,
+      "object_indices": [
+        6
+      ],
+      "viewBox": [
+        0,
+        0,
+        61.5989990234375,
+        61.139984130859375
+      ],
+      "sha256": "16981850a603e312c2aed3115995cc6b5955694c34f529e3a96162480cca3a73"
+    }
+  ]
+}

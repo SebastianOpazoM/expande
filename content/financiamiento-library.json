@@ -1,0 +1,454 @@
+{
+  "description": "Biblioteca de doce programas reales para orientar a proveedores tecnológicos. Las recomendaciones de preparación son editoriales; los requisitos y beneficios se atribuyen a sus fuentes oficiales y no implican adjudicación o disponibilidad vigente.",
+  "reviewed_on": "2026-11-08",
+  "archive_ids": [
+    "FUND-R01",
+    "FUND-R02",
+    "FUND-R03",
+    "FUND-R04",
+    "FUND-R05",
+    "FUND-R06",
+    "FUND-R07",
+    "FUND-R08",
+    "FUND-R09",
+    "FUND-R10",
+    "FUND-D01",
+    "FUND-D02",
+    "FUND-D03"
+  ],
+  "programmes": [
+    {
+      "id": "FUND-R11",
+      "title": "Crea y Valida",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/crea-y-valida/",
+      "additional_sources": [
+        {
+          "id": "SRC-FUND-CYV-2026",
+          "title": "Crea y Valida 2026 — Convocatoria nacional",
+          "url": "https://www.corfo.gob.cl/sites/cpp/convocatoria/crea-y-valida-2026/"
+        }
+      ],
+      "summary": "Desarrollo de soluciones que requieren I+D y validación técnica o comercial: una alternativa para estructurar pruebas de nuevas tecnologías industriales.",
+      "eligible_segments": ["startup", "pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "Revisar los requisitos de constitución, actividad económica y ventas de la convocatoria aplicable. La edición nacional 2026 distingue empresas micro y pequeñas, medianas y grandes; no es un fondo reservado a la minería.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado; el tope se define por convocatoria",
+      "thumbnail_alt": "Prototipo industrial junto a una instalación de pruebas controladas.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Desarrollo de productos, servicios o procesos con componentes de I+D, junto con pruebas que permitan avanzar hacia su introducción al mercado o implementación productiva. Para un proveedor minero, puede ser pertinente al transformar un prototipo en una solución validable; la focalización de cada llamado determina su admisibilidad."
+        },
+        {
+          "heading": "Cofinanciamiento de referencia",
+          "body": "La convocatoria nacional 2026 informa porcentajes de hasta 80% para micro y pequeñas empresas, 60% para medianas y 40% para grandes, con condiciones adicionales previstas en sus bases. Son referencias de esa edición: no se trasladan automáticamente a futuros llamados ni se usa un monto de otra convocatoria como tope general."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Describir la incertidumbre técnica, la línea base y las pruebas que resolverán esa incertidumbre. Preparar hitos, presupuesto y responsabilidades de instalación, operación y validación. Separar el trabajo de desarrollo de la compra rutinaria de equipos y explicar qué evidencia permitirá tomar una decisión de continuidad."
+        },
+        {
+          "heading": "Edición anterior verificada",
+          "body": "La edición nacional 2026 recibió postulaciones del 19 de mayo al 4 de agosto. El perfil obligatorio tenía plazo hasta el 9 de junio. La ficha anuncia comunicación de resultados para el 27 de noviembre; ese calendario no demuestra que los resultados ya estén publicados. No se verificó una nueva convocatoria activa para esta ficha."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R12",
+      "title": "Consolida y Expande Innovación",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/consolida-y-expande/",
+      "summary": "Escalamiento y preparación comercial de tecnologías que ya cuentan con validación, con foco en su introducción en mercados de destino.",
+      "eligible_segments": ["startup", "pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "La ficha general pide al menos 18 meses desde el inicio de actividades de primera categoría y ventas dentro de ese período. Considera personas jurídicas y personas naturales mayores de edad, con un beneficiario por proyecto; comprobar las bases de cada llamado.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado; el tope se define por convocatoria",
+      "thumbnail_alt": "Equipo piloto conectado a una instalación industrial de mayor escala.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Escalamiento comercial o productivo de soluciones que hayan requerido I+D y alcanzado validación técnica industrial o comercial. Puede contemplar validación y empaquetamiento técnico en el mercado de destino. Un proveedor debe explicar qué está probado y qué adaptación necesita para llegar a nuevos clientes."
+        },
+        {
+          "heading": "Cofinanciamiento de referencia",
+          "body": "La ficha publica porcentajes de hasta 60% para micro y pequeñas empresas, 50% para medianas y 40% para grandes. El tope monetario se fija en cada convocatoria. Los beneficios adicionales para empresas lideradas por mujeres y otras condiciones deben revisarse en las bases aplicables."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Organizar evidencia de desempeño, propiedad o derechos sobre la tecnología, clientes objetivo y requisitos de integración. El presupuesto debe conectar las adaptaciones propuestas con barreras concretas del mercado de destino. Incluir soporte, capacidad de entrega y un plan comercial que pueda contrastarse durante la ejecución."
+        },
+        {
+          "heading": "Edición anterior verificada",
+          "body": "La ficha oficial registra una convocatoria nacional del 5 de mayo al 18 de junio de 2026, cerrada, con comunicación de resultados prevista para el 5 de noviembre. La fecha prevista de comunicación no se presenta como un resultado publicado. No se verificó una segunda ventana activa."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R13",
+      "title": "Innova Región",
+      "entity": "Corfo / Comités de Desarrollo Productivo Regional",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/innova-region/",
+      "summary": "Innovación desde prototipos hasta validación productiva o comercial, vinculada a las prioridades y condiciones de cada región.",
+      "eligible_segments": ["startup", "pyme", "gran_empresa"],
+      "regions": [
+        "Arica y Parinacota",
+        "Tarapacá",
+        "Antofagasta",
+        "Atacama",
+        "Coquimbo",
+        "Valparaíso",
+        "Metropolitana",
+        "O'Higgins",
+        "Maule",
+        "Ñuble",
+        "Biobío",
+        "La Araucanía",
+        "Los Ríos",
+        "Los Lagos",
+        "Aysén",
+        "Magallanes"
+      ],
+      "eligibility": "La ficha general exige al menos 18 meses de actividad empresarial de primera categoría y ventas en ese período. La región de ejecución y la focalización temática se definen en cada convocatoria; figurar en esta cobertura no significa que exista una ventanilla abierta allí.",
+      "amount": 60000000,
+      "currency": "CLP",
+      "amount_text": "Referencia general: hasta CLP 60.000.000; sujeto a convocatoria",
+      "thumbnail_alt": "Centro industrial regional con una zona de pruebas tecnológicas.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Desarrollo y validación de soluciones que aporten a la economía regional. Para un proveedor, el encaje depende de la necesidad productiva que atenderá y del territorio donde probará o implementará la tecnología. Una solución minera debe revisar su pertinencia con los sectores priorizados por el llamado regional."
+        },
+        {
+          "heading": "Cofinanciamiento de referencia",
+          "body": "La ficha general publica un tope de CLP 60 millones y porcentajes de hasta 80% para micro y pequeñas empresas, 60% para medianas y 40% para grandes. La focalización y las condiciones de la convocatoria regional son determinantes. La presencia del programa a nivel nacional no equivale a una convocatoria nacional abierta."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Identificar un usuario o entorno de prueba en la región, describir el impacto productivo y acordar los datos necesarios para validarlo. Preparar un protocolo acotado y una ruta de implementación posterior. Verificar que el alcance territorial sea consistente con las actividades y gastos del presupuesto."
+        },
+        {
+          "heading": "Convocatorias anteriores verificadas",
+          "body": "La página registra diversas ediciones regionales 2026 cerradas, entre ellas Arica y Parinacota con término el 21 de octubre y La Araucanía con término el 30 de septiembre. Estas fechas no se muestran como próximos cierres. La disponibilidad de un nuevo llamado regional queda por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R14",
+      "title": "Innova Alta Tecnología",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/innova-alta-tecnologia/",
+      "summary": "Proyectos intensivos en investigación y desarrollo, con alta incertidumbre tecnológica y potencial de escalamiento comercial.",
+      "eligible_segments": ["pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "La ficha pide personas jurídicas constituidas en Chile, al menos tres años de actividad de primera categoría y ventas dentro de los tres años previos. El objeto de la empresa debe ser pertinente al proyecto. No basta con adquirir tecnología disponible.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado; el tope se define por convocatoria",
+      "thumbnail_alt": "Laboratorio de investigación conectado a equipos industriales avanzados.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Innovaciones de alta sofisticación que requieren I+D para superar incertidumbres técnicas. La ficha incorpora desarrollo tecnológico, protección de resultados y una estrategia de llegada al mercado. Para minería, el proyecto debe demostrar qué conocimiento nuevo necesita generar y por qué las soluciones existentes no resuelven el desafío."
+        },
+        {
+          "heading": "Cofinanciamiento de referencia",
+          "body": "El máximo monetario se establece por convocatoria. La ficha informa porcentajes de hasta 70% para micro y pequeñas empresas, 55% para medianas y 40% para grandes, además de beneficios sujetos a condiciones. No se reutiliza el monto anunciado en ediciones históricas como una oferta vigente."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Construir una hoja de ruta con hipótesis técnicas, experimentos y criterios de avance. Definir quién ejecutará la investigación y cómo se protegerán o utilizarán los resultados. El presupuesto debe distinguir investigación, desarrollo, pruebas y preparación comercial, con dependencias y riesgos explícitos."
+        },
+        {
+          "heading": "Edición anterior verificada",
+          "body": "La convocatoria 2026 registrada en la ficha oficial abrió el 10 de febrero y cerró el 14 de abril. Esa edición está cerrada. La ficha del programa permanece como referencia, sin que se haya verificado una nueva oportunidad activa."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R15",
+      "title": "Capital Humano para la Innovación",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/convocatoria/capital_humano_innovacion/",
+      "summary": "Incorporación de profesionales o técnicos especializados para resolver desafíos de productividad mediante actividades de I+D+i.",
+      "eligible_segments": ["pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "La ficha de referencia exige al menos 18 meses de actividad empresarial de primera categoría y ventas en ese período. El perfil técnico, su vínculo previo con la empresa y los requisitos de residencia o nacionalidad se revisan en las bases de la edición aplicable.",
+      "amount": 40000000,
+      "currency": "CLP",
+      "amount_text": "Referencia de la ficha: hasta CLP 40.000.000",
+      "thumbnail_alt": "Especialista y equipo de ingeniería colaboran junto a un banco técnico.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Participación de personal altamente calificado en un desafío empresarial que necesita investigación, desarrollo o innovación. Para un proveedor, puede ser pertinente cuando una capacidad específica limita el desarrollo tecnológico. El rol debe responder a un proyecto y resultados definidos, en lugar de una contratación general sin componente de innovación."
+        },
+        {
+          "heading": "Cofinanciamiento de referencia",
+          "body": "La ficha consultada informa un tope de CLP 40 millones y porcentajes de hasta 80%, 60% y 40% según tamaño de empresa. Contempla aumentos condicionados que no siempre son acumulables. Son condiciones del antecedente consultado, no la confirmación de una convocatoria activa."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Definir la brecha de conocimiento, el perfil que la resolverá y los entregables del trabajo. Explicar cómo se transferirá esa capacidad al resto del equipo. Preparar antecedentes de la empresa, funciones del profesional y presupuesto, distinguiendo tareas de I+D+i de las labores rutinarias de operación."
+        },
+        {
+          "heading": "Antecedente de convocatoria",
+          "body": "La página consultada identifica una edición cerrada con término el 10 de septiembre de 2024 y contiene una resolución de suspensión de postulaciones. No se infiere de ese antecedente una nueva ventana en noviembre de 2026. La disponibilidad actual queda por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R16",
+      "title": "Programa de Absorción Tecnológica para la Innovación",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/convocatorias_programas_innovacion/",
+      "additional_sources": [
+        {
+          "id": "SRC-FUND-PATI-MANUAL",
+          "title": "PATI — Manual del postulante 2024",
+          "url": "https://saowcsblobassets.blob.core.windows.net/assets/CONV/1476737335812/Manual%20del%20Postulante_PATI_04_2024%20%281%29.pdf"
+        }
+      ],
+      "summary": "Adopción de conocimiento, mejores prácticas y tecnologías para fortalecer capacidades de innovación en grupos de empresas, preferentemente pymes.",
+      "eligible_segments": ["pyme"],
+      "regions": ["Todo Chile"],
+      "eligibility": "Distinguir la entidad beneficiaria gestora que presenta el programa de las empresas atendidas que participan en él. Revisar las condiciones del gestor, participantes y foco territorial o sectorial en la convocatoria correspondiente; no es una subvención individual automática por compra de equipos.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado para una convocatoria vigente",
+      "thumbnail_alt": "Talleres industriales conectados a un centro de transferencia tecnológica.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "La referencia oficial describe fortalecimiento de capacidades de absorción tecnológica mediante nuevo conocimiento, prácticas y tecnologías. Para empresas proveedoras puede ser una vía de aprendizaje y adopción compartida cuando varias enfrentan una brecha similar. Su aplicación depende del programa presentado y de las condiciones de participación."
+        },
+        {
+          "heading": "Participación y financiamiento",
+          "body": "El manual distingue al beneficiario gestor de las empresas atendidas. Antes de presupuestar, se debe comprobar quién postula, qué compromisos asumen los participantes y qué aportes corresponden a cada actor. No se publica aquí un monto vigente al no haberse verificado una convocatoria activa con condiciones completas."
+        },
+        {
+          "heading": "Cómo preparar la participación",
+          "body": "Diagnosticar una brecha común y proponer un plan de adopción que incluya formación, pruebas y seguimiento. Identificar una entidad con capacidad para coordinar el grupo. Acordar qué cambio medible se espera en las prácticas de las empresas y qué soporte necesitan para sostenerlo después de las actividades."
+        },
+        {
+          "heading": "Disponibilidad revisada",
+          "body": "La descripción del instrumento y su manual sirven para conocer su funcionamiento. No se verificó un llamado vigente aplicable a proveedores mineros. La revisión de la convocatoria deberá confirmar sector, territorio, participantes y condiciones económicas antes de preparar una postulación."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R17",
+      "title": "Súmate a Innovar",
+      "entity": "Corfo / InnovaChile",
+      "source_url": "https://www.chileatiende.gob.cl/fichas/64686/1/pdf",
+      "summary": "Colaboración con capacidades técnicas externas para abordar un desafío de innovación y avanzar en productos o procesos mejorados.",
+      "eligible_segments": ["pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "El instrumento considera empresas y personas naturales con actividad empresarial; antigüedad, ventas, focalización y condiciones de colaboración se deben contrastar en las bases del llamado. Las convocatorias regionales o para empresas lideradas por mujeres pueden tener requisitos específicos.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado para una convocatoria vigente",
+      "thumbnail_alt": "Proveedor y colaborador técnico revisan juntos un prototipo mecánico.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Una vía para conectar el desafío de una empresa con conocimiento y capacidades externas. Para un proveedor tecnológico, la propuesta debe explicar el problema, el aporte del colaborador y la mejora que se busca desarrollar. No se presenta como financiamiento general para cualquier compra o servicio."
+        },
+        {
+          "heading": "Condiciones a revisar",
+          "body": "Los requisitos de empresa, colaboración, actividades financiables y cofinanciamiento dependen de las bases y de la focalización del llamado. La ficha de ChileAtiende se conserva como referencia oficial del instrumento. No se establece aquí un tope monetario ni un plazo actual sin una convocatoria vigente verificada."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Acotar la necesidad, identificar qué conocimiento falta en el equipo y acordar el trabajo del colaborador. Preparar un diagnóstico breve, metodología, entregables y presupuesto. Definir cómo la empresa utilizará los resultados y qué información podrá compartir durante la colaboración técnica."
+        },
+        {
+          "heading": "Disponibilidad revisada",
+          "body": "No se verificó una convocatoria activa que permita establecer fecha de cierre y condiciones económicas vigentes. La ficha se incluye para orientar la búsqueda de instrumentos; la disponibilidad de postulación permanece por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R18",
+      "title": "Semilla Inicia",
+      "entity": "Corfo / Comités de Desarrollo Productivo Regional",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/semilla-inicia/",
+      "additional_sources": [
+        {
+          "id": "SRC-FUND-SEMILLA-OHIGGINS",
+          "title": "Corfo — Semilla Inicia y Expande O'Higgins 2026",
+          "url": "https://www.corfo.gob.cl/sites/cpp/regional/nota-apertura-convocatorias-regionales-semilla-inicia-y-expande/"
+        }
+      ],
+      "summary": "Validación técnica y comercial temprana de emprendimientos innovadores con potencial de crecimiento.",
+      "eligible_segments": ["startup"],
+      "regions": ["Todo Chile"],
+      "eligibility": "Dirigido a emprendimientos innovadores en una etapa inicial. Las condiciones del equipo, constitución, ventas y ejecución territorial se deben revisar en la convocatoria aplicable; los llamados regionales y los dirigidos a empresas lideradas por mujeres tienen focalizaciones propias.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado; el tope se define por convocatoria",
+      "thumbnail_alt": "Prototipo inicial y una reunión de revisión con potenciales clientes.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Primeras pruebas de una solución y de su modelo de negocio. Para una tecnología minera temprana, el trabajo puede centrarse en comprobar el problema con usuarios y diseñar una validación acotada. La pertinencia depende del llamado: no se asume que toda idea o equipo cumple sus requisitos."
+        },
+        {
+          "heading": "Referencia regional de financiamiento",
+          "body": "La comunicación de Corfo sobre O'Higgins 2026 informa hasta CLP 15 millones para Semilla Inicia, orientados a prototipos y validaciones iniciales. Esa cifra pertenece al ejemplo regional y no se publica como tope universal de todas las versiones del instrumento."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Explicar el problema con evidencia de usuarios, describir el prototipo que se probará y acordar indicadores de aprendizaje. El presupuesto debe permitir validar las hipótesis principales. Separar interés comercial de ventas comprobadas y registrar los resultados que justificarían continuar el desarrollo."
+        },
+        {
+          "heading": "Edición anterior verificada",
+          "body": "La comunicación regional de O'Higgins fijó el cierre el 16 de marzo de 2026 a las 16:00. Es una referencia histórica, no una oportunidad abierta. La existencia y las condiciones de un nuevo llamado para el territorio del proveedor quedan por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R19",
+      "title": "Semilla Expande",
+      "entity": "Corfo / Comités de Desarrollo Productivo Regional",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/semilla-expande/",
+      "summary": "Crecimiento comercial de emprendimientos que ya desarrollaron una solución innovadora y cuentan con ventas iniciales.",
+      "eligible_segments": ["startup"],
+      "regions": ["Todo Chile"],
+      "eligibility": "La ficha general considera personas jurídicas constituidas en Chile, menos de 36 meses de inicio de actividades, ventas de la solución y hasta CLP 80 millones netos en los últimos 12 meses previos a la apertura. Revisar estas condiciones en las bases del llamado específico.",
+      "amount": null,
+      "currency": "CLP",
+      "amount_text": "Referencia: etapa 1 hasta CLP 25.000.000; etapa 2 hasta CLP 20.000.000",
+      "thumbnail_alt": "Producto industrial desplegado en una red creciente de clientes.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Actividades de crecimiento inicial y desarrollo comercial de una solución con alcance nacional y potencial internacional. Para un proveedor minero, requiere demostrar que la solución ya existe y que hay evidencia de ventas. El proyecto debe conectar la expansión propuesta con nuevos clientes y capacidades de entrega."
+        },
+        {
+          "heading": "Cofinanciamiento por etapas",
+          "body": "La ficha general describe hasta 75% de cofinanciamiento, con una primera etapa de hasta CLP 25 millones y una segunda de hasta CLP 20 millones. Acceder a la segunda requiere buen desempeño y una nueva postulación. Existen condiciones especiales para empresas lideradas por mujeres; no se suman las etapas como un aporte garantizado."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Organizar ventas, clientes, costos de entrega y una estrategia para aumentar cobertura. Identificar qué parte del crecimiento exige recursos nuevos y cómo se medirá. Diferenciar una intención de compra de una transacción realizada y documentar las capacidades de soporte que necesitará el emprendimiento al crecer."
+        },
+        {
+          "heading": "Edición anterior verificada",
+          "body": "La página registra la convocatoria nacional del 15 de enero al 24 de febrero de 2026 como cerrada. Una fila regional mantiene la etiqueta de abierta pese a una fecha de cierre ya transcurrida; no se usa esa etiqueta desactualizada para afirmar disponibilidad actual. Un nuevo llamado queda por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R20",
+      "title": "Start-Up Chile: Build, Ignite y Growth",
+      "entity": "Corfo / Start-Up Chile",
+      "source_url": "https://www.economia.gob.cl/2026/11/06/start-up-chile-abrio-convocatoria-global-para-startups-tecnologicas-con-financiamiento-de-hasta-75-millones.htm",
+      "summary": "Aceleración para startups tecnológicas: desde una idea o prototipo hasta ajuste comercial y expansión, mediante las líneas Build, Ignite y Growth.",
+      "eligible_segments": ["startup"],
+      "regions": ["Todo Chile"],
+      "eligibility": "BIG13 se dirige a startups tecnológicas y científico-tecnológicas de Chile y del extranjero. Elegir la línea según etapa y revisar las bases sobre equipo, ejecución en Chile, dedicación y cofinanciamiento. No es una convocatoria exclusiva para proveedores mineros.",
+      "amount": 75000000,
+      "currency": "CLP",
+      "amount_text": "BIG13: Build CLP 15 millones · Ignite CLP 30 millones · Growth CLP 75 millones",
+      "state": "abierto",
+      "edition": "BIG13",
+      "closing_date": "2026-11-24",
+      "closing_at": "2026-11-24T13:00:00-03:00",
+      "thumbnail_alt": "Tres etapas de desarrollo desde una idea hasta el despliegue comercial de una tecnología.",
+      "body_sections": [
+        {
+          "heading": "Tres líneas según etapa",
+          "body": "Build acompaña ideas y prototipos iniciales; Ignite se orienta a emprendimientos con un producto mínimo viable; Growth aborda expansión y levantamiento de capital. La elección debe responder a la evidencia de desarrollo y negocio de la startup, no solo al monto ofrecido."
+        },
+        {
+          "heading": "Financiamiento de BIG13",
+          "body": "El anuncio oficial informa CLP 15 millones para Build, CLP 30 millones para Ignite y CLP 75 millones para Growth, sin participación accionaria a cambio del aporte. Los períodos de aceleración publicados son cuatro meses para Build e Ignite y seis para Growth. Los porcentajes y condiciones especiales deben comprobarse en las bases de cada línea."
+        },
+        {
+          "heading": "Cómo preparar la candidatura",
+          "body": "Mostrar el problema, el producto, la experiencia del equipo y la evidencia comercial correspondiente a la etapa. Para una tecnología minera, explicar el acceso a pruebas, los ciclos de venta y las necesidades de soporte. Preparar un plan de avance compatible con el período de aceleración."
+        },
+        {
+          "heading": "Convocatoria verificada",
+          "body": "El Ministerio de Economía anunció BIG13 el 6 de noviembre de 2026 e indicó cierre el 24 de noviembre de 2026 a las 13:00 horas de Chile. La aceleración comenzará durante el primer semestre de 2027. Antes de completar la candidatura, consultar las bases y los requisitos específicos de la línea elegida."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R21",
+      "title": "Startup Ciencia",
+      "entity": "ANID",
+      "source_url": "https://ayuda.anid.gob.cl/hc/es/articles/360061289211-Descripci%C3%B3n-del-concurso-Startup-Ciencia-2026",
+      "additional_sources": [
+        {
+          "id": "SRC-FUND-ANID-BENEFICIARIOS",
+          "title": "ANID — Beneficiarios Startup Ciencia 2026",
+          "url": "https://ayuda.anid.gob.cl/hc/es/articles/360061289491-Beneficiarios-Startup-Ciencia-2026"
+        }
+      ],
+      "summary": "Desarrollo y validación técnica y de negocios para empresas de base científico-tecnológica en etapa temprana.",
+      "eligible_segments": ["startup", "pyme"],
+      "regions": ["Todo Chile"],
+      "eligibility": "La referencia 2026 considera personas jurídicas privadas constituidas en Chile, con menos de diez años de constitución y ventas anuales de hasta 25.000 UF. Verificar en una nueva edición sus requisitos, incompatibilidades y condiciones de madurez tecnológica.",
+      "amount": null,
+      "currency": null,
+      "amount_text": "No informado para una convocatoria vigente",
+      "thumbnail_alt": "Investigación científica que se transforma en un sensor listo para validación de mercado.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "El programa busca fortalecer empresas de base científico-tecnológica mediante desarrollo y validaciones, estrategia de negocios e internacionalización. Una tecnología minera puede tener encaje si su propuesta nace de conocimiento científico y requiere maduración técnica y comercial. No basta con que el producto utilice herramientas digitales."
+        },
+        {
+          "heading": "Alcance e incompatibilidades",
+          "body": "La documentación de ANID distingue continuidad tecnológica de duplicidad de financiamiento. El proyecto debe identificar qué objetivos y resultados ya fueron financiados y qué componentes nuevos propone. Los montos y plazos de una eventual edición posterior no se deducen de la documentación histórica consultada."
+        },
+        {
+          "heading": "Cómo preparar el proyecto",
+          "body": "Ordenar antecedentes de investigación, resultados previos, derechos sobre la tecnología y las hipótesis que faltan por validar. Relacionar el trabajo científico con necesidades concretas de usuarios. Preparar una ruta de negocio y presupuesto que distinga actividades nuevas de compromisos cubiertos por otros fondos."
+        },
+        {
+          "heading": "Disponibilidad revisada",
+          "body": "Se consultó documentación oficial de la edición 2026 como referencia del instrumento. No se publica una fecha ni monto de Startup Ciencia 2027 sin confirmación en una fuente primaria de esa convocatoria. La disponibilidad actual de postulación permanece por confirmar."
+        }
+      ]
+    },
+    {
+      "id": "FUND-R22",
+      "title": "Red Proveedores",
+      "entity": "Corfo / Redes y Territorios",
+      "source_url": "https://www.corfo.gob.cl/sites/cpp/programa/red-proveedores/",
+      "summary": "Trabajo colaborativo entre una empresa demandante y su red de proveedores para fortalecer capacidades y mejorar la cadena productiva.",
+      "eligible_segments": ["pyme", "gran_empresa"],
+      "regions": ["Todo Chile"],
+      "eligibility": "Postula la empresa demandante y el proyecto debe reunir al menos cinco proveedores. La regla general del demandante exige ventas superiores a 25.000 UF, con excepciones regionales; los proveedores tienen condiciones de ventas y participación específicas. Un proveedor individual no postula como demandante por el solo hecho de integrar la red.",
+      "amount": 60000000,
+      "currency": "CLP",
+      "amount_text": "Referencia: diagnóstico hasta CLP 10 millones; desarrollo sustentable hasta CLP 60 millones",
+      "thumbnail_alt": "Operación minera conectada a distintos proveedores de equipos y servicios especializados.",
+      "body_sections": [
+        {
+          "heading": "Qué apoya",
+          "body": "Identificación y cierre de brechas de gestión, competencias técnicas, tecnología e innovación en una cadena productiva. Puede ser relevante para grupos de proveedores de una operación minera si existe una empresa demandante que lidere el proyecto. La pertinencia territorial y sectorial depende de la convocatoria."
+        },
+        {
+          "heading": "Cofinanciamiento por etapa",
+          "body": "La ficha informa hasta 50% y CLP 10 millones para diagnóstico. En desarrollo, publica hasta 50% y CLP 60 millones para proyectos sustentables; en otro caso, hasta 40% y CLP 50 millones. Son topes de referencia por proyecto, no aportes individuales para cada proveedor."
+        },
+        {
+          "heading": "Cómo preparar una red",
+          "body": "Identificar brechas compartidas con el demandante, seleccionar participantes y acordar responsabilidades. El plan debe mostrar cómo las actividades mejorarán la oferta de valor y la relación productiva. Preparar indicadores colectivos y por participante, evitando presentar acciones individuales desconectadas como un proyecto asociativo."
+        },
+        {
+          "heading": "Convocatorias anteriores verificadas",
+          "body": "La página registra diversas ediciones regionales 2026 cerradas, incluida la etapa de diagnóstico de Aysén con término el 29 de octubre. No se afirma que exista una ventanilla nacional abierta. Los participantes deben comprobar la focalización del siguiente llamado antes de comprometer recursos."
+        }
+      ]
+    }
+  ]
+}

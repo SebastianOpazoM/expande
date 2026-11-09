@@ -1,0 +1,90 @@
+{
+  "method": "Built-in image_gen, one generation per illustration",
+  "style": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: ",
+  "images": [
+    {
+      "id": "LEARN-D01",
+      "subject": "A compact industrial pilot-test rig, a clipboard with abstract checkmarks and a small mineral conveyor.",
+      "prompt": "Use-case: stylized-concept. Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Subject: a compact industrial pilot-test rig, a clipboard with abstract checkmarks and a small mineral conveyor, representing preparation of a technical pilot proposal. Unified art direction: clean sophisticated geometric isometric forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Objects occupy central 75% with safe margins for a 16:9 crop. No text, letters, digits, logos, watermarks, badges, photo-real people or institution branding. Opaque background. One illustration only, not a collage.",
+      "file": "public/images/formacion/learn-d01.jpg",
+      "originalFile": "exec-eb154c34-9c3a-4b83-8434-678466c6cced.png"
+    },
+    {
+      "id": "LEARN-D02",
+      "subject": "An industrial pilot rig beside a freestanding dashboard showing abstract repeatability charts, comparison bars, and a stack of orderly evidence reports.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: An industrial pilot rig beside a freestanding dashboard showing abstract repeatability charts, comparison bars, and a stack of orderly evidence reports.",
+      "file": "public/images/formacion/learn-d02.jpg",
+      "originalFile": "exec-f6194149-7f3e-4d58-aa39-f590f2260322.png"
+    },
+    {
+      "id": "LEARN-D03",
+      "subject": "A compact mining sensor prototype progressing across three ascending development platforms from lab component to protected field unit to operating equipment, connected by a subtle orange path.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A compact mining sensor prototype progressing across three ascending development platforms from lab component to protected field unit to operating equipment, connected by a subtle orange path.",
+      "file": "public/images/formacion/learn-d03.jpg",
+      "originalFile": "exec-6aeeffb4-3b68-49d6-9542-be3c4e3ad5a6.png"
+    },
+    {
+      "id": "LEARN-D04",
+      "subject": "A mining pump beside three dimensional cost blocks and an elegant rising value chart, communicating technical benefits becoming a business case.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A mining pump beside three dimensional cost blocks and an elegant rising value chart, communicating technical benefits becoming a business case.",
+      "file": "public/images/formacion/learn-d04.jpg",
+      "originalFile": "exec-1feca916-e0cc-4c26-89c2-38227d8ada75.png"
+    },
+    {
+      "id": "LEARN-D05",
+      "subject": "An original industrial invention blueprint with abstract circuit lines rolled open beside a large protective shield and a small lock, representing intellectual property protection.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: An original industrial invention blueprint with abstract circuit lines rolled open beside a large protective shield and a small lock, representing intellectual property protection.",
+      "file": "public/images/formacion/learn-d05.jpg",
+      "originalFile": "exec-ac135845-2cf6-4234-b0fd-9db12dc07fb2.png"
+    },
+    {
+      "id": "LEARN-D06",
+      "subject": "Industrial sensors connected through an edge gateway to a processing plant and cloud, clean glowing data paths showing interoperability, no labels.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: Industrial sensors connected through an edge gateway to a processing plant and cloud, clean glowing data paths showing interoperability, no labels.",
+      "file": "public/images/formacion/learn-d06.jpg",
+      "originalFile": "exec-d6b3db3f-72dd-4fd7-8723-0bb51d4edbc1.png"
+    },
+    {
+      "id": "LEARN-D07",
+      "subject": "A protected industrial network of controllers and factory equipment, segmented by translucent shields and a secure gateway, representing OT cybersecurity.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A protected industrial network of controllers and factory equipment, segmented by translucent shields and a secure gateway, representing OT cybersecurity.",
+      "file": "public/images/formacion/learn-d07.jpg",
+      "originalFile": "exec-040f22c5-142d-42d4-9bef-9460bb169cc3.png"
+    },
+    {
+      "id": "LEARN-D08",
+      "subject": "A compact factory beside energy meters, a wind turbine and abstract emissions measurement indicators, a subtle carbon-cycle loop, representing a supplier emissions inventory.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A compact factory beside energy meters, a wind turbine and abstract emissions measurement indicators, a subtle carbon-cycle loop, representing a supplier emissions inventory.",
+      "file": "public/images/formacion/learn-d08.jpg",
+      "originalFile": "exec-440e9166-2f48-4c18-8b5a-dcf7bab936ee.png"
+    },
+    {
+      "id": "LEARN-D09",
+      "subject": "A simplified mineral processing circuit with tanks, pipes, water droplets and a clear recirculation loop, contrasting fresh input and recycled water flows.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A simplified mineral processing circuit with tanks, pipes, water droplets and a clear recirculation loop, contrasting fresh input and recycled water flows.",
+      "file": "public/images/formacion/learn-d09.jpg",
+      "originalFile": "exec-18ccf112-e2b7-4e5f-a835-f853e434ba76.png"
+    },
+    {
+      "id": "LEARN-D10",
+      "subject": "A controlled mining test site with safety rails, a small pilot rig and an adjacent KPI board with checkmarks, benchmark gauges and a stop-go decision motif.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: A controlled mining test site with safety rails, a small pilot rig and an adjacent KPI board with checkmarks, benchmark gauges and a stop-go decision motif.",
+      "file": "public/images/formacion/learn-d10.jpg",
+      "originalFile": "exec-d63c272e-19e8-43f7-8595-e78a403ffe99.png"
+    },
+    {
+      "id": "LEARN-D11",
+      "subject": "Two small anonymous stylized supplier and mining operations teams in a professional meeting reviewing a tabletop industrial model and an abstract proposal board; no recognizable portraits.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: Two small anonymous stylized supplier and mining operations teams in a professional meeting reviewing a tabletop industrial model and an abstract proposal board; no recognizable portraits.",
+      "file": "public/images/formacion/learn-d11.jpg",
+      "originalFile": "exec-172d5516-d113-46c9-a708-49342098340c.png"
+    },
+    {
+      "id": "LEARN-R01",
+      "subject": "An illustrated contemporary auditorium seen from the rear, abstract seated audience silhouettes facing a large screen with a simple mining conveyor and technology diagram. No readable text or recognizable real people.",
+      "prompt": "Create one standalone 16:9 landscape editorial illustration for a professional Spanish mining-supplier learning catalogue. Unified art direction matching a premium isometric paper-model illustration: clean sophisticated geometric industrial forms, matte paper texture, deep teal background (#153e4c), lighter turquoise machinery, warm burnt-orange and sand accents, soft shadows, generous negative space, high contrast at small thumbnail size. Keep subject in central 75% with safe margins for crop. No text, letters, digits, logos, watermarks, badges, institution branding or photorealistic people. Opaque background. One illustration only, not a collage. Subject: An illustrated contemporary auditorium seen from the rear, abstract seated audience silhouettes facing a large screen with a simple mining conveyor and technology diagram. No readable text or recognizable real people.",
+      "file": "public/images/formacion/learn-r01.jpg",
+      "originalFile": "exec-bd4abeb7-060a-4bff-bb44-ecadb3083494.png"
+    }
+  ]
+}

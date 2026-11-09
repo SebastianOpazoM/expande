@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    init: true
+    ports:
+      - '127.0.0.1:${APP_PORT:-3001}:3001'
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3001
+      DATABASE_PATH: /app/data/expande.sqlite
+      DEMO_ACCESS_PASSWORD: ${DEMO_ACCESS_PASSWORD:?Set DEMO_ACCESS_PASSWORD in .env}
+      COOKIE_SECRET: ${COOKIE_SECRET:?Set COOKIE_SECRET in .env to at least 32 random characters}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+    volumes:
+      - expande-data:/app/data
+      - expande-backups:/app/backups
+volumes:
+  expande-data:
+  expande-backups:

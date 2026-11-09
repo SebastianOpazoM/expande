@@ -1,0 +1,14 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS migrations(version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS scopes(id TEXT PRIMARY KEY, kind TEXT NOT NULL CHECK(kind IN ('catalog','templates','session')), label TEXT NOT NULL, active_user TEXT, demo_now TEXT NOT NULL, revision INTEGER NOT NULL DEFAULT 1, created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS records(scope TEXT NOT NULL REFERENCES scopes(id) ON DELETE CASCADE, collection TEXT NOT NULL, id TEXT NOT NULL, body TEXT NOT NULL CHECK(json_valid(body)), company_id TEXT, user_id TEXT, application_id TEXT, revision INTEGER NOT NULL DEFAULT 1, PRIMARY KEY(scope,collection,id));
+CREATE INDEX IF NOT EXISTS records_company ON records(scope,collection,company_id);
+CREATE INDEX IF NOT EXISTS records_user ON records(scope,collection,user_id);
+CREATE UNIQUE INDEX IF NOT EXISTS saved_unique ON records(scope,user_id,json_extract(body,'$.target_type'),json_extract(body,'$.target_id')) WHERE collection='saved_items';
+CREATE UNIQUE INDEX IF NOT EXISTS follows_unique ON records(scope,user_id,json_extract(body,'$.challenge_id')) WHERE collection='follows';
+CREATE UNIQUE INDEX IF NOT EXISTS progress_unique ON records(scope,user_id,json_extract(body,'$.learning_id')) WHERE collection='learning_progress';
+CREATE UNIQUE INDEX IF NOT EXISTS activity_unique ON records(scope,user_id,json_extract(body,'$.kind'),json_extract(body,'$.target_type'),json_extract(body,'$.target_id')) WHERE collection='activity';
+CREATE TABLE IF NOT EXISTS record_links(scope TEXT NOT NULL, collection TEXT NOT NULL, id TEXT NOT NULL, field TEXT NOT NULL, target_scope TEXT NOT NULL, target_collection TEXT NOT NULL, target_id TEXT NOT NULL, FOREIGN KEY(scope,collection,id) REFERENCES records(scope,collection,id) ON DELETE CASCADE, FOREIGN KEY(target_scope,target_collection,target_id) REFERENCES records(scope,collection,id) DEFERRABLE INITIALLY DEFERRED);
+CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY AUTOINCREMENT, batch_id TEXT NOT NULL, actor TEXT NOT NULL, at TEXT NOT NULL, scope TEXT NOT NULL, collection TEXT NOT NULL, record_id TEXT NOT NULL, before_json TEXT, after_json TEXT, after_revision INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+INSERT OR IGNORE INTO migrations VALUES(1,strftime('%Y-%m-%dT%H:%M:%fZ','now'));

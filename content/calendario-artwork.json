@@ -1,0 +1,66 @@
+[
+  {
+    "id": "conferencia",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mining technology conference auditorium, small audience and a speaker beside an abstract machinery presentation",
+    "alt": "Auditorio de un encuentro técnico de minería con asistentes y una presentación industrial.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-57ac4897-45df-4606-bda8-69f2cba76d88.png",
+    "asset_path": "public/images/calendario/conferencia.jpg"
+  },
+  {
+    "id": "feria",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mining technology exhibition, spacious booths with scale machinery and visitors wearing safety helmets",
+    "alt": "Feria de tecnologías mineras con equipos de demostración y visitantes.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-21665110-6e45-4105-ba0c-9ee153dba5b0.png",
+    "asset_path": "public/images/calendario/feria.jpg"
+  },
+  {
+    "id": "agua",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mining water and tailings technical workshop, cutaway recirculation tanks, pipework, pump and small technical display",
+    "alt": "Circuito de agua y relaves con estanques, tuberías y bombas de una planta minera.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-3d8b2baa-fd8c-48de-9bcb-fa967464d3c7.png",
+    "asset_path": "public/images/calendario/agua.jpg"
+  },
+  {
+    "id": "procesos",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mineral processing technical symposium, crushers and grinding mill connected to flotation cells, abstract display",
+    "alt": "Equipos de conminución y concentración conectados en una planta de procesamiento mineral.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-954f2f3c-b91f-4446-a5c3-bbb991fd9866.png",
+    "asset_path": "public/images/calendario/procesos.jpg"
+  },
+  {
+    "id": "transporte",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Technical mining logistics exhibition, conveyor carrying ore and large haul truck on an industrial platform",
+    "alt": "Correa transportadora y camión de extracción en un circuito de transporte de mineral.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-c715f02d-7519-4e5b-bc62-0f1e39a1636e.png",
+    "asset_path": "public/images/calendario/transporte.jpg"
+  },
+  {
+    "id": "digital",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Digital mining workshop, operator at abstract control dashboard linked to robot and connected mine sensors",
+    "alt": "Panel de control conectado a sensores y equipos automatizados de una operación minera.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-1daa78af-a9f0-4ad0-b93d-8327f47273d0.png",
+    "asset_path": "public/images/calendario/digital.jpg"
+  },
+  {
+    "id": "mantenimiento",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mining asset reliability workshop, technician with inspection tablet beside motor pump and tools",
+    "alt": "Especialista inspecciona un motor y una bomba con herramientas de mantenimiento.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-63fed6f2-237c-4709-b955-1d070bf27106.png",
+    "asset_path": "public/images/calendario/mantenimiento.jpg"
+  },
+  {
+    "id": "energia",
+    "prompt": "Use case: stylized-concept. Asset type: illustrated event thumbnail for a mining ecosystem calendar, not a photograph of an actual event. Landscape 16:9. Polished simple isometric industrial illustration matching a consistent editorial library. Teal and turquoise backgrounds, dark teal equipment, warm orange and sand accents, matte geometric forms, soft shadows, clear focal subject. No embedded text, letters, numbers, logos, watermarks, recognizable people or institutional branding. Subject: Mining energy technology forum, electric substation beside solar panels, batteries and industrial plant",
+    "alt": "Subestación, paneles solares y almacenamiento eléctrico junto a instalaciones mineras.",
+    "method": "built-in image_gen",
+    "original_path": "C:\\Users\\sebas\\.codex\\generated_images\\01a1b93e-964b-7f31-941c-4de23f50fc3b\\exec-0a691041-4c3a-4240-9bf9-f252aec0fc8e.png",
+    "asset_path": "public/images/calendario/energia.jpg"
+  }
+]
