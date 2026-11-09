@@ -71,7 +71,10 @@ export function Applications() {
           options={['todos', ...d.enums.application_state]}
           onChange={(v) => update('state', v)}
         />
-        <Notice>Los estados demo y los registros manuales indican siempre su origen.</Notice>
+        <Notice>
+          Expande mantiene automáticamente los estados de sus desafíos. Las oportunidades de
+          mercado se actualizan manualmente por tu empresa.
+        </Notice>
         <ListState empty={!list.length}>
           {list.map((a: Row) => {
             const c = d.challenges.find((r: Row) => r.id === a.challenge_id);
@@ -113,14 +116,21 @@ export function Applications() {
 }
 export function RegisterApplication() {
   const { d, act } = useDemo(),
+    [params] = useSearchParams(),
     nav = useNavigate();
+  const externalChallenges = d.challenges.filter((c: Row) => c.origin === 'externo');
+  const requestedChallenge = params.get('challenge');
+  const selectedChallenge = externalChallenges.some((c: Row) => c.id === requestedChallenge)
+    ? requestedChallenge
+    : externalChallenges[0]?.id;
   return (
     <Layout detail title="Seguimiento manual">
       <Page>
-        <h1>Registrar postulación externa</h1>
+        <h1>Registrar seguimiento manual</h1>
         <Notice>
-          Este registro es manual. No sincronizamos estados con otras plataformas ni enviamos
-          antecedentes.
+          Las oportunidades de mercado no sincronizan estados con Expande. Tu empresa registra y
+          actualiza aquí el estado, la etapa, el resultado y las notas para mantener todo al día.
+          No enviamos antecedentes.
         </Notice>
         {d.solutions.length ? (
           <Form
@@ -136,10 +146,9 @@ export function RegisterApplication() {
           >
             <Select
               name="challenge_id"
-              label="Desafío"
-              options={d.challenges
-                .filter((c: Row) => c.origin === 'externo')
-                .map((c: Row) => ({ id: c.id, name: c.title }))}
+              label="Desafío de mercado"
+              defaultValue={selectedChallenge}
+              options={externalChallenges.map((c: Row) => ({ id: c.id, name: c.title }))}
             />
             <Select
               name="solution_id"
@@ -195,10 +204,10 @@ export function ApplicationDetail() {
         <h1>{c?.title}</h1>
         <Notice>
           {a.status_origin === 'manual'
-            ? 'Actualizado por tu empresa. Sin sincronización externa.'
+            ? 'Seguimiento manual actualizado por tu empresa. Sin sincronización externa.'
             : a.status_origin === 'local'
               ? 'Borrador local. No se envió al mandante.'
-              : 'Estado demo Expande. Solo lectura para el proveedor.'}
+              : 'Seguimiento automático Expande. Estado demo de solo lectura para tu empresa.'}
         </Notice>
         <div className="card">
           <h2>Próximos pasos</h2>

@@ -147,6 +147,13 @@ export function action(store: Store, scope: string, a: any, actor?: string) {
     target();
     const collection = a.type === 'saved' ? 'saved_items' : 'follows';
     assert(a.type !== 'follow' || a.target_type === 'challenge', 'Solo se siguen desafíos');
+    if (a.type === 'follow') {
+      const challenge = d.challenges.find((r: Row) => r.id === a.target_id);
+      assert(
+        challenge?.origin === 'expande',
+        'El seguimiento automático solo está disponible para desafíos Expande',
+      );
+    }
     const old = d[collection].find(
       (r: Row) => r.user_id === user.id && (r.target_id || r.challenge_id) === a.target_id,
     );
@@ -180,6 +187,11 @@ export function action(store: Store, scope: string, a: any, actor?: string) {
     const ch = d.challenges.find((r: Row) => r.id === a.challenge_id);
     assert(ch, 'Desafío no encontrado');
     if (a.type === 'draft') assert(ch.state === 'abierto', 'La convocatoria no está abierta');
+    if (a.type === 'register_application')
+      assert(
+        ch.origin === 'externo',
+        'El seguimiento manual solo está disponible para desafíos de mercado',
+      );
     const sol = a.solution_id ? owned('solutions', a.solution_id) : undefined;
     assert(sol, 'Selecciona una solución de tu empresa');
     const existing = a.id ? owned('applications', a.id) : undefined;
@@ -240,6 +252,12 @@ export function action(store: Store, scope: string, a: any, actor?: string) {
   } else if (a.type === 'application_status') {
     const app = owned('applications', a.id);
     assert(app.status_origin === 'manual', 'El estado demo Expande es de lectura', 403);
+    const challenge = d.challenges.find((r: Row) => r.id === app.challenge_id);
+    assert(
+      challenge?.origin === 'externo',
+      'Solo las oportunidades de mercado admiten actualizaciones manuales',
+      403,
+    );
     assert(
       d.enums.application_state.includes(a.state) &&
         d.enums.pipeline_stage.includes(a.pipeline_stage) &&

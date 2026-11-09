@@ -74,6 +74,10 @@ export function Catalog() {
             </button>
           ))}
         </div>
+        <Notice>
+          Expande actualiza automáticamente el seguimiento de sus desafíos. En oportunidades de
+          mercado, tu empresa mantiene el estado manualmente para conservar todo en un solo lugar.
+        </Notice>
         <div className="between challenge-catalog-toolbar">
           <button onClick={() => setFilters(true)}>
             <SlidersHorizontal size={16} /> Filtros
@@ -307,20 +311,30 @@ export function ChallengeDetail() {
       detail
       footer={
         <>
-          <button
-            onClick={() =>
-              void act({ type: 'follow', target_type: 'challenge', target_id: id }).catch(() => {})
-            }
-          >
-            {followed ? 'Dejar de seguir' : 'Seguir desafío'}
-          </button>
+          {r.origin === 'expande' ? (
+            <button
+              onClick={() =>
+                void act({ type: 'follow', target_type: 'challenge', target_id: id }).catch(() => {})
+              }
+            >
+              {followed ? 'Desactivar seguimiento automático' : 'Activar seguimiento automático'}
+            </button>
+          ) : (
+            <Link className="button" to={`/postulaciones/nueva?challenge=${id}`}>
+              Registrar seguimiento manual
+            </Link>
+          )}
           {r.state === 'abierto' ? (
             <Link className="button primary" to={`/desafios/${id}/preparar`}>
               Preparar antecedentes
             </Link>
           ) : (
             <span className="muted">
-              {r.state === 'cerrado' ? 'Convocatoria cerrada' : 'Estado por confirmar'}
+              {r.state === 'cerrado'
+                ? 'Convocatoria cerrada'
+                : r.state === 'proximo'
+                  ? 'Próxima convocatoria'
+                  : 'Estado por confirmar'}
             </span>
           )}
         </>
@@ -373,6 +387,19 @@ export function ChallengeDetail() {
             <small>Equivalencia en America/Santiago · fecha de origen: {r.closes_at}</small>
           )}
           <p>{r.funding?.description}</p>
+        </div>
+        <div className={`card challenge-tracking-card ${r.origin}`}>
+          <p className="eyebrow">SEGUIMIENTO</p>
+          <h2>
+            {r.origin === 'expande'
+              ? 'Automático con Expande'
+              : 'Actualizado manualmente por tu empresa'}
+          </h2>
+          <p>
+            {r.origin === 'expande'
+              ? 'Las actualizaciones disponibles en Expande se reflejan en la postulación y su historial. El estado es de solo lectura para tu empresa.'
+              : 'Esta oportunidad no comparte estados con Expande. Registra la postulación y actualiza su estado, etapa, resultado y notas para mantener tu seguimiento al día.'}
+          </p>
         </div>
         <div className="card">
           <h2>Resumen del desafío</h2>

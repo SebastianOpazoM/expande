@@ -471,6 +471,79 @@ test('Expande challenge badges use the purple brand treatment', async ({ page })
   await expect(detailBadge).toHaveCSS('background-color', 'rgb(171, 18, 84)');
   await expect(detailBadge).toHaveCSS('color', 'rgb(255, 255, 255)');
 });
+test('challenge tracking is automatic only for Expande and manual for market opportunities', async ({
+  page,
+}) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios');
+
+  await expect(page.locator('.challenge-tracking-summary.automatic')).toHaveCount(9);
+  await expect(page.locator('.challenge-tracking-summary.manual')).toHaveCount(3);
+  await expect(
+    page.getByText(
+      'Expande actualiza automáticamente el seguimiento de sus desafíos. En oportunidades de mercado, tu empresa mantiene el estado manualmente para conservar todo en un solo lugar.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+
+  await page.goto('/desafios/CH-D01');
+  await expect(
+    page.getByRole('heading', { name: 'Automático con Expande', exact: true }),
+  ).toBeVisible();
+  const automatic = page.getByRole('button', {
+    name: 'Activar seguimiento automático',
+    exact: true,
+  });
+  await automatic.click();
+  await expect(
+    page.getByRole('button', { name: 'Desactivar seguimiento automático', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Registrar seguimiento manual' })).toHaveCount(0);
+
+  await page.goto('/desafios/CH-D05');
+  await expect(
+    page.getByRole('heading', { name: 'Actualizado manualmente por tu empresa', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText('Próxima convocatoria', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: /seguimiento automático/i })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Registrar seguimiento manual', exact: true }).click();
+
+  await expect(page).toHaveURL('/postulaciones/nueva?challenge=CH-D05');
+  const challenge = page.getByRole('combobox', { name: 'Desafío de mercado', exact: true });
+  await expect(challenge).toHaveValue('CH-D05');
+  await expect(challenge.locator('option')).toHaveCount(3);
+  await page.getByLabel('Nota', { exact: true }).fill('Seguimiento consolidado por la empresa');
+  await page.getByRole('button', { name: 'Guardar seguimiento manual', exact: true }).click();
+
+  const application = page
+    .locator('a.card')
+    .filter({ has: page.getByRole('heading', { name: 'Optimización energética de molienda' }) });
+  await expect(application).toContainText('Actualizado por tu empresa');
+  await application.click();
+  await expect(
+    page.getByText(
+      'Seguimiento manual actualizado por tu empresa. Sin sincronización externa.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Actualizar estado manual', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Estado', exact: true }).selectOption('en_revision');
+  await page
+    .getByRole('combobox', { name: 'Etapa de negocio', exact: true })
+    .selectOption('pertinencia');
+  await page
+    .getByRole('textbox', { name: 'Nota de actualización', exact: true })
+    .fill('Revisión registrada');
+  await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
+  await expect(page.getByText('Estado e historial actualizados por tu empresa')).toBeVisible();
+  await expect(page.locator('.pill')).toHaveText('En revisión');
+  await expect(
+    page.locator('.timeline').getByText('Revisión registrada', { exact: true }),
+  ).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 test('account completion fills progressively and awards a completed profile', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);

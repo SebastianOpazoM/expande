@@ -431,6 +431,15 @@ export function ChallengeCard({ r, compact = false }: { r: Row; compact?: boolea
           </div>
         </>
       )}
+      <p
+        className={`challenge-tracking-summary ${
+          r.origin === 'expande' ? 'automatic' : 'manual'
+        }`}
+      >
+        <strong>
+          {r.origin === 'expande' ? 'Seguimiento automático Expande' : 'Seguimiento manual'}
+        </strong>
+      </p>
       <div className="card-bottom">
         <small>
           {r.closes_at ? (

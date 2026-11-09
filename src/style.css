@@ -930,6 +930,35 @@ code {
   background: var(--brand-magenta);
   color: var(--color-on-brand);
 }
+.challenge-tracking-summary {
+  margin: 12px 0 0;
+}
+.challenge-tracking-summary strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 9px;
+  line-height: 1.2;
+}
+.challenge-tracking-summary.automatic strong {
+  background: var(--color-magenta-tint);
+  color: var(--color-accent);
+}
+.challenge-tracking-summary.manual strong {
+  background: var(--color-navy-tint);
+  color: var(--color-text);
+}
+.challenge-tracking-card h2 {
+  margin-top: 4px;
+}
+.challenge-tracking-card.expande {
+  border-left: 4px solid var(--brand-magenta);
+}
+.challenge-tracking-card.externo {
+  border-left: 4px solid var(--brand-navy);
+}
 .pill.learning-format-capsula {
   background: var(--color-magenta-tint);
   color: var(--color-accent);

@@ -117,6 +117,54 @@ test('T14 seguimiento manual crea evento; estados Expande son de lectura', () =>
   );
   s.close();
 });
+test('el origen del desafío delimita el seguimiento automático y manual', () => {
+  const { s, id } = setup();
+  const data = s.visible(id);
+  for (const application of data.applications) {
+    const challenge = data.challenges.find((row: Row) => row.id === application.challenge_id)!;
+    if (application.status_origin === 'expande_simulado')
+      assert.equal(challenge.origin, 'expande');
+    if (application.status_origin === 'manual') assert.equal(challenge.origin, 'externo');
+  }
+  for (const follow of data.follows)
+    assert.equal(
+      data.challenges.find((row: Row) => row.id === follow.challenge_id)?.origin,
+      'expande',
+    );
+
+  assert.throws(
+    () =>
+      action(s, id, {
+        type: 'follow',
+        target_type: 'challenge',
+        target_id: 'CH-D04',
+      }),
+    /seguimiento automático solo está disponible para desafíos Expande/i,
+  );
+  assert.throws(
+    () =>
+      action(s, id, {
+        type: 'register_application',
+        challenge_id: 'CH-D01',
+        solution_id: 'SOL-01',
+        state: 'enviada',
+      }),
+    /seguimiento manual solo está disponible para desafíos de mercado/i,
+  );
+
+  action(s, id, {
+    type: 'register_application',
+    challenge_id: 'CH-D04',
+    solution_id: 'SOL-01',
+    state: 'enviada',
+  });
+  const manual = s
+    .visible(id)
+    .applications.filter((row: Row) => row.challenge_id === 'CH-D04')
+    .at(-1)!;
+  assert.equal(manual.status_origin, 'manual');
+  s.close();
+});
 test('T15 aviso exacto y contador por usuario', () => {
   const { s, id } = setup();
   assert.equal(s.visible(id).notifications.filter((n: Row) => !n.read).length, 4);
