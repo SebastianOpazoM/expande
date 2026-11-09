@@ -419,6 +419,12 @@ for (const width of [360, 390, 430])
       await expect(nav).toBeVisible();
       const box = await nav.boundingBox();
       expect(box!.y + box!.height).toBeLessThanOrEqual(845);
+      if (path === '/explorar') {
+        const viewport = page.locator('.viewport');
+        expect(await viewport.evaluate((element) => element.scrollHeight)).toBeLessThanOrEqual(
+          await viewport.evaluate((element) => element.clientHeight),
+        );
+      }
     }
     mkdirSync('.local/screenshots', { recursive: true });
     await page.goto('/bienvenida');
