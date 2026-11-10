@@ -684,6 +684,38 @@ test('account completion fills progressively and awards a completed profile', as
     page.getByText('11% restante para completar tu perfil', { exact: true }),
   ).toBeVisible();
 });
+
+test('account shows the generated portrait for every demo profile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+
+  for (const [id, name, file] of [
+    ['USR-01', 'Andrea Demo', 'andrea.jpg'],
+    ['USR-02', 'Diego Demo', 'diego.jpg'],
+    ['USR-03', 'Lucía Demo', 'lucia.jpg'],
+    ['USR-04', 'Pablo Demo', 'pablo.jpg'],
+  ]) {
+    if (id !== 'USR-01') {
+      await page.goto('/escenarios');
+      await page.getByLabel('Perfil y organización').selectOption(id);
+      await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
+    }
+    await page.goto('/cuenta');
+    const portrait = page.getByRole('img', {
+      name: `Retrato de perfil de ${name}`,
+      exact: true,
+    });
+    await expect(portrait).toHaveAttribute('src', `/images/profiles/${file}`);
+    await expect
+      .poll(() =>
+        portrait.evaluate(
+          (image) =>
+            (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth,
+        ),
+      )
+      .toBeGreaterThan(0);
+  }
+});
 test('account dark mode applies across routes and persists after reload', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);

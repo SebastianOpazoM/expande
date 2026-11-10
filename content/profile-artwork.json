@@ -1,0 +1,35 @@
+{
+  "method": "Pollinations AI Classic image generation using the Flux model; each portrait was generated independently and then center-cropped and optimized for the account avatar.",
+  "generated_on": "2026-11-09",
+  "notice": "These are synthetic portraits of fictional demo users. They do not depict real people.",
+  "images": [
+    {
+      "user_id": "USR-01",
+      "name": "Andrea Demo",
+      "seed": 4181,
+      "prompt": "Photorealistic professional LinkedIn profile headshot of a fictional Chilean Latina woman in her mid 30s, warm medium complexion, shoulder-length dark brown wavy hair, confident friendly expression, navy blazer and cream blouse, neutral soft light gray studio background, centered head and shoulders, natural corporate photography, realistic skin texture, no text, no logo, no watermark",
+      "file": "public/images/profiles/andrea.jpg"
+    },
+    {
+      "user_id": "USR-02",
+      "name": "Diego Demo",
+      "seed": 7392,
+      "prompt": "Photorealistic professional LinkedIn profile headshot of a fictional Chilean Latino man in his mid 30s, warm medium complexion, short neat dark brown hair, clean shaven, confident approachable expression, navy blazer and pale blue shirt, neutral soft light gray studio background, centered head and shoulders, natural corporate photography, realistic skin texture, no text, no logo, no watermark",
+      "file": "public/images/profiles/diego.jpg"
+    },
+    {
+      "user_id": "USR-03",
+      "name": "Lucía Demo",
+      "seed": 5827,
+      "prompt": "Photorealistic professional LinkedIn profile headshot of a fictional Chilean Latina woman in her early 40s, warm olive complexion, shoulder-length chestnut brown hair, confident kind expression, deep teal blazer and ivory blouse, neutral soft light gray studio background, centered head and shoulders, natural corporate photography, realistic skin texture, no text, no logo, no watermark",
+      "file": "public/images/profiles/lucia.jpg"
+    },
+    {
+      "user_id": "USR-04",
+      "name": "Pablo Demo",
+      "seed": 9164,
+      "prompt": "Photorealistic professional LinkedIn profile headshot of a fictional Chilean Latino man in his mid 40s, warm medium complexion, short dark hair with subtle gray at the temples, light neat stubble, calm confident expression, charcoal blazer and white shirt, neutral soft light gray studio background, centered head and shoulders, natural corporate photography, realistic skin texture, no text, no logo, no watermark",
+      "file": "public/images/profiles/pablo.jpg"
+    }
+  ]
+}

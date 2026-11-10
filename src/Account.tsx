@@ -48,9 +48,16 @@ const contentTypes = [
   'learning',
   'alliance',
 ];
+const profilePortraitByUserId: Record<string, string> = {
+  'USR-01': '/images/profiles/andrea.jpg',
+  'USR-02': '/images/profiles/diego.jpg',
+  'USR-03': '/images/profiles/lucia.jpg',
+  'USR-04': '/images/profiles/pablo.jpg',
+};
 export function Account() {
   const { d, user, company } = useDemo();
   const complete = profileCompleteness(company);
+  const portrait = profilePortraitByUserId[user.id];
   const [theme, setTheme] = useState(readColorTheme);
   const dark = theme === 'dark';
   return (
@@ -59,11 +66,15 @@ export function Account() {
         <div className="profile-head">
           <div className="profile-identity">
             <span className="avatar">
-              {user.name
-                .split(' ')
-                .map((s: string) => s[0])
-                .slice(0, 2)
-                .join('')}
+              {portrait ? (
+                <img src={portrait} alt={`Retrato de perfil de ${user.name}`} />
+              ) : (
+                user.name
+                  .split(' ')
+                  .map((s: string) => s[0])
+                  .slice(0, 2)
+                  .join('')
+              )}
             </span>
             <div className="profile-copy">
               <h1>{user.name}</h1>
