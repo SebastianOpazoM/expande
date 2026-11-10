@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 import { Store } from '../../server/store.ts';
 import { fundingManifest } from '../../server/funding-catalogue.ts';
@@ -46,7 +46,7 @@ for (const width of [360, 390, 430])
       );
     }
     await page.getByLabel('Buscar innovación').fill('ciberseguridad');
-    await page.getByLabel('Categoría / tema').selectOption('seguridad');
+    await chooseSelect(page, 'Categoría / tema', 'seguridad');
     await expect(page.locator('article.card')).toHaveCount(1);
     const filtered = page.url();
     await page.locator('article.card .learning-cover-link').click();
@@ -65,7 +65,7 @@ for (const width of [360, 390, 430])
     await page.getByRole('button', { name: 'Limpiar filtros', exact: true }).click();
     await expect(page.locator('article.card')).toHaveCount(5);
     await page.getByRole('button', { name: 'Casos', exact: true }).click();
-    await page.getByRole('combobox', { name: 'País', exact: true }).selectOption('PE');
+    await chooseSelect(page, 'País', 'PE');
     await page.getByLabel('Buscar innovación').fill('asistente');
     await expect(page.locator('article.card')).toHaveCount(1);
     await page.getByRole('button', { name: 'Limpiar filtros', exact: true }).click();
@@ -241,24 +241,24 @@ for (const width of [360, 390, 430])
     await page.getByLabel('Buscar Concursos y financiamiento').fill('Capital Humano');
     await expect(page.locator('article.card')).toHaveCount(1);
     await page.getByText('Filtros de financiamiento', { exact: true }).click();
+    const queryKeyByLabel: Record<string, string> = {
+      Segmento: 'segment',
+      Región: 'region',
+      Estado: 'state',
+      Moneda: 'currency',
+    };
     for (const [name, value] of [
       ['Segmento', 'pyme'],
       ['Región', 'Antofagasta'],
       ['Estado', 'por_confirmar'],
       ['Moneda', 'CLP'],
     ]) {
-      await page.getByRole('combobox', { name, exact: true }).selectOption(value);
+      await chooseSelect(page, name, value);
       await expect
-        .poll(() =>
-          new URL(page.url()).searchParams.get(
-            ({ Segmento: 'segment', Región: 'region', Estado: 'state', Moneda: 'currency' } as any)[
-              name
-            ],
-          ),
-        )
+        .poll(() => new URL(page.url()).searchParams.get(queryKeyByLabel[name]))
         .toBe(value);
     }
-    await page.getByRole('combobox', { name: 'Orden', exact: true }).selectOption('monto');
+    await chooseSelect(page, 'Orden', 'monto');
     await expect(page.locator('article.card')).toHaveCount(1);
     const filtered = page.url();
     await page.locator('article.card .learning-cover-link').click();
@@ -332,9 +332,9 @@ test('funding sorting keeps unknown amounts last and retired currency out of fil
     'Semilla Expande',
   );
   await page.getByText('Filtros de financiamiento', { exact: true }).click();
-  await expect(
-    page.getByRole('combobox', { name: 'Moneda', exact: true }).locator('option[value="USD"]'),
-  ).toHaveCount(0);
+  const currencyOptions = await openSelect(page, 'Moneda');
+  await expect(currencyOptions.locator('[role="option"][data-value="USD"]')).toHaveCount(0);
+  await page.keyboard.press('Escape');
   await page.goto('/financiamiento?currency=USD');
   await expect(page.locator('article.card')).toHaveCount(0);
   await page.getByRole('button', { name: 'Limpiar filtros', exact: true }).click();
@@ -378,11 +378,32 @@ test.beforeEach(async ({ page }) => {
   page.on('pageerror', (e) => errors.push(e.message));
 });
 test.afterEach(() => expect(errors).toEqual([]));
-async function enter(page: any) {
+async function enter(page: Page) {
   await page.goto('/bienvenida');
   await page.getByRole('link', { name: 'Explorar demo', exact: true }).click();
   await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click();
   await expect(page.getByText('Hola, Andrea')).toBeVisible();
+}
+const selectControl = (page: Page, name: string) =>
+  page.getByRole('combobox', { name, exact: true });
+async function openSelect(page: Page, name: string) {
+  await selectControl(page, name).click();
+  return page.getByRole('listbox', { name, exact: true });
+}
+async function chooseSelect(
+  page: Page,
+  name: string,
+  selection: string | { label: string },
+) {
+  const listbox = await openSelect(page, name);
+  const option =
+    typeof selection === 'string'
+      ? listbox.locator(`[role="option"][data-value=${JSON.stringify(selection)}]`)
+      : listbox.getByRole('option', { name: selection.label, exact: true });
+  await option.click();
+}
+async function expectSelectValue(page: Page, name: string, value: string) {
+  await expect(selectControl(page, name)).toHaveAttribute('data-value', value);
 }
 for (const width of [360, 390, 430])
   test(`mobile ${width}: main routes, no overflow, controls and screenshots`, async ({ page }) => {
@@ -480,21 +501,18 @@ test('challenge sorting matches the filter control treatment', async ({ page }) 
 
   const filter = page.getByRole('button', { name: 'Filtros', exact: true });
   const sort = page.locator('.challenge-catalog-sort');
-  const trigger = page.getByRole('button', {
-    name: 'Ordenar: Próximos a cerrar',
-    exact: true,
-  });
+  const trigger = page.getByRole('combobox', { name: 'Ordenar', exact: true });
   await expect(trigger).toHaveCSS('background-color', 'rgb(171, 18, 84)');
   await expect(trigger).toHaveCSS('border-radius', '13px');
   await expect(trigger).toHaveCSS('color', 'rgb(255, 255, 255)');
-  await expect(trigger).toHaveCSS('text-align', 'right');
+  await expect(trigger).toHaveCSS('text-align', 'center');
   const filterBox = await filter.boundingBox();
   const sortBox = await sort.boundingBox();
   expect(Math.abs(filterBox!.height - sortBox!.height)).toBeLessThanOrEqual(1);
   expect(sortBox!.width).toBeLessThanOrEqual(190);
 
   await trigger.click();
-  const listbox = page.getByRole('listbox', { name: 'Ordenar desafíos', exact: true });
+  const listbox = page.getByRole('listbox', { name: 'Ordenar', exact: true });
   await expect(listbox).toBeVisible();
   await expect(listbox.getByRole('option')).toHaveCount(3);
   await expect(
@@ -502,14 +520,35 @@ test('challenge sorting matches the filter control treatment', async ({ page }) 
   ).toHaveAttribute('aria-selected', 'true');
   await listbox.getByRole('option', { name: 'Más recientes', exact: true }).click();
   await expect(page).toHaveURL(/order=recientes/);
-  await expect(
-    page.getByRole('button', { name: 'Ordenar: Más recientes', exact: true }),
-  ).toBeVisible();
+  await expectSelectValue(page, 'Ordenar', 'recientes');
+  await expect(trigger).toContainText('Más recientes');
 
-  await page.getByRole('button', { name: 'Ordenar: Más recientes', exact: true }).press('ArrowDown');
+  await trigger.press('ArrowDown');
   await page.getByRole('option', { name: 'Afinidad con mi solución', exact: true }).press('End');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/order=afinidad/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('shared custom dropdown styling replaces native selects across the app', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/empresa');
+
+  await expect(page.locator('select')).toHaveCount(0);
+  const region = selectControl(page, 'Región de origen');
+  await expect(region).toHaveClass(/custom-select-trigger/);
+  await expect(region).toHaveCSS('text-align', 'center');
+  await region.click();
+  const options = page.getByRole('listbox', { name: 'Región de origen', exact: true });
+  await expect(options).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await expect(options.getByRole('option')).toHaveCount(17);
+  await options.getByRole('option', { name: 'Atacama', exact: true }).click();
+  await expectSelectValue(page, 'Región de origen', 'Atacama');
+
+  await page.goto('/postulaciones');
+  await expect(page.locator('select')).toHaveCount(0);
+  await expect(selectControl(page, 'Estado')).toHaveCSS('text-align', 'center');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 test('Expande challenge badges use the purple brand treatment', async ({ page }) => {
@@ -542,7 +581,7 @@ test('challenge affinity uses distinct visual badges for matches and mismatches'
   await expect(match).toHaveCSS('background-color', 'rgb(33, 101, 71)');
   await expect(match).toHaveCSS('color', 'rgb(255, 255, 255)');
 
-  await page.getByRole('combobox', { name: 'Evaluar con', exact: true }).selectOption('SOL-02');
+  await chooseSelect(page, 'Evaluar con', 'SOL-02');
   const mismatch = affinity.locator('.affinity-badge.no-match').first();
   await expect(mismatch).toContainText('Sin coincidencia');
   await expect(mismatch).toHaveCSS('background-color', 'rgb(253, 197, 0)');
@@ -664,9 +703,10 @@ test('challenge tracking is automatic only for Expande and manual for market opp
   await page.getByRole('link', { name: 'Registrar seguimiento manual', exact: true }).click();
 
   await expect(page).toHaveURL('/postulaciones/nueva?challenge=CH-D05');
-  const challenge = page.getByRole('combobox', { name: 'Desafío de mercado', exact: true });
-  await expect(challenge).toHaveValue('CH-D05');
-  await expect(challenge.locator('option')).toHaveCount(3);
+  await expectSelectValue(page, 'Desafío de mercado', 'CH-D05');
+  const challengeOptions = await openSelect(page, 'Desafío de mercado');
+  await expect(challengeOptions.getByRole('option')).toHaveCount(3);
+  await page.keyboard.press('Escape');
   await page.getByLabel('Nota', { exact: true }).fill('Seguimiento consolidado por la empresa');
   await page.getByRole('button', { name: 'Guardar seguimiento manual', exact: true }).click();
 
@@ -682,10 +722,8 @@ test('challenge tracking is automatic only for Expande and manual for market opp
     ),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Actualizar estado manual', exact: true }).click();
-  await page.getByRole('combobox', { name: 'Estado', exact: true }).selectOption('en_revision');
-  await page
-    .getByRole('combobox', { name: 'Etapa de negocio', exact: true })
-    .selectOption('pertinencia');
+  await chooseSelect(page, 'Estado', 'en_revision');
+  await chooseSelect(page, 'Etapa de negocio', 'pertinencia');
   await page
     .getByRole('textbox', { name: 'Nota de actualización', exact: true })
     .fill('Revisión registrada');
@@ -737,7 +775,7 @@ test('account shows the generated portrait for every demo profile', async ({ pag
   ]) {
     if (id !== 'USR-01') {
       await page.goto('/escenarios');
-      await page.getByLabel('Perfil y organización').selectOption(id);
+      await chooseSelect(page, 'Perfil y organización', id);
       await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
     }
     await page.goto('/cuenta');
@@ -952,11 +990,14 @@ test('company country autocomplete searches names and codes and persists selecte
   const country = page.getByRole('combobox', { name: 'País', exact: true });
   await expect(country).toHaveValue('Chile');
   const region = page.getByRole('combobox', { name: 'Región de origen', exact: true });
-  await expect(region).toHaveValue('Metropolitana');
-  await expect(region.locator('option')).toHaveCount(17);
-  await expect(region.locator('option')).toContainText(['Ñuble']);
+  await expectSelectValue(page, 'Región de origen', 'Metropolitana');
+  const regionOptions = await openSelect(page, 'Región de origen');
+  await expect(regionOptions.getByRole('option')).toHaveCount(17);
+  await expect(regionOptions).toContainText('Ñuble');
+  await page.keyboard.press('Escape');
   const city = page.getByRole('combobox', { name: 'Ciudad', exact: true });
-  await expect(city).toHaveValue('Santiago');
+  await expectSelectValue(page, 'Ciudad', 'Santiago');
+  const cityOptions = await openSelect(page, 'Ciudad');
   for (const commune of [
     'Providencia',
     'Las Condes',
@@ -964,21 +1005,30 @@ test('company country autocomplete searches names and codes and persists selecte
     'Maipú',
     'Puente Alto',
     'Vitacura',
-  ]) {
-    await expect(city.getByRole('option', { name: commune, exact: true })).toHaveCount(0);
-  }
-  await expect(city.getByRole('option', { name: 'Melipilla', exact: true })).toBeAttached();
-  await expect(city.getByRole('option', { name: 'Talagante', exact: true })).toBeAttached();
-  await expect(city.locator('option', { hasText: 'Valparaíso' })).toHaveCount(0);
-  await region.selectOption({ label: 'Valparaíso' });
-  await expect(city).toHaveValue('');
-  await expect(city.locator('option', { hasText: 'Santiago' })).toHaveCount(0);
-  await city.selectOption({ label: 'Viña del Mar' });
+  ])
+    await expect(cityOptions.getByRole('option', { name: commune, exact: true })).toBeVisible();
+  await expect(
+    cityOptions.getByRole('option', { name: 'Melipilla', exact: true }),
+  ).toBeVisible();
+  await expect(
+    cityOptions.getByRole('option', { name: 'Talagante', exact: true }),
+  ).toBeVisible();
+  await expect(
+    cityOptions.getByRole('option', { name: 'Valparaíso', exact: true }),
+  ).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await chooseSelect(page, 'Región de origen', { label: 'Valparaíso' });
+  await expectSelectValue(page, 'Ciudad', '');
+  const valparaisoCities = await openSelect(page, 'Ciudad');
+  await expect(
+    valparaisoCities.getByRole('option', { name: 'Santiago', exact: true }),
+  ).toHaveCount(0);
+  await valparaisoCities.getByRole('option', { name: 'Viña del Mar', exact: true }).click();
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
   await expect(page.getByText('Perfil guardado', { exact: true })).toBeVisible();
   await page.reload();
-  await expect(region).toHaveValue('Valparaíso');
-  await expect(city).toHaveValue('Viña del Mar');
+  await expectSelectValue(page, 'Región de origen', 'Valparaíso');
+  await expectSelectValue(page, 'Ciudad', 'Viña del Mar');
   await country.fill('espana');
   await page.getByRole('option', { name: 'España ES', exact: true }).click();
   await expect(country).toHaveValue('España');
@@ -1016,16 +1066,19 @@ test('company country autocomplete searches names and codes and persists selecte
   await country.fill('chile');
   await page.getByRole('option', { name: 'Chile CL', exact: true }).click();
   await expect(region).toBeVisible();
-  await expect(region).toHaveValue('');
+  await expectSelectValue(page, 'Región de origen', '');
   await expect(city).toHaveCount(0);
-  await region.selectOption({ label: 'Ñuble' });
+  await chooseSelect(page, 'Región de origen', { label: 'Ñuble' });
   await expect(city).toBeVisible();
-  await city.selectOption({ label: 'Chillán' });
-  await region.selectOption({ label: 'Atacama' });
-  await expect(city).toHaveValue('');
-  await expect(city.locator('option', { hasText: 'Chillán' })).toHaveCount(0);
-  await city.selectOption({ label: 'Copiapó' });
-  await region.selectOption('');
+  await chooseSelect(page, 'Ciudad', { label: 'Chillán' });
+  await chooseSelect(page, 'Región de origen', { label: 'Atacama' });
+  await expectSelectValue(page, 'Ciudad', '');
+  const atacamaCities = await openSelect(page, 'Ciudad');
+  await expect(
+    atacamaCities.getByRole('option', { name: 'Chillán', exact: true }),
+  ).toHaveCount(0);
+  await atacamaCities.getByRole('option', { name: 'Copiapó', exact: true }).click();
+  await chooseSelect(page, 'Región de origen', '');
   await expect(city).toHaveCount(0);
 });
 
@@ -1086,7 +1139,7 @@ test('coverage regions support autocomplete, multiple selections, removal and pe
   await expect(coverage).toBeVisible();
   await expect(page.getByText(/Países de cobertura/)).toHaveCount(0);
   await page.goto('/escenarios');
-  await page.getByLabel('Perfil y organización').selectOption('USR-02');
+  await chooseSelect(page, 'Perfil y organización', 'USR-02');
   await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
   await page.goto('/empresa');
   await expect(coverage).toBeDisabled();
@@ -1111,7 +1164,7 @@ test('personal last name saves and reloads without modifying another user', asyn
   ).toBeDisabled();
   await expect(page.getByRole('heading', { name: 'Diego Demo', exact: true })).toBeVisible();
   await page.goto('/escenarios');
-  await page.getByLabel('Perfil y organización').selectOption('USR-02');
+  await chooseSelect(page, 'Perfil y organización', 'USR-02');
   await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
   await page.goto('/perfil');
   await expect(page.getByLabel('Apellidos', { exact: true })).toHaveValue('');
@@ -1140,11 +1193,9 @@ test('training format tabs filter content and preserve other filters and URL sta
     'aria-pressed',
     'true',
   );
-  await page.getByRole('combobox', { name: 'Nivel', exact: true }).selectOption('intermedio');
+  await chooseSelect(page, 'Nivel', 'intermedio');
   await formats.getByRole('button', { name: 'Masterclass', exact: true }).click();
-  await expect(page.getByRole('combobox', { name: 'Nivel', exact: true })).toHaveValue(
-    'intermedio',
-  );
+  await expectSelectValue(page, 'Nivel', 'intermedio');
   await expect(
     page.getByRole('link', { name: 'Diseñar evidencia para escalar en minería', exact: true }),
   ).toBeVisible();
@@ -1155,7 +1206,7 @@ test('training format tabs filter content and preserve other filters and URL sta
     'aria-pressed',
     'true',
   );
-  await page.getByRole('combobox', { name: 'Nivel', exact: true }).selectOption('inicial');
+  await chooseSelect(page, 'Nivel', 'inicial');
   await expect(page.getByLabel('Buscar Formación')).toHaveValue('propuesta técnica');
   await expect(page.locator('article.card')).toHaveCount(1);
   expect(
@@ -1394,14 +1445,12 @@ test('draft, question, documents, notifications and persisted saved items', asyn
 test('company edit, rules, invitations, delegation and role permissions', async ({ page }) => {
   await enter(page);
   await page.goto('/empresa');
-  await page
-    .getByRole('combobox', { name: 'Región de origen', exact: true })
-    .selectOption('Atacama');
-  await page.getByRole('combobox', { name: 'Ciudad', exact: true }).selectOption('Copiapó');
+  await chooseSelect(page, 'Región de origen', 'Atacama');
+  await chooseSelect(page, 'Ciudad', 'Copiapó');
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
   await expect(page.getByText('Perfil guardado', { exact: true })).toBeVisible();
   await page.reload();
-  await expect(page.getByRole('combobox', { name: 'Ciudad', exact: true })).toHaveValue('Copiapó');
+  await expectSelectValue(page, 'Ciudad', 'Copiapó');
   await page.goto('/equipo');
   const selfCard = page
     .locator('.card')
@@ -1412,11 +1461,11 @@ test('company edit, rules, invitations, delegation and role permissions', async 
   const otherRole = page.getByRole('combobox', { name: 'Rol de Diego Demo', exact: true });
   const selfRole = selfCard.getByRole('combobox', { name: 'Rol de Andrea Demo', exact: true });
   await expect(selfRole).toBeDisabled();
-  await expect(selfRole).toHaveValue('administrador');
-  await otherRole.selectOption('administrador');
-  await expect(otherRole).toHaveValue('administrador');
+  await expectSelectValue(page, 'Rol de Andrea Demo', 'administrador');
+  await chooseSelect(page, 'Rol de Diego Demo', 'administrador');
+  await expectSelectValue(page, 'Rol de Diego Demo', 'administrador');
   await expect(selfRole).toBeDisabled();
-  await expect(selfRole).toHaveValue('administrador');
+  await expectSelectValue(page, 'Rol de Andrea Demo', 'administrador');
   await expect(
     selfCard.getByRole('button', { name: 'Retirar integrante', exact: true }),
   ).toHaveCount(0);
@@ -1426,8 +1475,8 @@ test('company edit, rules, invitations, delegation and role permissions', async 
   await expect(
     otherCard.getByRole('button', { name: 'Retirar integrante', exact: true }),
   ).toBeVisible();
-  await otherRole.selectOption('colaborador');
-  await expect(otherRole).toHaveValue('colaborador');
+  await chooseSelect(page, 'Rol de Diego Demo', 'colaborador');
+  await expectSelectValue(page, 'Rol de Diego Demo', 'colaborador');
   await page.getByRole('button', { name: 'Invitar Integrante' }).click();
   await page.getByLabel('Nombre', { exact: true }).fill('Invitada Demo');
   await page.getByLabel('Correo', { exact: true }).fill('invitada@example.com');
@@ -1441,7 +1490,7 @@ test('company edit, rules, invitations, delegation and role permissions', async 
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'relevo@example.com' })).toBeVisible();
   await page.goto('/escenarios');
-  await page.getByLabel('Perfil y organización').selectOption('USR-02');
+  await chooseSelect(page, 'Perfil y organización', 'USR-02');
   await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
   await page.goto('/equipo');
   await expect(page.getByRole('button', { name: 'Invitar Integrante' })).toHaveCount(0);
@@ -1491,7 +1540,7 @@ test('agent edits refresh live UI while dirty forms retain data and reject stale
       page.getByRole('heading', { name: 'Título actualizado por agente', exact: true }),
     ).toBeVisible({ timeout: 8000 });
     await page.goto('/empresa');
-    await page.getByRole('combobox', { name: 'Ciudad', exact: true }).selectOption('Buin');
+    await chooseSelect(page, 'Ciudad', 'Buin');
     const data = await (await page.request.get('/api/v1/bootstrap')).json();
     const company = s.get(data.context.sessionId, 'companies', 'EMP-D01')!;
     s.batch(
@@ -1507,11 +1556,11 @@ test('agent edits refresh live UI while dirty forms retain data and reject stale
       'browser-agent-test',
     );
     await page.waitForTimeout(3600);
-    await expect(page.getByRole('combobox', { name: 'Ciudad', exact: true })).toHaveValue('Buin');
+    await expectSelectValue(page, 'Ciudad', 'Buin');
     await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
     await expect(page.locator('.error')).toContainText('El registro cambió');
     await page.reload();
-    await expect(page.getByRole('combobox', { name: 'Ciudad', exact: true })).toHaveValue('Colina');
+    await expectSelectValue(page, 'Ciudad', 'Colina');
   } finally {
     if (batch) s.restoreBatch(batch, 'browser-test-cleanup');
     s.close();
@@ -1533,7 +1582,12 @@ test('editable draft snapshot, notification rules, simulated requests and reset'
   await expect(page.getByText('Propuesta revisada y persistente.')).toBeVisible();
   await page.goto('/preferencias');
   await page.getByRole('button', { name: 'Agregar regla', exact: true }).click();
-  await page.getByRole('dialog').getByLabel('Frecuencia').selectOption('semanal');
+  const preferenceDialog = page.getByRole('dialog');
+  await preferenceDialog.getByRole('combobox', { name: 'Frecuencia', exact: true }).click();
+  await preferenceDialog
+    .getByRole('listbox', { name: 'Frecuencia', exact: true })
+    .locator('[role="option"][data-value="semanal"]')
+    .click();
   await page
     .getByRole('dialog')
     .getByRole('button', { name: 'Guardar cambios', exact: true })

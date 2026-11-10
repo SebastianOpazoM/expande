@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -7,6 +7,8 @@ import {
   Bell,
   Bookmark,
   Building2,
+  Check,
+  ChevronDown,
   ChevronRight,
   Compass,
   FileText,
@@ -639,6 +641,8 @@ export function Field({
     </label>
   );
 }
+type SelectOption = string | { id: string | number; name: string };
+
 export function Select({
   label: caption,
   name,
@@ -646,33 +650,162 @@ export function Select({
   value,
   onChange,
   defaultValue,
-  ...rest
+  disabled = false,
+  required = false,
+  className = '',
+  labelHidden = false,
 }: {
   label: string;
   name?: string;
-  options: any[];
-  value?: any;
-  onChange?: (v: string) => void;
-  defaultValue?: any;
-  [key: string]: any;
+  options: readonly SelectOption[];
+  value?: string | number | null;
+  onChange?: (value: string) => void;
+  defaultValue?: string | number | null;
+  disabled?: boolean;
+  required?: boolean;
+  className?: string;
+  labelHidden?: boolean;
 }) {
+  const normalized = options.map((option) =>
+    typeof option === 'string'
+      ? { id: option, name: label(option) }
+      : { id: String(option.id), name: option.name },
+  );
+  const initialValue =
+    defaultValue != null ? String(defaultValue) : normalized.length ? normalized[0].id : '';
+  const [internalValue, setInternalValue] = useState(initialValue);
+  const selectedValue = value !== undefined ? String(value ?? '') : internalValue;
+  const selectedIndex = Math.max(
+    0,
+    normalized.findIndex((option) => option.id === selectedValue),
+  );
+  const selected = normalized[selectedIndex];
+  const effectiveValue = selected?.id || '';
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(selectedIndex);
+  const [placement, setPlacement] = useState<'top' | 'bottom'>('bottom');
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const menuId = `select-${useId().replace(/:/g, '')}`;
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    return () => document.removeEventListener('pointerdown', closeOutside);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) optionRefs.current[activeIndex]?.focus();
+  }, [activeIndex, open]);
+
+  const openMenu = () => {
+    const box = triggerRef.current?.getBoundingClientRect();
+    if (box) {
+      const estimatedHeight = Math.min(normalized.length * 44 + 14, 320);
+      const availableBelow = window.innerHeight - box.bottom - 76;
+      setPlacement(availableBelow < estimatedHeight && box.top > availableBelow ? 'top' : 'bottom');
+    }
+    setActiveIndex(selectedIndex);
+    setOpen(true);
+  };
+  const closeMenu = (restoreFocus = false) => {
+    setOpen(false);
+    if (restoreFocus) requestAnimationFrame(() => triggerRef.current?.focus());
+  };
+  const choose = (nextValue: string) => {
+    if (value === undefined) setInternalValue(nextValue);
+    onChange?.(nextValue);
+    closeMenu(true);
+  };
+
   return (
-    <label>
-      {caption}
-      <select
-        name={name}
-        value={value}
-        defaultValue={defaultValue}
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
-        {...rest}
+    <div
+      className={`custom-select-field${labelHidden ? ' label-hidden' : ''}${className ? ` ${className}` : ''}`}
+      ref={rootRef}
+    >
+      {!labelHidden && <span className="custom-select-label">{caption}</span>}
+      {name && <input type="hidden" name={name} value={effectiveValue} disabled={disabled} />}
+      <button
+        ref={triggerRef}
+        type="button"
+        role="combobox"
+        className="custom-select-trigger"
+        aria-label={caption}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={menuId}
+        aria-required={required || undefined}
+        data-value={effectiveValue}
+        disabled={disabled || normalized.length === 0}
+        onClick={() => (open ? closeMenu() : openMenu())}
+        onKeyDown={(event) => {
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            openMenu();
+          }
+        }}
       >
-        {options.map((o) => (
-          <option key={typeof o === 'string' ? o : o.id} value={typeof o === 'string' ? o : o.id}>
-            {typeof o === 'string' ? label(o) : o.name}
-          </option>
-        ))}
-      </select>
-    </label>
+        <span aria-hidden="true" />
+        <span className="custom-select-value">{selected?.name || 'Sin opciones'}</span>
+        <ChevronDown size={17} aria-hidden="true" />
+      </button>
+      {open && (
+        <div
+          id={menuId}
+          className="custom-select-menu"
+          data-placement={placement}
+          role="listbox"
+          aria-label={caption}
+        >
+          {normalized.map((option, index) => {
+            const isSelected = index === selectedIndex;
+            return (
+              <button
+                key={option.id}
+                ref={(element) => {
+                  optionRefs.current[index] = element;
+                }}
+                type="button"
+                className="custom-select-option"
+                role="option"
+                aria-selected={isSelected}
+                data-value={option.id}
+                onFocus={() => setActiveIndex(index)}
+                onKeyDown={(event) => {
+                  let nextIndex = index;
+                  if (event.key === 'ArrowDown') nextIndex = (index + 1) % normalized.length;
+                  else if (event.key === 'ArrowUp')
+                    nextIndex = (index - 1 + normalized.length) % normalized.length;
+                  else if (event.key === 'Home') nextIndex = 0;
+                  else if (event.key === 'End') nextIndex = normalized.length - 1;
+                  else if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeMenu(true);
+                    return;
+                  } else if (event.key === 'Tab') {
+                    closeMenu();
+                    return;
+                  } else return;
+                  event.preventDefault();
+                  setActiveIndex(nextIndex);
+                }}
+                onClick={() => choose(option.id)}
+              >
+                <span className="custom-select-check" aria-hidden="true">
+                  {isSelected && <Check size={15} />}
+                </span>
+                <span>{option.name}</span>
+                <span aria-hidden="true" />
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 export function Multi({
