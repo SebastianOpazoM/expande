@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowRight,
   CalendarClock,
+  Check,
   CheckCircle2,
   ChevronDown,
   CircleHelp,
@@ -30,6 +31,131 @@ import {
   Source,
   Tags,
 } from './components';
+
+const challengeSortOptions = [
+  { id: 'cierre_asc', name: 'Próximos a cerrar' },
+  { id: 'recientes', name: 'Más recientes' },
+  { id: 'afinidad', name: 'Afinidad con mi solución' },
+];
+
+function ChallengeSort({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  const selectedIndex = Math.max(
+    0,
+    challengeSortOptions.findIndex((option) => option.id === value),
+  );
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(selectedIndex);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    return () => document.removeEventListener('pointerdown', closeOutside);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) optionRefs.current[activeIndex]?.focus();
+  }, [activeIndex, open]);
+
+  const openMenu = () => {
+    setActiveIndex(selectedIndex);
+    setOpen(true);
+  };
+  const closeMenu = (restoreFocus = false) => {
+    setOpen(false);
+    if (restoreFocus) requestAnimationFrame(() => triggerRef.current?.focus());
+  };
+  const choose = (id: string) => {
+    onChange(id);
+    closeMenu(true);
+  };
+
+  return (
+    <div className="challenge-catalog-sort" ref={rootRef}>
+      <button
+        ref={triggerRef}
+        type="button"
+        className="challenge-catalog-sort-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls="challenge-sort-options"
+        aria-label={`Ordenar: ${challengeSortOptions[selectedIndex].name}`}
+        onClick={() => (open ? closeMenu() : openMenu())}
+        onKeyDown={(event) => {
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            openMenu();
+          }
+        }}
+      >
+        <span>{challengeSortOptions[selectedIndex].name}</span>
+        <ChevronDown size={15} aria-hidden="true" />
+      </button>
+      {open && (
+        <div
+          id="challenge-sort-options"
+          className="challenge-catalog-sort-menu"
+          role="listbox"
+          aria-label="Ordenar desafíos"
+        >
+          {challengeSortOptions.map((option, index) => {
+            const selected = index === selectedIndex;
+            return (
+              <button
+                key={option.id}
+                ref={(element) => {
+                  optionRefs.current[index] = element;
+                }}
+                type="button"
+                className="challenge-catalog-sort-option"
+                role="option"
+                aria-selected={selected}
+                onFocus={() => setActiveIndex(index)}
+                onKeyDown={(event) => {
+                  let nextIndex = index;
+                  if (event.key === 'ArrowDown')
+                    nextIndex = (index + 1) % challengeSortOptions.length;
+                  else if (event.key === 'ArrowUp')
+                    nextIndex =
+                      (index - 1 + challengeSortOptions.length) % challengeSortOptions.length;
+                  else if (event.key === 'Home') nextIndex = 0;
+                  else if (event.key === 'End') nextIndex = challengeSortOptions.length - 1;
+                  else if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closeMenu(true);
+                    return;
+                  } else if (event.key === 'Tab') {
+                    closeMenu();
+                    return;
+                  } else return;
+                  event.preventDefault();
+                  setActiveIndex(nextIndex);
+                }}
+                onClick={() => choose(option.id)}
+              >
+                <span className="challenge-catalog-sort-check" aria-hidden="true">
+                  {selected && <Check size={14} />}
+                </span>
+                <span>{option.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Catalog() {
   const { d, company } = useDemo(),
@@ -93,18 +219,10 @@ export function Catalog() {
               ? ' · activos'
               : ''}
           </button>
-          <div className="challenge-catalog-sort">
-            <select
-              aria-label="Ordenar"
-              value={f.order || 'cierre_asc'}
-              onChange={(event) => update({ order: event.target.value })}
-            >
-              <option value="cierre_asc">Próximos a cerrar</option>
-              <option value="recientes">Más recientes</option>
-              <option value="afinidad">Afinidad con mi solución</option>
-            </select>
-            <ChevronDown size={15} aria-hidden="true" />
-          </div>
+          <ChallengeSort
+            value={f.order || 'cierre_asc'}
+            onChange={(value) => update({ order: value })}
+          />
         </div>
         {f.order === 'afinidad' && (
           <Select

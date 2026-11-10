@@ -881,54 +881,81 @@ code {
   min-height: 48px;
 }
 .challenge-catalog-sort {
+  position: relative;
+  flex: 0 1 190px;
+  width: min(190px, 58%);
+  min-width: 0;
+  margin-left: auto;
+}
+.challenge-catalog-sort-trigger {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 15px;
   align-items: center;
-  flex: 0 1 190px;
   gap: 6px;
-  width: min(190px, 58%);
-  min-width: 0;
+  width: 100%;
   min-height: 48px;
-  margin-left: auto;
   padding: 0 10px;
   border: 1px solid var(--brand-magenta);
   border-radius: 13px;
   background: var(--brand-magenta);
   color: var(--color-on-brand);
   box-shadow: 0 7px 16px var(--color-shadow-soft);
-}
-.challenge-catalog-sort:hover {
-  border-color: var(--color-primary-hover);
-  background: var(--color-primary-hover);
-}
-.challenge-catalog-sort select {
-  width: 100%;
-  min-width: 0;
-  min-height: 46px;
-  padding: 0;
-  appearance: none;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
   font-size: 12px;
   font-weight: 500;
   text-align: right;
-  text-align-last: right;
-  cursor: pointer;
 }
-.challenge-catalog-sort select:focus-visible {
-  outline-color: var(--color-on-brand);
-  outline-offset: -3px;
+.challenge-catalog-sort-trigger:hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
 }
-.challenge-catalog-sort option {
-  background: var(--color-surface);
-  color: var(--color-text);
-  text-align: left;
-  text-align-last: auto;
-}
-.challenge-catalog-sort svg {
+.challenge-catalog-sort-trigger svg {
   pointer-events: none;
+  transition: transform 160ms ease;
+}
+.challenge-catalog-sort-trigger[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+.challenge-catalog-sort-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 7px);
+  right: 0;
+  width: max(100%, 220px);
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: 0 12px 30px var(--color-shadow);
+}
+.challenge-catalog-sort-option {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+}
+.challenge-catalog-sort-option:hover,
+.challenge-catalog-sort-option:focus-visible {
+  background: var(--color-navy-tint);
+  color: var(--color-text);
+}
+.challenge-catalog-sort-option[aria-selected='true'] {
+  background: var(--color-magenta-tint);
+  color: var(--color-accent);
+}
+.challenge-catalog-sort-check {
+  display: grid;
+  place-items: center;
 }
 .challenge-catalog-meta {
   margin-top: 20px;

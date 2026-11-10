@@ -480,20 +480,36 @@ test('challenge sorting matches the filter control treatment', async ({ page }) 
 
   const filter = page.getByRole('button', { name: 'Filtros', exact: true });
   const sort = page.locator('.challenge-catalog-sort');
-  const select = page.getByRole('combobox', { name: 'Ordenar', exact: true });
-  await expect(sort).toHaveCSS('background-color', 'rgb(171, 18, 84)');
-  await expect(sort).toHaveCSS('border-radius', '13px');
-  await expect(select).toHaveCSS('color', 'rgb(255, 255, 255)');
-  await expect(sort.locator('svg')).toHaveCount(1);
-  await expect(select).toHaveCSS('text-align', 'right');
+  const trigger = page.getByRole('button', {
+    name: 'Ordenar: Próximos a cerrar',
+    exact: true,
+  });
+  await expect(trigger).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+  await expect(trigger).toHaveCSS('border-radius', '13px');
+  await expect(trigger).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(trigger).toHaveCSS('text-align', 'right');
   const filterBox = await filter.boundingBox();
   const sortBox = await sort.boundingBox();
   expect(Math.abs(filterBox!.height - sortBox!.height)).toBeLessThanOrEqual(1);
   expect(sortBox!.width).toBeLessThanOrEqual(190);
 
-  await select.selectOption('recientes');
+  await trigger.click();
+  const listbox = page.getByRole('listbox', { name: 'Ordenar desafíos', exact: true });
+  await expect(listbox).toBeVisible();
+  await expect(listbox.getByRole('option')).toHaveCount(3);
+  await expect(
+    listbox.getByRole('option', { name: 'Próximos a cerrar', exact: true }),
+  ).toHaveAttribute('aria-selected', 'true');
+  await listbox.getByRole('option', { name: 'Más recientes', exact: true }).click();
   await expect(page).toHaveURL(/order=recientes/);
-  await expect(select).toHaveValue('recientes');
+  await expect(
+    page.getByRole('button', { name: 'Ordenar: Más recientes', exact: true }),
+  ).toBeVisible();
+
+  await page.getByRole('button', { name: 'Ordenar: Más recientes', exact: true }).press('ArrowDown');
+  await page.getByRole('option', { name: 'Afinidad con mi solución', exact: true }).press('End');
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/order=afinidad/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 test('Expande challenge badges use the purple brand treatment', async ({ page }) => {
