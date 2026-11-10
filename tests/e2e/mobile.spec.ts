@@ -484,10 +484,12 @@ test('challenge sorting matches the filter control treatment', async ({ page }) 
   await expect(sort).toHaveCSS('background-color', 'rgb(171, 18, 84)');
   await expect(sort).toHaveCSS('border-radius', '13px');
   await expect(select).toHaveCSS('color', 'rgb(255, 255, 255)');
-  await expect(sort.locator('svg')).toHaveCount(2);
+  await expect(sort.locator('svg')).toHaveCount(1);
+  await expect(select).toHaveCSS('text-align', 'right');
   const filterBox = await filter.boundingBox();
   const sortBox = await sort.boundingBox();
   expect(Math.abs(filterBox!.height - sortBox!.height)).toBeLessThanOrEqual(1);
+  expect(sortBox!.width).toBeLessThanOrEqual(190);
 
   await select.selectOption('recientes');
   await expect(page).toHaveURL(/order=recientes/);

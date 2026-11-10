@@ -882,10 +882,11 @@ code {
 }
 .challenge-catalog-sort {
   display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) 15px;
+  grid-template-columns: minmax(0, 1fr) 15px;
   align-items: center;
-  flex: 1 1 0;
+  flex: 0 1 190px;
   gap: 6px;
+  width: min(190px, 58%);
   min-width: 0;
   min-height: 48px;
   margin-left: auto;
@@ -912,7 +913,8 @@ code {
   color: inherit;
   font-size: 12px;
   font-weight: 500;
-  text-align: left;
+  text-align: right;
+  text-align-last: right;
   cursor: pointer;
 }
 .challenge-catalog-sort select:focus-visible {
@@ -922,6 +924,8 @@ code {
 .challenge-catalog-sort option {
   background: var(--color-surface);
   color: var(--color-text);
+  text-align: left;
+  text-align-last: auto;
 }
 .challenge-catalog-sort svg {
   pointer-events: none;

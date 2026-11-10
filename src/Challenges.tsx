@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowRight,
-  ArrowUpDown,
   CalendarClock,
   CheckCircle2,
   ChevronDown,
@@ -95,7 +94,6 @@ export function Catalog() {
               : ''}
           </button>
           <div className="challenge-catalog-sort">
-            <ArrowUpDown size={16} aria-hidden="true" />
             <select
               aria-label="Ordenar"
               value={f.order || 'cierre_asc'}
