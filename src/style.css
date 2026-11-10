@@ -873,29 +873,58 @@ code {
   padding: 6px 15px 6px 2px;
 }
 .challenge-catalog-toolbar {
-  align-items: flex-end;
+  align-items: center;
   margin-top: 12px;
 }
 .challenge-catalog-toolbar > button {
-  min-height: 40px;
+  flex: 0 0 auto;
+  min-height: 48px;
 }
 .challenge-catalog-sort {
-  width: min(180px, 54%);
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 15px;
+  align-items: center;
+  flex: 1 1 0;
+  gap: 6px;
+  min-width: 0;
+  min-height: 48px;
   margin-left: auto;
+  padding: 0 10px;
+  border: 1px solid var(--brand-magenta);
+  border-radius: 13px;
+  background: var(--brand-magenta);
+  color: var(--color-on-brand);
+  box-shadow: 0 7px 16px var(--color-shadow-soft);
 }
-.challenge-catalog-sort label {
-  align-items: flex-end;
-  margin: 0;
-  font-size: 9px;
-  text-align: right;
+.challenge-catalog-sort:hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
 }
 .challenge-catalog-sort select {
-  min-height: 40px;
-  padding: 6px 15px 6px 2px;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0;
+  appearance: none;
   border: 0;
+  border-radius: 0;
   background: transparent;
-  font-size: 10px;
-  text-align: right;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.challenge-catalog-sort select:focus-visible {
+  outline-color: var(--color-on-brand);
+  outline-offset: -3px;
+}
+.challenge-catalog-sort option {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.challenge-catalog-sort svg {
+  pointer-events: none;
 }
 .challenge-catalog-meta {
   margin-top: 20px;

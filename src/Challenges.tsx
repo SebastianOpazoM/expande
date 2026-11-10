@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowRight,
+  ArrowUpDown,
   CalendarClock,
   CheckCircle2,
+  ChevronDown,
   CircleHelp,
   CircleX,
   SlidersHorizontal,
@@ -93,16 +95,17 @@ export function Catalog() {
               : ''}
           </button>
           <div className="challenge-catalog-sort">
-            <Select
-              label="Ordenar"
+            <ArrowUpDown size={16} aria-hidden="true" />
+            <select
+              aria-label="Ordenar"
               value={f.order || 'cierre_asc'}
-              options={[
-                { id: 'cierre_asc', name: 'Próximos a cerrar' },
-                { id: 'recientes', name: 'Más recientes' },
-                { id: 'afinidad', name: 'Afinidad con mi solución' },
-              ]}
-              onChange={(v) => update({ order: v })}
-            />
+              onChange={(event) => update({ order: event.target.value })}
+            >
+              <option value="cierre_asc">Próximos a cerrar</option>
+              <option value="recientes">Más recientes</option>
+              <option value="afinidad">Afinidad con mi solución</option>
+            </select>
+            <ChevronDown size={15} aria-hidden="true" />
           </div>
         </div>
         {f.order === 'afinidad' && (

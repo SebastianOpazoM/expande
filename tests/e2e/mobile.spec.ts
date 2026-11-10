@@ -472,6 +472,28 @@ test('Explore uses shared card colors and readable supporting text', async ({ pa
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('challenge sorting matches the filter control treatment', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios');
+
+  const filter = page.getByRole('button', { name: 'Filtros', exact: true });
+  const sort = page.locator('.challenge-catalog-sort');
+  const select = page.getByRole('combobox', { name: 'Ordenar', exact: true });
+  await expect(sort).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+  await expect(sort).toHaveCSS('border-radius', '13px');
+  await expect(select).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(sort.locator('svg')).toHaveCount(2);
+  const filterBox = await filter.boundingBox();
+  const sortBox = await sort.boundingBox();
+  expect(Math.abs(filterBox!.height - sortBox!.height)).toBeLessThanOrEqual(1);
+
+  await select.selectOption('recientes');
+  await expect(page).toHaveURL(/order=recientes/);
+  await expect(select).toHaveValue('recientes');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 test('Expande challenge badges use the purple brand treatment', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);
