@@ -135,20 +135,29 @@ function Welcome() {
           />
         </div>
         <section className="welcome-body">
-          <p className="eyebrow">OPORTUNIDADES PARA PROVEEDORES</p>
+          <p className="eyebrow">PUNTO DE CONVERGENCIA MINERO</p>
           <h1>
-            Encuentra desafíos mineros <strong>relevantes para tu empresa</strong>
+            Donde los proveedores mineros <strong>hacen negocios con visión de mercado</strong>
           </h1>
           <p>
-            Descubre oportunidades, evalúa si hacen sentido y organiza tu seguimiento en un solo
-            lugar.
+            Partcicipa de forma selectiva en desafíos de negocio, anticípate a las tendencias y
+            planifica tu presencia en el ecosistema minero global, todo en un solo lugar
           </p>
           <ul className="benefits">
-            {['Oportunidades reunidas', 'Información para decidir', 'Seguimiento con avisos'].map(
-              (t) => (
-                <li key={t}>
-                  <Check size={16} />
-                  {t}
+            {[
+              ['Desafíos a tu medida', 'Participa solo en los que hacen sentido para ti'],
+              ['Tendencias del mercado', 'Entiende hacia dónde se mueve la minería'],
+              ['Agenda de eventos clave', 'Asiste a los más relevantes del mundo minero'],
+              ['Financiamiento de proyectos', 'Conoce las opciones disponibles para impulsarlos'],
+              ['Seguimiento y alertas en línea', 'Recibe notificaciones personalizadas según tus intereses'],
+            ].map(
+              ([title, description]) => (
+                <li key={title}>
+                  <Check size={20} aria-hidden="true" />
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{description}</p>
+                  </div>
                 </li>
               ),
             )}

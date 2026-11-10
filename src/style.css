@@ -1644,12 +1644,13 @@ code {
 .welcome {
   background: var(--color-surface);
   overflow-y: auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
   scrollbar-width: thin;
 }
 .welcome-hero {
-  height: 280px;
-  min-height: 280px;
+  flex: 1 0 110px;
+  min-height: 110px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(
@@ -1658,7 +1659,7 @@ code {
     var(--brand-magenta) 65%,
     var(--brand-navy) 150%
   );
-  padding: 25px 22px;
+  padding: 18px 20px;
 }
 .welcome-brand-row {
   position: relative;
@@ -1682,6 +1683,8 @@ code {
   outline-color: var(--brand-yellow);
 }
 .welcome-body .eyebrow {
+  margin: 0;
+  font-size: 10px;
   font-weight: 500;
 }
 .brand-motif {
@@ -1708,46 +1711,63 @@ code {
   bottom: 86px;
 }
 .welcome-body {
-  padding: 24px 22px;
+  flex-shrink: 0;
+  padding: 16px 20px 28px;
   position: relative;
   margin-top: -12px;
   border-radius: 19px 19px 0 0;
   background: var(--color-surface);
 }
 .welcome-body h1 {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 300;
   line-height: 1.2;
-  margin-top: 12px;
+  margin: 8px 0;
 }
 .welcome-body h1 strong {
   font-weight: 500;
 }
 .welcome-body > p:not(.eyebrow) {
-  font-size: 14px;
-  line-height: 1.65;
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.45;
 }
 .welcome-body .button {
   display: flex;
   width: 100%;
-  margin: 9px 0;
+  margin: 0;
   min-height: 45px;
   font-size: 12px;
 }
 .benefits {
   list-style: none;
   padding: 0;
-  margin: 22px 0 32px;
+  margin: 14px 0 18px;
+  display: grid;
+  gap: 10px;
 }
 .benefits li {
+  margin: 0;
   display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 12px;
+  align-items: flex-start;
+  gap: 10px;
+}
+.benefits strong {
+  display: block;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1.35;
+}
+.benefits p {
+  margin: 2px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 .benefits svg {
   color: var(--color-success-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 .profile-head {
   display: flex;
@@ -2120,15 +2140,8 @@ summary {
     padding-left: 17px;
     padding-right: 17px;
   }
-  .welcome-hero {
-    min-height: 34dvh;
-    height: 34dvh;
-  }
   .welcome-body {
-    padding-bottom: env(safe-area-inset-bottom, 20px);
-  }
-  .welcome {
-    display: block;
+    padding-bottom: max(28px, env(safe-area-inset-bottom, 0px));
   }
   .bottom-nav {
     height: calc(65px + env(safe-area-inset-bottom));
