@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Provider button label alignment (2026-11-09): the Microsoft, Google and Apple buttons on `/acceso` now center each “Continuar con…” label against the full button width while keeping the provider mark anchored at the left. The production build passed. A live 390 × 844 Chromium inspection measured every label within 0.01px of its button center, confirmed no horizontal overflow or page errors, and verified that the Microsoft button still opens and closes its simulated-access modal.
+
 Challenge preparation text encoding (2026-11-09): the solution selector and saved-draft confirmation now render the intended Spanish accents instead of replacement question marks. The production build passed, and a live 390 × 844 Chromium inspection confirmed the “Solución” label with no page or console errors.
 
 Closed challenge status badge (2026-11-09): closed challenge details replace the plain “Convocatoria cerrada” footer text with a rounded semantic badge using the error tint, border and X icon. The label remains explicit, so the status does not depend on color alone; preparation remains unavailable. The production build and targeted Chromium scenario passed. A live 390 × 844 dark-mode inspection confirmed the footer treatment, contrast, no horizontal overflow and no page errors.
