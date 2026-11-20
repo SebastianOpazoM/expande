@@ -925,9 +925,9 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
             <button onClick={() => setModal('calendar')}>
               Añadir a calendario · previsualizar
             </button>
-            {!r.demo && (
-              <External url={r.registration_url}>Ir a inscripción externa</External>
-            )}
+            <button className="primary" onClick={() => setModal('event-page')}>
+              Ir a la página del evento
+            </button>
           </>
         )}
         {kind === 'cases' && (
@@ -1029,7 +1029,9 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
           title={
             modal === 'alliance'
               ? 'Revisar solicitud de acceso'
-              : 'Previsualización de calendario'
+              : modal === 'calendar'
+                ? 'Previsualización de calendario'
+                : 'Página del evento'
           }
           onClose={() => setModal('')}
         >
@@ -1050,7 +1052,7 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
                 Confirmar solicitud demo
               </AsyncButton>
             </>
-          ) : (
+          ) : modal === 'calendar' ? (
             <>
               <p>
                 {r.start_date
@@ -1069,6 +1071,26 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
               >
                 Cerrar previsualización
               </button>
+            </>
+          ) : (
+            <>
+              <p>Este botón te llevará a la página del evento, si existe.</p>
+              {r.registration_url && /^https?:\/\//i.test(r.registration_url) ? (
+                <a
+                  className="button primary"
+                  href={r.registration_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setModal('')}
+                >
+                  Continuar a la página del evento ↗
+                </a>
+              ) : (
+                <>
+                  <p className="muted">No hay una página del evento disponible.</p>
+                  <button onClick={() => setModal('')}>Cerrar</button>
+                </>
+              )}
             </>
           )}
         </Modal>

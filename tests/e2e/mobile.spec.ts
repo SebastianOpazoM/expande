@@ -1896,6 +1896,19 @@ test('editable draft snapshot, notification rules and simulated requests', async
   await page.goto('/calendario/EV-D01');
   await page.getByRole('button', { name: 'Recordarme', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Recordatorio guardado' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /Inscripción demo/ })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Confirmar inscripción demo' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Ir a la página del evento', exact: true }).click();
+  const eventPageDialog = page.getByRole('dialog', { name: 'Página del evento', exact: true });
+  await expect(
+    eventPageDialog.getByText('Este botón te llevará a la página del evento, si existe.', {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    eventPageDialog.getByText('No hay una página del evento disponible.', { exact: true }),
+  ).toBeVisible();
+  await expect(
+    eventPageDialog.getByRole('link', { name: 'Continuar a la página del evento' }),
+  ).toHaveCount(0);
+  await eventPageDialog.getByRole('button', { name: 'Cerrar', exact: true }).last().click();
+  await expect(eventPageDialog).toHaveCount(0);
 });
