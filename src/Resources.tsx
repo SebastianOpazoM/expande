@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Pause, Play } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Pause, Play } from 'lucide-react';
 import { useDemo } from './context';
 import { AsyncButton, Spinner } from './AsyncButton';
 import { date, eventsInMonth, label, norm, type Row } from '../shared/model';
@@ -779,6 +779,11 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
     d.activity.some((a: Row) => a.kind === event && a.target_id === r.id);
   const progress =
     d.learning_progress.find((p: Row) => p.learning_id === id)?.progress_percent || 0;
+  const courseSteps = kind === 'formacion' ? learningSteps(r) : [];
+  const completedSteps = Math.min(
+    courseSteps.length,
+    Math.round((progress / 100) * courseSteps.length),
+  );
   return (
     <Layout detail title={i.title}>
       <Page>
@@ -966,10 +971,26 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
                 ? Math.round((r.duration_seconds / 60) * 10) / 10 + ' minutos'
                 : 'Duración por confirmar'}
             </p>
-            <DataField
-              title="Capítulos"
-              value={learningSteps(r).map((chapter) => chapter.title)}
-            />
+            <div className="data-field learning-chapters">
+              <h3>Capítulos</h3>
+              <ol>
+                {courseSteps.map((chapter, index) => {
+                  const completed = index < completedSteps;
+                  return (
+                    <li className={completed ? 'completed' : undefined} key={chapter.title}>
+                      <span
+                        className="learning-chapter-status"
+                        aria-label={completed ? 'Completado' : 'Pendiente'}
+                        title={completed ? 'Completado' : 'Pendiente'}
+                      >
+                        {completed ? <Check size={15} strokeWidth={3} /> : index + 1}
+                      </span>
+                      <span>{chapter.title}</span>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
             <div className="lesson">
               <Play size={30} aria-hidden="true" />
               <h2>Reproducción</h2>
