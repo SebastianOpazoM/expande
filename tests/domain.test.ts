@@ -144,6 +144,15 @@ test('el origen del desafío delimita el seguimiento automático y manual', () =
   assert.throws(
     () =>
       action(s, id, {
+        type: 'follow',
+        target_type: 'challenge',
+        target_id: 'CH-R04',
+      }),
+    /no se puede activar el seguimiento automático de un desafío cerrado/i,
+  );
+  assert.throws(
+    () =>
+      action(s, id, {
         type: 'register_application',
         challenge_id: 'CH-D01',
         solution_id: 'SOL-01',
@@ -497,6 +506,11 @@ test('reloj demo cambia estados efectivos sin modificar catálogo compartido', (
   assert.equal(s.visible(id).challenges.find((c: Row) => c.id === 'CH-D02').state, 'cerrado');
   assert.equal(s.visible(other).challenges.find((c: Row) => c.id === 'CH-D02').state, 'abierto');
   assert.equal(s.get('catalog', 'challenges', 'CH-D02')!.state, 'abierto');
+  action(s, id, { type: 'follow', target_type: 'challenge', target_id: 'CH-D02' });
+  assert.equal(
+    s.visible(id).follows.some((follow: Row) => follow.challenge_id === 'CH-D02'),
+    false,
+  );
   assert.throws(() =>
     action(s, id, { type: 'draft', challenge_id: 'CH-D02', solution_id: 'SOL-01' }),
   );

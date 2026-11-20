@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Closed challenge automatic tracking (2026-11-20): `/desafios/:id` disables “Activar seguimiento automático” when an Expande challenge is closed, including effective closure caused by the visitor's demo clock. The domain action rejects new automatic follows for closed challenges while retaining the ability to deactivate an existing follow. The production build, all **52 Node/API/CLI tests** and the targeted closed-detail Chromium scenario passed. Full live-Figma nested-view fidelity was not reverified.
+
 Provider button label alignment (2026-11-09): the Microsoft, Google and Apple buttons on `/acceso` now center each “Continuar con…” label against the full button width while keeping the provider mark anchored at the left. The production build passed. A live 390 × 844 Chromium inspection measured every label within 0.01px of its button center, confirmed no horizontal overflow or page errors, and verified that the Microsoft button still opens and closes its simulated-access modal.
 
 Challenge preparation text encoding (2026-11-09): the solution selector and saved-draft confirmation now render the intended Spanish accents instead of replacement question marks. The production build passed, and a live 390 × 844 Chromium inspection confirmed the “Solución” label with no page or console errors.

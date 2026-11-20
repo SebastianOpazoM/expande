@@ -147,16 +147,20 @@ export function action(store: Store, scope: string, a: any, actor?: string) {
     target();
     const collection = a.type === 'saved' ? 'saved_items' : 'follows';
     assert(a.type !== 'follow' || a.target_type === 'challenge', 'Solo se siguen desafíos');
+    const old = d[collection].find(
+      (r: Row) => r.user_id === user.id && (r.target_id || r.challenge_id) === a.target_id,
+    );
     if (a.type === 'follow') {
       const challenge = d.challenges.find((r: Row) => r.id === a.target_id);
       assert(
         challenge?.origin === 'expande',
         'El seguimiento automático solo está disponible para desafíos Expande',
       );
+      assert(
+        old || challenge.state !== 'cerrado',
+        'No se puede activar el seguimiento automático de un desafío cerrado',
+      );
     }
-    const old = d[collection].find(
-      (r: Row) => r.user_id === user.id && (r.target_id || r.challenge_id) === a.target_id,
-    );
     if (old) remove(collection, old);
     else
       put(

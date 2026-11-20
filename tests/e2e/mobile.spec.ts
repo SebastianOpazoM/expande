@@ -598,6 +598,9 @@ test('closed challenge uses a prominent closed-call badge', async ({ page }) => 
   await expect(closed.locator('svg')).toBeVisible();
   await expect(closed).toHaveCSS('background-color', 'rgb(255, 240, 241)');
   await expect(closed).toHaveCSS('color', 'rgb(157, 43, 50)');
+  await expect(
+    page.getByRole('button', { name: 'Activar seguimiento automático', exact: true }),
+  ).toBeDisabled();
   await expect(page.getByRole('link', { name: 'Preparar antecedentes' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

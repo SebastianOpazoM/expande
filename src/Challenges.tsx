@@ -324,6 +324,7 @@ export function ChallengeDetail() {
         <>
           {r.origin === 'expande' ? (
             <button
+              disabled={r.state === 'cerrado' && !followed}
               onClick={() =>
                 void act({ type: 'follow', target_type: 'challenge', target_id: id }).catch(() => {})
               }
