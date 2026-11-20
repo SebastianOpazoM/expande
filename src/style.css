@@ -815,6 +815,55 @@ code {
   min-height: 46px;
   padding: 10px;
 }
+.challenge-follow-toggle {
+  justify-content: space-between;
+  border-color: var(--color-control-border);
+  background: var(--color-navy-tint);
+  color: var(--color-text);
+  box-shadow: none;
+  text-align: left;
+}
+.challenge-follow-toggle:hover {
+  border-color: var(--brand-navy);
+  background: var(--color-surface);
+}
+.challenge-follow-toggle[aria-checked='true'] {
+  border-color: var(--brand-magenta);
+  background: var(--brand-magenta);
+  color: var(--color-on-brand);
+}
+.challenge-follow-toggle[aria-checked='true']:hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+}
+.challenge-follow-toggle:disabled:hover {
+  border-color: var(--color-control-border);
+  background: var(--color-navy-tint);
+}
+.challenge-follow-toggle-track {
+  width: 34px;
+  height: 20px;
+  padding: 3px;
+  border: 1px solid var(--color-control-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  flex: 0 0 34px;
+}
+.challenge-follow-toggle-track > span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-muted);
+  transition: margin-left 160ms ease;
+}
+.challenge-follow-toggle[aria-checked='true'] .challenge-follow-toggle-track {
+  border-color: var(--color-on-brand);
+}
+.challenge-follow-toggle[aria-checked='true'] .challenge-follow-toggle-track > span {
+  margin-left: 14px;
+  background: var(--brand-magenta);
+}
 .action-bar > .challenge-availability-badge {
   display: inline-flex;
   align-items: center;

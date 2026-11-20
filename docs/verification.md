@@ -2,6 +2,8 @@
 
 ## Executed checks
 
+Automatic tracking toggle (2026-11-20): `/desafios/:id` now presents Expande automatic tracking as an accessible on/off switch whose visible label remains “Seguimiento automático”. The inactive state uses a neutral treatment and a left-positioned thumb; the active state uses Expande magenta and a right-positioned thumb. Closed challenges retain a disabled off state when tracking has not already been activated. The production build and focused Chromium tracking scenarios passed.
+
 Closed challenge badge color (2026-11-20): challenge cards render the “Cerrado” state badge with the shared pink error tint and matching dark error text in light mode, with the corresponding dark-theme tokens retained. The production build and focused Cerrados-tab Chromium scenario passed.
 
 Closed challenge catalogue tab (2026-11-20): `/desafios` now separates every closed challenge into a fourth “Cerrados” tab; Todos, Expande and Mercado exclude closed records. The filter dialog no longer offers “Cerrado”, and its counts follow the selected catalogue tab. The production build, all **52 Node/API/CLI tests**, the focused catalogue scenario and the 360/390/430px Chromium route scenarios passed with no horizontal overflow. Full live-Figma nested-view fidelity was not reverified.

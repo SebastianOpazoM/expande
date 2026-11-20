@@ -598,9 +598,12 @@ test('closed challenge uses a prominent closed-call badge', async ({ page }) => 
   await expect(closed.locator('svg')).toBeVisible();
   await expect(closed).toHaveCSS('background-color', 'rgb(255, 240, 241)');
   await expect(closed).toHaveCSS('color', 'rgb(157, 43, 50)');
-  await expect(
-    page.getByRole('button', { name: 'Activar seguimiento automático', exact: true }),
-  ).toBeDisabled();
+  const automaticFollow = page.getByRole('switch', {
+    name: 'Seguimiento automático',
+    exact: true,
+  });
+  await expect(automaticFollow).toBeDisabled();
+  await expect(automaticFollow).toHaveAttribute('aria-checked', 'false');
   await expect(page.getByRole('link', { name: 'Preparar antecedentes' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -674,8 +677,8 @@ test('challenge tracking is automatic only for Expande and manual for market opp
   await enter(page);
   await page.goto('/desafios');
 
-  await expect(page.locator('.challenge-tracking-summary.automatic')).toHaveCount(9);
-  await expect(page.locator('.challenge-tracking-summary.manual')).toHaveCount(3);
+  await expect(page.locator('.challenge-tracking-summary.automatic')).toHaveCount(6);
+  await expect(page.locator('.challenge-tracking-summary.manual')).toHaveCount(2);
   await expect(
     page.getByText(
       'Expande actualiza automáticamente el seguimiento de sus desafíos. En oportunidades de mercado, tu empresa mantiene el estado manualmente para conservar todo en un solo lugar.',
@@ -687,14 +690,28 @@ test('challenge tracking is automatic only for Expande and manual for market opp
   await expect(
     page.getByRole('heading', { name: 'Automático con Expande', exact: true }),
   ).toBeVisible();
-  const automatic = page.getByRole('button', {
-    name: 'Activar seguimiento automático',
+  const automatic = page.getByRole('switch', {
+    name: 'Seguimiento automático',
     exact: true,
   });
+  const automaticThumb = automatic.locator('.challenge-follow-toggle-track > span');
+  await expect(automatic).toHaveAttribute('aria-checked', 'false');
+  await expect(automatic).toHaveCSS('background-color', 'rgb(231, 238, 241)');
+  await expect(automatic).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await expect(automaticThumb).toHaveCSS('margin-left', '0px');
   await automatic.click();
-  await expect(
-    page.getByRole('button', { name: 'Desactivar seguimiento automático', exact: true }),
-  ).toBeVisible();
+  await expect(automatic).toHaveAttribute('aria-checked', 'true');
+  await page.mouse.move(0, 0);
+  await expect(automatic).toHaveCSS('background-color', 'rgb(171, 18, 84)');
+  await expect(automatic).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(automaticThumb).toHaveCSS('margin-left', '14px');
+  await expect(automatic).toHaveText('Seguimiento automático');
+  await automatic.click();
+  await expect(automatic).toHaveAttribute('aria-checked', 'false');
+  await page.mouse.move(0, 0);
+  await expect(automatic).toHaveCSS('background-color', 'rgb(231, 238, 241)');
+  await expect(automaticThumb).toHaveCSS('margin-left', '0px');
+  await expect(automatic).toHaveText('Seguimiento automático');
   await expect(page.getByRole('link', { name: 'Registrar seguimiento manual' })).toHaveCount(0);
 
   await page.goto('/desafios/CH-D05');
@@ -702,7 +719,7 @@ test('challenge tracking is automatic only for Expande and manual for market opp
     page.getByRole('heading', { name: 'Actualizado manualmente por tu empresa', exact: true }),
   ).toBeVisible();
   await expect(page.getByText('Próxima convocatoria', { exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: /seguimiento automático/i })).toHaveCount(0);
+  await expect(page.getByRole('switch', { name: /seguimiento automático/i })).toHaveCount(0);
   await page.getByRole('link', { name: 'Registrar seguimiento manual', exact: true }).click();
 
   await expect(page).toHaveURL('/postulaciones/nueva?challenge=CH-D05');

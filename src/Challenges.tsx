@@ -353,12 +353,18 @@ export function ChallengeDetail() {
         <>
           {r.origin === 'expande' ? (
             <button
+              className="challenge-follow-toggle"
+              role="switch"
+              aria-checked={followed}
               disabled={r.state === 'cerrado' && !followed}
               onClick={() =>
                 void act({ type: 'follow', target_type: 'challenge', target_id: id }).catch(() => {})
               }
             >
-              {followed ? 'Desactivar seguimiento automático' : 'Activar seguimiento automático'}
+              <span>Seguimiento automático</span>
+              <span className="challenge-follow-toggle-track" aria-hidden="true">
+                <span />
+              </span>
             </button>
           ) : (
             <Link className="button" to={`/postulaciones/nueva?challenge=${id}`}>
