@@ -12,6 +12,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useDemo } from './context';
+import { AsyncButton, Spinner } from './AsyncButton';
 import { CountrySelect } from './CountrySelect';
 import { MultiAutocomplete } from './MultiAutocomplete';
 import { chileanRegions, citiesForRegion, canonicalCityForRegion } from './chileLocations';
@@ -644,20 +645,20 @@ export function Preferences() {
               <button className="rule-edit-action" onClick={() => setEditing(r)}>
                 Editar
               </button>
-              <button
+              <AsyncButton
                 className={r.enabled ? 'rule-pause-action' : 'rule-activate-action'}
-                onClick={() =>
-                  void act({
+                onAction={() =>
+                  act({
                     type: 'save_record',
                     collection: 'alert_rules',
                     id: r.id,
                     revision: r._rev,
                     values: { enabled: !r.enabled },
-                  }).catch(() => {})
+                  })
                 }
               >
                 {r.enabled ? 'Pausar' : 'Activar'}
-              </button>
+              </AsyncButton>
               <button onClick={() => setDeleting(r)}>Eliminar</button>
             </div>
           </div>
@@ -677,15 +678,13 @@ export function Preferences() {
             title="Eliminar regla"
             onClose={() => setDeleting(undefined)}
             onConfirm={() =>
-              void act({
+              act({
                 type: 'delete_record',
                 collection: 'alert_rules',
                 id: deleting.id,
                 revision: deleting._rev,
                 confirm: true,
-              })
-                .then(() => setDeleting(undefined))
-                .catch(() => {})
+              }).then(() => setDeleting(undefined))
             }
           >
             Se eliminará esta regla solo para tu usuario.
@@ -752,7 +751,8 @@ function RuleEditor({ r, close }: { r?: Row; close: () => void }) {
 export function Team() {
   const { d, user, act, toast } = useDemo(),
     [remove, setRemove] = useState<Row>(),
-    [invite, setInvite] = useState(false);
+    [invite, setInvite] = useState(false),
+    [memberPending, setMemberPending] = useState('');
   const admin = user.role === 'administrador';
   const memberName = (member: Row) => [member.name, member.last_name].filter(Boolean).join(' ');
   return (
@@ -778,12 +778,20 @@ export function Team() {
                 <Select
                   label={'Rol de ' + memberName(u)}
                   value={u.role}
-                  disabled={u.id === user.id}
+                  disabled={u.id === user.id || memberPending === u.id}
                   options={['administrador', 'colaborador']}
-                  onChange={(role) =>
-                    void act({ type: 'member', id: u.id, revision: u._rev, role }).catch(() => {})
-                  }
+                  onChange={(role) => {
+                    setMemberPending(u.id);
+                    void act({ type: 'member', id: u.id, revision: u._rev, role })
+                      .catch(() => {})
+                      .finally(() => setMemberPending(''));
+                  }}
                 />
+                {memberPending === u.id && (
+                  <div className="control-pending" role="status">
+                    <Spinner /> Actualizando rol…
+                  </div>
+                )}
                 {u.id !== user.id && (
                   <button onClick={() => setRemove(u)}>Retirar integrante</button>
                 )}
@@ -821,15 +829,13 @@ export function Team() {
             title="Retirar integrante"
             onClose={() => setRemove(undefined)}
             onConfirm={() =>
-              void act({
+              act({
                 type: 'member',
                 id: remove.id,
                 revision: remove._rev,
                 remove: true,
                 confirm: true,
-              })
-                .then(() => setRemove(undefined))
-                .catch(() => {})
+              }).then(() => setRemove(undefined))
             }
           >
             Se retirará a {memberName(remove)} de este escenario. No puedes retirar al último
@@ -896,18 +902,16 @@ export function Delegations() {
             title="Cancelar delegación"
             onClose={() => setCancel(undefined)}
             onConfirm={() =>
-              void act({
+              act({
                 type: 'delete_record',
                 collection: 'delegations',
                 id: cancel.id,
                 revision: cancel._rev,
                 confirm: true,
+              }).then(() => {
+                setCancel(undefined);
+                toast('Delegación cancelada');
               })
-                .then(() => {
-                  setCancel(undefined);
-                  toast('Delegación cancelada');
-                })
-                .catch(() => {})
             }
           >
             Conservaremos el registro como cancelado, sin efecto en la simulación.
@@ -1076,16 +1080,6 @@ export function Plan() {
       cta: 'Me interesa VIP',
     },
   ];
-  const registerInterest = (tier: string, name: string) =>
-    void act({
-      type: 'activity',
-      kind: 'plan_interest',
-      target_type: 'company',
-      target_id: user.company_id,
-      value: tier,
-    })
-      .then(() => toast(`Interés en ${name} registrado localmente. No se realiza ningún cobro.`))
-      .catch(() => {});
   return (
     <Layout detail title="Plan de empresa">
       <Page>
@@ -1134,9 +1128,24 @@ export function Plan() {
                   {tier.cta}
                 </Link>
               ) : user.role === 'administrador' ? (
-                <button className="primary" onClick={() => registerInterest(tier.id, tier.name)}>
+                <AsyncButton
+                  className="primary"
+                  onAction={() =>
+                    act({
+                      type: 'activity',
+                      kind: 'plan_interest',
+                      target_type: 'company',
+                      target_id: user.company_id,
+                      value: tier.id,
+                    }).then(() =>
+                      toast(
+                        `Interés en ${tier.name} registrado localmente. No se realiza ningún cobro.`,
+                      ),
+                    )
+                  }
+                >
                   {tier.cta}
-                </button>
+                </AsyncButton>
               ) : null}
             </section>
           ))}

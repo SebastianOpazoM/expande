@@ -18,6 +18,7 @@ import {
   X,
 } from 'lucide-react';
 import { request, useDemo } from './context';
+import { AsyncButton, Spinner } from './AsyncButton';
 import { BrandLogo } from './BrandLogo';
 import { PhoneStage } from './PhoneFrame';
 import { date, label, type Row } from '../shared/model';
@@ -58,7 +59,7 @@ export function Layout({
   detail?: boolean;
   footer?: ReactNode;
 }) {
-  const { d } = useDemo(),
+  const { d, toastMessage, dismissToast } = useDemo(),
     nav = useNavigate(),
     location = useLocation(),
     main = useRef<HTMLDivElement>(null);
@@ -132,6 +133,11 @@ export function Layout({
               </Link>
             ))}
           </nav>
+        )}
+        {toastMessage && (
+          <div className="toast" role="status" onClick={dismissToast}>
+            {toastMessage}
+          </div>
         )}
       </div>
     </PhoneStage>
@@ -383,19 +389,18 @@ export function Save({ type, id, confirm = false }: { type: string; id: string; 
   const { d, act, toast } = useDemo();
   const saved = d.saved_items.some((r: Row) => r.target_type === type && r.target_id === id);
   return (
-    <button
+    <AsyncButton
       className={'save icon ' + (saved ? 'saved' : '')}
       aria-label={saved ? 'Quitar de guardados' : 'Guardar'}
-      onClick={() =>
-        void act({ type: 'saved', target_type: type, target_id: id })
-          .then(() => {
-            if (confirm) toast(saved ? 'Eliminado de guardados' : 'Agregado a guardados');
-          })
-          .catch(() => {})
+      onAction={() =>
+        act({ type: 'saved', target_type: type, target_id: id }).then(() => {
+          if (confirm) toast(saved ? 'Eliminado de guardados' : 'Agregado a guardados');
+        })
       }
+      pendingContent={<Spinner />}
     >
       <Bookmark size={22} fill={saved ? 'currentColor' : 'none'} />
-    </button>
+    </AsyncButton>
   );
 }
 export function ChallengeCard({ r, compact = false }: { r: Row; compact?: boolean }) {
@@ -540,7 +545,7 @@ export function Confirm({
 }: {
   title: string;
   children: ReactNode;
-  onConfirm: () => void;
+  onConfirm: () => Promise<unknown>;
   onClose: () => void;
 }) {
   return (
@@ -548,9 +553,9 @@ export function Confirm({
       <p>{children}</p>
       <div className="button-row">
         <button onClick={onClose}>Cancelar</button>
-        <button className="primary" onClick={onConfirm}>
+        <AsyncButton className="primary" onAction={onConfirm}>
           Confirmar
-        </button>
+        </AsyncButton>
       </div>
     </Modal>
   );
@@ -920,7 +925,8 @@ export function Form({
           {error}
         </p>
       )}
-      <button disabled={pending} className="primary" type="submit">
+      <button disabled={pending} aria-busy={pending || undefined} className="primary" type="submit">
+        {pending && <Spinner />}
         {pending ? 'Guardando…' : submit}
       </button>
     </form>

@@ -446,14 +446,12 @@ export function Documents() {
             title="Quitar documento"
             onClose={() => setRemove(undefined)}
             onConfirm={() =>
-              void act({
+              act({
                 type: 'document',
                 application_id: id,
                 revision: a._rev,
                 remove_id: remove.id,
-              })
-                .then(() => setRemove(undefined))
-                .catch(() => {})
+              }).then(() => setRemove(undefined))
             }
           >
             Se quitarán los metadatos de {remove.name}. No hay archivo real almacenado.

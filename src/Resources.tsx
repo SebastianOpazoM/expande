@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Pause, Play } from 'lucide-react';
 import { useDemo } from './context';
+import { AsyncButton, Spinner } from './AsyncButton';
 import { date, eventsInMonth, label, norm, type Row } from '../shared/model';
 import { discoverableFunding, effectiveFundingState } from '../shared/funding';
 import {
@@ -742,9 +743,10 @@ export function LearningPlayback() {
               <button disabled={step === 0 || saving} onClick={() => setStep(step - 1)}>
                 <ArrowLeft size={18} /> Anterior
               </button>
-              <button className="primary" disabled={saving} onClick={() => void advance()}>
+              <button className="primary" disabled={saving} aria-busy={saving || undefined} onClick={() => void advance()}>
+                {saving && <Spinner />}
                 {step === steps.length - 1 ? 'Finalizar curso' : 'Siguiente'}
-                {step < steps.length - 1 && <ArrowRight size={18} />}
+                {!saving && step < steps.length - 1 && <ArrowRight size={18} />}
               </button>
             </div>
           </article>
@@ -900,22 +902,20 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
                     : `${r.currency} ${new Intl.NumberFormat('es-CL').format(r.cost)}`
               }
             />
-            <button
+            <AsyncButton
               disabled={!r.start_date}
-              onClick={() =>
-                void activity('event_reminder')
-                  .then(() =>
-                    toast(
-                      r.start_time
-                        ? 'Recordatorio demo guardado'
-                        : 'Recordatorio demo de día completo guardado',
-                    ),
-                  )
-                  .catch(() => {})
+              onAction={() =>
+                activity('event_reminder').then(() =>
+                  toast(
+                    r.start_time
+                      ? 'Recordatorio demo guardado'
+                      : 'Recordatorio demo de día completo guardado',
+                  ),
+                )
               }
             >
               {done('event_reminder') ? 'Recordatorio guardado' : 'Recordarme'}
-            </button>
+            </AsyncButton>
             {!r.start_date && <small>Los recordatorios necesitan una fecha precisa.</small>}
             <button onClick={() => setModal('calendar')}>
               Añadir a calendario · previsualizar
@@ -1023,19 +1023,17 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
             <>
               <p>{r.benefit}</p>
               <p>La solicitud se guardará solo en tu sesión. No contactaremos instituciones.</p>
-              <button
+              <AsyncButton
                 className="primary"
-                onClick={() =>
-                  void activity('alliance_request')
-                    .then(() => {
-                      setModal('');
-                      toast('Solicitud de acceso simulada registrada');
-                    })
-                    .catch(() => {})
+                onAction={() =>
+                  activity('alliance_request').then(() => {
+                    setModal('');
+                    toast('Solicitud de acceso simulada registrada');
+                  })
                 }
               >
                 Confirmar solicitud demo
-              </button>
+              </AsyncButton>
             </>
           ) : modal === 'calendar' ? (
             <>
@@ -1060,19 +1058,17 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
           ) : (
             <>
               <p>Solo guardamos tu interés en este escenario, sin inscripción ni pago real.</p>
-              <button
+              <AsyncButton
                 className="primary"
-                onClick={() =>
-                  void activity('event_registration')
-                    .then(() => {
-                      setModal('');
-                      toast('Inscripción simulada guardada');
-                    })
-                    .catch(() => {})
+                onAction={() =>
+                  activity('event_registration').then(() => {
+                    setModal('');
+                    toast('Inscripción simulada guardada');
+                  })
                 }
               >
                 Confirmar inscripción demo
-              </button>
+              </AsyncButton>
             </>
           )}
         </Modal>
@@ -1136,22 +1132,20 @@ export function Concepts() {
                 ))}
               </>
             )}
-            <button
-              onClick={() =>
-                void act({
+            <AsyncButton
+              onAction={() =>
+                act({
                   type: 'activity',
                   kind: 'concept_interest',
                   target_type: partner ? 'partner' : 'signal',
                   target_id: r.id,
-                })
-                  .then(() => toast('Interés guardado localmente, sin contactar a terceros'))
-                  .catch(() => {})
+                }).then(() => toast('Interés guardado localmente, sin contactar a terceros'))
               }
             >
               {d.activity.some((a: Row) => a.target_id === r.id && a.kind === 'concept_interest')
                 ? 'Interés registrado'
                 : 'Me interesa esta idea'}
-            </button>
+            </AsyncButton>
           </div>
         ))}
       </Page>

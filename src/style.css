@@ -136,6 +136,59 @@ button:disabled {
   opacity: 0.52;
   cursor: not-allowed;
 }
+.spinner {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-turn 0.7s linear infinite;
+}
+.loading-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-accent);
+}
+.loading-status p {
+  margin: 0;
+}
+.control-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -4px 0 12px;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+.notification-open {
+  width: 100%;
+  min-height: 0;
+  justify-content: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  text-align: left;
+}
+.notification-open:active {
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
+}
+@keyframes spinner-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
 button.primary,
 .button.primary {
   background: var(--brand-magenta);
@@ -1997,9 +2050,9 @@ form > fieldset > button {
   margin: 8px 0;
 }
 .toast {
-  position: fixed;
+  position: absolute;
   z-index: 100;
-  bottom: 24px;
+  bottom: calc(65px + env(safe-area-inset-bottom) + 12px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--brand-navy);
@@ -2008,7 +2061,7 @@ form > fieldset > button {
   padding: 14px 18px;
   font-size: 12px;
   width: max-content;
-  max-width: min(90vw, 400px);
+  max-width: calc(100% - 24px);
   box-shadow: 0 4px 25px var(--color-shadow);
   line-height: 1.5;
 }
@@ -2512,8 +2565,5 @@ summary {
   }
   .modal {
     border-radius: 22px 22px 14px 14px;
-  }
-  .toast {
-    bottom: 80px;
   }
 }

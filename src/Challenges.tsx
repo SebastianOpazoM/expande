@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useDemo } from './context';
 import { affinity, challenges, date, label, type Data, type Row } from '../shared/model';
+import { AsyncButton, Spinner } from './AsyncButton';
 import {
   ChallengeCard,
   Empty,
@@ -352,28 +353,31 @@ export function ChallengeDetail() {
       footer={
         <>
           {r.origin === 'expande' ? (
-            <button
+            <AsyncButton
               className="challenge-follow-toggle"
               role="switch"
               aria-checked={followed}
               disabled={r.state === 'cerrado' && !followed}
-              onClick={() =>
-                void act({ type: 'follow', target_type: 'challenge', target_id: id })
-                  .then(() =>
-                    toast(
-                      followed
-                        ? 'Seguimiento automático desactivado'
-                        : 'Seguimiento automático activado',
-                    ),
-                  )
-                  .catch(() => {})
+              onAction={() =>
+                act({ type: 'follow', target_type: 'challenge', target_id: id }).then(() =>
+                  toast(
+                    followed
+                      ? 'Seguimiento automático desactivado'
+                      : 'Seguimiento automático activado',
+                  ),
+                )
+              }
+              pendingContent={
+                <>
+                  <Spinner /> Actualizando seguimiento…
+                </>
               }
             >
               <span>Seguimiento automático</span>
               <span className="challenge-follow-toggle-track" aria-hidden="true">
                 <span />
               </span>
-            </button>
+            </AsyncButton>
           ) : (
             <Link className="button" to={`/postulaciones/nueva?challenge=${id}`}>
               Registrar seguimiento manual

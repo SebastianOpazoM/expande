@@ -15,8 +15,10 @@ import { Provider, useDemo } from './context';
 import { BrandLogo } from './BrandLogo';
 import { PhoneStage } from './PhoneFrame';
 import { affinity, challenges, date, label, profileCompleteness, type Row } from '../shared/model';
+import { AsyncButton } from './AsyncButton';
 import {
   ChallengeCard,
+  links,
   Empty,
   Field,
   Form,
@@ -203,9 +205,9 @@ function Access() {
             onChange={setProfile}
           />
           <Notice>{d.profiles.find((p: Row) => p.id === profile)?.name} · Perfil ficticio</Notice>
-          <button className="primary" onClick={() => void enter()}>
+          <AsyncButton className="primary" onAction={enter}>
             Iniciar sesión <ArrowRight size={18} />
-          </button>
+          </AsyncButton>
           {['Microsoft', 'Google', 'Apple'].map((p) => (
             <button
               key={p}
@@ -519,9 +521,9 @@ function Notifications() {
           options={['todos', ...new Set<string>(d.notifications.map((n: Row) => n.target_type))]}
           onChange={setKind}
         />
-        <button onClick={() => void act({ type: 'read_all' }).catch(() => {})}>
+        <AsyncButton onAction={() => act({ type: 'read_all' })}>
           Marcar todos como leídos
-        </button>
+        </AsyncButton>
         <ListState empty={!rows.length}>
           {rows.map((n: Row, index: number) => (
             <Fragment key={n.id}>
@@ -531,17 +533,30 @@ function Notifications() {
               )}
               <div className={'card ' + (!n.read ? 'unread' : '')}>
                 <small>{date(n.created_at, true)}</small>
-                <TargetLink type={n.target_type} id={n.target_id}>
-                  <span onClick={() => void act({ type: 'read_notice', id: n.id }).catch(() => {})}>
-                    <h3>{n.title}</h3>
-                    <p>{n.read ? 'Leído' : 'Sin leer'} · Abrir →</p>
-                  </span>
-                </TargetLink>
+                <NotificationOpen notification={n} />
               </div>
             </Fragment>
           ))}
         </ListState>
       </Page>
     </Layout>
+  );
+}
+function NotificationOpen({ notification }: { notification: Row }) {
+  const { act } = useDemo();
+  const nav = useNavigate();
+  return (
+    <AsyncButton
+      className="notification-open"
+      onAction={async () => {
+        await act({ type: 'read_notice', id: notification.id });
+        nav((links[notification.target_type] || '/inicio#') + notification.target_id);
+      }}
+    >
+      <span>
+        <h3>{notification.title}</h3>
+        <p>{notification.read ? 'Leído' : 'Sin leer'} · Abrir →</p>
+      </span>
+    </AsyncButton>
   );
 }

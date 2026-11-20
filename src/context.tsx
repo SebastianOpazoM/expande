@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { PhoneStage } from './PhoneFrame';
+import { Spinner } from './AsyncButton';
 import type { Data, Row } from '../shared/model';
 type Context = {
   d: Data;
@@ -8,12 +9,21 @@ type Context = {
   act: (a: any) => Promise<Data>;
   refresh: () => Promise<void>;
   toast: (s: string) => void;
+  toastMessage: string;
+  dismissToast: () => void;
   scenario: string;
   setScenario: (s: string) => void;
 };
 const C = createContext<Context>(null!);
 export const useDemo = () => useContext(C);
+const requestDelay = import.meta.env.DEV
+  ? Math.min(Math.max(Number(import.meta.env.VITE_API_DELAY_MS) || 0, 0), 5000)
+  : 0;
 export async function request(path: string, body?: any) {
+  if (requestDelay)
+    await new Promise<void>((resolve) => {
+      globalThis.setTimeout(resolve, requestDelay);
+    });
   const r = await fetch('/api/v1/' + path, {
     credentials: 'same-origin',
     ...(body
@@ -44,6 +54,7 @@ export function Provider({ children }: { children: ReactNode }) {
   const [d, setD] = useState<Data>(),
     [error, setError] = useState(''),
     [access, setAccess] = useState(false),
+    [accessPending, setAccessPending] = useState(false),
     [message, setMessage] = useState('');
   const [scenario, setScenario] = useState(sessionStorage.getItem('expande-ui-state') || 'normal');
   const current = useRef(d);
@@ -91,6 +102,7 @@ export function Provider({ children }: { children: ReactNode }) {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
+              setAccessPending(true);
               try {
                 await request('access', {
                   password: new FormData(e.currentTarget).get('password'),
@@ -99,6 +111,8 @@ export function Provider({ children }: { children: ReactNode }) {
                 await refresh();
               } catch (e: unknown) {
                 setError(e instanceof Error ? e.message : 'No se pudo conectar');
+              } finally {
+                setAccessPending(false);
               }
             }}
           >
@@ -111,7 +125,10 @@ export function Provider({ children }: { children: ReactNode }) {
                 {error}
               </p>
             )}
-            <button className="primary">Continuar</button>
+            <button className="primary" disabled={accessPending} aria-busy={accessPending || undefined}>
+              {accessPending && <Spinner />}
+              {accessPending ? 'Ingresando…' : 'Continuar'}
+            </button>
           </form>
         </main>
       </PhoneStage>
@@ -131,7 +148,10 @@ export function Provider({ children }: { children: ReactNode }) {
               </button>
             </>
           ) : (
-            <p role="status">Cargando tu demostración…</p>
+            <div className="loading-status" role="status">
+              <Spinner />
+              <p>Cargando tu demostración…</p>
+            </div>
           )}
         </main>
       </PhoneStage>
@@ -157,6 +177,8 @@ export function Provider({ children }: { children: ReactNode }) {
         act,
         refresh,
         toast: setMessage,
+        toastMessage: message,
+        dismissToast: () => setMessage(''),
         scenario,
         setScenario: (s) => {
           setScenario(s);
@@ -165,11 +187,6 @@ export function Provider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      {message && (
-        <div className="toast" role="status" onClick={() => setMessage('')}>
-          {message}
-        </div>
-      )}
     </C.Provider>
   );
 }
