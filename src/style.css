@@ -1198,6 +1198,10 @@ code {
   background: var(--color-mint-tint);
   color: var(--color-success-accent);
 }
+.tags .closed {
+  background: var(--color-error-tint);
+  color: var(--color-error);
+}
 .save {
   border: 1px solid var(--color-control-border);
   width: 44px;

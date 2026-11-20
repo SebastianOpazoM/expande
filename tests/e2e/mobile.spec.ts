@@ -410,9 +410,9 @@ for (const width of [360, 390, 430])
     await page.setViewportSize({ width, height: 844 });
     await enter(page);
     await page.getByRole('link', { name: 'Desafíos', exact: true }).last().click();
-    await expect(page.getByText('12 desafíos · Todos los estados')).toBeVisible();
+    await expect(page.getByText('8 desafíos · No cerrados')).toBeVisible();
     await page.getByLabel('Buscar desafíos').fill('rastras');
-    await expect(page.getByText('2 desafíos · Todos los estados')).toBeVisible();
+    await expect(page.getByText('2 desafíos · No cerrados')).toBeVisible();
     await page
       .locator('article')
       .filter({ hasText: 'Sensores para anticipar desgaste en rastras' })
@@ -901,18 +901,41 @@ test('long forms keep vertical scrolling on the page or modal only', async ({ pa
     await modalContent.evaluate((element) => element.clientHeight),
   );
 });
-test('catalogue defaults to all states, preserves explicit filters and clears to all', async ({
+test('catalogue separates closed challenges, preserves explicit filters and clears them', async ({
   page,
 }) => {
   await enter(page);
   await page.goto('/desafios');
-  await expect(page.getByText('12 desafíos · Todos los estados')).toBeVisible();
-  for (const id of ['CH-R01', 'CH-R02', 'CH-R03', 'CH-R04', 'CH-R05']) {
+  await expect(page.getByText('8 desafíos · No cerrados')).toBeVisible();
+  for (const id of ['CH-R01', 'CH-R02', 'CH-R03']) {
     await expect(page.locator(`a.card-title[href="/desafios/${id}"]`)).toBeVisible();
   }
+  for (const id of ['CH-R04', 'CH-R05', 'CH-D06', 'CH-D07'])
+    await expect(page.locator(`a.card-title[href="/desafios/${id}"]`)).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'Cerrados', exact: true }).click();
+  await expect(page).toHaveURL('/desafios?view=cerrados');
+  await expect(page.getByText('4 desafíos · Cerrados')).toBeVisible();
+  for (const id of ['CH-R04', 'CH-R05', 'CH-D06', 'CH-D07'])
+    await expect(page.locator(`a.card-title[href="/desafios/${id}"]`)).toBeVisible();
+  const closedBadges = page.locator('.challenge-card .tags .closed');
+  await expect(closedBadges).toHaveCount(4);
+  for (const badge of await closedBadges.all()) {
+    await expect(badge).toHaveText('Cerrado');
+    await expect(badge).toHaveCSS('background-color', 'rgb(255, 240, 241)');
+    await expect(badge).toHaveCSS('color', 'rgb(157, 43, 50)');
+  }
+  await page.getByRole('button', { name: 'Filtros', exact: true }).click();
+  await expect(page.getByRole('checkbox', { name: 'Cerrado', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Aplicar (4)', exact: true })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Todos', exact: true }).click();
+  await expect(page.getByText('8 desafíos · No cerrados')).toBeVisible();
+
   await expect(page.getByText('ABC Dust', { exact: false })).toHaveCount(0);
   await page.getByRole('button', { name: 'Filtros', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Aplicar (12)', exact: true })).toBeVisible();
+  await expect(page.getByRole('checkbox', { name: 'Cerrado', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Aplicar (8)', exact: true })).toBeVisible();
   await page.getByRole('checkbox', { name: 'Abierto', exact: true }).check();
   await page.getByRole('button', { name: 'Aplicar (4)', exact: true }).click();
   await expect(page.getByText('4 desafíos · Abierto')).toBeVisible();
@@ -925,11 +948,11 @@ test('catalogue defaults to all states, preserves explicit filters and clears to
   await page.getByRole('button', { name: /Filtros/ }).click();
   await expect(page.getByRole('checkbox', { name: 'Abierto', exact: true })).toBeChecked();
   await page.getByRole('button', { name: 'Limpiar', exact: true }).click();
-  await page.getByRole('button', { name: 'Aplicar (12)', exact: true }).click();
-  await expect(page.getByText('12 desafíos · Todos los estados')).toBeVisible();
+  await page.getByRole('button', { name: 'Aplicar (8)', exact: true }).click();
+  await expect(page.getByText('8 desafíos · No cerrados')).toBeVisible();
   await page.getByLabel('Buscar desafíos').fill('noexisteunresultado');
   await page.getByRole('button', { name: 'Limpiar filtros', exact: true }).click();
-  await expect(page.getByText('12 desafíos · Todos los estados')).toBeVisible();
+  await expect(page.getByText('8 desafíos · No cerrados')).toBeVisible();
   await page.goto('/inicio');
   await expect(page.locator('a[href="/desafios/CH-R01"]')).toHaveCount(0);
 });

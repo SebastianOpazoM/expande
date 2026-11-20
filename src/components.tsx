@@ -339,7 +339,11 @@ export function Tags({ r }: { r: Row }) {
           {label(r.origin)}
         </span>
       )}
-      {r.state && <span className={r.state === 'abierto' ? 'green' : ''}>{label(r.state)}</span>}
+      {r.state && (
+        <span className={r.state === 'abierto' ? 'green' : r.state === 'cerrado' ? 'closed' : ''}>
+          {label(r.state)}
+        </span>
+      )}
     </div>
   );
 }

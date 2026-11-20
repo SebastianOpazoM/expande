@@ -9,7 +9,7 @@ import {
   SlidersHorizontal,
 } from 'lucide-react';
 import { useDemo } from './context';
-import { affinity, challenges, date, label, type Row } from '../shared/model';
+import { affinity, challenges, date, label, type Data, type Row } from '../shared/model';
 import {
   ChallengeCard,
   Empty,
@@ -37,6 +37,16 @@ const challengeSortOptions = [
   { id: 'afinidad', name: 'Afinidad con mi solución' },
 ];
 
+const catalogueStates = (d: Data, f: Record<string, string>) => {
+  if (f.view === 'cerrados') return ['cerrado'];
+  const selected = (f.state || '')
+    .split('|')
+    .filter((state) => state && state !== 'todos' && state !== 'cerrado');
+  return selected.length
+    ? selected
+    : d.enums.challenge_state.filter((state: string) => state !== 'cerrado');
+};
+
 export function Catalog() {
   const { d, company } = useDemo(),
     [params, setParams] = useSearchParams(),
@@ -45,18 +55,28 @@ export function Catalog() {
   const selected = d.solutions.find((s: Row) => s.id === f.solution) || d.solutions[0];
   const parsed = {
     ...f,
-    state: f.state || 'todos',
     ...Object.fromEntries(
-      ['state', 'origin', 'process', 'topic', 'country', 'mandante', 'payer']
+      ['origin', 'process', 'topic', 'country', 'mandante', 'payer']
         .filter((k) => f[k])
         .map((k) => [k, f[k] === 'todos' ? 'todos' : f[k].split('|')]),
     ),
+    state: catalogueStates(d, f),
     include_unknown: f.include_unknown === 'true',
     trl: f.compatible === 'true' ? selected?.trl : f.trl,
     company,
     solution: selected,
   };
   const list = challenges(d, parsed);
+  const selectedStateLabels = (f.state || '')
+    .split('|')
+    .filter((state) => state && state !== 'todos' && state !== 'cerrado')
+    .map(label);
+  const stateSummary =
+    f.view === 'cerrados'
+      ? 'Cerrados'
+      : selectedStateLabels.length
+        ? selectedStateLabels.join(', ')
+        : 'No cerrados';
   const update = (patch: Record<string, any>) => {
     const p = new URLSearchParams(params);
     for (const [k, v] of Object.entries(patch))
@@ -75,16 +95,19 @@ export function Catalog() {
         />
         <div className="tabs">
           {[
-            ['', 'Todos'],
-            ['expande', 'Expande'],
-            ['externo', 'Mercado'],
-          ].map(([v, t]) => (
+            { id: 'todos', label: 'Todos', origin: '', view: '' },
+            { id: 'expande', label: 'Expande', origin: 'expande', view: '' },
+            { id: 'mercado', label: 'Mercado', origin: 'externo', view: '' },
+            { id: 'cerrados', label: 'Cerrados', origin: '', view: 'cerrados' },
+          ].map((tab) => (
             <button
-              key={v}
-              className={(f.origin || '') === v ? 'active' : ''}
-              onClick={() => update({ origin: v })}
+              key={tab.id}
+              className={
+                (f.view || '') === tab.view && (f.origin || '') === tab.origin ? 'active' : ''
+              }
+              onClick={() => update({ origin: tab.origin, view: tab.view })}
             >
-              {t}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -95,7 +118,8 @@ export function Catalog() {
         <div className="between challenge-catalog-toolbar">
           <button onClick={() => setFilters(true)}>
             <SlidersHorizontal size={16} /> Filtros
-            {Object.keys(f).filter((k) => !['query', 'order', 'origin'].includes(k)).length > 0
+            {Object.keys(f).filter((k) => !['query', 'order', 'origin', 'view'].includes(k))
+              .length > 0
               ? ' · activos'
               : ''}
           </button>
@@ -149,12 +173,7 @@ export function Catalog() {
         )}
         <div className="between small challenge-catalog-meta">
           <strong>
-            {list.length} desafíos ·{' '}
-            {f.state
-              ? f.state === 'todos'
-                ? 'Todos los estados'
-                : f.state.split('|').map(label).join(', ')
-              : 'Todos los estados'}
+            {list.length} desafíos · {stateSummary}
           </strong>
           <Link className="market-sources-link" to="/fuentes">
             Fuentes del mercado
@@ -191,9 +210,9 @@ function Filters({
   close: () => void;
 }) {
   const { d } = useDemo();
-  const [f, setF] = useState<Record<string, string>>({
-    ...initial,
-    state: initial.state || 'todos',
+  const [f, setF] = useState<Record<string, string>>(() => {
+    const states = (initial.state || '').split('|').filter((state) => state && state !== 'cerrado');
+    return { ...initial, state: states.join('|') || 'todos' };
   });
   const multi = (key: string, title: string, opts: Row[]) => (
     <Multi
@@ -210,19 +229,27 @@ function Filters({
   const solution = d.solutions.find((r: Row) => r.id === f.solution) || d.solutions[0];
   const count = challenges(d, {
     ...f,
-    state: f.state || 'todos',
     ...Object.fromEntries(
-      ['state', 'origin', 'process', 'topic', 'country', 'mandante', 'payer']
+      ['origin', 'process', 'topic', 'country', 'mandante', 'payer']
         .filter((k) => f[k])
         .map((k) => [k, f[k] === 'todos' ? 'todos' : f[k].split('|')]),
     ),
+    state: catalogueStates(d, f),
     include_unknown: f.include_unknown === 'true',
     trl: f.compatible === 'true' ? solution?.trl : f.trl,
   }).length;
   return (
     <Modal title="Filtrar desafíos" onClose={close}>
-      {multi('state', 'Estado', ids(d.enums.challenge_state))}
-      <button onClick={() => setF({ ...f, state: 'todos' })}>Todos los estados</button>
+      {f.view !== 'cerrados' && (
+        <>
+          {multi(
+            'state',
+            'Estado',
+            ids(d.enums.challenge_state.filter((state: string) => state !== 'cerrado')),
+          )}
+          <button onClick={() => setF({ ...f, state: 'todos' })}>Todos excepto cerrados</button>
+        </>
+      )}
       {multi('origin', 'Origen', ids(d.enums.origin))}
       {multi('process', 'Proceso minero', d.processes)}
       {multi('topic', 'Temas', d.topics)}
@@ -280,7 +307,9 @@ function Filters({
         Incluir datos no informados
       </label>
       <div className="button-row">
-        <button onClick={() => setF({})}>Limpiar</button>
+        <button onClick={() => setF(f.view === 'cerrados' ? { view: 'cerrados' } : {})}>
+          Limpiar
+        </button>
         <button
           className="primary"
           onClick={() => apply(Object.fromEntries(Object.entries(f).filter(([, v]) => v)))}

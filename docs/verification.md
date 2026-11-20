@@ -2,6 +2,10 @@
 
 ## Executed checks
 
+Closed challenge badge color (2026-11-20): challenge cards render the “Cerrado” state badge with the shared pink error tint and matching dark error text in light mode, with the corresponding dark-theme tokens retained. The production build and focused Cerrados-tab Chromium scenario passed.
+
+Closed challenge catalogue tab (2026-11-20): `/desafios` now separates every closed challenge into a fourth “Cerrados” tab; Todos, Expande and Mercado exclude closed records. The filter dialog no longer offers “Cerrado”, and its counts follow the selected catalogue tab. The production build, all **52 Node/API/CLI tests**, the focused catalogue scenario and the 360/390/430px Chromium route scenarios passed with no horizontal overflow. Full live-Figma nested-view fidelity was not reverified.
+
 Closed challenge automatic tracking (2026-11-20): `/desafios/:id` disables “Activar seguimiento automático” when an Expande challenge is closed, including effective closure caused by the visitor's demo clock. The domain action rejects new automatic follows for closed challenges while retaining the ability to deactivate an existing follow. The production build, all **52 Node/API/CLI tests** and the targeted closed-detail Chromium scenario passed. Full live-Figma nested-view fidelity was not reverified.
 
 Provider button label alignment (2026-11-09): the Microsoft, Google and Apple buttons on `/acceso` now center each “Continuar con…” label against the full button width while keeping the provider mark anchored at the left. The production build passed. A live 390 × 844 Chromium inspection measured every label within 0.01px of its button center, confirmed no horizontal overflow or page errors, and verified that the Microsoft button still opens and closes its simulated-access modal.
