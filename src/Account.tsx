@@ -281,6 +281,13 @@ export function Company({ onboarding = false }: { onboarding?: boolean }) {
         <h1>{onboarding ? 'Cuéntanos sobre tu empresa' : company.name}</h1>
         {admin ? (
           <Form
+            secondaryAction={
+              !onboarding ? (
+                <Link className="button" to="/cuenta">
+                  Volver
+                </Link>
+              ) : undefined
+            }
             onSubmit={async (v) => {
               await act({
                 type: 'save_record',
@@ -392,6 +399,11 @@ export function Personal() {
       <Page>
         <h1>Perfil personal</h1>
         <Form
+          secondaryAction={
+            <Link className="button" to="/cuenta">
+              Volver
+            </Link>
+          }
           onSubmit={async (v) => {
             await act({
               type: 'save_record',
@@ -529,6 +541,13 @@ export function Interests({ onboarding = false }: { onboarding?: boolean }) {
         <h1>Qué oportunidades te interesan</h1>
         <Notice>Preferencias personales. No cambian las preferencias de otros integrantes.</Notice>
         <Form
+          secondaryAction={
+            !onboarding ? (
+              <Link className="button" to="/cuenta">
+                Volver
+              </Link>
+            ) : undefined
+          }
           onSubmit={async (v) => {
             await act({
               type: 'save_record',

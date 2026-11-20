@@ -976,6 +976,24 @@ test('preference rule actions use distinct semantic colors', async ({ page }) =>
   await expect(activate).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(page.getByText(/Pausada/).first()).toBeVisible();
 });
+test('interests edit actions stay side by side and return to account', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/intereses');
+
+  const save = page.getByRole('button', { name: 'Guardar cambios', exact: true });
+  const back = page.getByRole('link', { name: 'Volver', exact: true });
+  await save.scrollIntoViewIfNeeded();
+  const saveBox = await save.boundingBox();
+  const backBox = await back.boundingBox();
+  expect(saveBox).not.toBeNull();
+  expect(backBox).not.toBeNull();
+  expect(Math.abs(saveBox!.y - backBox!.y)).toBeLessThan(1);
+
+  await back.click();
+  await expect(page).toHaveURL(/\/cuenta$/);
+});
+
 test('long forms keep vertical scrolling on the page or modal only', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);
@@ -1235,6 +1253,24 @@ test('company country autocomplete searches names and codes and persists selecte
   await expect(city).toHaveCount(0);
 });
 
+test('company edit actions stay side by side and return to account', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/empresa');
+
+  const save = page.getByRole('button', { name: 'Guardar cambios', exact: true });
+  const back = page.getByRole('link', { name: 'Volver', exact: true });
+  await save.scrollIntoViewIfNeeded();
+  const saveBox = await save.boundingBox();
+  const backBox = await back.boundingBox();
+  expect(saveBox).not.toBeNull();
+  expect(backBox).not.toBeNull();
+  expect(Math.abs(saveBox!.y - backBox!.y)).toBeLessThan(1);
+
+  await back.click();
+  await expect(page).toHaveURL(/\/cuenta$/);
+});
+
 test('coverage regions support autocomplete, multiple selections, removal and persistence', async ({
   page,
 }) => {
@@ -1344,6 +1380,13 @@ test('coverage regions support autocomplete, multiple selections, removal and pe
 test('personal last name saves and reloads without modifying another user', async ({ page }) => {
   await enter(page);
   await page.goto('/perfil');
+  const save = page.getByRole('button', { name: 'Guardar cambios', exact: true });
+  const back = page.getByRole('link', { name: 'Volver', exact: true });
+  const saveBox = await save.boundingBox();
+  const backBox = await back.boundingBox();
+  expect(saveBox).not.toBeNull();
+  expect(backBox).not.toBeNull();
+  expect(Math.abs(saveBox!.y - backBox!.y)).toBeLessThan(1);
   await expect(page.getByLabel('Apellidos', { exact: true })).toHaveValue('');
   await page.getByLabel('Apellidos', { exact: true }).fill('González Pérez');
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();

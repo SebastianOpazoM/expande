@@ -887,10 +887,12 @@ export function Form({
   children,
   onSubmit,
   submit = 'Guardar cambios',
+  secondaryAction,
 }: {
   children: ReactNode;
   onSubmit: (data: Record<string, any>) => Promise<any>;
   submit?: string;
+  secondaryAction?: ReactNode;
 }) {
   const { d } = useDemo();
   const snapshot = (data: any) =>
@@ -925,10 +927,25 @@ export function Form({
           {error}
         </p>
       )}
-      <button disabled={pending} aria-busy={pending || undefined} className="primary" type="submit">
-        {pending && <Spinner />}
-        {pending ? 'Guardando…' : submit}
-      </button>
+      {secondaryAction ? (
+        <div className="form-actions">
+          <button
+            disabled={pending}
+            aria-busy={pending || undefined}
+            className="primary"
+            type="submit"
+          >
+            {pending && <Spinner />}
+            {pending ? 'Guardando…' : submit}
+          </button>
+          {secondaryAction}
+        </div>
+      ) : (
+        <button disabled={pending} aria-busy={pending || undefined} className="primary" type="submit">
+          {pending && <Spinner />}
+          {pending ? 'Guardando…' : submit}
+        </button>
+      )}
     </form>
   );
 }
