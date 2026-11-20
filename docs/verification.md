@@ -2,7 +2,9 @@
 
 ## Executed checks
 
-Automatic tracking toggle (2026-11-20): `/desafios/:id` now presents Expande automatic tracking as an accessible on/off switch whose visible label remains “Seguimiento automático”. The inactive state uses a neutral treatment and a left-positioned thumb; the active state uses Expande magenta and a right-positioned thumb. Closed challenges retain a disabled off state when tracking has not already been activated. The production build and focused Chromium tracking scenarios passed.
+Bookmark confirmation toasts (2026-11-20): challenge bookmark controls now confirm successful saves with “Agregado a guardados” and removals with “Eliminado de guardados”. Focused Chromium coverage verifies both transitions from a `/desafios` card and from `/desafios/:id`; failed actions retain the existing error feedback instead of showing false success. The production build and focused Chromium scenario passed.
+
+Automatic tracking toggle (2026-11-20): `/desafios/:id` now presents Expande automatic tracking as an accessible on/off switch whose visible label remains “Seguimiento automático”. The inactive state uses a neutral treatment and a left-positioned thumb; the active state uses Expande magenta and a right-positioned thumb. Successful activation and deactivation each display an explicit confirmation toast. Closed challenges retain a disabled off state when tracking has not already been activated. The production build and focused Chromium tracking scenarios passed.
 
 Closed challenge badge color (2026-11-20): challenge cards render the “Cerrado” state badge with the shared pink error tint and matching dark error text in light mode, with the corresponding dark-theme tokens retained. The production build and focused Cerrados-tab Chromium scenario passed.
 

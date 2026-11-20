@@ -379,14 +379,20 @@ export function Provenance({ r }: { r: Row }) {
     </>
   );
 }
-export function Save({ type, id }: { type: string; id: string }) {
-  const { d, act } = useDemo();
+export function Save({ type, id, confirm = false }: { type: string; id: string; confirm?: boolean }) {
+  const { d, act, toast } = useDemo();
   const saved = d.saved_items.some((r: Row) => r.target_type === type && r.target_id === id);
   return (
     <button
       className={'save icon ' + (saved ? 'saved' : '')}
       aria-label={saved ? 'Quitar de guardados' : 'Guardar'}
-      onClick={() => void act({ type: 'saved', target_type: type, target_id: id }).catch(() => {})}
+      onClick={() =>
+        void act({ type: 'saved', target_type: type, target_id: id })
+          .then(() => {
+            if (confirm) toast(saved ? 'Eliminado de guardados' : 'Agregado a guardados');
+          })
+          .catch(() => {})
+      }
     >
       <Bookmark size={22} fill={saved ? 'currentColor' : 'none'} />
     </button>
@@ -398,7 +404,7 @@ export function ChallengeCard({ r, compact = false }: { r: Row; compact?: boolea
     <article className="card challenge-card">
       <div className="between">
         <Tags r={r} />
-        <Save type="challenge" id={r.id} />
+        <Save type="challenge" id={r.id} confirm />
       </div>
       <Link className="card-title" to={'/desafios/' + r.id}>
         {r.title}

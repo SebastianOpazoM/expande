@@ -706,12 +706,18 @@ test('challenge tracking is automatic only for Expande and manual for market opp
   await expect(automatic).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(automaticThumb).toHaveCSS('margin-left', '14px');
   await expect(automatic).toHaveText('Seguimiento automático');
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Seguimiento automático activado' }),
+  ).toBeVisible();
   await automatic.click();
   await expect(automatic).toHaveAttribute('aria-checked', 'false');
   await page.mouse.move(0, 0);
   await expect(automatic).toHaveCSS('background-color', 'rgb(231, 238, 241)');
   await expect(automaticThumb).toHaveCSS('margin-left', '0px');
   await expect(automatic).toHaveText('Seguimiento automático');
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Seguimiento automático desactivado' }),
+  ).toBeVisible();
   await expect(page.getByRole('link', { name: 'Registrar seguimiento manual' })).toHaveCount(0);
 
   await page.goto('/desafios/CH-D05');
@@ -781,6 +787,37 @@ test('account completion fills progressively and awards a completed profile', as
   await expect(
     page.getByText('11% restante para completar tu perfil', { exact: true }),
   ).toBeVisible();
+});
+
+test('challenge bookmarks confirm save and removal in catalogue and detail', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/desafios');
+
+  const unsavedCard = page
+    .locator('.challenge-card')
+    .filter({ has: page.getByRole('button', { name: 'Guardar', exact: true }) })
+    .first();
+  const detailPath = await unsavedCard.locator('a.card-title').getAttribute('href');
+  expect(detailPath).toMatch(/^\/desafios\//);
+  const card = page
+    .locator('.challenge-card')
+    .filter({ has: page.locator(`a.card-title[href="${detailPath}"]`) });
+  const cardBookmark = card.getByRole('button', { name: 'Guardar', exact: true });
+  await cardBookmark.click();
+  await expect(page.getByRole('status')).toHaveText('Agregado a guardados');
+  await expect(
+    card.getByRole('button', { name: 'Quitar de guardados', exact: true }),
+  ).toBeVisible();
+  await card.getByRole('button', { name: 'Quitar de guardados', exact: true }).click();
+  await expect(page.getByRole('status')).toHaveText('Eliminado de guardados');
+
+  await page.goto(detailPath!);
+  const detailBookmark = page.getByRole('button', { name: 'Guardar', exact: true });
+  await detailBookmark.click();
+  await expect(page.getByRole('status')).toHaveText('Agregado a guardados');
+  await page.getByRole('button', { name: 'Quitar de guardados', exact: true }).click();
+  await expect(page.getByRole('status')).toHaveText('Eliminado de guardados');
 });
 
 test('account shows the generated portrait for every demo profile', async ({ page }) => {

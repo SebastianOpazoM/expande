@@ -322,7 +322,7 @@ function Filters({
 }
 export function ChallengeDetail() {
   const { id } = useParams(),
-    { d, company, act } = useDemo();
+    { d, company, act, toast } = useDemo();
   const r = d.challenges.find((r: Row) => r.id === id);
   const [sid, setSid] = useState(d.solutions[0]?.id || ''),
     [why, setWhy] = useState(false),
@@ -358,7 +358,15 @@ export function ChallengeDetail() {
               aria-checked={followed}
               disabled={r.state === 'cerrado' && !followed}
               onClick={() =>
-                void act({ type: 'follow', target_type: 'challenge', target_id: id }).catch(() => {})
+                void act({ type: 'follow', target_type: 'challenge', target_id: id })
+                  .then(() =>
+                    toast(
+                      followed
+                        ? 'Seguimiento automático desactivado'
+                        : 'Seguimiento automático activado',
+                    ),
+                  )
+                  .catch(() => {})
               }
             >
               <span>Seguimiento automático</span>
@@ -397,7 +405,7 @@ export function ChallengeDetail() {
       <Page>
         <div className="between">
           <Tags r={r} />
-          <Save type="challenge" id={id!} />
+          <Save type="challenge" id={id!} confirm />
         </div>
         <h1>{r.title}</h1>
         <p className="muted">
