@@ -405,7 +405,10 @@ function Home() {
               icon={<CalendarDays />}
             />
           ))}
-        <h2>Casos y noticias</h2>
+        <div className="section-heading">
+          <h2>Casos y noticias</h2>
+          <Link to="/innovacion">Ver todos →</Link>
+        </div>
         {d.news.slice(0, 2).map((r: Row) => (
           <RowLink
             key={r.id}
