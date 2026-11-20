@@ -1891,10 +1891,11 @@ test('editable draft snapshot, notification rules and simulated requests', async
   await page.getByRole('button', { name: 'Solicitar acceso', exact: true }).click();
   await page.getByRole('button', { name: 'Confirmar solicitud demo' }).click();
   await expect(page.getByRole('button', { name: 'Solicitud demo registrada' })).toBeVisible();
+  await page.goto('/calendario');
+  await expect(page.getByRole('button', { name: /Inscripción demo/ })).toHaveCount(0);
   await page.goto('/calendario/EV-D01');
   await page.getByRole('button', { name: 'Recordarme', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Recordatorio guardado' })).toBeVisible();
-  await page.getByRole('button', { name: 'Inscripción demo', exact: true }).click();
-  await page.getByRole('button', { name: 'Confirmar inscripción demo' }).click();
-  await expect(page.getByRole('button', { name: 'Inscripción demo registrada' })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Inscripción demo/ })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Confirmar inscripción demo' })).toHaveCount(0);
 });

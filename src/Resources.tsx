@@ -925,11 +925,7 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
             <button onClick={() => setModal('calendar')}>
               Añadir a calendario · previsualizar
             </button>
-            {r.demo ? (
-              <button className="primary" onClick={() => setModal('registration')}>
-                {done('event_registration') ? 'Inscripción demo registrada' : 'Inscripción demo'}
-              </button>
-            ) : (
+            {!r.demo && (
               <External url={r.registration_url}>Ir a inscripción externa</External>
             )}
           </>
@@ -1033,9 +1029,7 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
           title={
             modal === 'alliance'
               ? 'Revisar solicitud de acceso'
-              : modal === 'calendar'
-                ? 'Previsualización de calendario'
-                : 'Inscripción de demostración'
+              : 'Previsualización de calendario'
           }
           onClose={() => setModal('')}
         >
@@ -1056,7 +1050,7 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
                 Confirmar solicitud demo
               </AsyncButton>
             </>
-          ) : modal === 'calendar' ? (
+          ) : (
             <>
               <p>
                 {r.start_date
@@ -1075,21 +1069,6 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
               >
                 Cerrar previsualización
               </button>
-            </>
-          ) : (
-            <>
-              <p>Solo guardamos tu interés en este escenario, sin inscripción ni pago real.</p>
-              <AsyncButton
-                className="primary"
-                onAction={() =>
-                  activity('event_registration').then(() => {
-                    setModal('');
-                    toast('Inscripción simulada guardada');
-                  })
-                }
-              >
-                Confirmar inscripción demo
-              </AsyncButton>
             </>
           )}
         </Modal>
