@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, CalendarDays } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Pause, Play } from 'lucide-react';
 import { useDemo } from './context';
 import { date, eventsInMonth, label, norm, type Row } from '../shared/model';
 import { discoverableFunding, effectiveFundingState } from '../shared/funding';
@@ -546,6 +546,213 @@ function DataField({ title, value }: { title: string; value: any }) {
     </div>
   );
 }
+function learningSteps(r: Row) {
+  const chapters = Array.isArray(r.chapters) ? r.chapters : [];
+  if (!chapters.length)
+    return [
+      {
+        title: 'Resumen audiovisual',
+        body: r.description || 'Revisa el contenido audiovisual de esta formación.',
+      },
+    ];
+  return chapters.map((chapter: unknown, index: number) => {
+    const text = String(chapter);
+    const separator = text.indexOf(':');
+    return separator > 0
+      ? { title: text.slice(0, separator).trim(), body: text.slice(separator + 1).trim() }
+      : {
+          title: text || `Lección ${index + 1}`,
+          body: r.description || 'Contenido de demostración.',
+        };
+  });
+}
+function formatPlaybackTime(seconds: number) {
+  const value = Math.max(0, Math.round(seconds));
+  return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+}
+function SimulatedVideo({ r, duration }: { r: Row; duration: number }) {
+  const [playing, setPlaying] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  useEffect(() => {
+    setPlaying(false);
+    setElapsed(0);
+  }, [r.id, duration]);
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setInterval(() => {
+      setElapsed((current) => {
+        const next = Math.min(duration, current + 0.25);
+        if (next >= duration) setPlaying(false);
+        return next;
+      });
+    }, 250);
+    return () => window.clearInterval(timer);
+  }, [duration, playing]);
+  const toggle = () => {
+    if (elapsed >= duration) setElapsed(0);
+    setPlaying((current) => !current);
+  };
+  return (
+    <div className="simulated-video" role="group" aria-label="Video de demostración">
+      <div className="simulated-video-frame">
+        {r.thumbnail_url ? (
+          <img src={r.thumbnail_url} alt="" width={960} height={540} />
+        ) : (
+          <BookOpen size={52} aria-hidden="true" />
+        )}
+        <button
+          className="simulated-video-toggle icon"
+          aria-label={playing ? 'Pausar video simulado' : 'Reproducir video simulado'}
+          onClick={toggle}
+        >
+          {playing ? <Pause size={26} /> : <Play size={26} />}
+        </button>
+        <span>Contenido audiovisual simulado</span>
+      </div>
+      <div className="simulated-video-controls">
+        <button
+          className="icon"
+          aria-label={playing ? 'Pausar video simulado' : 'Reproducir video simulado'}
+          onClick={toggle}
+        >
+          {playing ? <Pause size={18} /> : <Play size={18} />}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={duration}
+          step={0.25}
+          value={elapsed}
+          aria-label="Posición del video simulado"
+          onChange={(event) => {
+            setElapsed(Number(event.target.value));
+            setPlaying(false);
+          }}
+        />
+        <small>
+          {formatPlaybackTime(elapsed)} / {formatPlaybackTime(duration)}
+        </small>
+      </div>
+    </div>
+  );
+}
+export function LearningPlayback() {
+  const { id } = useParams();
+  const [playbackParams] = useSearchParams();
+  const { d, act } = useDemo();
+  const r = d.learning.find((row: Row) => row.id === id);
+  const storedProgress =
+    d.learning_progress.find((row: Row) => row.learning_id === id)?.progress_percent || 0;
+  const steps = r ? learningSteps(r) : [];
+  const completedSteps = steps.filter(
+    (_step, index) => Math.round(((index + 1) / steps.length) * 100) <= storedProgress,
+  ).length;
+  const [step, setStep] = useState(() =>
+    playbackParams.get('reiniciar') === '1'
+      ? 0
+      : storedProgress >= 100
+        ? steps.length
+        : Math.min(completedSteps, Math.max(0, steps.length - 1)),
+  );
+  const [saving, setSaving] = useState(false);
+  if (!r)
+    return (
+      <Layout detail title="Formación">
+        <Page>
+          <Empty action={<Link to="/formacion">Volver a Formación</Link>}>
+            Contenido no encontrado
+          </Empty>
+        </Page>
+      </Layout>
+    );
+  const complete = step >= steps.length;
+  const current = steps[Math.min(step, steps.length - 1)];
+  const realVideo = /^\/videos\/[\w/-]+\.mp4$/i.test(r.media_url || '');
+  const lessonDuration = Math.max(
+    1,
+    Math.round((Number(r.duration_seconds) || steps.length * 60) / steps.length),
+  );
+  const advance = async () => {
+    const completed = Math.min(steps.length, step + 1);
+    const nextProgress = Math.round((completed / steps.length) * 100);
+    setSaving(true);
+    try {
+      if (nextProgress > storedProgress)
+        await act({ type: 'progress', learning_id: r.id, progress: nextProgress });
+      setStep(completed);
+    } catch {
+      // The shared provider displays the API error as a toast.
+    } finally {
+      setSaving(false);
+    }
+  };
+  return (
+    <Layout detail title="Formación">
+      <Page>
+        {complete ? (
+          <section className="learning-complete">
+            <CheckCircle2 size={58} aria-hidden="true" />
+            <p className="eyebrow">FORMACIÓN COMPLETADA</p>
+            <h1>Curso completado</h1>
+            <p>Completaste “{r.title}”. Puedes reiniciar sus lecciones cuando quieras.</p>
+            <progress aria-label="Progreso del curso" max={100} value={100} />
+            <p className="learning-progress-label">100% completado</p>
+            <button className="primary" onClick={() => setStep(0)}>
+              Reiniciar curso
+            </button>
+            <Link className="button" to="/formacion">
+              Volver a Formación
+            </Link>
+          </section>
+        ) : (
+          <article className="learning-player">
+            <p className="eyebrow">{`LECCIÓN ${step + 1} DE ${steps.length}`}</p>
+            <h1>{r.title}</h1>
+            <div className="learning-player-progress">
+              <progress
+                aria-label="Progreso del curso"
+                max={100}
+                value={Math.max(storedProgress, Math.round((step / steps.length) * 100))}
+              />
+              <small>{storedProgress}% completado</small>
+            </div>
+            {realVideo ? (
+              <video
+                className="learning-video"
+                controls
+                playsInline
+                preload="metadata"
+                poster={r.thumbnail_url}
+                width={960}
+                height={540}
+                aria-label={'Video: ' + r.title}
+              >
+                <source src={r.media_url} type="video/mp4" />
+                Tu navegador no admite este video. <a href={r.media_url}>Abrir video</a>
+              </video>
+            ) : (
+              <SimulatedVideo key={step} r={r} duration={lessonDuration} />
+            )}
+            {!realVideo && <small className="simulated-label">Reproducción simulada</small>}
+            <section className="learning-copy">
+              <h2>{current.title}</h2>
+              <p>{current.body}</p>
+            </section>
+            <div className="learning-navigation">
+              <button disabled={step === 0 || saving} onClick={() => setStep(step - 1)}>
+                <ArrowLeft size={18} /> Anterior
+              </button>
+              <button className="primary" disabled={saving} onClick={() => void advance()}>
+                {step === steps.length - 1 ? 'Finalizar curso' : 'Siguiente'}
+                {step < steps.length - 1 && <ArrowRight size={18} />}
+              </button>
+            </div>
+          </article>
+        )}
+      </Page>
+    </Layout>
+  );
+}
 export function ContentDetail({ kind: given }: { kind?: string }) {
   const { kind: routeKind, id } = useParams(),
     kind = given || routeKind || 'cases',
@@ -570,8 +777,6 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
     d.activity.some((a: Row) => a.kind === event && a.target_id === r.id);
   const progress =
     d.learning_progress.find((p: Row) => p.learning_id === id)?.progress_percent || 0;
-  const inlineVideo =
-    kind === 'formacion' && !r.demo && /^\/videos\/[\w/-]+\.mp4$/i.test(r.media_url || '');
   return (
     <Layout detail title={i.title}>
       <Page>
@@ -580,23 +785,7 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
           kind === 'financiamiento' ||
           ['cases', 'news', 'trends'].includes(kind)) && (
           <div className="learning-detail-cover">
-            {inlineVideo ? (
-              <video
-                className="learning-video"
-                controls
-                playsInline
-                preload="metadata"
-                poster={r.thumbnail_url}
-                width={960}
-                height={540}
-                aria-label={'Video: ' + r.title}
-              >
-                <source src={r.media_url} type="video/mp4" />
-                Tu navegador no admite este video. <a href={r.media_url}>Abrir video</a>
-              </video>
-            ) : (
-              <ContentThumbnail r={r} />
-            )}
+            <ContentThumbnail r={r} />
           </div>
         )}
         <div className="between">
@@ -777,42 +966,27 @@ export function ContentDetail({ kind: given }: { kind?: string }) {
                 ? Math.round((r.duration_seconds / 60) * 10) / 10 + ' minutos'
                 : 'Duración por confirmar'}
             </p>
-            <DataField title="Capítulos" value={r.chapters} />
-            {r.demo ? (
-              <div className="lesson">
-                <CalendarDays size={30} />
-                <h2>Reproducción</h2>
-                <progress aria-label="Progreso de aprendizaje" max={100} value={progress} />
-                <p>{progress}% completado</p>
-                <button
-                  className="primary"
-                  onClick={() =>
-                    void act({
-                      type: 'progress',
-                      learning_id: id,
-                      progress: Math.min(100, progress + 25),
-                    }).catch(() => {})
-                  }
-                >
-                  {progress === 100 ? 'Revisar lección' : 'Avanzar lección'}
-                </button>
-                <button
-                  onClick={() =>
-                    void act({ type: 'progress', learning_id: id, progress: 0 }).catch(() => {})
-                  }
-                >
-                  Reiniciar progreso
-                </button>
-              </div>
-            ) : inlineVideo ? null : (
-              <>
-                <Notice>
-                  Video de referencia: resumen de jornada, no un curso completo. Puede no
-                  reproducirse embebido.
-                </Notice>
-                <External url={r.media_url}>Abrir video de referencia</External>
-              </>
-            )}
+            <DataField
+              title="Capítulos"
+              value={learningSteps(r).map((chapter) => chapter.title)}
+            />
+            <div className="lesson">
+              <Play size={30} aria-hidden="true" />
+              <h2>Reproducción</h2>
+              <progress aria-label="Progreso de aprendizaje" max={100} value={progress} />
+              <p>{progress}% completado</p>
+              <Link
+                className="button primary"
+                to={`/formacion/${r.id}/reproduccion${progress === 100 ? '?reiniciar=1' : ''}`}
+              >
+                {progress === 0
+                  ? 'Iniciar curso'
+                  : progress === 100
+                    ? 'Reiniciar curso'
+                    : 'Continuar curso'}
+                <ArrowRight size={18} />
+              </Link>
+            </div>
           </>
         )}
         {['cases', 'news', 'trends', 'financiamiento'].includes(kind) &&

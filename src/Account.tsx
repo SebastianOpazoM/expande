@@ -8,7 +8,6 @@ import {
   LogOut,
   Medal,
   Moon,
-  Settings2,
   Sun,
   Users,
 } from 'lucide-react';
@@ -54,6 +53,89 @@ const profilePortraitByUserId: Record<string, string> = {
   'USR-03': '/images/profiles/lucia.jpg',
   'USR-04': '/images/profiles/pablo.jpg',
 };
+const countryDisplayNames = new Intl.DisplayNames(['es'], { type: 'region' });
+const countryName = (code: string) => {
+  try {
+    return countryDisplayNames.of(code) || code;
+  } catch {
+    return code || 'No informado';
+  }
+};
+function ReadOnlyField({ title, value }: { title: string; value: string | string[] }) {
+  const values = Array.isArray(value) ? value.filter(Boolean) : [];
+  return (
+    <div className="data-field">
+      <h3>{title}</h3>
+      {Array.isArray(value) ? (
+        values.length ? (
+          <ul className="company-readonly-values">
+            {values.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No informado</p>
+        )
+      ) : (
+        <p>{value || 'No informado'}</p>
+      )}
+    </div>
+  );
+}
+function CompanyReadOnly({ company, d }: { company: Row; d: any }) {
+  const regionName =
+    chileanRegions.find((region) => region.id === company.region)?.name || company.region;
+  const names = (ids: string[] = [], rows: Row[]) =>
+    ids.map((id) => rows.find((row) => row.id === id)?.name || label(id));
+  return (
+    <section className="readonly-details" aria-label="Información de la empresa">
+      <div className="card">
+        <h2>Información general</h2>
+        <ReadOnlyField title="Nombre de empresa" value={company.name} />
+        <ReadOnlyField title="Descripción" value={company.description} />
+        <ReadOnlyField title="Tipo de empresa" value={label(company.segment)} />
+        <ReadOnlyField title="Tamaño" value={label(company.size)} />
+      </div>
+      <div className="card">
+        <h2>Dónde está tu empresa</h2>
+        <ReadOnlyField title="País" value={countryName(company.country)} />
+        <ReadOnlyField title="Región de origen" value={regionName} />
+        <ReadOnlyField title="Ciudad" value={company.city} />
+      </div>
+      <div className="card">
+        <h2>Dónde puedes prestar servicios</h2>
+        <ReadOnlyField title="Regiones de cobertura" value={company.service_regions || []} />
+        <ReadOnlyField
+          title="Procesos y capacidades"
+          value={names(company.process_ids, d.processes)}
+        />
+        <ReadOnlyField title="Temas" value={names(company.topic_ids, d.topics)} />
+      </div>
+    </section>
+  );
+}
+function SolutionReadOnly({ solution, d }: { solution: Row; d: any }) {
+  const names = (ids: string[] = [], rows: Row[]) =>
+    ids.map((id) => rows.find((row) => row.id === id)?.name || label(id));
+  return (
+    <section className="readonly-details" aria-label="Información de la solución">
+      <div className="card">
+        <h2>Información general</h2>
+        <ReadOnlyField title="Nombre de solución" value={solution.title} />
+        <ReadOnlyField title="Descripción" value={solution.description} />
+        <ReadOnlyField
+          title="TRL autodeclarado"
+          value={solution.trl == null ? 'No informado' : `TRL ${solution.trl}`}
+        />
+      </div>
+      <div className="card">
+        <h2>Ámbitos relacionados</h2>
+        <ReadOnlyField title="Procesos" value={names(solution.process_ids, d.processes)} />
+        <ReadOnlyField title="Temas relacionados" value={names(solution.topic_ids, d.topics)} />
+      </div>
+    </section>
+  );
+}
 export function Account() {
   const { d, user, company } = useDemo();
   const complete = profileCompleteness(company);
@@ -172,13 +254,6 @@ export function Account() {
           icon={<Bell />}
         />
         <RowLink to="/plan" title="Plan de empresa" subtitle="Prueba de demostración" />
-        <h2>Demostración</h2>
-        <RowLink
-          to="/escenarios"
-          title="Cambiar escenario"
-          subtitle="Perfil, rol, reloj y estados de interfaz"
-          icon={<Settings2 />}
-        />
         <Link className="button" to="/acceso" replace>
           <LogOut size={18} /> Cerrar sesión
         </Link>
@@ -203,97 +278,103 @@ export function Company({ onboarding = false }: { onboarding?: boolean }) {
     <Layout detail title={onboarding ? 'Configura tu empresa' : 'Perfil de empresa'}>
       <Page>
         <h1>{onboarding ? 'Cuéntanos sobre tu empresa' : company.name}</h1>
-        {!admin && <Notice>Solo el administrador puede editar el perfil de empresa.</Notice>}
-        <Form
-          onSubmit={async (v) => {
-            if (!admin) throw new Error('Solo lectura');
-            await act({
-              type: 'save_record',
-              collection: 'companies',
-              id: company.id,
-              revision: formRevision(v, 'companies', company.id),
-              values: {
-                ...v,
-                region:
-                  v.country === 'CL' ? region : v.country === company.country ? company.region : '',
-                city:
-                  v.country === 'CL'
-                    ? region
-                      ? city
-                      : ''
-                    : v.country === company.country
-                      ? company.city
-                      : '',
-                service_regions: serviceRegions,
-                process_ids: processes,
-                topic_ids: topics,
-                profile_status: 'parcial',
-              },
-            });
-            toast('Perfil guardado');
-            if (onboarding) nav('/onboarding/intereses');
-          }}
-        >
-          <fieldset disabled={!admin}>
-            <Field label="Nombre de empresa" name="name" defaultValue={company.name} required />
-            <Field label="Descripción" name="description">
-              <textarea name="description" defaultValue={company.description} rows={4} />
-            </Field>
-            <Select
-              name="segment"
-              label="Tipo de empresa"
-              defaultValue={company.segment || 'otro'}
-              options={d.enums.segment}
-            />
-            <Select name="size" label="Tamaño" defaultValue={company.size} options={d.enums.size} />
-            <h2>Dónde está tu empresa</h2>
-            <CountrySelect defaultValue={company.country} onChange={setCountry} />
-            {country === 'CL' && (
+        {admin ? (
+          <Form
+            onSubmit={async (v) => {
+              await act({
+                type: 'save_record',
+                collection: 'companies',
+                id: company.id,
+                revision: formRevision(v, 'companies', company.id),
+                values: {
+                  ...v,
+                  region:
+                    v.country === 'CL'
+                      ? region
+                      : v.country === company.country
+                        ? company.region
+                        : '',
+                  city:
+                    v.country === 'CL'
+                      ? region
+                        ? city
+                        : ''
+                      : v.country === company.country
+                        ? company.city
+                        : '',
+                  service_regions: serviceRegions,
+                  process_ids: processes,
+                  topic_ids: topics,
+                  profile_status: 'parcial',
+                },
+              });
+              toast('Perfil guardado');
+              if (onboarding) nav('/onboarding/intereses');
+            }}
+          >
+            <fieldset>
+              <Field label="Nombre de empresa" name="name" defaultValue={company.name} required />
+              <Field label="Descripción" name="description">
+                <textarea name="description" defaultValue={company.description} rows={4} />
+              </Field>
               <Select
-                label="Región de origen"
-                name="region"
-                value={region}
-                onChange={(value) => {
-                  setRegion(value);
-                  setCity('');
-                }}
-                options={[{ id: '', name: 'Selecciona una región' }, ...chileanRegions]}
+                name="segment"
+                label="Tipo de empresa"
+                defaultValue={company.segment || 'otro'}
+                options={d.enums.segment}
               />
-            )}
-            {country === 'CL' && region && (
-              <Select
-                label="Ciudad"
-                name="city"
-                value={city}
-                onChange={setCity}
+              <Select name="size" label="Tamaño" defaultValue={company.size} options={d.enums.size} />
+              <h2>Dónde está tu empresa</h2>
+              <CountrySelect defaultValue={company.country} onChange={setCountry} />
+              {country === 'CL' && (
+                <Select
+                  label="Región de origen"
+                  name="region"
+                  value={region}
+                  onChange={(value) => {
+                    setRegion(value);
+                    setCity('');
+                  }}
+                  options={[{ id: '', name: 'Selecciona una región' }, ...chileanRegions]}
+                />
+              )}
+              {country === 'CL' && region && (
+                <Select
+                  label="Ciudad"
+                  name="city"
+                  value={city}
+                  onChange={setCity}
+                  options={[
+                    { id: '', name: 'Selecciona una ciudad' },
+                    ...citiesForRegion(region).map((name) => ({ id: name, name })),
+                  ]}
+                />
+              )}
+              <h2>Dónde puedes prestar servicios</h2>
+              <MultiAutocomplete
+                label="Regiones de cobertura"
+                value={serviceRegions}
+                onChange={setServiceRegions}
                 options={[
-                  { id: '', name: 'Selecciona una ciudad' },
-                  ...citiesForRegion(region).map((name) => ({ id: name, name })),
+                  ...chileanRegions,
+                  ...company.service_regions
+                    .filter((name: string) => !chileanRegions.some((r) => r.id === name))
+                    .map((name: string) => ({ id: name, name })),
                 ]}
               />
-            )}
-            <h2>Dónde puedes prestar servicios</h2>
-            <MultiAutocomplete
-              label="Regiones de cobertura"
-              value={serviceRegions}
-              onChange={setServiceRegions}
-              options={[
-                ...chileanRegions,
-                ...company.service_regions
-                  .filter((name: string) => !chileanRegions.some((r) => r.id === name))
-                  .map((name: string) => ({ id: name, name })),
-              ]}
-            />
-            <Notice>Las regiones de cobertura definen dónde puedes prestar tus servicios</Notice>
-            <Multi
-              title="Procesos y capacidades"
-              options={d.processes}
-              value={processes}
-              onChange={setProcesses}
-            />
-            <Multi title="Temas" options={d.topics} value={topics} onChange={setTopics} />
-          </fieldset>
-        </Form>
+              <Notice>Las regiones de cobertura definen dónde puedes prestar tus servicios</Notice>
+              <Multi
+                title="Procesos y capacidades"
+                options={d.processes}
+                value={processes}
+                onChange={setProcesses}
+              />
+              <Multi title="Temas" options={d.topics} value={topics} onChange={setTopics} />
+            </fieldset>
+          </Form>
+        ) : (
+          <CompanyReadOnly company={company} d={d} />
+        )}
         {onboarding && (
           <Link className="button text" to="/onboarding/intereses">
             Completar después
@@ -369,59 +450,66 @@ export function Solutions() {
       </Layout>
     );
   return (
-    <Layout detail title={r ? 'Editar solución' : 'Nueva solución'}>
+    <Layout detail title={r ? (admin ? 'Editar solución' : 'Detalle de solución') : 'Nueva solución'}>
       <Page>
         <h1>{r?.title || 'Registra una solución'}</h1>
-        {!admin && <Notice>Consulta de solución. Solo el administrador puede modificarla.</Notice>}
-        <Form
-          onSubmit={async (v) => {
-            await act({
-              type: 'save_record',
-              collection: 'solutions',
-              id: r?.id,
-              revision: formRevision(v, 'solutions', r?.id),
-              values: {
-                ...v,
-                trl: v.trl ? Number(v.trl) : null,
-                process_ids: processes,
-                topic_ids: topics,
-              },
-            });
-            toast('Solución guardada');
-            nav('/soluciones');
-          }}
-        >
-          <fieldset disabled={!admin}>
-            <Field label="Nombre de solución" name="title" defaultValue={r?.title} required />
-            <Field label="Descripción" name="description">
-              <textarea name="description" defaultValue={r?.description} required rows={4} />
-            </Field>
-            <Select
-              name="trl"
-              label="TRL autodeclarado"
-              defaultValue={r?.trl || ''}
-              options={[
-                { id: '', name: 'No informado' },
-                ...Array.from({ length: 9 }, (_, i) => ({
-                  id: String(i + 1),
-                  name: 'TRL ' + (i + 1),
-                })),
-              ]}
-            />
-            <Multi
-              title="Procesos"
-              options={d.processes}
-              value={processes}
-              onChange={setProcesses}
-            />
-            <Multi
-              title="Temas relacionados"
-              options={d.topics}
-              value={topics}
-              onChange={setTopics}
-            />
-          </fieldset>
-        </Form>
+        {!admin ? (
+          r ? (
+            <SolutionReadOnly solution={r} d={d} />
+          ) : (
+            <Empty>Solución no disponible</Empty>
+          )
+        ) : (
+          <Form
+            onSubmit={async (v) => {
+              await act({
+                type: 'save_record',
+                collection: 'solutions',
+                id: r?.id,
+                revision: formRevision(v, 'solutions', r?.id),
+                values: {
+                  ...v,
+                  trl: v.trl ? Number(v.trl) : null,
+                  process_ids: processes,
+                  topic_ids: topics,
+                },
+              });
+              toast('Solución guardada');
+              nav('/soluciones');
+            }}
+          >
+            <fieldset>
+              <Field label="Nombre de solución" name="title" defaultValue={r?.title} required />
+              <Field label="Descripción" name="description">
+                <textarea name="description" defaultValue={r?.description} required rows={4} />
+              </Field>
+              <Select
+                name="trl"
+                label="TRL autodeclarado"
+                defaultValue={r?.trl || ''}
+                options={[
+                  { id: '', name: 'No informado' },
+                  ...Array.from({ length: 9 }, (_, i) => ({
+                    id: String(i + 1),
+                    name: 'TRL ' + (i + 1),
+                  })),
+                ]}
+              />
+              <Multi
+                title="Procesos"
+                options={d.processes}
+                value={processes}
+                onChange={setProcesses}
+              />
+              <Multi
+                title="Temas relacionados"
+                options={d.topics}
+                value={topics}
+                onChange={setTopics}
+              />
+            </fieldset>
+          </Form>
+        )}
       </Page>
     </Layout>
   );
@@ -1054,88 +1142,6 @@ export function Plan() {
           ))}
         </Carousel>
         <Notice>Esta demostración no procesa pagos ni cambia el acceso de la empresa.</Notice>
-      </Page>
-    </Layout>
-  );
-}
-export function Scenarios() {
-  const { d, act, scenario, setScenario, toast } = useDemo(),
-    nav = useNavigate(),
-    [reset, setReset] = useState(false),
-    [profile, setProfile] = useState(d.context.userId);
-  return (
-    <Layout detail title="Escenarios demo">
-      <Page>
-        <h1>Herramientas de demostración</h1>
-        <Notice>Estos controles no forman parte del producto comercial.</Notice>
-        <Form
-          submit="Cambiar perfil"
-          onSubmit={async () => {
-            await act({ type: 'profile', userId: profile });
-            nav('/inicio');
-          }}
-        >
-          <Select
-            label="Perfil y organización"
-            value={profile}
-            options={d.profiles.map((r: Row) => ({
-              id: r.id,
-              name: `${r.name} · ${r.company_name} · ${label(r.role)}`,
-            }))}
-            onChange={setProfile}
-          />
-        </Form>
-        <Select
-          label="Estado de interfaz"
-          value={scenario}
-          options={opts(['normal', 'loading', 'error', 'empty', 'partial', 'trial_ended'])}
-          onChange={setScenario}
-        />
-        <Link className="button" to="/desafios">
-          Ver estado en el catálogo
-        </Link>
-        <Link className="button" to="/plan">
-          Ver estado del plan
-        </Link>
-        <Form
-          submit="Actualizar reloj demo"
-          onSubmit={async (v) => {
-            await act({ type: 'clock', now: v.now + ':00-03:00' });
-            toast('Reloj demo actualizado');
-          }}
-        >
-          <Field
-            label="Fecha y hora demo · America/Santiago"
-            name="now"
-            type="datetime-local"
-            defaultValue={d.meta.demo_now.slice(0, 16)}
-            required
-          />
-        </Form>
-        <p className="muted small">El reloj no avanza con el tiempo real.</p>
-        <button className="danger" onClick={() => setReset(true)}>
-          Reiniciar mi demostración
-        </button>
-        {reset && (
-          <Confirm
-            title="Reiniciar esta sesión"
-            onClose={() => setReset(false)}
-            onConfirm={() =>
-              void act({ type: 'reset', confirm: true })
-                .then(() => {
-                  setScenario('normal');
-                  nav('/inicio');
-                })
-                .catch(() => {})
-            }
-          >
-            Se restaurará tu progreso desde las plantillas actuales. Los cambios de catálogo
-            compartido y otras visitas se conservarán.
-          </Confirm>
-        )}
-        <small>
-          ID de visita para agentes: <code>{d.context.sessionId}</code>
-        </small>
       </Page>
     </Layout>
   );

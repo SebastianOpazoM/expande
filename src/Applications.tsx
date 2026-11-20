@@ -197,6 +197,7 @@ export function ApplicationDetail() {
   const events = d.application_events
     .filter((e: Row) => e.application_id === id)
     .sort((x: Row, y: Row) => x.at.localeCompare(y.at));
+  const currentStageIndex = d.enums.pipeline_stage.indexOf(a.pipeline_stage);
   return (
     <Layout detail title="Postulación">
       <Page>
@@ -261,6 +262,38 @@ export function ApplicationDetail() {
           )}
         </div>
         <div className="card">
+          <h2>Etapas de la postulación</h2>
+          <p className="muted">
+            Secuencia completa: las etapas cerradas, la etapa actual y las etapas futuras se
+            distinguen por color.
+          </p>
+          <ol className="application-stage-sequence" aria-label="Secuencia completa de etapas">
+            {d.enums.pipeline_stage.map((stage: string, index: number) => {
+              const status =
+                index < currentStageIndex
+                  ? 'closed'
+                  : index === currentStageIndex
+                    ? 'current'
+                    : 'future';
+              const statusLabel =
+                status === 'closed' ? 'Cerrada' : status === 'current' ? 'Actual' : 'Futura';
+              return (
+                <li
+                  key={stage}
+                  className={`application-stage stage-${status}`}
+                  aria-current={status === 'current' ? 'step' : undefined}
+                >
+                  <span className="application-stage-marker" aria-hidden="true">
+                    {status === 'closed' ? '✓' : index + 1}
+                  </span>
+                  <strong>{label(stage)}</strong>
+                  <span className="application-stage-status">{statusLabel}</span>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+        <div className="card">
           <h2>Historial efectivo</h2>
           <ol className="timeline">
             {events.map((e: Row) => (
@@ -275,28 +308,35 @@ export function ApplicationDetail() {
               </li>
             ))}
           </ol>
-          <h3>Etapas siguientes previstas</h3>
-          {d.enums.pipeline_stage
-            .slice(d.enums.pipeline_stage.indexOf(a.pipeline_stage) + 1)
-            .map((s: string) => (
-              <p className="muted" key={s}>
-                {label(s)} · Prevista, no realizada
-              </p>
-            ))}
         </div>
         <div className="card">
-          <h2>Solución y equipo</h2>
+          <h2>Solución</h2>
           <p>
             {d.solutions.find((s: Row) => s.id === a.solution_id)?.title ||
               a.prepared_snapshot?.solution_title}
           </p>
-          {a.team_user_ids.map((uid: string) => (
-            <p key={uid}>{d.users.find((u: Row) => u.id === uid)?.name}</p>
-          ))}
           <h3>Antecedentes preparados</h3>
           <p>{a.prepared_snapshot?.company_name}</p>
           <p>{a.prepared_snapshot?.proposal_summary}</p>
           <p>{a.note}</p>
+        </div>
+        <div className="card">
+          <h2>Equipo</h2>
+          <ul className="application-team-list" aria-label="Integrantes del equipo">
+            {a.team_user_ids.map((uid: string) => {
+              const member = d.users.find((u: Row) => u.id === uid);
+              if (!member) return null;
+              return (
+                <li key={uid} className="application-team-member">
+                  <div>
+                    <strong>{[member.name, member.last_name].filter(Boolean).join(' ')}</strong>
+                    <span>{member.job_title || 'Cargo no informado'}</span>
+                  </div>
+                  <span className="pill">{label(member.role)}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
         <Link className="row-link" to={`/postulaciones/${id}/documentos`}>
           Documentos de la postulación →
@@ -312,7 +352,7 @@ export function ApplicationDetail() {
         )}
         {c?.demo ? (
           <Link className="button" to={'/portal/' + c.id}>
-            Visitar portal de demostración
+            Visitar portal de postulación
           </Link>
         ) : (
           <External url={c?.application_url} />

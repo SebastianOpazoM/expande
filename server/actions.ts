@@ -336,11 +336,14 @@ export function action(store: Store, scope: string, a: any, actor?: string) {
       demo: true,
     });
   } else if (a.type === 'progress') {
+    assert(d.learning.some((r: Row) => r.id === a.learning_id), 'Formación no encontrada');
     assert(
-      d.learning.find((r: Row) => r.id === a.learning_id)?.demo,
-      'El video documental se abre en la fuente',
+      typeof a.progress === 'number' &&
+        Number.isFinite(a.progress) &&
+        a.progress >= 0 &&
+        a.progress <= 100,
+      'Progreso inválido',
     );
-    assert(a.progress >= 0 && a.progress <= 100, 'Progreso inválido');
     const old = d.learning_progress.find(
       (r: Row) => r.user_id === user.id && r.learning_id === a.learning_id,
     );

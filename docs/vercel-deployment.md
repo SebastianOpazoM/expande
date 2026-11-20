@@ -131,7 +131,7 @@ With the current Production-only database, deploy the reviewed commit to Product
 - Production API reads and writes complete within the Function timeout under expected demo load; record observed bootstrap and action latency.
 - A deep link such as `/desafios` renders instead of returning 404.
 - The access gate sets Secure, HttpOnly cookies and survives a new request.
-- A new browser receives a unique session UUID under Cuenta → Cambiar escenario.
+- A new browser receives a unique session UUID through its session cookie. The identifier is not exposed in the product interface.
 - Two browsers receive different session UUIDs and cannot see each other's private activity.
 - Saved items, form changes, training progress, and drafts survive reloads, idle scale-to-zero, and a new deployment.
 - A revision conflict still returns HTTP 409 instead of overwriting newer data.

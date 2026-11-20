@@ -13,7 +13,7 @@ Copy-Item demo/expande.sqlite data/expande.sqlite
 npm run dev
 ```
 
-Open **http://127.0.0.1:5173**. Choose “Explorar demo” and a simulated profile. No real credentials are requested. Account → “Cambiar escenario” exposes the session UUID, demo clock, UI state simulations, profile/role switcher and session reset.
+Open **http://127.0.0.1:5173**. Choose “Explorar demo” and a simulated profile. No real credentials are requested. Profiles can be selected from the simulated-access screen.
 
 For a fresh checkout, the commands above copy the included demo snapshot to the runtime database. This snapshot includes the enriched catalogues, demo visitor activity and audit history as of 2026-11-09. Copy it only when setting up a new working database; preserve an existing runtime database. Without the copy, SQLite initializes automatically from the original seed at `data/expande.sqlite`. It survives reloads and server restarts. Use the same hostname consistently: `localhost` and `127.0.0.1` have different browser cookies. New browsers have independent progress. A persistent cookie identifies a visit; clearing it starts a new visit. The cookie is valid for one year.
 
@@ -54,7 +54,7 @@ The SQLite schema uses indexed relational ownership fields, FK-backed relationsh
 
 ## Checks
 
-The enriched training catalogue has 12 illustrated cards with source-based demo lessons. Content, artwork prompts, the catalogue update procedure and verification are documented in [Formación library](docs/formacion-library.md). Its runtime catalogue update is separate from the immutable original seed.
+The enriched training catalogue has 12 illustrated cards with source-based demo lessons. Each detail opens a dedicated three-step simulated playback flow with persistent progress and a completion screen; the supplied recap uses its real local MP4 in the same flow. Content, artwork prompts, the catalogue update procedure and verification are documented in [Formación library](docs/formacion-library.md). Its runtime catalogue update is separate from the immutable original seed.
 
 ```powershell
 npm run build

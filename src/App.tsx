@@ -40,11 +40,18 @@ import {
   Plan,
   Preferences,
   Saved,
-  Scenarios,
   Solutions,
   Team,
 } from './Account';
-import { Calendar, ContentDetail, ContentList, Concepts, Innovation, Sources } from './Resources';
+import {
+  Calendar,
+  ContentDetail,
+  ContentList,
+  Concepts,
+  Innovation,
+  LearningPlayback,
+  Sources,
+} from './Resources';
 export function App() {
   const path = useLocation().pathname;
   return (
@@ -74,6 +81,7 @@ export function App() {
         {['alianzas', 'financiamiento', 'formacion'].map((p) => (
           <Route key={p} path={'/' + p + '/:id'} element={<ContentDetail kind={p} />} />
         ))}
+        <Route path="/formacion/:id/reproduccion" element={<LearningPlayback />} />
         <Route path="/calendario" element={<Calendar />} />
         <Route path="/calendario/:id" element={<ContentDetail kind="calendario" />} />
         <Route path="/innovacion" element={<Innovation />} />
@@ -91,7 +99,6 @@ export function App() {
         <Route path="/delegaciones" element={<Delegations />} />
         <Route path="/guardados" element={<Saved />} />
         <Route path="/plan" element={<Plan />} />
-        <Route path="/escenarios" element={<Scenarios />} />
         <Route
           path="*"
           element={

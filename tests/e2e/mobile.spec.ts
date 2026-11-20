@@ -402,6 +402,12 @@ async function chooseSelect(
       : listbox.getByRole('option', { name: selection.label, exact: true });
   await option.click();
 }
+async function switchProfile(page: Page, userId: string) {
+  await page.goto('/acceso');
+  await chooseSelect(page, 'Perfil de demostración', userId);
+  await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click();
+  await expect(page).toHaveURL('/inicio');
+}
 async function expectSelectValue(page: Page, name: string, value: string) {
   await expect(selectControl(page, name)).toHaveAttribute('data-value', value);
 }
@@ -556,6 +562,7 @@ test('Expande challenge badges use the purple brand treatment', async ({ page })
   await enter(page);
   await page.goto('/desafios');
   const badges = page.locator('.tags .tag-expande');
+  await expect(badges.first()).toBeVisible();
   expect(await badges.count()).toBeGreaterThan(0);
   await expect(badges.first()).toHaveText('Expande');
   await expect(badges.first()).toHaveCSS('background-color', 'rgb(171, 18, 84)');
@@ -755,7 +762,7 @@ test('challenge tracking is automatic only for Expande and manual for market opp
     .fill('Revisión registrada');
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
   await expect(page.getByText('Estado e historial actualizados por tu empresa')).toBeVisible();
-  await expect(page.locator('.pill')).toHaveText('En revisión');
+  await expect(page.locator('.page > .pill')).toHaveText('En revisión');
   await expect(
     page.locator('.timeline').getByText('Revisión registrada', { exact: true }),
   ).toBeVisible();
@@ -820,6 +827,64 @@ test('challenge bookmarks confirm save and removal in catalogue and detail', asy
   await expect(page.getByRole('status')).toHaveText('Eliminado de guardados');
 });
 
+test('application detail shows complete stages and separates solution from team', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  await page.goto('/postulaciones/APP-01');
+
+  const sequence = page.getByRole('list', { name: 'Secuencia completa de etapas', exact: true });
+  await expect(sequence.getByRole('listitem')).toHaveCount(8);
+  for (const [index, stage] of [
+    'Scouting',
+    'Pertinencia',
+    'Prospección',
+    'Selección compañía',
+    'Demo Day',
+    'Piloto',
+    'Escalamiento',
+    'Cierre',
+  ].entries())
+    await expect(sequence.getByRole('listitem').nth(index)).toContainText(stage);
+
+  const closed = sequence.locator('.stage-closed');
+  const current = sequence.locator('.stage-current');
+  const future = sequence.locator('.stage-future');
+  await expect(closed).toHaveCount(2);
+  await expect(closed.first()).toContainText('Cerrada');
+  await expect(closed.first()).toHaveCSS('background-color', 'rgb(232, 243, 236)');
+  await expect(current).toHaveCount(1);
+  await expect(current).toHaveAttribute('aria-current', 'step');
+  await expect(current).toContainText('Prospección');
+  await expect(current).toContainText('Actual');
+  await expect(current).toHaveCSS('background-color', 'rgb(248, 232, 239)');
+  await expect(future).toHaveCount(5);
+  await expect(future.first()).toContainText('Futura');
+  await expect(future.first()).toHaveCSS('background-color', 'rgb(231, 238, 241)');
+  await expect(page.getByRole('heading', { name: 'Historial efectivo', exact: true })).toBeVisible();
+  const solutionCard = page
+    .locator('.card')
+    .filter({ has: page.getByRole('heading', { name: 'Solución', exact: true }) });
+  const teamCard = page
+    .locator('.card')
+    .filter({ has: page.getByRole('heading', { name: 'Equipo', exact: true }) });
+  await expect(solutionCard).toHaveCount(1);
+  await expect(teamCard).toHaveCount(1);
+  await expect(solutionCard.getByRole('heading', { name: 'Equipo', exact: true })).toHaveCount(0);
+  await expect(teamCard.getByRole('heading', { name: 'Solución', exact: true })).toHaveCount(0);
+  const team = teamCard.getByRole('list', { name: 'Integrantes del equipo', exact: true });
+  await expect(team.getByRole('listitem')).toHaveCount(2);
+  await expect(team.getByRole('listitem').nth(0)).toContainText(
+    'Andrea DemoDesarrollo de negociosAdministrador',
+  );
+  await expect(team.getByRole('listitem').nth(1)).toContainText(
+    'Diego DemoResponsable técnicoColaborador',
+  );
+  await expect(page.getByRole('heading', { name: 'Solución y equipo', exact: true })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('account shows the generated portrait for every demo profile', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await enter(page);
@@ -830,11 +895,7 @@ test('account shows the generated portrait for every demo profile', async ({ pag
     ['USR-03', 'Lucía Demo', 'lucia.jpg'],
     ['USR-04', 'Pablo Demo', 'pablo.jpg'],
   ]) {
-    if (id !== 'USR-01') {
-      await page.goto('/escenarios');
-      await chooseSelect(page, 'Perfil y organización', id);
-      await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
-    }
+    if (id !== 'USR-01') await switchProfile(page, id);
     await page.goto('/cuenta');
     const portrait = page.getByRole('img', {
       name: `Retrato de perfil de ${name}`,
@@ -850,6 +911,17 @@ test('account shows the generated portrait for every demo profile', async ({ pag
       )
       .toBeGreaterThan(0);
   }
+});
+test('account and router omit scenario tools', async ({ page }) => {
+  await enter(page);
+  await page.goto('/cuenta');
+  await expect(page.getByRole('link', { name: 'Cambiar escenario', exact: true })).toHaveCount(0);
+  await expect(page.getByText('Cambiar escenario', { exact: true })).toHaveCount(0);
+
+  await page.goto('/escenarios');
+  await expect(page.getByText('Vista no encontrada', { exact: true })).toBeVisible();
+  await expect(page.getByText('Herramientas de demostración', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reiniciar mi demostración' })).toHaveCount(0);
 });
 test('account dark mode applies across routes and persists after reload', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -1078,6 +1150,7 @@ test('company country autocomplete searches names and codes and persists selecte
   const city = page.getByRole('combobox', { name: 'Ciudad', exact: true });
   await expectSelectValue(page, 'Ciudad', 'Santiago');
   const cityOptions = await openSelect(page, 'Ciudad');
+  await expect(cityOptions.getByRole('option', { name: 'Santiago', exact: true })).toBeVisible();
   for (const commune of [
     'Providencia',
     'Las Condes',
@@ -1086,7 +1159,7 @@ test('company country autocomplete searches names and codes and persists selecte
     'Puente Alto',
     'Vitacura',
   ])
-    await expect(cityOptions.getByRole('option', { name: commune, exact: true })).toBeVisible();
+    await expect(cityOptions.getByRole('option', { name: commune, exact: true })).toHaveCount(0);
   await expect(
     cityOptions.getByRole('option', { name: 'Melipilla', exact: true }),
   ).toBeVisible();
@@ -1173,7 +1246,20 @@ test('coverage regions support autocomplete, multiple selections, removal and pe
   const countryCoverage = initial.companies.find((c: any) => c.id === 'EMP-D01').service_countries;
   const coverage = page.getByRole('combobox', { name: 'Regiones de cobertura', exact: true });
   const coverageList = page.getByRole('listbox', { name: 'Regiones de cobertura', exact: true });
-  await expect(page.getByRole('button', { name: 'Quitar Coquimbo', exact: true })).toBeVisible();
+  const coverageToggle = page.getByRole('button', {
+    name: 'Mostrar regiones de cobertura',
+    exact: true,
+  });
+  const coquimboChip = page.getByRole('button', { name: 'Quitar Coquimbo', exact: true });
+  await expect(coverageToggle).toBeVisible();
+  await expect(coverageToggle).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await expect(coquimboChip).toBeVisible();
+  await expect(coquimboChip).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await expect(coquimboChip).toHaveCSS('background-color', 'rgb(232, 243, 236)');
+  await expect(coquimboChip.locator('svg')).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await coquimboChip.hover();
+  await expect(coquimboChip).toHaveCSS('color', 'rgb(5, 51, 73)');
+  await expect(coquimboChip).toHaveCSS('background-color', 'rgb(232, 243, 236)');
   await coverage.fill('valparaiso');
   await coverageList.getByRole('option', { name: 'Valparaíso', exact: true }).click();
   await coverage.fill('nuble');
@@ -1200,9 +1286,9 @@ test('coverage regions support autocomplete, multiple selections, removal and pe
   await expect(page.getByRole('button', { name: 'Quitar Coquimbo', exact: true })).toHaveCount(0);
   await coverage.fill('valparaiso');
   await coverage.scrollIntoViewIfNeeded();
+  await coverage.press('Escape');
   mkdirSync('.local/screenshots', { recursive: true });
   await page.screenshot({ path: '.local/screenshots/coverage-region-multiselect.png' });
-  await coverage.press('Escape');
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
   ).toBeTruthy();
@@ -1218,11 +1304,41 @@ test('coverage regions support autocomplete, multiple selections, removal and pe
   await page.goto('/onboarding/empresa');
   await expect(coverage).toBeVisible();
   await expect(page.getByText(/Países de cobertura/)).toHaveCount(0);
-  await page.goto('/escenarios');
-  await chooseSelect(page, 'Perfil y organización', 'USR-02');
-  await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
+  await switchProfile(page, 'USR-02');
   await page.goto('/empresa');
-  await expect(coverage).toBeDisabled();
+  const readOnlyCompany = page.getByRole('region', {
+    name: 'Información de la empresa',
+    exact: true,
+  });
+  await expect(readOnlyCompany).toBeVisible();
+  await expect(readOnlyCompany.getByText('SensorAndes Demo', { exact: true })).toBeVisible();
+  await expect(readOnlyCompany.getByText('Chile', { exact: true })).toBeVisible();
+  const coverageSummary = readOnlyCompany
+    .locator('.data-field')
+    .filter({ has: page.getByRole('heading', { name: 'Regiones de cobertura', exact: true }) });
+  await expect(coverageSummary.getByText('No informado', { exact: true })).toBeVisible();
+  await expect(page.getByRole('combobox', { name: 'Regiones de cobertura' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Guardar cambios', exact: true })).toHaveCount(0);
+  await expect(
+    page.getByText('Solo el administrador puede editar el perfil de empresa.', { exact: true }),
+  ).toHaveCount(0);
+  await page.screenshot({ path: '.local/screenshots/company-readonly-collaborator.png' });
+  await page.goto('/soluciones/SOL-01');
+  const readOnlySolution = page.getByRole('region', {
+    name: 'Información de la solución',
+    exact: true,
+  });
+  await expect(readOnlySolution).toBeVisible();
+  await expect(readOnlySolution.getByText('Sensor estructural remoto', { exact: true })).toBeVisible();
+  await expect(readOnlySolution.getByText('TRL 7', { exact: true })).toBeVisible();
+  await expect(page.getByText('Detalle de solución', { exact: true })).toBeVisible();
+  await expect(page.getByRole('textbox')).toHaveCount(0);
+  await expect(page.getByRole('combobox')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Guardar cambios', exact: true })).toHaveCount(0);
+  await expect(
+    page.getByText('Consulta de solución. Solo el administrador puede modificarla.', { exact: true }),
+  ).toHaveCount(0);
+  await page.screenshot({ path: '.local/screenshots/solution-readonly-collaborator.png' });
 });
 
 test('personal last name saves and reloads without modifying another user', async ({ page }) => {
@@ -1243,9 +1359,7 @@ test('personal last name saves and reloads without modifying another user', asyn
     page.getByRole('combobox', { name: 'Rol de Andrea Demo González Pérez', exact: true }),
   ).toBeDisabled();
   await expect(page.getByRole('heading', { name: 'Diego Demo', exact: true })).toBeVisible();
-  await page.goto('/escenarios');
-  await chooseSelect(page, 'Perfil y organización', 'USR-02');
-  await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
+  await switchProfile(page, 'USR-02');
   await page.goto('/perfil');
   await expect(page.getByLabel('Apellidos', { exact: true })).toHaveValue('');
 });
@@ -1341,7 +1455,7 @@ for (const width of [360, 390, 430])
     expect(new Set(colors).size).toBe(3);
   });
 
-test('enriched learning details hide source sections and retain simulated progress and documentary recap', async ({
+test('enriched learning details hide source sections and open course playback', async ({
   page,
 }) => {
   await enter(page);
@@ -1349,41 +1463,87 @@ test('enriched learning details hide source sections and retain simulated progre
   for (const lesson of trainingManifest.lessons) {
     const record = data.learning.find((r: any) => r.id === lesson.id);
     await page.goto('/formacion/' + lesson.id);
-    if (record.media_url?.startsWith('/videos/')) {
-      await expect(page.locator('.learning-detail-cover video')).toHaveAttribute(
-        'poster',
-        record.thumbnail_url,
-      );
-      await expect(page.locator('video source')).toHaveAttribute('src', record.media_url);
-    } else {
-      await expect(page.locator('.learning-detail-cover img')).toHaveAttribute(
-        'src',
-        record.thumbnail_url,
-      );
-    }
+    await expect(page.locator('.learning-detail-cover img')).toHaveAttribute(
+      'src',
+      record.thumbnail_url,
+    );
+    await expect(page.locator('.learning-detail-cover video')).toHaveCount(0);
     await expect(page.getByRole('heading', { name: record.title, exact: true })).toBeVisible();
     await expect(page.locator('.provenance')).toHaveCount(0);
     await expect(
       page.getByRole('heading', { name: 'Fuente y documentos', exact: true }),
     ).toHaveCount(0);
-    if (record.demo) {
+    if (record.demo)
       await expect(page.getByText('Equipo editorial de la demo', { exact: true })).toBeVisible();
-      await expect(page.getByRole('heading', { name: 'Reproducción', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Reproducción', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: /Iniciar curso|Continuar curso|Reiniciar curso/ }),
+    ).toHaveAttribute(
+      'href',
+      `/formacion/${record.id}/reproduccion${
+        data.learning_progress.some(
+          (progress: any) =>
+            progress.learning_id === record.id && progress.progress_percent === 100,
+        )
+          ? '?reiniciar=1'
+          : ''
+      }`,
+    );
+    if (record.demo) {
       for (const chapter of record.chapters)
-        await expect(page.getByText(chapter, { exact: true })).toBeVisible();
-    } else {
-      await expect(page.getByRole('button', { name: 'Avanzar lección', exact: true })).toHaveCount(
-        0,
-      );
-      await expect(page.locator('video')).toBeVisible();
-      await expect(page.getByRole('button', { name: /Abrir video de referencia/ })).toHaveCount(0);
+        await expect(page.getByText(chapter.split(':', 1)[0], { exact: true })).toBeVisible();
     }
+  }
+});
+
+test('simulated course playback resumes, advances freely and reaches completion', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await enter(page);
+  const record = trainingManifest.lessons.find((lesson) => lesson.id === 'LEARN-D02')!;
+  const chapter = (index: number) => record.chapters![index].split(':', 1)[0];
+  await page.goto('/formacion/LEARN-D02');
+  await page.getByRole('link', { name: 'Iniciar curso', exact: true }).click();
+  await expect(page).toHaveURL('/formacion/LEARN-D02/reproduccion');
+  await expect(page.getByText('LECCIÓN 1 DE 3', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: chapter(0), exact: true })).toBeVisible();
+  await expect(page.getByText('Reproducción simulada', { exact: true })).toBeVisible();
+  const timeline = page.getByLabel('Posición del video simulado');
+  await page.getByRole('button', { name: 'Reproducir video simulado' }).first().click();
+  await expect(page.getByRole('button', { name: 'Pausar video simulado' }).first()).toBeVisible();
+  await expect.poll(async () => Number(await timeline.inputValue())).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'Pausar video simulado' }).first().click();
+  mkdirSync('.local/screenshots', { recursive: true });
+  await page.screenshot({ path: '.local/screenshots/formacion-reproduccion-simulada-390.png' });
+  await page.getByRole('button', { name: 'Siguiente', exact: true }).click();
+  await expect(page.getByText('LECCIÓN 2 DE 3', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: chapter(1), exact: true })).toBeVisible();
+  await expect(page.getByText('33% completado', { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('LECCIÓN 2 DE 3', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Siguiente', exact: true }).click();
+  await expect(page.getByText('LECCIÓN 3 DE 3', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: chapter(2), exact: true })).toBeVisible();
+  await expect(page.getByText('67% completado', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Finalizar curso', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Curso completado', exact: true })).toBeVisible();
+  await expect(page.getByText('100% completado', { exact: true })).toBeVisible();
+  await page.screenshot({ path: '.local/screenshots/formacion-completada-390.png' });
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Curso completado', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Reiniciar curso', exact: true }).click();
+  await expect(page.getByText('LECCIÓN 1 DE 3', { exact: true })).toBeVisible();
+  await expect(page.getByText('100% completado', { exact: true })).toBeVisible();
+  for (const width of [360, 390, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
   }
 });
 
 test('supplied recap video plays, seeks and serves byte ranges', async ({ page }) => {
   await enter(page);
-  await page.goto('/formacion/LEARN-R01');
+  await page.goto('/formacion/LEARN-R01/reproduccion');
   const video = page.locator('video');
   await expect(video).toBeVisible();
   await expect(video).toHaveAttribute('controls', '');
@@ -1429,6 +1589,8 @@ test('supplied recap video plays, seeks and serves byte ranges', async ({ page }
   expect(range.headers()['content-type']).toContain('video/mp4');
   expect(range.headers()['content-range']).toBe('bytes 0-1023/74235676');
   expect((await range.body()).length).toBe(1024);
+  await page.getByRole('button', { name: 'Finalizar curso', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Curso completado', exact: true })).toBeVisible();
 });
 
 test('training thumbnail failure preserves a neutral accessible placeholder', async ({ page }) => {
@@ -1460,7 +1622,6 @@ test('all mapped routes render without React errors', async ({ page }) => {
     '/delegaciones',
     '/guardados',
     '/plan',
-    '/escenarios',
     '/avisos',
     '/fuentes',
     '/desafios/CH-D01',
@@ -1484,6 +1645,7 @@ test('all mapped routes render without React errors', async ({ page }) => {
     '/innovacion/trends/TREND-01',
     '/formacion',
     '/formacion/LEARN-D01',
+    '/formacion/LEARN-D01/reproduccion',
     '/conceptos/socios',
     '/conceptos/senales',
   ];
@@ -1505,10 +1667,19 @@ test('draft, question, documents, notifications and persisted saved items', asyn
   await expect(
     page.getByText('Borrador local. No se envió al mandante.', { exact: true }),
   ).toBeVisible();
-  await page.getByRole('link', { name: 'Visitar portal de demostración' }).click();
+  await page.getByRole('link', { name: 'Visitar portal de postulación', exact: true }).click();
   await expect(
     page.getByText('Salida simulada. No se ha enviado ninguna postulación.'),
   ).toBeVisible();
+  await expect(
+    page.getByText(
+      'En el producto, la postulación formal se realiza en el portal de origen. Este link abrirá el portal.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(
+    page.getByText('Visitar esta pantalla no cambia tus borradores ni su estado.', { exact: true }),
+  ).toHaveCount(0);
   await page.goto('/desafios/CH-D01/preguntas');
   await page.getByLabel('Tu pregunta').fill('¿Se puede instalar un sensor de prueba?');
   await page.getByRole('button', { name: 'Guardar pregunta local' }).click();
@@ -1569,9 +1740,7 @@ test('company edit, rules, invitations, delegation and role permissions', async 
   await page.getByLabel('Fecha final').fill('2026-11-20');
   await page.getByRole('button', { name: 'Guardar cambios', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'relevo@example.com' })).toBeVisible();
-  await page.goto('/escenarios');
-  await chooseSelect(page, 'Perfil y organización', 'USR-02');
-  await page.getByRole('button', { name: 'Cambiar perfil', exact: true }).click();
+  await switchProfile(page, 'USR-02');
   await page.goto('/equipo');
   await expect(page.getByRole('button', { name: 'Invitar Integrante' })).toHaveCount(0);
   await page.goto('/plan');
@@ -1590,10 +1759,13 @@ test('calendar precision, funding currency, concepts and training progress', asy
   await page.getByRole('button', { name: 'Me interesa esta idea' }).click();
   await expect(page.getByRole('button', { name: 'Interés registrado' })).toBeVisible();
   await page.goto('/formacion/LEARN-D01');
-  await page.getByRole('button', { name: 'Avanzar lección', exact: true }).click();
-  await expect(page.getByText('60% completado')).toBeVisible();
+  await page.getByRole('link', { name: 'Continuar curso', exact: true }).click();
+  await expect(page.getByText('LECCIÓN 2 DE 3', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Siguiente', exact: true }).click();
+  await expect(page.getByText('67% completado')).toBeVisible();
   await page.reload();
-  await expect(page.getByText('60% completado')).toBeVisible();
+  await expect(page.getByText('LECCIÓN 3 DE 3', { exact: true })).toBeVisible();
+  await expect(page.getByText('67% completado')).toBeVisible();
 });
 test('agent edits refresh live UI while dirty forms retain data and reject stale saves', async ({
   page,
@@ -1646,9 +1818,7 @@ test('agent edits refresh live UI while dirty forms retain data and reject stale
     s.close();
   }
 });
-test('editable draft snapshot, notification rules, simulated requests and reset', async ({
-  page,
-}) => {
+test('editable draft snapshot, notification rules and simulated requests', async ({ page }) => {
   await enter(page);
   await page.goto('/desafios/CH-D03/preparar');
   await page.getByLabel('Empresa en esta preparación (copia)').fill('Nombre para esta propuesta');
@@ -1684,12 +1854,4 @@ test('editable draft snapshot, notification rules, simulated requests and reset'
   await page.getByRole('button', { name: 'Inscripción demo', exact: true }).click();
   await page.getByRole('button', { name: 'Confirmar inscripción demo' }).click();
   await expect(page.getByRole('button', { name: 'Inscripción demo registrada' })).toBeVisible();
-  await page.goto('/escenarios');
-  await page.getByRole('button', { name: 'Reiniciar mi demostración' }).click();
-  await page.getByRole('button', { name: 'Confirmar', exact: true }).click();
-  await expect(page.getByText('Hola, Andrea')).toBeVisible();
-  await page.goto('/empresa');
-  await expect(page.getByLabel('Nombre de empresa', { exact: true })).toHaveValue(
-    'SensorAndes Demo',
-  );
 });

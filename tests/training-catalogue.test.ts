@@ -35,6 +35,11 @@ test('training enrichment preserves existing recap, saved records and progress; 
       assert(s.get('catalog', 'sources', lesson.provenance.source_id));
       if (lesson.demo) {
         assert.equal(lesson.chapters.length, 3);
+        assert(
+          lesson.chapters.every(
+            (chapter: string) => chapter.includes(':') && chapter.length >= 400,
+          ),
+        );
         assert.equal(lesson.media_url, null);
         assert.equal(lesson.author, 'Equipo editorial de la demo');
       }
@@ -51,6 +56,27 @@ test('training enrichment preserves existing recap, saved records and progress; 
       ]),
     );
     assert.deepEqual(s.get('catalog', 'learning', course.id), course);
+  } finally {
+    s.close();
+  }
+});
+
+test('training progress accepts the supplied recap and validates its input', () => {
+  const s = new Store(':memory:');
+  try {
+    const session = s.createSession();
+    action(s, session, { type: 'progress', learning_id: 'LEARN-R01', progress: 100 });
+    assert.equal(
+      s.rows(session, 'learning_progress').find((row) => row.learning_id === 'LEARN-R01')
+        ?.progress_percent,
+      100,
+    );
+    assert.throws(() =>
+      action(s, session, { type: 'progress', learning_id: 'LEARN-R01', progress: '100' }),
+    );
+    assert.throws(() =>
+      action(s, session, { type: 'progress', learning_id: 'LEARN-MISSING', progress: 50 }),
+    );
   } finally {
     s.close();
   }

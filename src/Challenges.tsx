@@ -771,8 +771,8 @@ export function Portal() {
         <h1>{d.challenges.find((r: Row) => r.id === id)?.title}</h1>
         <Notice>Salida simulada. No se ha enviado ninguna postulación.</Notice>
         <p>
-          En el producto, la postulación formal se realiza en el portal de origen. Visitar esta
-          pantalla no cambia tus borradores ni su estado.
+          En el producto, la postulación formal se realiza en el portal de origen. Este link abrirá
+          el portal.
         </p>
         <Link className="button primary" to={'/desafios/' + id}>
           Volver al desafío
